@@ -15,7 +15,7 @@ $query = new \WP_Query([
     'post_status'         => 'publish',
     'ignore_sticky_posts' => true,
     'posts_per_page'      => 2,
-    'category__not_in'    => [17, 696],
+    'category__not_in'    => [17, 696,159],
     'tag__not_in'         => 989,
 ]);
 ?>
@@ -45,28 +45,7 @@ $query = new \WP_Query([
         <?php wp_reset_postdata(); ?>
     </div>
 
+   <?php get_template_part('banner-templates/banner', 'thirds' ) ?>
 
-    <!--	<div class="container mx-auto relative z-10 mb-16 lg:mb-32 flex flex-wrap items-start">-->
-    <!--		<div class="w-full lg:w-4/6 lg:pr-10 mb-8">-->
-    <!--			--><?php
-//			if ( have_posts() ) {
-//				while ( have_posts() ) {
-//					the_post();
-//					echo get_template_part( 'content-templates/content', 'article' );
-//				}
-//			}
-?>
-    <!--		</div>-->
-    <!--		--><?php
-//		if ( is_active_sidebar( 'sidebar' ) ) :
-?>
-    <!--			<aside class="w-full lg:w-2/6 bg-white border-gray-400 border-2 p-8">-->
-    <!--				--><?php //dynamic_sidebar( 'sidebar' );
-?>
-    <!--			</aside>-->
-    <!--		--><?php
-//		endif;
-?>
-    <!--	</div>-->
     <?php
 get_footer();
