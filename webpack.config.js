@@ -28,6 +28,7 @@ if ( isProduction ) {
 				'./*.php',
 				'./src/**/*.php',
 				'./page-templates/*.php',
+				'./banner-templates/*.php',
 				'./assets/images/**/*.svg',
 				'./assets/scss/whitelist/*.css',
 				'./../../mu-plugins/app/src/components/**/*.php',
