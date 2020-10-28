@@ -26,7 +26,7 @@ $query = new \WP_Query([
                 <?php while ($query->have_posts()): ?>
                     <?php $query->the_post(); ?>
                     <div class="col-span-2 md:col-span-1 relative">
-                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900">
+                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900 h-full">
 
                             <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
                                     <div class="bg-primary-100 w-full h-full"></div>
