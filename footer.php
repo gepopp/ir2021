@@ -31,6 +31,6 @@ namespace immobilien_redaktion_2020;
 </footer>
 <?php wp_footer(); ?>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
+test test test
 </body>
 </html>
