@@ -27,7 +27,7 @@ namespace immobilien_redaktion_2020;
 
 <header class="header bg-primary-100 w-full h-10">
     <div class="container mx-auto flex justify-between">
-        <div class="pt-2">
+        <div class="pt-2 hidden lg:block">
             <ul class="flex">
                 <li class="uppercase text-white mr-3"><a href="#">LESEN</a></li>
                 <li class="uppercase text-white mr-3"><a href="#">SEHEN</a></li>
@@ -37,7 +37,13 @@ namespace immobilien_redaktion_2020;
         <a href="<?php echo home_url() ?>">
             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo.svg" class="h-24 w-auto pt-0 mt-0">
         </a>
-        <div class="pt-2">
+        <div class="pt-2 block lg:hidden">
+            <ul class="flex">
+                <li class="uppercase text-white mr-3"><a href="#" class="underline">Menü</a></li>
+            </ul>
+        </div>
+
+        <div class="pt-2 hidden lg:block">
             <ul class="flex">
                 <li class="uppercase text-white mr-3">
                     <a href="https://www.facebook.com/ImmoRedaktion">
