@@ -20,6 +20,7 @@ namespace immobilien_redaktion_2020;
 	<link rel="icon" type="image/png" href="<?= get_stylesheet_directory_uri() . '/assets/images/favicon.png'; ?>">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
