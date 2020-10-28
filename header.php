@@ -40,7 +40,7 @@ namespace immobilien_redaktion_2020;
         <div class="pt-2">
             <ul class="flex">
                 <li class="uppercase text-white mr-3">
-                    <a href="#">
+                    <a href="https://www.facebook.com/ImmoRedaktion">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 100 100" fill="currentColor" class="text-white h-6 w-6">
         <path d="M54.86,34.37c0.05,0.8,0.9,1.09,1.48,0.85c2.21,0.65,4.73,0.73,7.03,0.7c1.65,0,3.47-0.05,5.14-0.24
@@ -74,7 +74,7 @@ namespace immobilien_redaktion_2020;
                     </a>
                 </li>
                 <li class="uppercase text-white mr-3">
-                    <a href="#">
+                    <a href="https://twitter.com/ImmoRedaktion">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve" fill="currentColor" class="text-white w-6 h-6">
             <path d="M74.43,20.67c-0.24,1.44-2.06,2.24-3.31,2.06c-1.15-0.16-2.19-0.91-2.51-2.06c-0.37-1.26,0.24-2.62,1.36-3.23
@@ -128,7 +128,7 @@ namespace immobilien_redaktion_2020;
                     </a>
                 </li>
                 <li class="uppercase text-white mr-3">
-                    <a href="#">
+                    <a href="https://www.linkedin.com/company/die-unabhaengige-immobilien-redaktion/">
                         <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve" fill="currentColor" class="text-white h-6 w-6">
             <path d="M96.08,94.23C96.03,94.15,96,94.07,96,93.97c-0.05-0.4-0.13-0.8-0.19-1.22c-2.66-0.19-5.45-0.05-8-0.11
@@ -174,7 +174,6 @@ namespace immobilien_redaktion_2020;
 				c-2.85-3.75-2.45-8.91,0.16-12.47C3.79,10.23,3.52,9.78,3.79,9.51z M8.36,8.4c-5.53,3.32-5.9,11.3-0.69,15.13
 				c4.31,3.16,11.17,3.56,14.76-0.9c3.46-4.33,2.53-12.63-2.71-15.13C15.83,5.66,12.03,6.88,8.36,8.4z"/>
 </svg>
-
                     </a>
                 </li>
             </ul>
