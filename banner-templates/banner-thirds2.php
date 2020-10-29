@@ -73,15 +73,16 @@ $banner_large = get_posts([
 <div class="container mx-auto mt-32">
     <p class="text-xs text-gray-300">Werbung</p>
     <div class="flex flex-col lg:flex-row">
-        <div class="w-full lg:w-1/3 lg:pr-5">
-            <a href="<?php the_field('field_5c6325e38e0aa', $banner_small[0]->ID) ?>">
-                <img src="<?php echo get_the_post_thumbnail_url($banner_small[0]->ID, 'full'); ?>" class="w-full h-auto">
-            </a>
-        </div>
-        <div class="w-full lg:w-2/3 lg:pl-5 pt-10 lg:pt-0">
+        <div class="w-full lg:w-2/3 lg:pr-5 pt-10 lg:pt-0">
             <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
                 <img src="<?php echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full'); ?>" class="w-full h-auto">
             </a>
         </div>
+        <div class="w-full lg:w-1/3 lg:pl-5">
+            <a href="<?php the_field('field_5c6325e38e0aa', $banner_small[0]->ID) ?>">
+                <img src="<?php echo get_the_post_thumbnail_url($banner_small[0]->ID, 'full'); ?>" class="w-full h-auto">
+            </a>
+        </div>
+
     </div>
 </div>

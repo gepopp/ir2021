@@ -33,7 +33,7 @@ $query = new \WP_Query([
                         </div>
                     </a>
                     <a href="<?php the_permalink(); ?>" class="block lg:hidden mt-5">
-                        <h1 class="font-serif text-gray-800 text-2xl"><?php the_title() ?></h1>
+                        <h1 class="text-gray-800 text-2xl"><?php the_title() ?></h1>
                     </a>
                 </div>
             <?php endwhile; ?>

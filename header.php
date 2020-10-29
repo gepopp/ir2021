@@ -23,7 +23,7 @@ namespace immobilien_redaktion_2020;
 
 </head>
 
-<body <?php body_class('bg-primary-100 bg-opacity-5'); ?> itemscope itemtype="https://schema.org/WebPage">
+<body <?php body_class('bg-primary-100 bg-opacity-5 px-5 lg:px-0'); ?> itemscope itemtype="https://schema.org/WebPage">
 
 <header class="header bg-primary-100 w-full h-10">
     <div class="container mx-auto flex justify-between">

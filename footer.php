@@ -13,22 +13,35 @@ namespace immobilien_redaktion_2020;
 
 ?>
 </main>
-<!--<footer class="footer relative bg-dark-1 text-light-2 pt-8 pb-16">-->
-<!--    <div class="relative z-10">-->
-<!--        <div class="container mx-auto">-->
-<!--            <div class="lg:flex lg:justify-between">-->
-<!--                <div class="lg:w-1/4 text-center lg:text-left">-->
-<!--                    <div class="text-xl">-->
-<!--                        <p class="text-sm">Immobilien Redaktion 2020 is a utility-first starter theme for WordPress by-->
-<!--                            <a href="https://www.freeshifter.com">Freeshifter LLC</a> and is totally free!-->
-<!--                            <a href="https://www.github.com/freeshifter/immobilien-redaktion-2020">Contribute on GitHub</a></a>-->
-<!--                        </p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</footer>-->
+<footer class="footer relative bg-gray-900 text-white mt-32 pt-8 pb-16">
+    <div class="relative z-10">
+        <div class="container mx-auto">
+            <div class="lg:flex lg:justify-between">
+
+                <div class="lg:w-1/4 text-center lg:text-left">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_white.svg">
+                </div>
+
+
+                <div class="lg:w-1/4 text-center lg:text-left">
+                    <div class="text-xl text-right">
+                        <h3 class="font-serif text-xl text-white">Impressum</h3>
+                        <p class="text-sm">
+                            Die unabhängige Immobilien-Redaktion<br>
+                            Mag. Walter Senk<br>
+                            Lindengasse 11/2/17<br>
+                            <a href="mailto:office@immobilien-redaktion.at" class="underline">office@immobilien-redaktion.at</a><br>
+                            1070 Wien<br>
+                            UID 589 44 806<br>
+                            <a href="/datenschutz" class="underline">Datenschutzerklärung</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
 <?php wp_footer(); ?>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </body>
