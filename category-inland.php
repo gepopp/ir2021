@@ -45,7 +45,7 @@
                             <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
                             <div class="absolute bottom-0 left-0 m-5">
                                 <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
-                                <p class="text-white text-sm">Geschireben von <?php the_author() ?> | Lesezeit 3 Minuten</p>
+                                <p class="text-white text-sm">Geschireben von <?php the_author() ?> am <?php the_time('d.m.Y'); ?> | Lesezeit 3 Minuten</p>
                             </div>
                         </a>
                     </div>
