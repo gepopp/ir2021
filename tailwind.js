@@ -31,6 +31,9 @@ module.exports = {
 			},
 			primary: {
 				100: '#5C97D0',
+			},
+			inland:{
+				100: '#bcb603'
 			}
 		},
 		spacing: {
