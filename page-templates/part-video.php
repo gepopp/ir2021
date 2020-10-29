@@ -14,14 +14,14 @@ $query = new \WP_Query([
             <?php while ($query->have_posts()): ?>
                 <?php $query->the_post(); ?>
                 <div class="col-span-2 md:col-span-1 relative">
-                    <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900 h-full">
+                    <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900">
                         <?php if (get_field('field_5c65130772844')): ?>
                             <img src="https://cdn.jwplayer.com/v2/media/<?php the_field('field_5c65130772844') ?>/poster.jpg" class="w-full h-auto max-w-full">
                         <?php elseif (get_field('field_5f96fa1673bac')): ?>
                             <img src="https://img.youtube.com/vi/<?php the_field('field_5f96fa1673bac') ?>/mqdefault.jpg" class="w-full h-auto max-w-full">
                         <?php endif; ?>
                         <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
-                        <div class="absolute bottom-0 left-0 m-5">
+                        <div class="absolute bottom-0 left-0 m-5 hidden lg:block">
                             <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
                         </div>
                         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
@@ -31,6 +31,9 @@ $query = new \WP_Query([
                                 </div>
                             </div>
                         </div>
+                    </a>
+                    <a href="<?php the_permalink(); ?>" class="block lg:hidden mt-5">
+                        <h1 class="font-serif text-gray-800 text-2xl"><?php the_title() ?></h1>
                     </a>
                 </div>
             <?php endwhile; ?>
