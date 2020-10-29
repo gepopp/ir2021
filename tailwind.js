@@ -393,6 +393,8 @@ module.exports = {
 		wordBreak: ['responsive'],
 		zIndex: ['responsive'],
 	},
-	corePlugins: {},
+	corePlugins: {
+		animation: true,
+	},
 	plugins: [],
 }

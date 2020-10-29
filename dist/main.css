@@ -9491,6 +9491,39 @@ video {
           transition-delay: 1000ms;
 }
 
+.animate-ping{
+  -webkit-animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@-webkit-keyframes ping {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+
+  75%, 100% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 1;
+  }
+}
+
+@keyframes ping {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+
+  75%, 100% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 1;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -53985,5 +54018,3 @@ video {
             transition-delay: 1000ms;
   }
 }
-
-
