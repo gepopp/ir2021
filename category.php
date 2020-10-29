@@ -1,5 +1,11 @@
 <?php get_header(); ?>
 
+<?php
+$term = get_queried_object();
+
+
+?>
+
 
     <div class="container mx-auto mt-32">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">lesen</h1>
@@ -8,18 +14,19 @@
 
     <div class="container mx-auto mt-32">
         <div class="flex items-end">
-            <div class="w-full lg:w-1/2 bg-inland-100">
-                <p class="text-white font-serif text-5xl py-24 px-5 text-center">Inland</p>
+            <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
+                <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
             </div>
             <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 p-5 pr-16 relative">
-                <div class="flex">
-                    Die Immobilienmarktentwicklung in Österreich ist durch eine deutliche Veränderung in den Ansprüchen an Immobilien gekennzeichnet. Das betrifft alle Formen von Immobilien, Gewerbeimmobilien wie Büros, Einkaufsflächen oder Logistikflächen, ebenso wie Hotels oder den Wohnbereich.
-                </
-                >
-            </div>
-            <div class="absolute top-0 right-0 -mr-5 -mt-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center">
-                <p class="text-xs text-gray-900">powered by</p>
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-24 h-auto px-5">
+                <?php echo $term->description ?>
+                <?php if (get_field('field_5f9aeff4efa16', $term)): ?>
+                    <div class="absolute top-0 right-0 -mr-5 -mt-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+                        <a href="<?php echo get_field('field_5f9aeff4efa16', $term) ?>" class="text-center">
+                            <p class="text-xs text-gray-900">powered by</p>
+                            <img src="<?php echo get_field('field_5f9aefd116e2e', $term) ?>" class="w-24 h-auto px-5">
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

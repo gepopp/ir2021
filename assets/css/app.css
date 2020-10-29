@@ -16,3 +16,9 @@
         opacity: 1;
     }
 }
+
+.content{
+    h2{
+        @apply font-semibold text-2xl my-5;
+    }
+}

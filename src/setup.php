@@ -42,6 +42,7 @@ add_action('after_setup_theme', function () {
     add_image_size('horizontal_box', 370, 265, true);
     add_image_size('article', 600, 450, true);
     add_image_size('portrait', 300);
+    add_image_size('xs', 100, 100, true);
 
     add_theme_support('post-formats', ['video', 'gallery']);
 });
