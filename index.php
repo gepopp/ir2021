@@ -47,6 +47,11 @@ $query = new \WP_Query([
 
    <?php get_template_part('banner-templates/banner', 'thirds' ) ?>
    <?php get_template_part('page-templates/page', 'immoliveAnnouncement' ) ?>
+   <?php get_template_part('page-templates/part', 'fourbanner' ) ?>
+
+    <div class="container mx-auto mt-32">
+    </div>
+
 
     <?php
 get_footer();

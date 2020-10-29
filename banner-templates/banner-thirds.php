@@ -62,13 +62,15 @@ $banner_large = get_posts([
             'include_children' => false,
             'operator'         => 'IN',
         ],
-        'orderby'        => 'menu_order',
-        'order'          => 'ASC',
+        'orderby'  => 'menu_order',
+        'order'    => 'ASC',
     ],
 ]);
 
 ?>
-<div class="container mx-auto mt-32 flex flex-col lg:flex-row">
+<div class="container mx-auto mt-32">
+    <p class="text-xs text-gray-300">Werbung</p>
+    <div class="flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/3 lg:pr-5">
             <a href="<?php the_field('field_5c6325e38e0aa', $banner_small[0]->ID) ?>">
                 <img src="<?php echo get_the_post_thumbnail_url($banner_small[0]->ID, 'full'); ?>" class="w-full h-auto">
@@ -80,3 +82,4 @@ $banner_large = get_posts([
             </a>
         </div>
     </div>
+</div>
