@@ -1,0 +1,39 @@
+{
+    "key": "group_5c63ff43bbbfd",
+    "title": "Kategoreien",
+    "fields": [
+        {
+            "key": "field_5c63ff4b7a5fb",
+            "label": "Farbe",
+            "name": "farbe",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "category"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1578829322
+}
