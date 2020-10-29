@@ -36,20 +36,36 @@ $cat = get_category($cat)
             </div>
 
             <div>
-                <div class="relative h-64" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
-                    <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
-                    <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
-                        <div class="absolute bottom-0 right-0 -ml-5 -mr-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
-                            <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
-                                <p class="text-xs text-gray-900">powered by</p>
-                                <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-24 h-auto px-5">
-                            </a>
+                <script>
+                    function data() {
+                        return {
+                            scrolled: 0,
+                        }
+                    }
+                </script>
+                <div class="relative h-64" id="powered"
+                     x-data="data()"
+                     @scroll.window="scrolled = document.getElementById('powered').offsetTop - window.pageYOffset"
+                    >
+                    <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
+                        <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
+                            <p :style="`margin-top: ${scrolled};`" class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
+                            <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
+                                <div class="absolute bottom-0 right-0 -ml-5 -mr-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+                                    <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
+                                        <p class="text-xs text-gray-900">powered by</p>
+                                        <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-24 h-auto px-5">
+                                    </a>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+
 
 
 <?php get_footer();
