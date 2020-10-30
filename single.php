@@ -7,14 +7,14 @@ $cat = array_shift($cat);
 $cat = get_category($cat)
 
 ?>
-
+<?php if(!empty(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs']) && checkRemoteFile( get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])): ?>
     <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
             <img src="<?php echo get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'] ?>" class="rounded-full w-12 h-12">
             <p class="ml-5 text-xl underline"><?php echo get_the_author_posts_link(get_the_ID()) ?></p>
         </div>
     </div>
-
+<?php endif; ?>
 
     <div class="container mx-auto mt-32">
         <div class="grid grid-cols-5 gap-4">
@@ -33,7 +33,6 @@ $cat = get_category($cat)
         <div class="grid grid-cols-5 gap-4">
             <div class="hidden lg:block">
                 <div class="bg-white flex flex-col items-center w-full p-5">
-
                     <div class="text-center pb-3 mb-3 border-b" x-data="readTime('<?php echo preg_replace("/[^ A-Za-z0-9?!]/", '', str_replace('"', '', wp_strip_all_tags(get_the_content()))); ?>')">
                         <svg class="w-6 h-6 text-gray-500 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
@@ -57,10 +56,11 @@ $cat = get_category($cat)
                             <p x-show="views" x-text="views"></p>
                         </p>
                     </div>
-
-
                 </div>
             </div>
+
+
+
             <div class="col-span-5 lg:col-span-3 py-5">
                 <div class="content">
                     <div class="relative h-64 block lg:hidden float-right w-1/3 ml-5 mb-5">
@@ -82,6 +82,10 @@ $cat = get_category($cat)
                     <?php the_content(); ?>
                 </div>
             </div>
+
+
+
+
 
             <div class="hidden lg:block">
                 <script>
