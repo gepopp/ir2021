@@ -47,14 +47,29 @@ namespace immobilien_redaktion_2020;
 <body <?php body_class('bg-primary-100 bg-opacity-5 px-5 lg:px-0'); ?> itemscope itemtype="https://schema.org/WebPage">
 
 <header class="header bg-primary-100 w-full h-10">
-    <div class="container mx-auto flex justify-between">
-        <div class="pt-2 hidden lg:block">
+    <div class="container mx-auto flex justify-between ">
+        <div class="pt-2 hidden lg:block relative" x-data="{ lesen: false }">
             <ul class="flex">
-                <li class="uppercase text-white mr-3"><a href="#">LESEN</a></li>
+                <li class="uppercase text-white mr-3"><a class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a></li>
                 <li class="uppercase text-white mr-3"><a href="#">SEHEN</a></li>
                 <li class="uppercase text-white mr-3"><a href="#">DISKUTIEREN</a></li>
             </ul>
+            <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white" x-show="lesen" @mouseleave="lesen = false">
+                <?php $cats = get_categories(['exclude' => [1,17]]) ?>
+                <ul>
+                    <?php foreach ($cats as $cat): ?>
+                    <li class="flex justify-between">
+                        <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
+                        <a href="<?php echo get_category_link($cat) ?>" class="text-xl font-bold"
+                           style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">
+                            <?php echo $cat->name ?>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         </div>
+
         <a href="<?php echo home_url() ?>">
             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo.svg" class="h-24 w-auto pt-0 mt-0">
         </a>

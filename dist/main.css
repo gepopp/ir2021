@@ -1260,6 +1260,30 @@ video {
   border-color: rgba(188, 182, 3, var(--divide-opacity));
 }
 
+.divide-aktuelles-100 > :not(template) ~ :not(template) {
+  --divide-opacity: 1;
+  border-color: #dd3333;
+  border-color: rgba(221, 51, 51, var(--divide-opacity));
+}
+
+.divide-ausland-100 > :not(template) ~ :not(template) {
+  --divide-opacity: 1;
+  border-color: #1e73be;
+  border-color: rgba(30, 115, 190, var(--divide-opacity));
+}
+
+.divide-menschen-100 > :not(template) ~ :not(template) {
+  --divide-opacity: 1;
+  border-color: #dd9933;
+  border-color: rgba(221, 153, 51, var(--divide-opacity));
+}
+
+.divide-trends-digitalisierung-100 > :not(template) ~ :not(template) {
+  --divide-opacity: 1;
+  border-color: #81d742;
+  border-color: rgba(129, 215, 66, var(--divide-opacity));
+}
+
 .divide-opacity-0 > :not(template) ~ :not(template) {
   --divide-opacity: 0;
 }
@@ -1430,6 +1454,30 @@ video {
   background-color: rgba(188, 182, 3, var(--bg-opacity));
 }
 
+.bg-aktuelles-100 {
+  --bg-opacity: 1;
+  background-color: #dd3333;
+  background-color: rgba(221, 51, 51, var(--bg-opacity));
+}
+
+.bg-ausland-100 {
+  --bg-opacity: 1;
+  background-color: #1e73be;
+  background-color: rgba(30, 115, 190, var(--bg-opacity));
+}
+
+.bg-menschen-100 {
+  --bg-opacity: 1;
+  background-color: #dd9933;
+  background-color: rgba(221, 153, 51, var(--bg-opacity));
+}
+
+.bg-trends-digitalisierung-100 {
+  --bg-opacity: 1;
+  background-color: #81d742;
+  background-color: rgba(129, 215, 66, var(--bg-opacity));
+}
+
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -1512,6 +1560,30 @@ video {
   background-color: rgba(188, 182, 3, var(--bg-opacity));
 }
 
+.hover\:bg-aktuelles-100:hover {
+  --bg-opacity: 1;
+  background-color: #dd3333;
+  background-color: rgba(221, 51, 51, var(--bg-opacity));
+}
+
+.hover\:bg-ausland-100:hover {
+  --bg-opacity: 1;
+  background-color: #1e73be;
+  background-color: rgba(30, 115, 190, var(--bg-opacity));
+}
+
+.hover\:bg-menschen-100:hover {
+  --bg-opacity: 1;
+  background-color: #dd9933;
+  background-color: rgba(221, 153, 51, var(--bg-opacity));
+}
+
+.hover\:bg-trends-digitalisierung-100:hover {
+  --bg-opacity: 1;
+  background-color: #81d742;
+  background-color: rgba(129, 215, 66, var(--bg-opacity));
+}
+
 .focus\:bg-transparent:focus {
   background-color: transparent;
 }
@@ -1592,6 +1664,30 @@ video {
   --bg-opacity: 1;
   background-color: #bcb603;
   background-color: rgba(188, 182, 3, var(--bg-opacity));
+}
+
+.focus\:bg-aktuelles-100:focus {
+  --bg-opacity: 1;
+  background-color: #dd3333;
+  background-color: rgba(221, 51, 51, var(--bg-opacity));
+}
+
+.focus\:bg-ausland-100:focus {
+  --bg-opacity: 1;
+  background-color: #1e73be;
+  background-color: rgba(30, 115, 190, var(--bg-opacity));
+}
+
+.focus\:bg-menschen-100:focus {
+  --bg-opacity: 1;
+  background-color: #dd9933;
+  background-color: rgba(221, 153, 51, var(--bg-opacity));
+}
+
+.focus\:bg-trends-digitalisierung-100:focus {
+  --bg-opacity: 1;
+  background-color: #81d742;
+  background-color: rgba(129, 215, 66, var(--bg-opacity));
 }
 
 .bg-opacity-0 {
@@ -1828,6 +1924,30 @@ video {
   border-color: rgba(188, 182, 3, var(--border-opacity));
 }
 
+.border-aktuelles-100 {
+  --border-opacity: 1;
+  border-color: #dd3333;
+  border-color: rgba(221, 51, 51, var(--border-opacity));
+}
+
+.border-ausland-100 {
+  --border-opacity: 1;
+  border-color: #1e73be;
+  border-color: rgba(30, 115, 190, var(--border-opacity));
+}
+
+.border-menschen-100 {
+  --border-opacity: 1;
+  border-color: #dd9933;
+  border-color: rgba(221, 153, 51, var(--border-opacity));
+}
+
+.border-trends-digitalisierung-100 {
+  --border-opacity: 1;
+  border-color: #81d742;
+  border-color: rgba(129, 215, 66, var(--border-opacity));
+}
+
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
@@ -1910,6 +2030,30 @@ video {
   border-color: rgba(188, 182, 3, var(--border-opacity));
 }
 
+.hover\:border-aktuelles-100:hover {
+  --border-opacity: 1;
+  border-color: #dd3333;
+  border-color: rgba(221, 51, 51, var(--border-opacity));
+}
+
+.hover\:border-ausland-100:hover {
+  --border-opacity: 1;
+  border-color: #1e73be;
+  border-color: rgba(30, 115, 190, var(--border-opacity));
+}
+
+.hover\:border-menschen-100:hover {
+  --border-opacity: 1;
+  border-color: #dd9933;
+  border-color: rgba(221, 153, 51, var(--border-opacity));
+}
+
+.hover\:border-trends-digitalisierung-100:hover {
+  --border-opacity: 1;
+  border-color: #81d742;
+  border-color: rgba(129, 215, 66, var(--border-opacity));
+}
+
 .focus\:border-transparent:focus {
   border-color: transparent;
 }
@@ -1990,6 +2134,30 @@ video {
   --border-opacity: 1;
   border-color: #bcb603;
   border-color: rgba(188, 182, 3, var(--border-opacity));
+}
+
+.focus\:border-aktuelles-100:focus {
+  --border-opacity: 1;
+  border-color: #dd3333;
+  border-color: rgba(221, 51, 51, var(--border-opacity));
+}
+
+.focus\:border-ausland-100:focus {
+  --border-opacity: 1;
+  border-color: #1e73be;
+  border-color: rgba(30, 115, 190, var(--border-opacity));
+}
+
+.focus\:border-menschen-100:focus {
+  --border-opacity: 1;
+  border-color: #dd9933;
+  border-color: rgba(221, 153, 51, var(--border-opacity));
+}
+
+.focus\:border-trends-digitalisierung-100:focus {
+  --border-opacity: 1;
+  border-color: #81d742;
+  border-color: rgba(129, 215, 66, var(--border-opacity));
 }
 
 .border-opacity-0 {
@@ -5500,6 +5668,102 @@ video {
   color: rgba(188, 182, 3, var(--placeholder-opacity));
 }
 
+.placeholder-aktuelles-100::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.placeholder-aktuelles-100::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.placeholder-aktuelles-100::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.placeholder-aktuelles-100::placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.placeholder-ausland-100::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.placeholder-ausland-100::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.placeholder-ausland-100::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.placeholder-ausland-100::placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.placeholder-menschen-100::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.placeholder-menschen-100::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.placeholder-menschen-100::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.placeholder-menschen-100::placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.placeholder-trends-digitalisierung-100::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
+}
+
+.placeholder-trends-digitalisierung-100::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
+}
+
+.placeholder-trends-digitalisierung-100::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
+}
+
+.placeholder-trends-digitalisierung-100::placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
+}
+
 .focus\:placeholder-transparent:focus::-webkit-input-placeholder {
   color: transparent;
 }
@@ -5826,6 +6090,102 @@ video {
   --placeholder-opacity: 1;
   color: #bcb603;
   color: rgba(188, 182, 3, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-aktuelles-100:focus::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-aktuelles-100:focus::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-aktuelles-100:focus::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-aktuelles-100:focus::placeholder {
+  --placeholder-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-ausland-100:focus::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-ausland-100:focus::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-ausland-100:focus::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-ausland-100:focus::placeholder {
+  --placeholder-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-menschen-100:focus::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-menschen-100:focus::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-menschen-100:focus::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-menschen-100:focus::placeholder {
+  --placeholder-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-trends-digitalisierung-100:focus::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-trends-digitalisierung-100:focus::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-trends-digitalisierung-100:focus::-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
+}
+
+.focus\:placeholder-trends-digitalisierung-100:focus::placeholder {
+  --placeholder-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--placeholder-opacity));
 }
 
 .placeholder-opacity-0::-webkit-input-placeholder {
@@ -6377,6 +6737,30 @@ video {
   color: rgba(188, 182, 3, var(--text-opacity));
 }
 
+.text-aktuelles-100 {
+  --text-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--text-opacity));
+}
+
+.text-ausland-100 {
+  --text-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--text-opacity));
+}
+
+.text-menschen-100 {
+  --text-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--text-opacity));
+}
+
+.text-trends-digitalisierung-100 {
+  --text-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--text-opacity));
+}
+
 .hover\:text-transparent:hover {
   color: transparent;
 }
@@ -6459,6 +6843,30 @@ video {
   color: rgba(188, 182, 3, var(--text-opacity));
 }
 
+.hover\:text-aktuelles-100:hover {
+  --text-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--text-opacity));
+}
+
+.hover\:text-ausland-100:hover {
+  --text-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--text-opacity));
+}
+
+.hover\:text-menschen-100:hover {
+  --text-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--text-opacity));
+}
+
+.hover\:text-trends-digitalisierung-100:hover {
+  --text-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--text-opacity));
+}
+
 .focus\:text-transparent:focus {
   color: transparent;
 }
@@ -6539,6 +6947,30 @@ video {
   --text-opacity: 1;
   color: #bcb603;
   color: rgba(188, 182, 3, var(--text-opacity));
+}
+
+.focus\:text-aktuelles-100:focus {
+  --text-opacity: 1;
+  color: #dd3333;
+  color: rgba(221, 51, 51, var(--text-opacity));
+}
+
+.focus\:text-ausland-100:focus {
+  --text-opacity: 1;
+  color: #1e73be;
+  color: rgba(30, 115, 190, var(--text-opacity));
+}
+
+.focus\:text-menschen-100:focus {
+  --text-opacity: 1;
+  color: #dd9933;
+  color: rgba(221, 153, 51, var(--text-opacity));
+}
+
+.focus\:text-trends-digitalisierung-100:focus {
+  --text-opacity: 1;
+  color: #81d742;
+  color: rgba(129, 215, 66, var(--text-opacity));
 }
 
 .text-opacity-0 {
@@ -10306,6 +10738,30 @@ video {
     border-color: rgba(188, 182, 3, var(--divide-opacity));
   }
 
+  .sm\:divide-aktuelles-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--divide-opacity));
+  }
+
+  .sm\:divide-ausland-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--divide-opacity));
+  }
+
+  .sm\:divide-menschen-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--divide-opacity));
+  }
+
+  .sm\:divide-trends-digitalisierung-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--divide-opacity));
+  }
+
   .sm\:divide-opacity-0 > :not(template) ~ :not(template) {
     --divide-opacity: 0;
   }
@@ -10476,6 +10932,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .sm\:bg-aktuelles-100 {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .sm\:bg-ausland-100 {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .sm\:bg-menschen-100 {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .sm\:bg-trends-digitalisierung-100 {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .sm\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -10558,6 +11038,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .sm\:hover\:bg-aktuelles-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .sm\:hover\:bg-ausland-100:hover {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .sm\:hover\:bg-menschen-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .sm\:hover\:bg-trends-digitalisierung-100:hover {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .sm\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
@@ -10638,6 +11142,30 @@ video {
     --bg-opacity: 1;
     background-color: #bcb603;
     background-color: rgba(188, 182, 3, var(--bg-opacity));
+  }
+
+  .sm\:focus\:bg-aktuelles-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .sm\:focus\:bg-ausland-100:focus {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .sm\:focus\:bg-menschen-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .sm\:focus\:bg-trends-digitalisierung-100:focus {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
   }
 
   .sm\:bg-opacity-0 {
@@ -10874,6 +11402,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .sm\:border-aktuelles-100 {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .sm\:border-ausland-100 {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .sm\:border-menschen-100 {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .sm\:border-trends-digitalisierung-100 {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .sm\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -10956,6 +11508,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .sm\:hover\:border-aktuelles-100:hover {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .sm\:hover\:border-ausland-100:hover {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .sm\:hover\:border-menschen-100:hover {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .sm\:hover\:border-trends-digitalisierung-100:hover {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .sm\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -11036,6 +11612,30 @@ video {
     --border-opacity: 1;
     border-color: #bcb603;
     border-color: rgba(188, 182, 3, var(--border-opacity));
+  }
+
+  .sm\:focus\:border-aktuelles-100:focus {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .sm\:focus\:border-ausland-100:focus {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .sm\:focus\:border-menschen-100:focus {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .sm\:focus\:border-trends-digitalisierung-100:focus {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
   }
 
   .sm\:border-opacity-0 {
@@ -14546,6 +15146,102 @@ video {
     color: rgba(188, 182, 3, var(--placeholder-opacity));
   }
 
+  .sm\:placeholder-aktuelles-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-aktuelles-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-aktuelles-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-aktuelles-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-ausland-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-ausland-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-ausland-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-ausland-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-menschen-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-menschen-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-menschen-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-menschen-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-trends-digitalisierung-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-trends-digitalisierung-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-trends-digitalisierung-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .sm\:placeholder-trends-digitalisierung-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
   .sm\:focus\:placeholder-transparent:focus::-webkit-input-placeholder {
     color: transparent;
   }
@@ -14872,6 +15568,102 @@ video {
     --placeholder-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-aktuelles-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-aktuelles-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-aktuelles-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-aktuelles-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-ausland-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-ausland-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-ausland-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-ausland-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-menschen-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-menschen-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-menschen-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-menschen-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-trends-digitalisierung-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-trends-digitalisierung-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-trends-digitalisierung-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .sm\:focus\:placeholder-trends-digitalisierung-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
   }
 
   .sm\:placeholder-opacity-0::-webkit-input-placeholder {
@@ -15423,6 +16215,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .sm\:text-aktuelles-100 {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .sm\:text-ausland-100 {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .sm\:text-menschen-100 {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .sm\:text-trends-digitalisierung-100 {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .sm\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -15505,6 +16321,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .sm\:hover\:text-aktuelles-100:hover {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .sm\:hover\:text-ausland-100:hover {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .sm\:hover\:text-menschen-100:hover {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .sm\:hover\:text-trends-digitalisierung-100:hover {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .sm\:focus\:text-transparent:focus {
     color: transparent;
   }
@@ -15585,6 +16425,30 @@ video {
     --text-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--text-opacity));
+  }
+
+  .sm\:focus\:text-aktuelles-100:focus {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .sm\:focus\:text-ausland-100:focus {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .sm\:focus\:text-menschen-100:focus {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .sm\:focus\:text-trends-digitalisierung-100:focus {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
   }
 
   .sm\:text-opacity-0 {
@@ -19313,6 +20177,30 @@ video {
     border-color: rgba(188, 182, 3, var(--divide-opacity));
   }
 
+  .md\:divide-aktuelles-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--divide-opacity));
+  }
+
+  .md\:divide-ausland-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--divide-opacity));
+  }
+
+  .md\:divide-menschen-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--divide-opacity));
+  }
+
+  .md\:divide-trends-digitalisierung-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--divide-opacity));
+  }
+
   .md\:divide-opacity-0 > :not(template) ~ :not(template) {
     --divide-opacity: 0;
   }
@@ -19483,6 +20371,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .md\:bg-aktuelles-100 {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .md\:bg-ausland-100 {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .md\:bg-menschen-100 {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .md\:bg-trends-digitalisierung-100 {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -19565,6 +20477,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .md\:hover\:bg-aktuelles-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .md\:hover\:bg-ausland-100:hover {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .md\:hover\:bg-menschen-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .md\:hover\:bg-trends-digitalisierung-100:hover {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .md\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
@@ -19645,6 +20581,30 @@ video {
     --bg-opacity: 1;
     background-color: #bcb603;
     background-color: rgba(188, 182, 3, var(--bg-opacity));
+  }
+
+  .md\:focus\:bg-aktuelles-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .md\:focus\:bg-ausland-100:focus {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .md\:focus\:bg-menschen-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .md\:focus\:bg-trends-digitalisierung-100:focus {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
   }
 
   .md\:bg-opacity-0 {
@@ -19881,6 +20841,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .md\:border-aktuelles-100 {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .md\:border-ausland-100 {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .md\:border-menschen-100 {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .md\:border-trends-digitalisierung-100 {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .md\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -19963,6 +20947,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .md\:hover\:border-aktuelles-100:hover {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .md\:hover\:border-ausland-100:hover {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .md\:hover\:border-menschen-100:hover {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .md\:hover\:border-trends-digitalisierung-100:hover {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .md\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -20043,6 +21051,30 @@ video {
     --border-opacity: 1;
     border-color: #bcb603;
     border-color: rgba(188, 182, 3, var(--border-opacity));
+  }
+
+  .md\:focus\:border-aktuelles-100:focus {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .md\:focus\:border-ausland-100:focus {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .md\:focus\:border-menschen-100:focus {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .md\:focus\:border-trends-digitalisierung-100:focus {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
   }
 
   .md\:border-opacity-0 {
@@ -23553,6 +24585,102 @@ video {
     color: rgba(188, 182, 3, var(--placeholder-opacity));
   }
 
+  .md\:placeholder-aktuelles-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-aktuelles-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-aktuelles-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-aktuelles-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-ausland-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-ausland-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-ausland-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-ausland-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-menschen-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-menschen-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-menschen-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-menschen-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-trends-digitalisierung-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-trends-digitalisierung-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-trends-digitalisierung-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .md\:placeholder-trends-digitalisierung-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
   .md\:focus\:placeholder-transparent:focus::-webkit-input-placeholder {
     color: transparent;
   }
@@ -23879,6 +25007,102 @@ video {
     --placeholder-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-aktuelles-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-aktuelles-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-aktuelles-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-aktuelles-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-ausland-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-ausland-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-ausland-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-ausland-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-menschen-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-menschen-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-menschen-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-menschen-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-trends-digitalisierung-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-trends-digitalisierung-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-trends-digitalisierung-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .md\:focus\:placeholder-trends-digitalisierung-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
   }
 
   .md\:placeholder-opacity-0::-webkit-input-placeholder {
@@ -24430,6 +25654,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .md\:text-aktuelles-100 {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .md\:text-ausland-100 {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .md\:text-menschen-100 {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .md\:text-trends-digitalisierung-100 {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .md\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -24512,6 +25760,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .md\:hover\:text-aktuelles-100:hover {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .md\:hover\:text-ausland-100:hover {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .md\:hover\:text-menschen-100:hover {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .md\:hover\:text-trends-digitalisierung-100:hover {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .md\:focus\:text-transparent:focus {
     color: transparent;
   }
@@ -24592,6 +25864,30 @@ video {
     --text-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--text-opacity));
+  }
+
+  .md\:focus\:text-aktuelles-100:focus {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .md\:focus\:text-ausland-100:focus {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .md\:focus\:text-menschen-100:focus {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .md\:focus\:text-trends-digitalisierung-100:focus {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
   }
 
   .md\:text-opacity-0 {
@@ -28320,6 +29616,30 @@ video {
     border-color: rgba(188, 182, 3, var(--divide-opacity));
   }
 
+  .lg\:divide-aktuelles-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--divide-opacity));
+  }
+
+  .lg\:divide-ausland-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--divide-opacity));
+  }
+
+  .lg\:divide-menschen-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--divide-opacity));
+  }
+
+  .lg\:divide-trends-digitalisierung-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--divide-opacity));
+  }
+
   .lg\:divide-opacity-0 > :not(template) ~ :not(template) {
     --divide-opacity: 0;
   }
@@ -28490,6 +29810,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .lg\:bg-aktuelles-100 {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .lg\:bg-ausland-100 {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .lg\:bg-menschen-100 {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .lg\:bg-trends-digitalisierung-100 {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .lg\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -28572,6 +29916,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .lg\:hover\:bg-aktuelles-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .lg\:hover\:bg-ausland-100:hover {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .lg\:hover\:bg-menschen-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .lg\:hover\:bg-trends-digitalisierung-100:hover {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .lg\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
@@ -28652,6 +30020,30 @@ video {
     --bg-opacity: 1;
     background-color: #bcb603;
     background-color: rgba(188, 182, 3, var(--bg-opacity));
+  }
+
+  .lg\:focus\:bg-aktuelles-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .lg\:focus\:bg-ausland-100:focus {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .lg\:focus\:bg-menschen-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .lg\:focus\:bg-trends-digitalisierung-100:focus {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
   }
 
   .lg\:bg-opacity-0 {
@@ -28888,6 +30280,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .lg\:border-aktuelles-100 {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .lg\:border-ausland-100 {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .lg\:border-menschen-100 {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .lg\:border-trends-digitalisierung-100 {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .lg\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -28970,6 +30386,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .lg\:hover\:border-aktuelles-100:hover {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .lg\:hover\:border-ausland-100:hover {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .lg\:hover\:border-menschen-100:hover {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .lg\:hover\:border-trends-digitalisierung-100:hover {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .lg\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -29050,6 +30490,30 @@ video {
     --border-opacity: 1;
     border-color: #bcb603;
     border-color: rgba(188, 182, 3, var(--border-opacity));
+  }
+
+  .lg\:focus\:border-aktuelles-100:focus {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .lg\:focus\:border-ausland-100:focus {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .lg\:focus\:border-menschen-100:focus {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .lg\:focus\:border-trends-digitalisierung-100:focus {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
   }
 
   .lg\:border-opacity-0 {
@@ -32560,6 +34024,102 @@ video {
     color: rgba(188, 182, 3, var(--placeholder-opacity));
   }
 
+  .lg\:placeholder-aktuelles-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-aktuelles-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-aktuelles-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-aktuelles-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-ausland-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-ausland-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-ausland-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-ausland-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-menschen-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-menschen-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-menschen-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-menschen-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-trends-digitalisierung-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-trends-digitalisierung-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-trends-digitalisierung-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .lg\:placeholder-trends-digitalisierung-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
   .lg\:focus\:placeholder-transparent:focus::-webkit-input-placeholder {
     color: transparent;
   }
@@ -32886,6 +34446,102 @@ video {
     --placeholder-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-aktuelles-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-aktuelles-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-aktuelles-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-aktuelles-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-ausland-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-ausland-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-ausland-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-ausland-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-menschen-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-menschen-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-menschen-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-menschen-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-trends-digitalisierung-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-trends-digitalisierung-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-trends-digitalisierung-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .lg\:focus\:placeholder-trends-digitalisierung-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
   }
 
   .lg\:placeholder-opacity-0::-webkit-input-placeholder {
@@ -33437,6 +35093,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .lg\:text-aktuelles-100 {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .lg\:text-ausland-100 {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .lg\:text-menschen-100 {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .lg\:text-trends-digitalisierung-100 {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .lg\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -33519,6 +35199,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .lg\:hover\:text-aktuelles-100:hover {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .lg\:hover\:text-ausland-100:hover {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .lg\:hover\:text-menschen-100:hover {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .lg\:hover\:text-trends-digitalisierung-100:hover {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .lg\:focus\:text-transparent:focus {
     color: transparent;
   }
@@ -33599,6 +35303,30 @@ video {
     --text-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--text-opacity));
+  }
+
+  .lg\:focus\:text-aktuelles-100:focus {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .lg\:focus\:text-ausland-100:focus {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .lg\:focus\:text-menschen-100:focus {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .lg\:focus\:text-trends-digitalisierung-100:focus {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
   }
 
   .lg\:text-opacity-0 {
@@ -37327,6 +39055,30 @@ video {
     border-color: rgba(188, 182, 3, var(--divide-opacity));
   }
 
+  .xl\:divide-aktuelles-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--divide-opacity));
+  }
+
+  .xl\:divide-ausland-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--divide-opacity));
+  }
+
+  .xl\:divide-menschen-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--divide-opacity));
+  }
+
+  .xl\:divide-trends-digitalisierung-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--divide-opacity));
+  }
+
   .xl\:divide-opacity-0 > :not(template) ~ :not(template) {
     --divide-opacity: 0;
   }
@@ -37497,6 +39249,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .xl\:bg-aktuelles-100 {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .xl\:bg-ausland-100 {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .xl\:bg-menschen-100 {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .xl\:bg-trends-digitalisierung-100 {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .xl\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -37579,6 +39355,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .xl\:hover\:bg-aktuelles-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .xl\:hover\:bg-ausland-100:hover {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .xl\:hover\:bg-menschen-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .xl\:hover\:bg-trends-digitalisierung-100:hover {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .xl\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
@@ -37659,6 +39459,30 @@ video {
     --bg-opacity: 1;
     background-color: #bcb603;
     background-color: rgba(188, 182, 3, var(--bg-opacity));
+  }
+
+  .xl\:focus\:bg-aktuelles-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .xl\:focus\:bg-ausland-100:focus {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .xl\:focus\:bg-menschen-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .xl\:focus\:bg-trends-digitalisierung-100:focus {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
   }
 
   .xl\:bg-opacity-0 {
@@ -37895,6 +39719,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .xl\:border-aktuelles-100 {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .xl\:border-ausland-100 {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .xl\:border-menschen-100 {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .xl\:border-trends-digitalisierung-100 {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .xl\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -37977,6 +39825,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .xl\:hover\:border-aktuelles-100:hover {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .xl\:hover\:border-ausland-100:hover {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .xl\:hover\:border-menschen-100:hover {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .xl\:hover\:border-trends-digitalisierung-100:hover {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .xl\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -38057,6 +39929,30 @@ video {
     --border-opacity: 1;
     border-color: #bcb603;
     border-color: rgba(188, 182, 3, var(--border-opacity));
+  }
+
+  .xl\:focus\:border-aktuelles-100:focus {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .xl\:focus\:border-ausland-100:focus {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .xl\:focus\:border-menschen-100:focus {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .xl\:focus\:border-trends-digitalisierung-100:focus {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
   }
 
   .xl\:border-opacity-0 {
@@ -41567,6 +43463,102 @@ video {
     color: rgba(188, 182, 3, var(--placeholder-opacity));
   }
 
+  .xl\:placeholder-aktuelles-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-aktuelles-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-aktuelles-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-aktuelles-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-ausland-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-ausland-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-ausland-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-ausland-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-menschen-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-menschen-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-menschen-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-menschen-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-trends-digitalisierung-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-trends-digitalisierung-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-trends-digitalisierung-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .xl\:placeholder-trends-digitalisierung-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
   .xl\:focus\:placeholder-transparent:focus::-webkit-input-placeholder {
     color: transparent;
   }
@@ -41893,6 +43885,102 @@ video {
     --placeholder-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-aktuelles-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-aktuelles-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-aktuelles-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-aktuelles-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-ausland-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-ausland-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-ausland-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-ausland-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-menschen-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-menschen-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-menschen-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-menschen-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-trends-digitalisierung-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-trends-digitalisierung-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-trends-digitalisierung-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .xl\:focus\:placeholder-trends-digitalisierung-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
   }
 
   .xl\:placeholder-opacity-0::-webkit-input-placeholder {
@@ -42444,6 +44532,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .xl\:text-aktuelles-100 {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .xl\:text-ausland-100 {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .xl\:text-menschen-100 {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .xl\:text-trends-digitalisierung-100 {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .xl\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -42526,6 +44638,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .xl\:hover\:text-aktuelles-100:hover {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .xl\:hover\:text-ausland-100:hover {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .xl\:hover\:text-menschen-100:hover {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .xl\:hover\:text-trends-digitalisierung-100:hover {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .xl\:focus\:text-transparent:focus {
     color: transparent;
   }
@@ -42606,6 +44742,30 @@ video {
     --text-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--text-opacity));
+  }
+
+  .xl\:focus\:text-aktuelles-100:focus {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .xl\:focus\:text-ausland-100:focus {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .xl\:focus\:text-menschen-100:focus {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .xl\:focus\:text-trends-digitalisierung-100:focus {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
   }
 
   .xl\:text-opacity-0 {
@@ -46334,6 +48494,30 @@ video {
     border-color: rgba(188, 182, 3, var(--divide-opacity));
   }
 
+  .retina\:divide-aktuelles-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--divide-opacity));
+  }
+
+  .retina\:divide-ausland-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--divide-opacity));
+  }
+
+  .retina\:divide-menschen-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--divide-opacity));
+  }
+
+  .retina\:divide-trends-digitalisierung-100 > :not(template) ~ :not(template) {
+    --divide-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--divide-opacity));
+  }
+
   .retina\:divide-opacity-0 > :not(template) ~ :not(template) {
     --divide-opacity: 0;
   }
@@ -46504,6 +48688,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .retina\:bg-aktuelles-100 {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .retina\:bg-ausland-100 {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .retina\:bg-menschen-100 {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .retina\:bg-trends-digitalisierung-100 {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .retina\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -46586,6 +48794,30 @@ video {
     background-color: rgba(188, 182, 3, var(--bg-opacity));
   }
 
+  .retina\:hover\:bg-aktuelles-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .retina\:hover\:bg-ausland-100:hover {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .retina\:hover\:bg-menschen-100:hover {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .retina\:hover\:bg-trends-digitalisierung-100:hover {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
+  }
+
   .retina\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
@@ -46666,6 +48898,30 @@ video {
     --bg-opacity: 1;
     background-color: #bcb603;
     background-color: rgba(188, 182, 3, var(--bg-opacity));
+  }
+
+  .retina\:focus\:bg-aktuelles-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd3333;
+    background-color: rgba(221, 51, 51, var(--bg-opacity));
+  }
+
+  .retina\:focus\:bg-ausland-100:focus {
+    --bg-opacity: 1;
+    background-color: #1e73be;
+    background-color: rgba(30, 115, 190, var(--bg-opacity));
+  }
+
+  .retina\:focus\:bg-menschen-100:focus {
+    --bg-opacity: 1;
+    background-color: #dd9933;
+    background-color: rgba(221, 153, 51, var(--bg-opacity));
+  }
+
+  .retina\:focus\:bg-trends-digitalisierung-100:focus {
+    --bg-opacity: 1;
+    background-color: #81d742;
+    background-color: rgba(129, 215, 66, var(--bg-opacity));
   }
 
   .retina\:bg-opacity-0 {
@@ -46902,6 +49158,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .retina\:border-aktuelles-100 {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .retina\:border-ausland-100 {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .retina\:border-menschen-100 {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .retina\:border-trends-digitalisierung-100 {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .retina\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -46984,6 +49264,30 @@ video {
     border-color: rgba(188, 182, 3, var(--border-opacity));
   }
 
+  .retina\:hover\:border-aktuelles-100:hover {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .retina\:hover\:border-ausland-100:hover {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .retina\:hover\:border-menschen-100:hover {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .retina\:hover\:border-trends-digitalisierung-100:hover {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
+  }
+
   .retina\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -47064,6 +49368,30 @@ video {
     --border-opacity: 1;
     border-color: #bcb603;
     border-color: rgba(188, 182, 3, var(--border-opacity));
+  }
+
+  .retina\:focus\:border-aktuelles-100:focus {
+    --border-opacity: 1;
+    border-color: #dd3333;
+    border-color: rgba(221, 51, 51, var(--border-opacity));
+  }
+
+  .retina\:focus\:border-ausland-100:focus {
+    --border-opacity: 1;
+    border-color: #1e73be;
+    border-color: rgba(30, 115, 190, var(--border-opacity));
+  }
+
+  .retina\:focus\:border-menschen-100:focus {
+    --border-opacity: 1;
+    border-color: #dd9933;
+    border-color: rgba(221, 153, 51, var(--border-opacity));
+  }
+
+  .retina\:focus\:border-trends-digitalisierung-100:focus {
+    --border-opacity: 1;
+    border-color: #81d742;
+    border-color: rgba(129, 215, 66, var(--border-opacity));
   }
 
   .retina\:border-opacity-0 {
@@ -50574,6 +52902,102 @@ video {
     color: rgba(188, 182, 3, var(--placeholder-opacity));
   }
 
+  .retina\:placeholder-aktuelles-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-aktuelles-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-aktuelles-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-aktuelles-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-ausland-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-ausland-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-ausland-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-ausland-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-menschen-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-menschen-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-menschen-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-menschen-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-trends-digitalisierung-100::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-trends-digitalisierung-100::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-trends-digitalisierung-100::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .retina\:placeholder-trends-digitalisierung-100::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
   .retina\:focus\:placeholder-transparent:focus::-webkit-input-placeholder {
     color: transparent;
   }
@@ -50900,6 +53324,102 @@ video {
     --placeholder-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-aktuelles-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-aktuelles-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-aktuelles-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-aktuelles-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-ausland-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-ausland-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-ausland-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-ausland-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-menschen-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-menschen-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-menschen-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-menschen-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-trends-digitalisierung-100:focus::-webkit-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-trends-digitalisierung-100:focus::-moz-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-trends-digitalisierung-100:focus::-ms-input-placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
+  }
+
+  .retina\:focus\:placeholder-trends-digitalisierung-100:focus::placeholder {
+    --placeholder-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--placeholder-opacity));
   }
 
   .retina\:placeholder-opacity-0::-webkit-input-placeholder {
@@ -51451,6 +53971,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .retina\:text-aktuelles-100 {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .retina\:text-ausland-100 {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .retina\:text-menschen-100 {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .retina\:text-trends-digitalisierung-100 {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .retina\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -51533,6 +54077,30 @@ video {
     color: rgba(188, 182, 3, var(--text-opacity));
   }
 
+  .retina\:hover\:text-aktuelles-100:hover {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .retina\:hover\:text-ausland-100:hover {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .retina\:hover\:text-menschen-100:hover {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .retina\:hover\:text-trends-digitalisierung-100:hover {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
+  }
+
   .retina\:focus\:text-transparent:focus {
     color: transparent;
   }
@@ -51613,6 +54181,30 @@ video {
     --text-opacity: 1;
     color: #bcb603;
     color: rgba(188, 182, 3, var(--text-opacity));
+  }
+
+  .retina\:focus\:text-aktuelles-100:focus {
+    --text-opacity: 1;
+    color: #dd3333;
+    color: rgba(221, 51, 51, var(--text-opacity));
+  }
+
+  .retina\:focus\:text-ausland-100:focus {
+    --text-opacity: 1;
+    color: #1e73be;
+    color: rgba(30, 115, 190, var(--text-opacity));
+  }
+
+  .retina\:focus\:text-menschen-100:focus {
+    --text-opacity: 1;
+    color: #dd9933;
+    color: rgba(221, 153, 51, var(--text-opacity));
+  }
+
+  .retina\:focus\:text-trends-digitalisierung-100:focus {
+    --text-opacity: 1;
+    color: #81d742;
+    color: rgba(129, 215, 66, var(--text-opacity));
   }
 
   .retina\:text-opacity-0 {

@@ -34,6 +34,18 @@ module.exports = {
 			},
 			inland:{
 				100: '#bcb603'
+			},
+			aktuelles:{
+				100: '#dd3333'
+			},
+			ausland:{
+				100: '#1e73be'
+			},
+			menschen:{
+				100: '#dd9933'
+			},
+			'trends-digitalisierung':{
+				100: '#81d742'
 			}
 		},
 		spacing: {
