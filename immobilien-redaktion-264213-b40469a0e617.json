@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "immobilien-redaktion-264213",
+  "private_key_id": "b40469a0e617348c6b7e1c27a64d0c794077e6fd",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9uzGxoZ6oejmL\n4Hc8715Jm4nQXKjeoUSCJ720bwmOrG0NXgloXVFyEpctu0hS2Fn/+goJJDYYXIr+\ngc02XA9IqHg+Naq41hlPrwmq537pmGjP1NFCwJBCy8yMyd1y3Yp2l3eX2hwkG9hz\nWTFAQ42Xqp3l13+uzoYkyOxc7zuRNHPC+EnZn3eL5bFUiLOwpzotyh5KvOaVSJ61\nC2aJRV2u7aMbmqp9PdCIoQBwt1uJSkBLx26AYYEdIZxBY5hGo8oHIiwpYPEFoTRR\nBdlzeo9DcJsQqLBcc2Vf6nvx9EjxOeOwT913xxJyJGW4DuSgQ1tTZh5RMZ2LV3wY\nK5OTH7HZAgMBAAECggEAEdK+edXZbjFBK6sz+FTyMg769MhnkrZqlaF/GC6gIrd+\n7RUK5DNz/bfSXNjtk97AIaRPAgnVTReQdRUjfnpKc0RkO0/WUFPIf+xNB7GEghQv\nsGppGBC33JaBii5Cb9Jw+fADq4+xOhEllbxovIU8DWXZPGiwlW7QOi9nyNkuatbt\nmpwNKiNzQbiC1QJY3jOX6VF0SVBUioLtAq1K/JWrG0OusZ/erwJtAWRu60gpAT9a\nA1Z8yPWkzpBsKAtgf1+2bkfrq+JPkybjU9tTFjWCrZfntc+PSc0Bae0BSBegsa/v\nNxCqMZwCPj12MDvhjIY0lpSuJFSiu/hkN22upJmeywKBgQDo61JSXYioGkygW2Po\nihTBZiw1UFfaRTJow3Th45SY725zJ2AQ0Z/O8PnOc0OSk4kxj/AwGot1Tdlaqp2d\nnPGgv/YSSHhjYRD+DSWg/TZJSnSkW8SLpCSbPmJB1nbgEI7PJiS18NH4Nc6KTuGQ\n+hwoW0S4s78V/HqQw3UqeqENRwKBgQDQiEhQAUrgHG08kjh83tLrV48KRjGooFzA\n+BU7kmPVci8KJKYJGDRIf1SEZZILeW4B4IQjCfv6i2PWNGOIJ/4jyhl+vnVaFSX4\nfBv58SM9ttgwxFk2sG/BVtf+WZNft2nc4dQcxE2oWlQNHTQnvggMqQe7Rg0WXgUE\ndDcVUR5X3wKBgQCUANQymlS33N5MF0aJARTnP7Ffv0nT3JyHjYu77g0CkUIx0hdt\nGIbfzKgv03ZgsXdAEyKgrn1ncKxovHmjKZMwfkoym/JD0+4kQN5kSgIw2Cr+NYHS\n6d6I9z8gbtLi1iKo5qf1JK2Hd0ljAXS71vIFgtlMNIt7wQ9w5YKSF5I3CQKBgEeH\nd8Z5qwVUuuOcBGRQymiPkDEmAsKkvywx7JaSkEwW7qu8Bnf4JXb4tjTz4jStYl6i\ndLDQK+61AXnoXnvFvBbqq/QdwIM13eBuMep6HGx+24le0HtB6hOXhl9ounSKpXVu\nwSNc8oZc9ZfJ/KnlNT2ifVRvou2ZMn9kncBiItZhAoGBAKEJe8U2jTjTh80TOSZD\nFk07QDliu2oW0o0HEZ8ik+Ji2TvIeLdfkA/1nA0ef+yaB6hL9xCdIXh2OZNai2NR\nl0QQq5RSA57WZ3r6QUvU4FwfP3FQ4V1UP5fUkzUFi6dNuzvdOvpQd2Jh/bZjZjUF\ntP9JS0GPEFvT0gkR9gpohw17\n-----END PRIVATE KEY-----\n",
+  "client_email": "ir-web@immobilien-redaktion-264213.iam.gserviceaccount.com",
+  "client_id": "113487693759137473145",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ir-web%40immobilien-redaktion-264213.iam.gserviceaccount.com"
+}

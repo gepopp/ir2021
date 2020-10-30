@@ -1,6 +1,7 @@
 {
     "require": {
         "a7/autoload": "^2.1",
-        "nesbot/carbon": "^2.41"
+        "nesbot/carbon": "^2.41",
+        "google/apiclient": "^2.8"
     }
 }
