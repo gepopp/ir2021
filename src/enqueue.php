@@ -18,6 +18,16 @@ add_action( 'wp_enqueue_scripts', function() {
 		true
 	);
 
+	if(is_single() || is_singular()){
+        wp_enqueue_script(
+            'immobilien_redaktion_2020_js_single',
+            immobilien_redaktion_2020_URL . "/dist/single{$min_ext}.js",
+            [],
+            immobilien_redaktion_2020_VERSION,
+            true
+        );
+    }
+
 	// CSS
 	wp_enqueue_style(
 		'immobilien_redaktion_2020_css',

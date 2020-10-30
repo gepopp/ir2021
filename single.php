@@ -8,34 +8,68 @@ $cat = get_category($cat)
 
 ?>
 
-<div class="conatainer mx-auto mt-32 flex justify-center items-center">
+    <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
             <img src="<?php echo get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'] ?>" class="rounded-full w-12 h-12">
             <p class="ml-5 text-xl underline"><?php echo get_the_author_posts_link(get_the_ID()) ?></p>
         </div>
-</div>
+    </div>
+
+
     <div class="container mx-auto mt-32">
         <div class="grid grid-cols-5 gap-4">
-            <div></div>
-            <div class="col-span-3 py-5">
-                <h1 class="text-5xl font-serif leading-snug text-gray-900"><?php the_title() ?></h1>
+            <div class="hidden lg:block"></div>
+            <div class="col-span-5 lg:col-span-3  py-5">
+                <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900"><?php the_title() ?></h1>
+                <p class="my-5"><?php the_excerpt(); ?></p>
                 <?php the_post_thumbnail('custom-thumbnail', ['class' => 'my-5']); ?>
             </div>
-            <div></div>
+            <div class="hidden lg:block"></div>
         </div>
     </div>
+
+
     <div class="container mx-auto">
         <div class="grid grid-cols-5 gap-4">
-            <div>
+            <div class="hidden lg:block">
+                <div class="bg-white flex flex-col items-center w-full p-5">
 
+                    <div class="text-center pb-3 mb-3 border-b" x-data="readTime('<?php echo preg_replace("/[^ A-Za-z0-9?!]/",'', str_replace('"', '', wp_strip_all_tags( get_the_content() ) ) ); ?>')">
+                        <svg class="w-6 h-6 text-gray-500 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <p x-text="minutes + ' Minuten'"></p>
+                    </div>
+
+                    <div class="text-center">
+                        <svg class="w-6 h-6 text-gray-500 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p><?php the_time('d.m.Y') ?></p>
+                    </div>
+                </div>
             </div>
-            <div class="col-span-3 py-5">
+            <div class="col-span-5 lg:col-span-3 py-5">
                 <div class="content">
+                    <div class="relative h-64 block lg:hidden float-right w-1/3 ml-5 mb-5">
+                        <div class="absolute w-full h-full">
+                            <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
+                                <p id="scrollspy" :style="`margin-top: ${scrolled};`" class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
+                                <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
+                                    <div class="absolute bottom-0 right-0 -ml-5 -mr-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+                                        <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
+                                            <p class="text-xs text-gray-900">powered by</p>
+                                            <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-24 h-auto px-5">
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                    </div>
                     <?php the_content(); ?>
                 </div>
             </div>
 
-            <div>
+            <div class="hidden lg:block">
                 <script>
                     function data() {
                         return {
@@ -43,13 +77,13 @@ $cat = get_category($cat)
                         }
                     }
                 </script>
-                <div class="relative h-64" id="powered"
+                <div class="relative h-64 hidden lg:block" id="powered"
                      x-data="data()"
                      @scroll.window="scrolled = document.getElementById('powered').offsetTop - window.pageYOffset"
-                    >
+                >
                     <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
                         <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
-                            <p :style="`margin-top: ${scrolled};`" class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
+                            <p id="scrollspy" :style="`margin-top: ${scrolled};`" class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
                             <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
                                 <div class="absolute bottom-0 right-0 -ml-5 -mr-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
                                     <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
@@ -65,7 +99,6 @@ $cat = get_category($cat)
             </div>
         </div>
     </div>
-
 
 
 <?php get_footer();

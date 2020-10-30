@@ -53,7 +53,10 @@ if ( isProduction ) {
 }
 
 const config = {
-	entry: './assets/js/main.js',
+	entry: {
+		main: './assets/js/main.js',
+		single: './assets/js/single.js'
+	},
 	optimization: {
 		minimizer: [
 			new UglifyJsPlugin({

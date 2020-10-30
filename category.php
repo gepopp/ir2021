@@ -13,11 +13,11 @@ $term = get_queried_object();
 
 
     <div class="container mx-auto mt-32">
-        <div class="flex items-end">
+        <div class="flex flex-col lg:flex-row items-end">
             <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
             </div>
-            <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 p-5 pr-16 relative">
+            <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-5 pr-16 relative">
                 <?php echo $term->description ?>
                 <?php if (get_field('field_5f9aeff4efa16', $term)): ?>
                     <div class="absolute top-0 right-0 -mr-5 -mt-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
