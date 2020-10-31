@@ -50,7 +50,7 @@ namespace immobilien_redaktion_2020;
     <div class="container mx-auto flex justify-between ">
         <div class="pt-2 hidden lg:block relative" x-data="{ lesen: false }">
             <ul class="flex">
-                <li class="uppercase text-white mr-3"><a class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a></li>
+                <li class="uppercase text-white mr-3"><a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a></li>
                 <li class="uppercase text-white mr-3"><a href="#">SEHEN</a></li>
                 <li class="uppercase text-white mr-3"><a href="#">DISKUTIEREN</a></li>
             </ul>
