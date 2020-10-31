@@ -8,7 +8,11 @@ $term = get_queried_object();
 
 
     <div class="container mx-auto mt-32">
-        <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">lesen</h1>
+        <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
+            <a href="/lesen" class="underline">
+                lesen
+            </a>
+        </h1>
     </div>
 
 

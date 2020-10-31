@@ -9,7 +9,12 @@ window.readTime = function (text){
             var reading =  readingTime(this.text);
 
             var seconds =  reading.time / 1000;
-            return parseInt(seconds / 60 );
+            var minutes = parseInt(seconds / 60 );
+            if(minutes > 1){
+                return minutes + ' Minuten';
+            }else{
+                return '1 Minute';
+            }
         }
 
     }

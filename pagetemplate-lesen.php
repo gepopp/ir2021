@@ -46,7 +46,7 @@ get_header();
             ],
         ]);
         ?>
-        <div class="absolute top-0 right-0" style="margin-right: -150px">
+        <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -150px">
             <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
                 <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full'); ?><!--" class="">-->
                 <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/EHL-2020.jpg">
@@ -109,7 +109,7 @@ foreach ($cats as $cat):
            style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">
             <?php echo $cat->name ?>
         </a>
-        <div class="grid grid-cols-5 gap-4">
+        <div class="grid grid-cols-4 lg:grid-cols-5 gap-4">
             <?php
             $query = new WP_Query([
                 'post_type'      => 'post',
@@ -122,7 +122,7 @@ foreach ($cats as $cat):
                 while ($query->have_posts()):
                     $query->the_post();
                     ?>
-                    <div>
+                    <div class="<?php if($runner != 5): ?>col-span-2 <?php else: ?>col-span-4 <?php endif; ?>lg:col-span-1">
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
                                 <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
@@ -151,7 +151,7 @@ foreach ($cats as $cat):
                             <?php endif; ?>
                         </div>
                         <?php if ($runner != 5): ?>
-                            <p class="mt-5 font-semibold text-xs">
+                            <p class="mt-5 font-semibold text-lg  lg:text-xs pb-5">
                                 <a href="<?php the_permalink(); ?>">
                                     <?php the_title() ?>
                                 </a>
