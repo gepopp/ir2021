@@ -66,7 +66,7 @@ $query = new \WP_Query([
     'tag__not_in'         => 989,
 ]);
 ?>
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-32 px-5 lg:px-0">
     <div class="grid grid-cols-2 gap-10">
         <?php if ($query->have_posts()): ?>
             <?php while ($query->have_posts()): ?>
@@ -79,7 +79,11 @@ $query = new \WP_Query([
                         <?php else: ?>
                             <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full']); ?>
                         <?php endif; ?>
-                        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
+                        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                            <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
+                            <?php endif; ?>
+                        </div>
                         <div class="absolute bottom-0 left-0 m-5">
                             <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
                         </div>
@@ -103,7 +107,7 @@ foreach ($cats as $cat):
     <?php get_template_part('banner-templates/banner', 'thirds2') ?>
 <?php endif; ?>
 
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-32 px-5 lg:px-0">
         <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
         <a href="<?php echo get_category_link($cat) ?>" class="text-xl font-bold mb-10"
            style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">
@@ -130,6 +134,11 @@ foreach ($cats as $cat):
                                 <?php else: ?>
                                     <?php the_post_thumbnail('featured_small', ['class' => 'w-full h-auto max-w-full']); ?>
                                 <?php endif; ?>
+                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                                    <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
+                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
+                                    <?php endif; ?>
+                                </div>
                             </a>
                             <?php if ($runner == 5): ?>
 
@@ -151,7 +160,7 @@ foreach ($cats as $cat):
                             <?php endif; ?>
                         </div>
                         <?php if ($runner != 5): ?>
-                            <p class="mt-5 font-semibold text-lg  lg:text-xs pb-5">
+                            <p class="mt-5 font-semibold text-xs pb-5">
                                 <a href="<?php the_permalink(); ?>">
                                     <?php the_title() ?>
                                 </a>

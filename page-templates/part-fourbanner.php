@@ -38,9 +38,9 @@ $query = new WP_Query($banner_args);
 //echo var_dump(count($banners));
 ?>
 
-<div class="container mx-auto mt-32">
+<div class="container mx-auto mt-32 px-5 lg:px-0">
     <p class="text-xs text-gray-300">Werbung</p>
-    <div class="grid grid-cols-4 gap-5">
+    <div class="grid grid-cols-4 gap-5 p-5 border">
         <?php if ($query->have_posts()): ?>
             <?php while ($query->have_posts()): ?>
                 <?php $query->the_post(); ?>

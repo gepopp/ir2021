@@ -13,7 +13,7 @@ namespace immobilien_redaktion_2020;
 
 ?>
 </main>
-<footer class="footer relative bg-gray-900 text-white mt-32 pt-8 pb-16 -mx-5 lg:mx-0 px-5 lg:px-0">
+<footer class="footer relative bg-gray-900 text-white mt-32 pt-8 pb-16 lg:mx-0 px-5 lg:px-0">
     <div class="relative z-10">
         <div class="container mx-auto">
             <div class="lg:flex lg:justify-between">

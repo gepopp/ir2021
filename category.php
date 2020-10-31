@@ -16,7 +16,7 @@ $term = get_queried_object();
     </div>
 
 
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-32 px-5 lg:px-0">
         <div class="flex flex-col lg:flex-row items-end">
             <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
@@ -49,11 +49,17 @@ $term = get_queried_object();
                         <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900 h-full">
 
                             <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
-                                <div class="bg-primary-100 w-full h-full pt-75p"></div>
+                                <div class="bg-primary-100 w-full h-full pt-75p flex items-center justify-center">
+
+                                </div>
                             <?php else: ?>
                                 <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full']); ?>
                             <?php endif; ?>
-                            <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
+                            <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                                <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
+                                <?php endif; ?>
+                            </div>
                             <div class="absolute bottom-0 left-0 m-5">
                                 <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
                                 <p class="text-white text-sm">Geschireben von <?php the_author() ?> am <?php the_time('d.m.Y'); ?> | Lesezeit 3 Minuten</p>
