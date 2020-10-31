@@ -99,8 +99,8 @@ $catrunner = 1;
 foreach ($cats as $cat):
     ?>
 
-<?php if($catrunner == 3): ?>
-    <?php get_template_part('banner-templates/banner', 'thirds2' ) ?>
+    <?php if ($catrunner == 3): ?>
+    <?php get_template_part('banner-templates/banner', 'thirds2') ?>
 <?php endif; ?>
 
     <div class="container mx-auto mt-32">
@@ -125,27 +125,35 @@ foreach ($cats as $cat):
                     <div>
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
-                            <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
-                                <div class="bg-primary-100 w-full h-full" style="padding-top: 56.25%;"></div>
-                            <?php else: ?>
-                                <?php the_post_thumbnail('featured_small', ['class' => 'w-full h-auto max-w-full']); ?>
-                            <?php endif; ?>
+                                <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
+                                    <div class="bg-primary-100 w-full h-full" style="padding-top: 56.25%;"></div>
+                                <?php else: ?>
+                                    <?php the_post_thumbnail('featured_small', ['class' => 'w-full h-auto max-w-full']); ?>
+                                <?php endif; ?>
                             </a>
-                            <?php if($runner == 5): ?>
+                            <?php if ($runner == 5): ?>
 
                                 <div class="absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex justify-center items-center">
                                     <p class="font-bold text-xs">
                                         <a href="<?php echo get_category_link($cat) ?>" class="underline">
                                             <?php echo $cat->count - 4 ?> weitere Artikel</p>
-                                        </a>
+                                    </a>
                                 </div>
+                                <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
+                                    <div class="absolute top-0 right-0 -mr-5 -mt-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+                                        <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
+                                            <p class="text-xs text-gray-900">powered by</p>
+                                            <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-24 h-auto px-5">
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
 
                             <?php endif; ?>
                         </div>
                         <?php if ($runner != 5): ?>
                             <p class="mt-5 font-semibold text-xs">
                                 <a href="<?php the_permalink(); ?>">
-                                <?php the_title() ?>
+                                    <?php the_title() ?>
                                 </a>
                             </p>
                         <?php endif; ?>
@@ -159,8 +167,8 @@ foreach ($cats as $cat):
             ?>
         </div>
     </div>
-<?php
-$catrunner++;
+    <?php
+    $catrunner++;
 endforeach;
 ?>
 
