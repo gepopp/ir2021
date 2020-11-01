@@ -128,10 +128,9 @@ $cat = get_category($cat)
                         </div>
 
                     </div>
-                    <?php the_content(); ?>
+
+                    <?php echo preg_replace('#\[[^\]]+\]#', '',get_the_content()); ?>
                 </div>
-
-
             </div>
 
 

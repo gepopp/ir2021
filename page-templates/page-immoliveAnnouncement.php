@@ -27,6 +27,7 @@ if ($query->have_posts()):
              style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>);
                      background-size: cover;
                      background-position: center">
+            <div class="absolute w-full h-full top-0 left-0 bg-black bg-opacity-25"></div>
             <div class="my-16">
                 <h1 class="bg-white text-2xl px-5 text-center inline font-semibold"><?php the_title() ?></h1>
             </div>
