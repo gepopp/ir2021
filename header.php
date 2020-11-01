@@ -24,47 +24,60 @@ namespace immobilien_redaktion_2020;
         window.ajaxurl = '<?php echo admin_url('admin-ajax.php') ?>';
     </script>
 
+    <?php if (is_page_template('pagetemplate-sehen.php')): ?>
+        <script src="https://cdn.jwplayer.com/libraries/gjECD05K.js"></script>
+    <?php endif; ?>
+
     <?php if (is_singular()): ?>
         <meta property="og:url" content="<?php the_permalink(); ?>"/>
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="<?php the_title() ?>"/>
         <meta property="og:description" content="<?php echo get_the_excerpt(); ?>"/>
-            <?php if (get_post_format() == 'video'): ?>
-                <?php if (get_field('field_5c65130772844')): ?>
+        <?php if (get_post_format() == 'video'): ?>
+            <?php if (get_field('field_5c65130772844')): ?>
                 <meta property="og:image" content="<?php echo 'https://cdn.jwplayer.com/v2/media/' . get_field('field_5c65130772844') . '/poster.jpg' ?>"/>
-                <?php elseif (get_field('field_5f96fa1673bac')): ?>
+            <?php elseif (get_field('field_5f96fa1673bac')): ?>
                 <meta property="og:image" content="<?php echo 'https://img.youtube.com/vi/' . get_field('field_5f96fa1673bac') . '/hqdefault.jpg' ?>"/>
-                <?php endif; ?>
-            <?php else: ?>
-            <meta property="og:image" content="<?php the_post_thumbnail_url('article'); ?>"/>
             <?php endif; ?>
+        <?php else: ?>
+            <meta property="og:image" content="<?php the_post_thumbnail_url('article'); ?>"/>
+        <?php endif; ?>
         <meta property="fb:app_id" content="831950683917414">
         <meta property="og:image:width" content="600"/>
         <meta property="og:image:height" content="450"/>
     <?php endif; ?>
 </head>
 
-<body <?php body_class('bg-primary-100 bg-opacity-5'); ?> itemscope itemtype="https://schema.org/WebPage">
+<?php
+if (is_page_template('pagetemplate-sehen.php')) {
+    $bg = 'bg-gray-900';
+} else {
+    $bg = 'bg-primary-100 bg-opacity-5';
+}
+?>
+
+<body <?php body_class($bg); ?> itemscope itemtype="https://schema.org/WebPage">
 
 <header class="header bg-primary-100 w-full h-10">
     <div class="container mx-auto flex justify-between ">
         <div class="pt-2 hidden lg:block relative" x-data="{ lesen: false }">
             <ul class="flex">
-                <li class="uppercase text-white mr-3"><a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a></li>
-                <li class="uppercase text-white mr-3"><a href="#">SEHEN</a></li>
+                <li class="uppercase text-white mr-3">
+                    <a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a></li>
+                <li class="uppercase text-white mr-3"><a href="/sehen">SEHEN</a></li>
                 <li class="uppercase text-white mr-3"><a href="#">DISKUTIEREN</a></li>
             </ul>
             <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white" x-show="lesen" @mouseleave="lesen = false">
-                <?php $cats = get_categories(['exclude' => [1,17]]) ?>
+                <?php $cats = get_categories(['exclude' => [1, 17]]) ?>
                 <ul>
                     <?php foreach ($cats as $cat): ?>
-                    <li class="flex justify-between">
-                        <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
-                        <a href="<?php echo get_category_link($cat) ?>" class="text-xl font-bold"
-                           style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">
-                            <?php echo $cat->name ?>
-                        </a>
-                    </li>
+                        <li class="flex justify-between">
+                            <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
+                            <a href="<?php echo get_category_link($cat) ?>" class="text-xl font-bold"
+                               style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">
+                                <?php echo $cat->name ?>
+                            </a>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
