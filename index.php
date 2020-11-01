@@ -33,7 +33,11 @@ $query = new \WP_Query([
                             <?php else: ?>
                                 <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full']); ?>
                             <?php endif; ?>
-                            <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
+                            <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25">
+                                <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
+                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
+                                <?php endif; ?>
+                            </div>
                             <div class="absolute bottom-0 left-0 m-5">
                                 <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
                             </div>
