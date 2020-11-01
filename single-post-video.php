@@ -174,9 +174,9 @@ $next = get_posts([
                             <div class="relative">
                                 <a href="<?php echo get_the_permalink($next_id); ?>">
                                     <?php if (get_field('field_5c65130772844', $next_id)): ?>
-                                        <img src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844', $next_id) ?>/poster.jpg"/>
+                                        <img class="w-full h-auto" src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844', $next_id) ?>/poster.jpg"/>
                                     <?php elseif (get_field('field_5f96fa1673bac', $next_id)): ?>
-                                        <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac', $next_id) ?>/mqdefault.jpg"/>
+                                        <img class="w-full h-auto" src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac', $next_id) ?>/mqdefault.jpg"/>
                                     <?php endif;
                                     ?>
                                     <div class="absolute w-full h-full flex flex-col justify-end top-0 left-0 p-5">
