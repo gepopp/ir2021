@@ -29,7 +29,28 @@ $headvideo = get_posts([
 ]);
 ?>
     <div class="container mx-auto mt-32 px-5 lg:px-0 relative">
-        <div id="headvideo"></div>
+
+        <?php if (get_field('field_5c65130772844')): ?>
+            <div id="headvideo"></div>
+            <script>
+                var player = jwplayer('headvideo');
+                player.setup({
+                    playlist: "https://cdn.jwplayer.com/v2/media/" + '<?php echo get_field("field_5c65130772844", $headvideo[0]->ID) ?>'
+                });
+            </script>
+        <?php elseif (get_field('field_5f96fa1673bac')): ?>
+            <iframe class="has-ratio" width="100%" height="455" src="https://www.youtube.com/embed/<?php echo get_field('field_5f96fa1673bac')  ?>"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        <?php endif; ?>
+
+
+
+
+
+
+
+
         <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 p-10 flex flex-col justify-between" style="box-shadow: inset 0 0 5em 1em #1a202c;">
             <h1 class="text-3xl text-white"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
             <div class="inline flex justify-between">
@@ -48,12 +69,7 @@ $headvideo = get_posts([
 
         </div>
     </div>
-    <script>
-        var player = jwplayer('headvideo');
-        player.setup({
-            playlist: "https://cdn.jwplayer.com/v2/media/" + '<?php echo get_field("field_5c65130772844", $headvideo[0]->ID) ?>'
-        });
-    </script>
+
 
 
 <?php
