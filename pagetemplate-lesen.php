@@ -94,7 +94,7 @@ $query = new \WP_Query([
     </div>
 <?php wp_reset_postdata(); ?>
 
-<?php get_template_part('page-templates/part', 'fourbanner') ?>
+<?php //get_template_part('page-templates/part', 'fourbanner') ?>
 
 <?php $cats = get_categories(['exclude' => [1, 17]]) ?>
 
@@ -104,7 +104,7 @@ foreach ($cats as $cat):
     ?>
 
     <?php if ($catrunner == 3): ?>
-    <?php get_template_part('banner-templates/banner', 'thirds2') ?>
+<!--    --><?php //get_template_part('banner-templates/banner', 'thirds2') ?>
 <?php endif; ?>
 
     <div class="container mx-auto mt-32 px-5 lg:px-0">
