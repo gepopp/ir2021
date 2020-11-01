@@ -44,9 +44,16 @@ $headvideo = get_posts([
                             width: 100%;
                             padding-bottom: 56.25%;
                             ">
-                <iframe src="https://www.youtube.com/embed/<?php echo get_field('field_5f96fa1673bac') ?>"
+                <iframe src="https://www.youtube.com/embed/<?php echo get_field('field_5f96fa1673bac', $headvideo[0]->ID) ?>?autoplay=1&mute=1"
                         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                        allowfullscreen style="
+position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+"></iframe>
             </div>
         <?php endif; ?>
 
