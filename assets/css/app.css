@@ -22,3 +22,13 @@
         @apply font-semibold text-2xl my-5;
     }
 }
+
+.wp-block-button{
+
+    @apply py-10;
+
+    .wp-block-button__link{
+        @apply bg-primary-100 text-white;
+    }
+
+}

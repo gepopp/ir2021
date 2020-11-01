@@ -47,3 +47,12 @@ add_action('after_setup_theme', function () {
     add_theme_support('post-formats', ['video', 'gallery']);
 });
 
+add_filter( 'single_template', function ( $single_template ) {
+
+
+    if ( has_category( 'video' ) ) {
+        $single_template = get_stylesheet_directory() . '/single-post-video.php';
+    }
+    return $single_template;
+
+}, PHP_INT_MAX, 2 );

@@ -58,9 +58,9 @@ position: absolute;
         <?php endif; ?>
 
 
-        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 p-10 flex flex-col justify-between" style="box-shadow: inset 0 0 5em 1em #1a202c;">
-            <h1 class="text-3xl text-white"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
-            <div class="inline flex justify-between">
+        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 p-10 flex flex-col justify-between hidden lg:flex" style="box-shadow: inset 0 0 5em 1em #1a202c;">
+            <h1 class="text-3xl text-white hidden lg:block"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
+            <div class="inline flex justify-between ">
                 <a href="<?php echo get_the_permalink($headvideo[0]->ID) ?>" class="bg-white text-gray-900 text-2xl px-3 py-2 rounded shadow-lg flex items-center ">
                     <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">
                         <div class="w-12 h-12 animate-ping bg-white rounded-full">
@@ -73,8 +73,8 @@ position: absolute;
                 </a>
                 <p class="text-2xl text-white flex items-center"><?php echo get_field('field_5a3ce915590ae', $headvideo[0]->ID) ?> | <?php echo get_the_time('d.m.Y', $headvideo[0]->ID) ?></p>
             </div>
-
         </div>
+        <h1 class="lg:hidden text-white text-xl"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
     </div>
 
 
@@ -97,7 +97,7 @@ $query = new WP_Query([
                 while ($query->have_posts()):
                     $query->the_post();
                     ?>
-                    <div class="col-span-2 lg:col-span-1">
+                    <div class="col-span-3 lg:col-span-1">
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
                                 <?php if (get_field('field_5c65130772844')): ?>
@@ -150,7 +150,7 @@ $query = new WP_Query([
                 while ($query->have_posts()):
                     $query->the_post();
                     ?>
-                    <div class="col-span-2 lg:col-span-1">
+                    <div class="col-span-3 lg:col-span-1">
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
                                 <?php if (get_field('field_5c65130772844')): ?>
@@ -204,7 +204,7 @@ $query = new WP_Query([
                 while ($query->have_posts()):
                     $query->the_post();
                     ?>
-                    <div class="col-span-2 lg:col-span-1">
+                    <div class="col-span-3 lg:col-span-1">
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
                                 <?php if (get_field('field_5c65130772844')): ?>
@@ -238,10 +238,10 @@ $query = new WP_Query([
                 <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
                 vorherige
             </div>
-            <div class="bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+            <div class="bg-white rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg">
                 <a href="" class="text-center">
                     <p class="text-xs text-gray-900">powered by</p>
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-24 h-auto px-5">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-20 h-auto px-5">
                 </a>
             </div>
             <div>
@@ -272,7 +272,7 @@ $query = new WP_Query([
                 while ($query->have_posts()):
                     $query->the_post();
                     ?>
-                    <div class="col-span-2 lg:col-span-1">
+                    <div class="col-span-3 lg:col-span-1">
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
                                 <?php if (get_field('field_5c65130772844')): ?>
@@ -307,10 +307,10 @@ $query = new WP_Query([
                 <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
                 vorherige
             </div>
-            <div class="bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+            <div class="bg-white rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg">
                 <a href="" class="text-center">
                     <p class="text-xs text-gray-900">powered by</p>
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-24 h-auto px-5">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-20 h-auto px-5">
                 </a>
             </div>
             <div>
@@ -341,7 +341,7 @@ $query = new WP_Query([
                 while ($query->have_posts()):
                     $query->the_post();
                     ?>
-                    <div class="col-span-2 lg:col-span-1">
+                    <div class="col-span-3 lg:col-span-1">
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
                                 <?php if (get_field('field_5c65130772844')): ?>
@@ -376,10 +376,10 @@ $query = new WP_Query([
                 <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
                 vorherige
             </div>
-                <div class="bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+                <div class="bg-white rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg">
                     <a href="" class="text-center">
                         <p class="text-xs text-gray-900">powered by</p>
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-24 h-auto px-5">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-20 h-auto px-5">
                     </a>
                 </div>
             <div>
