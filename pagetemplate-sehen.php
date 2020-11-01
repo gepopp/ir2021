@@ -30,7 +30,7 @@ $headvideo = get_posts([
 ?>
     <div class="container mx-auto mt-32 px-5 lg:px-0 relative">
 
-        <?php if (get_field('field_5c65130772844')): ?>
+        <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
             <div id="headvideo"></div>
             <script>
                 var player = jwplayer('headvideo');
@@ -38,7 +38,7 @@ $headvideo = get_posts([
                     playlist: "https://cdn.jwplayer.com/v2/media/" + '<?php echo get_field("field_5c65130772844", $headvideo[0]->ID) ?>'
                 });
             </script>
-        <?php elseif (get_field('field_5f96fa1673bac')): ?>
+        <?php elseif (get_field('field_5f96fa1673bac', $headvideo[0]->ID)): ?>
             <iframe class="has-ratio" width="100%" height="455" src="https://www.youtube.com/embed/<?php echo get_field('field_5f96fa1673bac')  ?>"
                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
