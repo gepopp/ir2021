@@ -39,16 +39,16 @@ $headvideo = get_posts([
                 });
             </script>
         <?php elseif (get_field('field_5f96fa1673bac', $headvideo[0]->ID)): ?>
-            <iframe class="has-ratio" width="100%" height="455" src="https://www.youtube.com/embed/<?php echo get_field('field_5f96fa1673bac')  ?>"
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+            <div class="video-container" style="
+                            position: relative;
+                            width: 100%;
+                            padding-bottom: 56.25%;
+                            ">
+                <iframe src="https://www.youtube.com/embed/<?php echo get_field('field_5f96fa1673bac') ?>"
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
         <?php endif; ?>
-
-
-
-
-
-
 
 
         <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 p-10 flex flex-col justify-between" style="box-shadow: inset 0 0 5em 1em #1a202c;">
@@ -69,7 +69,6 @@ $headvideo = get_posts([
 
         </div>
     </div>
-
 
 
 <?php
