@@ -14,19 +14,22 @@ window.slider = function ( start, cat, pages) {
         cat: cat,
         active: 0,
         pages: pages,
+        loading: false,
         next($refs) {
 
+            if(!this.loading)
                 $refs.slider.scrollLeft = $refs.slider.scrollLeft + ($refs.slider.scrollWidth / this.rows.length);
-
-                this.load();
 
         },
         prev($refs){
-            $refs.slider.scrollLeft = $refs.slider.scrollLeft - ($refs.slider.scrollWidth / this.rows.length)
+            if(!this.loading)
+                $refs.slider.scrollLeft = $refs.slider.scrollLeft - ($refs.slider.scrollWidth / this.rows.length)
         },
         load(){
 
             if(this.rows.length <= pages){
+
+                this.loading = true;
 
                 var params = new URLSearchParams();
                 params.append('action', 'load_videos');
@@ -37,9 +40,16 @@ window.slider = function ( start, cat, pages) {
                     .then((rsp)=>{
                         this.rows.push(rsp.data);
 
+                        this.loading = false;
                     });
 
             }
+        },
+        $watch(){
+            active: (value) => {
+                console.log(value);
+            }
         }
+
     }
 }
