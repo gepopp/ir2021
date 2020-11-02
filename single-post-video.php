@@ -81,7 +81,7 @@ $next = get_posts([
 
         <?php if (get_field('field_5c65130772844')): ?>
             <div id="headvideo"></div>
-            <script src="https://cdn.jwplayer.com/libraries/OC0ZpwGp.js"></script>
+            <script src="https://cdn.jwplayer.com/libraries/OC0ZpwGp.js" async></script>
             <script>
                 var player = jwplayer('headvideo');
                 player.setup({
