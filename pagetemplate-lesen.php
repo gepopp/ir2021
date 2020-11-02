@@ -96,7 +96,7 @@ $query = new \WP_Query([
 
 <?php //get_template_part('page-templates/part', 'fourbanner') ?>
 
-<?php $cats = get_categories(['exclude' => [1, 17]]) ?>
+<?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0 ]) ?>
 
 <?php
 $catrunner = 1;
