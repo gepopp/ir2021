@@ -83,15 +83,16 @@ $next = get_posts([
             <div id="headvideo"></div>
             <script src="https://cdn.jwplayer.com/libraries/OC0ZpwGp.js" async></script>
             <script>
-                var player = jwplayer('headvideo');
-                player.setup({
-                    playlist: "https://cdn.jwplayer.com/v2/media/" + '<?php echo get_field("field_5c65130772844") ?>',
+                window.addEventListener('load', function () {
+                    var player = jwplayer('headvideo');
+                    player.setup({
+                        playlist: "https://cdn.jwplayer.com/v2/media/" + '<?php echo get_field("field_5c65130772844") ?>',
+                    });
+                    player.on('complete', function () {
+                        var event = new Event('jwcomplete');
+                        window.dispatchEvent(event);
+                    });
                 });
-                player.on('complete', function () {
-                    var event = new Event('jwcomplete');
-                    window.dispatchEvent(event);
-                });
-
             </script>
         <?php elseif (get_field('field_5f96fa1673bac')): ?>
             <div class="video-container" style="position: relative;width: 100%;padding-bottom: 56.25%;">
