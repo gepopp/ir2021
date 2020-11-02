@@ -1,6 +1,6 @@
 {
     "key": "group_5a3ce90894710",
-    "title": "Artikelzusätze",
+    "title": "Videodaten",
     "fields": [
         {
             "key": "field_5a3ce915590ae",
@@ -94,5 +94,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1603729954
+    "modified": 1604317915
 }

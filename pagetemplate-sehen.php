@@ -85,6 +85,9 @@ $query = new WP_Query([
     'ignore_sticky_posts' => true,
     'posts_per_page'      => 6,
     'category__in'        => [17],
+    'meta_key'			=> 'analytics_views',
+    'orderby'			=> 'meta_value_num',
+    'order'				=> 'DESC'
 ]);
 ?>
 
@@ -105,12 +108,13 @@ $query = new WP_Query([
                                 <?php elseif (get_field('field_5f96fa1673bac')): ?>
                                     <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
                                 <?php endif; ?>
-                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex flex-col justify-center items-center">
                                     <div class="w-4 h-4  bg-white rounded-full">
                                         <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
                                         </svg>
                                     </div>
+                                    <p class="text-white"><?php the_field('field_5f9ff32f68d04') ?></p>
                                 </div>
                             </a>
                         </div>
