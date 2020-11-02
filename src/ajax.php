@@ -103,7 +103,7 @@ function load_more_category()
 
 }
 
-add_action('wp_ajax_load_videosload_videos', 'load_videos');
+add_action('wp_ajax_load_videos', 'load_videos');
 add_action('wp_ajax_nopriv_load_videos', 'load_videos');
 
 function load_videos()

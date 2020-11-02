@@ -273,7 +273,7 @@ foreach ($cats as $cat): ?>
                     </div>
                 </template>
             </div>
-            <div class="flex items-center justify-between flex-1 absolute top-0 w-full h-full">
+            <div class="flex items-center justify-between flex-1 absolute top-0 w-full h-full" style="pointer-events: none">
                 <button class="outline-none focus:outline-none rounded-full mx-4 text-white"
                         x-on:click="prev($refs);">
                     <div x-show="active > 0" class="w-8 h-8 p-2 rounded-full bg-gray-900 flex items-center justify-center">
