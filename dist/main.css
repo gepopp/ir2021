@@ -10193,9 +10193,9 @@ video {
     color: rgba(255, 255, 255, var(--text-opacity));
   }
 
-.cloak [x-cloak] {
-    display: none !important;
-  }
+[x-cloak] {
+  display: none;
+}
 
 @media (min-width: 640px) {
   .sm\:container {

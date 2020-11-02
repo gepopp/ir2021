@@ -59,7 +59,7 @@ $next = get_posts([
         }
     </script>
 
-    <div class="absolute bg-white bottom-0 right-0 mr-24 mb-24 p-10 z-50 cloak"
+    <div class="absolute bg-white bottom-0 right-0 mr-24 mb-24 p-10 z-50" x-cloak
          x-data="jwhandler('<?php echo get_permalink($next[0]->ID) ?>')"
          x-on:jwcomplete.window="rest()"
          x-show="show"
