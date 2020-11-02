@@ -40,7 +40,7 @@ window.slider = function ( start, cat, pages) {
                     .then((rsp)=>{
                         this.rows.push(rsp.data);
 
-                        this.loading = false;
+                        setTimeout(() => this.loading = false, 1500 );
                     });
 
             }
