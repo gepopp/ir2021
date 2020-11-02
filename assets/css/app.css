@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.animate-ping{
+.animate-ping {
     animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
@@ -17,18 +17,27 @@
     }
 }
 
-.content{
-    h2{
-        @apply font-semibold text-2xl my-5;
-    }
+.content {
+
+h2 {
+    @apply font-semibold text-2xl my-5;
 }
 
-.wp-block-button{
+}
+
+.wp-block-button {
 
     @apply py-10;
 
-    .wp-block-button__link{
-        @apply bg-primary-100 text-white;
+.wp-block-button__link {
+    @apply bg-primary-100 text-white;
+}
+
+}
+.cloak {
+
+    [x-cloak] {
+        display: none !important;
     }
 
 }
