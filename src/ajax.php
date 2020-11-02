@@ -53,3 +53,45 @@ function get_page_views()
         echo 'no json';
     }
 }
+
+add_action('wp_ajax_load_more_category', 'load_more_category');
+add_action('wp_ajax_nopriv_load_more_category', 'load_more_category');
+
+function load_more_category()
+{
+//
+//    echo var_dump($_POST);
+//    die();
+//
+
+    $query = new WP_Query([
+
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'ignore_sticky_posts' => true,
+        'posts_per_page'      => 10,
+        'cat'                 => (int) $_POST['id'],
+        'offset'              => (int) $_POST['offset'],
+    ]);
+
+    $posts = [];
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+
+
+            $posts[] = [
+                'ID'        => get_the_ID(),
+                'title'     => get_the_title(),
+                'permalink' => get_the_permalink(),
+                'img_url'   => !has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article')) ? false : get_the_post_thumbnail_url(get_the_ID(), 'article'),
+                'author'    => get_the_author(),
+                'date'      => get_the_time('d.m.Y'),
+            ];
+        }
+    }
+    echo json_encode($posts);
+    die();
+
+}

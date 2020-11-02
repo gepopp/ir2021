@@ -55,7 +55,8 @@ if ( isProduction ) {
 const config = {
 	entry: {
 		main: './assets/js/main.js',
-		single: './assets/js/single.js'
+		single: './assets/js/single.js',
+		category:'./assets/js/category.js'
 	},
 	optimization: {
 		minimizer: [

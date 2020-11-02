@@ -40,6 +40,4 @@ window.articleViews = function (id){
 
        }
    }
-
-
 }
