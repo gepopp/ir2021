@@ -48,10 +48,9 @@ function get_page_views($post_id = null)
             if (defined('DOING_AJAX') && DOING_AJAX) {
                 // Print the results.
                 wp_die($sessions);
-            }else{
+            } else {
                 return $sessions;
             }
-
 
 
         } else {
@@ -78,8 +77,8 @@ function load_more_category()
         'post_status'         => 'publish',
         'ignore_sticky_posts' => true,
         'posts_per_page'      => 10,
-        'cat'                 => (int) $_POST['id'],
-        'offset'              => (int) $_POST['offset'],
+        'cat'                 => (int)$_POST['id'],
+        'offset'              => (int)$_POST['offset'],
     ]);
 
     $posts = [];
@@ -101,5 +100,51 @@ function load_more_category()
     }
     echo json_encode($posts);
     die();
+
+}
+
+add_action('wp_ajax_load_videosload_videos', 'load_videos');
+add_action('wp_ajax_nopriv_load_videos', 'load_videos');
+
+function load_videos()
+{
+
+    $query = new WP_Query([
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'ignore_sticky_posts' => true,
+        'posts_per_page'      => 6,
+        'paged'               => (int)$_POST['page'],
+        'category__in'        => [(int)$_POST['cat']],
+    ]);
+
+    $posts = [];
+
+    if ($query->have_posts()):
+        $runner = 1;
+        while ($query->have_posts()):
+            $query->the_post();
+
+            if (get_field('field_5c65130772844')):
+                $url = "https://cdn.jwplayer.com/v2/media/" . get_field('field_5c65130772844') . "/poster.jpg";
+            elseif (get_field('field_5f96fa1673bac')):
+                $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
+            else:
+                $url = false;
+            endif;
+
+
+            $posts[] = [
+                'ID'        => get_the_ID(),
+                'permalink' => get_the_permalink(),
+                'title'     => get_the_title(),
+                'img'       => $url,
+            ];
+            $runner++;
+        endwhile;
+    endif;
+
+
+    wp_die(json_encode($posts));
 
 }

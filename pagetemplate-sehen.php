@@ -85,9 +85,9 @@ $query = new WP_Query([
     'ignore_sticky_posts' => true,
     'posts_per_page'      => 6,
     'category__in'        => [17],
-    'meta_key'			=> 'analytics_views',
-    'orderby'			=> 'meta_value_num',
-    'order'				=> 'DESC'
+    'meta_key'            => 'analytics_views',
+    'orderby'             => 'meta_value_num',
+    'order'               => 'DESC',
 ]);
 ?>
 
@@ -111,7 +111,8 @@ $query = new WP_Query([
                                 <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex flex-col justify-center items-center">
                                     <div class="w-4 h-4  bg-white rounded-full">
                                         <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
                                         </svg>
                                     </div>
                                     <p class="text-white"><?php the_field('field_5f9ff32f68d04') ?></p>
@@ -189,209 +190,141 @@ $query = new WP_Query([
 <?php wp_reset_postdata(); ?>
 
 <?php
-$query = new WP_Query([
-    'post_type'           => 'post',
-    'post_status'         => 'publish',
-    'ignore_sticky_posts' => true,
-    'posts_per_page'      => 6,
-    'category__in'        => [17],
-]);
-?>
+$cats = get_categories(['child_of' => 17]);
+
+foreach ($cats as $cat): ?>
+
+    <?php
+    $query = new WP_Query([
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'ignore_sticky_posts' => true,
+        'posts_per_page'      => 6,
+        'category__in'        => [$cat->term_id],
+    ]);
+    ?>
+    <?php
+
+    $pages = (int)$query->max_num_pages;
+
+
+    $posts = [];
+
+    if ($query->have_posts()):
+        $runner = 1;
+        while ($query->have_posts()):
+            $query->the_post();
+
+            if (get_field('field_5c65130772844')):
+                $url = "https://cdn.jwplayer.com/v2/media/" . get_field('field_5c65130772844') . "/poster.jpg";
+            elseif (get_field('field_5f96fa1673bac')):
+                $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
+            else:
+                $url = false;
+            endif;
+
+
+            $posts[] = [
+                'ID'        => get_the_ID(),
+                'permalink' => get_the_permalink(),
+                'title'     => get_the_title(),
+                'img'       => $url,
+            ];
+
+
+            $runner++;
+        endwhile;
+    endif;
+    ?>
+    <?php wp_reset_postdata(); ?>
 
 
     <div class="container mx-auto mt-32 px-5 lg:px-0">
-        <a href="#" class="text-xl font-bold mb-10 text-white">Walter's Mails</a>
-        <div class="grid grid-cols-6 gap-4">
-            <?php
-            if ($query->have_posts()):
-                $runner = 1;
-                while ($query->have_posts()):
-                    $query->the_post();
-                    ?>
-                    <div class="col-span-3 lg:col-span-1">
-                        <div class="relative">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php if (get_field('field_5c65130772844')): ?>
-                                    <img src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844') ?>/poster.jpg"/>
-                                <?php elseif (get_field('field_5f96fa1673bac')): ?>
-                                    <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
-                                <?php endif; ?>
-                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                                    <div class="w-4 h-4 bg-white rounded-full">
-                                        <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                        </svg>
+        <a href="#" class="text-xl font-bold mb-10 text-white"><?php echo $cat->name ?></a>
+
+
+        <div x-data="slider(<?php echo str_replace('"', "'", json_encode($posts)) ?>, <?php echo $cat->term_id ?>, <?php echo $query->max_num_pages ?> )" x-init="load()" class="relative">
+            <div class="snap overflow-auto relative flex-no-wrap flex transition-all"
+                 x-ref="slider"
+                 x-on:scroll.debounce="active = Math.round($event.target.scrollLeft / ($event.target.scrollWidth / rows.length))">
+                <template x-for="row in rows">
+                    <div class="w-full flex-shrink-0 text-white flex items-center justify-center">
+                        <div class="grid grid-cols-6 gap-4">
+                            <template x-for="post in row">
+                                <div class="col-span-3 lg:col-span-1">
+                                    <div class="relative">
+                                        <a :href="post.permalink">
+                                            <img :src="post.img"/>
+                                            <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                                                <div class="w-4 h-4 bg-white rounded-full">
+                                                    <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
+                                    <p class="mt-5 font-semibold text-xs text-white">
+                                        <a :href="post.permalink" x-text="post.title"></a>
+                                    </p>
                                 </div>
-                            </a>
+                            </template>
                         </div>
-                        <p class="mt-5 font-semibold text-xs text-white">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_title() ?>
-                            </a>
-                        </p>
                     </div>
-                    <?php
-                    $runner++;
-                endwhile;
-            endif;
-            ?>
+                </template>
+            </div>
+            <div class="flex items-center justify-between flex-1 absolute top-0 w-full h-full">
+                <button class="outline-none focus:outline-none rounded-full mx-4 text-white w-8 h-8 p-2 rounded-full bg-gray-900 flex items-center justify-center"
+                        x-on:click="prev($refs);">
+                    <div x-show="active > 0">
+                        <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </button>
+
+                <?php if (get_field('field_5f9aefd116e2e', $cat)): ?>
+                    <div class="bg-gray-900 bg-opacity-75 rounded-full w-24 h-24 p-5 flex flex-col items-center justify-center shadow-lg">
+                        <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
+                            <p class="text-white" style="font-size: .5rem">powered by</p>
+                            <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-20 h-auto">
+                        </a>
+                    </div>
+                <?php endif; ?>
+
+                <button
+                        class="outline-none focus:outline-none rounded-full mx-4 text-white w-8 h-8 p-2 rounded-full bg-gray-900 flex items-center justify-center"
+                        x-on:click="next($refs);">
+                    <div x-show="active <= pages">
+                        <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </button>
+            </div>
         </div>
-        <div class="flex justify-between text-white pt-5 w-full -mt-5 items-center">
-            <div>
-                <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
-                vorherige
-            </div>
-            <div class="bg-white rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg">
-                <a href="" class="text-center">
-                    <p class="text-xs text-gray-900">powered by</p>
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-20 h-auto px-5">
-                </a>
-            </div>
-            <div>
-                weitere
-                <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-            </div>
-        </div>
+
+        <style>
+            .snap {
+                -ms-scroll-snap-type: x mandatory;
+                scroll-snap-type: x mandatory;
+                -ms-overflow-style: none;
+                scroll-behavior: smooth
+            }
+
+            .snap::-webkit-scrollbar {
+                display: none;
+            }
+
+            .snap > div {
+                scroll-snap-align: center;
+            }
+        </style>
     </div>
 
-<?php wp_reset_postdata(); ?>
 
-<?php
-$query = new WP_Query([
-    'post_type'           => 'post',
-    'post_status'         => 'publish',
-    'ignore_sticky_posts' => true,
-    'posts_per_page'      => 6,
-    'category__in'        => [17],
-]);
-?>
-
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
-        <a href="#" class="text-xl font-bold mb-10 text-white">Walter's Interviews</a>
-        <div class="grid grid-cols-6 gap-4">
-            <?php
-            if ($query->have_posts()):
-                $runner = 1;
-                while ($query->have_posts()):
-                    $query->the_post();
-                    ?>
-                    <div class="col-span-3 lg:col-span-1">
-                        <div class="relative">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php if (get_field('field_5c65130772844')): ?>
-                                    <img src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844') ?>/poster.jpg"/>
-                                <?php elseif (get_field('field_5f96fa1673bac')): ?>
-                                    <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
-                                <?php endif; ?>
-                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                                    <div class="w-4 h-4 bg-white rounded-full">
-                                        <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <p class="mt-5 font-semibold text-xs text-white">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_title() ?>
-                            </a>
-                        </p>
-
-                    </div>
-                    <?php
-                    $runner++;
-                endwhile;
-            endif;
-            ?>
-        </div>
-        <div class="flex justify-between text-white pt-5 w-full -mt-5 items-center">
-            <div>
-                <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
-                vorherige
-            </div>
-            <div class="bg-white rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg">
-                <a href="" class="text-center">
-                    <p class="text-xs text-gray-900">powered by</p>
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-20 h-auto px-5">
-                </a>
-            </div>
-            <div>
-                weitere
-                <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-            </div>
-        </div>
-    </div>
-
-<?php wp_reset_postdata(); ?>
-
-<?php
-$query = new WP_Query([
-    'post_type'           => 'post',
-    'post_status'         => 'publish',
-    'ignore_sticky_posts' => true,
-    'posts_per_page'      => 6,
-    'category__in'        => [17],
-]);
-?>
-
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
-        <a href="#" class="text-xl font-bold mb-10 text-white">Walter's Reality</a>
-        <div class="grid grid-cols-6 gap-4">
-            <?php
-            if ($query->have_posts()):
-                $runner = 1;
-                while ($query->have_posts()):
-                    $query->the_post();
-                    ?>
-                    <div class="col-span-3 lg:col-span-1">
-                        <div class="relative">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php if (get_field('field_5c65130772844')): ?>
-                                    <img src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844') ?>/poster.jpg"/>
-                                <?php elseif (get_field('field_5f96fa1673bac')): ?>
-                                    <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
-                                <?php endif; ?>
-                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                                    <div class="w-4 h-4 bg-white rounded-full">
-                                        <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <p class="mt-5 font-semibold text-xs text-white">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_title() ?>
-                            </a>
-                        </p>
-
-                    </div>
-                    <?php
-                    $runner++;
-                endwhile;
-            endif;
-            ?>
-        </div>
-        <div class="flex justify-between text-white pt-5 w-full -mt-5 items-center">
-            <div>
-                <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
-                vorherige
-            </div>
-                <div class="bg-white rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-lg">
-                    <a href="" class="text-center">
-                        <p class="text-xs text-gray-900">powered by</p>
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_oerag_immobilien.svg" class="w-20 h-auto px-5">
-                    </a>
-                </div>
-            <div>
-                weitere
-                <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-            </div>
-        </div>
-    </div>
+<?php endforeach; ?>
 
 
 <?php
