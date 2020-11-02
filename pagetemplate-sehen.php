@@ -286,7 +286,7 @@ $watch('active', (value) => {
             </div>
             <div class="flex items-center justify-between flex-1 absolute top-0 w-full h-full" style="pointer-events: none">
                 <button class="outline-none focus:outline-none rounded-full mx-4 text-white w-8"
-                        :class="{'cursor-not-allowed' : loading }"
+                        :class="{'cursor-not-allowed' : loading || active <= 0  }"
                         style="pointer-events: auto"
                         x-on:click="prev($refs);">
                     <div class="w-8 h-8 p-2 rounded-full bg-gray-900 flex items-center justify-center">
@@ -306,7 +306,7 @@ $watch('active', (value) => {
                 <?php endif; ?>
 
                 <button class="outline-none focus:outline-none rounded-full mx-4 text-white w-8"
-                        :class="{'cursor-not-allowed' : loading }"
+                        :class="{'cursor-not-allowed' : loading || active >= pages }"
                         style="pointer-events: auto"
                         x-on:click="next($refs);">
                     <div class="w-8 h-8 p-2 rounded-full bg-gray-900 flex items-center justify-center">
