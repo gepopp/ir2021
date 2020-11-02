@@ -17,6 +17,7 @@ window.slider = function ( start, cat, pages) {
         next($refs) {
 
                 $refs.slider.scrollLeft = $refs.slider.scrollLeft + ($refs.slider.scrollWidth / this.rows.length);
+
                 this.load();
 
         },

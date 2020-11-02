@@ -141,7 +141,7 @@ $next = get_posts([
             <div class="col-span-5 lg:col-span-3">
                 <div class="content text-white">
                     <div class="h-64 block lg:hidden float-right w-1/2 ml-5 pl-5 mb-5 pb-5 relative">
-                        <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
+                        <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat) ?? '#5C97D0'; ?>">
                             <div class="flex flex-col justify-between h-full">
                                 <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
                             </div>
