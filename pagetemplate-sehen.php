@@ -274,7 +274,7 @@ foreach ($cats as $cat): ?>
                 </template>
             </div>
             <div class="flex items-center justify-between flex-1 absolute top-0 w-full h-full" style="pointer-events: none">
-                <button class="outline-none focus:outline-none rounded-full mx-4 text-white"
+                <button class="outline-none focus:outline-none rounded-full mx-4 text-white" style="pointer-events: auto"
                         x-on:click="prev($refs);">
                     <div x-show="active > 0" class="w-8 h-8 p-2 rounded-full bg-gray-900 flex items-center justify-center">
                         <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -285,7 +285,7 @@ foreach ($cats as $cat): ?>
 
                 <?php if (get_field('field_5f9aefd116e2e', $cat)): ?>
                     <div class="bg-gray-900 bg-opacity-75 rounded-full w-24 h-24 p-5 flex flex-col items-center justify-center shadow-lg">
-                        <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
+                        <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center" style="pointer-events: auto">
                             <p class="text-white" style="font-size: .5rem">powered by</p>
                             <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-20 h-auto">
                         </a>
@@ -293,7 +293,7 @@ foreach ($cats as $cat): ?>
                 <?php endif; ?>
 
                 <button
-                        class="outline-none focus:outline-none rounded-full mx-4 text-white"
+                        class="outline-none focus:outline-none rounded-full mx-4 text-white" style="pointer-events: auto"
                         x-on:click="next($refs);">
                     <div x-show="active <= pages" class="w-8 h-8 p-2 rounded-full bg-gray-900 flex items-center justify-center">
                         <svg class="w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
