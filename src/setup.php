@@ -67,20 +67,42 @@ add_action('init', function () {
 
 });
 
-add_action( 'get_views_from_analytics', function()
-{
-    $query = new \WP_Query([
-        'post_type'           => 'post',
-        'post_status'         => 'publish',
-        'ignore_sticky_posts' => true,
-        'posts_per_page'      => -1,
-    ]);
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
+add_action('get_views_from_analytics', function () {
 
-            update_field('field_5f9ff32f68d04', get_page_views(get_the_ID()));
+    global $wpdb;
 
-        }
+    $ids = $wpdb->get_col('SELECT ID FROM wp_posts WHERE post_type = "post" AND post_status = "publish"');
+
+    foreach ($ids as $id) {
+        update_field('field_5f9ff32f68d04', get_page_views($id));
     }
 });
+
+add_filter('manage_posts_columns', 'immobilien_redaktion_2020\add_views_column');
+add_action('manage_posts_custom_column', 'immobilien_redaktion_2020\manage_attachment_tag_column', 10, 2);
+
+function add_views_column($posts_columns)
+{
+
+    // Delete an existing column
+    unset($posts_columns['comments']);
+
+    // Add a new column
+    $posts_columns['views'] = 'Views';
+
+    return $posts_columns;
+}
+
+function manage_attachment_tag_column($column_name, $id)
+{
+    switch ($column_name) {
+        case 'views':
+
+            echo get_field('field_5f9ff32f68d04', $id);
+
+            break;
+        default:
+            break;
+    }
+
+}
