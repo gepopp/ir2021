@@ -29,7 +29,7 @@ $headvideo = get_posts([
 ]);
 ?>
     <div class="container mx-auto mt-32 px-5 lg:px-0 relative">
-
+    <div class="relative">
         <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
             <div id="headvideo"></div>
             <script>
@@ -57,6 +57,19 @@ position: absolute;
             </div>
         <?php endif; ?>
 
+        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center lg:hidden">
+            <a href="<?php echo get_the_permalink($headvideo[0]->ID) ?>">
+                <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">
+                    <div class="w-12 h-12 animate-ping bg-white rounded-full">
+                        <svg class="w-12 h-12 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+
 
 
         <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 p-10 flex flex-col justify-between hidden lg:flex" style="box-shadow: inset 0 0 5em 1em #1a202c;">
@@ -76,15 +89,6 @@ position: absolute;
             </div>
         </div>
 
-        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center lg:hidden">
-            <a href="<?php echo get_the_permalink($headvideo[0]->ID) ?>">
-                <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">
-                    <div class="w-12 h-12 animate-ping bg-white rounded-full">
-                        <svg class="w-12 h-12 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                    </div>
-                </div>
-            </a>
-        </div>
 
 
         <h1 class="lg:hidden text-white text-xl"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
