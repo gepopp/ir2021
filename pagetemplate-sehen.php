@@ -254,7 +254,7 @@ foreach ($cats as $cat): ?>
                                 <div class="col-span-3 lg:col-span-1">
                                     <div class="relative">
                                         <a :href="post.permalink">
-                                            <img :src="post.img"/>
+                                            <div class="w-full bg-cover" :style="'padding-top: 56.25%; background-image: url(' + post.img + ')'"></div>
                                             <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                                                 <div class="w-4 h-4 bg-white rounded-full">
                                                     <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
