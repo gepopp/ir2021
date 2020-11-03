@@ -271,6 +271,7 @@ $watch('active', (value) => {
   })"
 
              class="relative">
+
             <div class="snap overflow-auto relative flex-no-wrap flex transition-all"
                  x-ref="slider"
                  x-on:scroll.debounce="active = Math.round($event.target.scrollLeft / ($event.target.scrollWidth / rows.length))">
@@ -278,10 +279,12 @@ $watch('active', (value) => {
                     <div class="w-full flex-shrink-0 text-white flex items-center justify-center">
                         <div class="grid grid-cols-6 gap-4">
                             <template x-for="post in row">
+
                                 <div class="col-span-3 lg:col-span-1">
+
                                     <div class="relative">
                                         <a :href="post.permalink">
-                                            <div class="w-full bg-cover" :style="'padding-top: 56.25%; background-image: url(' + post.img + ')'"></div>
+                                            <div class="w-full bg-cover" :id="'img-' + post.ID" x-on:load.window="setBg(post, $refs)" style="padding-top: 56.25%;"></div>
                                             <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                                                 <div class="w-4 h-4 bg-white rounded-full">
                                                     <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

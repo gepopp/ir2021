@@ -45,6 +45,13 @@ window.slider = function ( start, cat, pages) {
 
             }
         },
+        setBg(post, $refs ){
+
+            var id = 'img' + post.id;
+
+            setTimeout(() => this.$el.querySelector('#img-' + post.ID).style.backgroundImage = "url('" + post.img + "')", 15 );
+
+        },
         $watch(){
             active: (value) => {
                 console.log(value);
