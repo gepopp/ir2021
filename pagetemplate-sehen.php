@@ -268,9 +268,8 @@ $watch('active', (value) => {
 
     if(value + 1 == rows.length) load();
 
-  })
+  })"
 
-                "
              class="relative">
             <div class="snap overflow-auto relative flex-no-wrap flex transition-all"
                  x-ref="slider"
