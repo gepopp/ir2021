@@ -56,7 +56,8 @@ const config = {
 	entry: {
 		main: './assets/js/main.js',
 		single: './assets/js/single.js',
-		category:'./assets/js/category.js'
+		category:'./assets/js/category.js',
+		author:'./assets/js/author.js',
 	},
 	optimization: {
 		minimizer: [

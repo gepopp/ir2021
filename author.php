@@ -1,11 +1,20 @@
-<?php get_header(); ?>
-
 <?php
-$term = get_queried_object();
 
+get_header();
+$author = get_user_by('slug', get_query_var('author_name'));
 
+get_header();
+
+$query = new \WP_Query([
+    'post_type'           => 'post',
+    'post_status'         => 'publish',
+    'author'              => $author->ID,
+    'ignore_sticky_posts' => true,
+    'posts_per_page'      => 10,
+    'category__not_in'    => [17, 696, 159],
+    'tag__not_in'         => 989,
+]);
 ?>
-
 
     <div class="container mx-auto mt-32">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
@@ -15,33 +24,23 @@ $term = get_queried_object();
         </h1>
     </div>
 
-
     <div class="container mx-auto mt-32 px-5 lg:px-0">
         <div class="flex flex-col lg:flex-row items-end">
-            <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
-                <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
+            <div class="w-full lg:w-1/2">
+                <img src="<?php echo get_field('field_5ded37c474589', 'user_' . $author->ID)['sizes']['article'] ?>" class="w-full h-auto">
             </div>
             <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-5 pr-16 relative">
-                <?php echo $term->description ?>
-                <?php if (get_field('field_5f9aeff4efa16', $term)): ?>
-                    <div class="absolute top-0 right-0 -mr-5 -mt-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
-                        <a href="<?php echo get_field('field_5f9aeff4efa16', $term) ?>" class="text-center">
-                            <p class="text-xs text-gray-900">powered by</p>
-                            <img src="<?php echo get_field('field_5f9aefd116e2e', $term) ?>" class="w-24 h-auto px-5">
-                        </a>
-                    </div>
-                <?php endif; ?>
+                <h1 class="text-2xl font-serif font-semibold"><?php echo $author->data->display_name ?></h1>
+                <p><?php echo $author->description ?></p>
             </div>
         </div>
     </div>
 
-<?php //get_template_part('banner-templates/banner', 'thirds') ?>
-
     <div class="container mx-auto mt-32">
-        <?php if (have_posts()): ?>
+        <?php if ($query->have_posts()): ?>
             <div class="grid grid-cols-2 gap-10">
-                <?php while (have_posts()): ?>
-                    <?php the_post(); ?>
+                <?php while ($query->have_posts()): ?>
+                    <?php $query->the_post(); ?>
 
 
                     <div class="col-span-2 md:col-span-1 relative">
@@ -73,9 +72,7 @@ $term = get_queried_object();
     </div>
 
 
-
-
-    <div class="container mx-auto mt-10" x-data="loadMore(<?php echo $term->term_id ?>)">
+    <div class="container mx-auto mt-10" x-data="loadMore(<?php echo $author->ID ?>)">
         <div class="grid grid-cols-2 gap-10">
             <template x-for="post in loaded">
                 <div class="col-span-2 md:col-span-1 relative">
@@ -89,23 +86,22 @@ $term = get_queried_object();
                         </div>
                         <div class="absolute bottom-0 left-0 m-5">
                             <h1 class="font-serif text-white text-2xl" x-text="post.title"></h1>
-                            <p class="text-white text-sm">Geschrieben von <span x-text="post.author"></span> am <span x-text="post.date"></span></p>
+                            <p class="text-white text-sm">Geschrieben von <span x-text="post.author"></span> am
+                                <span x-text="post.date"></span></p>
                         </div>
                     </a>
                 </div>
             </template>
 
 
-
             <div class="flex items-center justify-center w-full my-32 col-span-2">
                 <div class="inline">
-                    <div class="py-2 px-3 bg-primary-100 text-white text-xl font-bold cursor-pointer" @click="load(<?php echo $term->term_id ?>)">
+                    <div class="py-2 px-3 bg-primary-100 text-white text-xl font-bold cursor-pointer" @click="load(<?php echo $author->ID ?>)">
                         weitere laden
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 <?php get_footer();

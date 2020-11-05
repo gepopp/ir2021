@@ -49,7 +49,7 @@ namespace immobilien_redaktion_2020;
 </head>
 
 <?php
-if (is_page_template('pagetemplate-sehen.php') || has_category('video')) {
+if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('video')) ) {
     $bg = 'bg-gray-900';
 } else {
     $bg = 'bg-primary-100 bg-opacity-5';

@@ -25,6 +25,17 @@ add_action( 'wp_enqueue_scripts', function() {
 		true
 	);
 
+	if(is_author()){
+        wp_enqueue_script(
+            'immobilien_redaktion_2020_js_author',
+            immobilien_redaktion_2020_URL . "/dist/author{$min_ext}.js",
+            [],
+            immobilien_redaktion_2020_VERSION,
+            true
+        );
+    }
+
+
 	if(is_single() || is_singular()){
         wp_enqueue_script(
             'immobilien_redaktion_2020_js_single',
