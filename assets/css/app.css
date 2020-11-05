@@ -31,6 +31,9 @@
     a{
         @apply text-primary-100 underline;
     }
+    table{
+        @apply table-auto;
+    }
 
 }
 
