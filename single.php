@@ -4,12 +4,14 @@ the_post();
 
 $cat = wp_get_post_categories(get_the_ID());
 $cat = array_shift($cat);
-$cat = get_category($cat)
+$cat = get_category($cat);
+
 
 ?>
 <?php if (!empty(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])
     && checkRemoteFile(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])
-    && !empty(get_field(get_the_author_meta('description')))): ?>
+    && !empty(get_the_author_meta('description'))
+    ): ?>
 
     <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
