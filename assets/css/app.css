@@ -28,6 +28,9 @@
     ul{
         @apply list-disc ml-10 py-5;
     }
+    a{
+        @apply text-primary-100 underline;
+    }
 
 }
 
