@@ -22,7 +22,8 @@ $cat = get_category($cat)
 
     <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
-            <p class="ml-5 text-xl">Geschrieben von <?php echo get_the_author_meta('display_name')?></p>
+            <img src="<?php  echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="rounded-full w-12 h-12">
+            <p class="ml-5 text-xl"><?php echo get_the_author_meta('display_name') ?></p>
         </div>
     </div>
 
