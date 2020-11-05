@@ -2,6 +2,8 @@
 
 namespace immobilien_redaktion_2020;
 
+use Carbon\Carbon;
+
 /**
  * Set up theme defaults and registers support for various WordPress features.
  *
@@ -58,11 +60,18 @@ add_filter('single_template', function ($single_template) {
 
 }, PHP_INT_MAX, 2);
 
+add_filter( 'cron_schedules', function($schedules ) {
+    $schedules['every_minute'] = array(
+        'interval'  => 60,
+        'display'   => __( 'Every Minute', 'textdomain' )
+    );
+    return $schedules;
+});
 
 add_action('init', function () {
 
     if (!wp_next_scheduled('get_views_from_analytics')) {
-        wp_schedule_event(time(), 'hourly', 'get_views_from_analytics');
+        wp_schedule_event(time(), 'every_minute', 'get_views_from_analytics');
     }
 
 });
@@ -71,7 +80,9 @@ add_action('get_views_from_analytics', function () {
 
     global $wpdb;
 
-    $ids = $wpdb->get_col('SELECT ID FROM wp_posts WHERE post_type = "post" AND post_status = "publish"');
+    $min = Carbon::next()->format('m');
+
+    $ids = $wpdb->get_col('SELECT ID FROM wp_posts WHERE post_type = "post" AND post_status = "publish" LIMIT($min*100, 100)');
 
     foreach ($ids as $id) {
         update_field('field_5f9ff32f68d04', get_page_views($id));
@@ -105,4 +116,13 @@ function manage_attachment_tag_column($column_name, $id)
             break;
     }
 
+}
+add_filter( 'manage_edit-post_sortable_columns', 'immobilien_redaktion_2020\my_sortable_views_column' );
+function my_sortable_views_column( $columns ) {
+    $columns['views'] = 'views';
+
+ //   To make a column 'un-sortable' remove it from the array
+    unset($columns['date']);
+
+    return $columns;
 }
