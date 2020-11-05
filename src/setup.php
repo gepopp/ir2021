@@ -80,9 +80,9 @@ add_action('get_views_from_analytics', function () {
 
     global $wpdb;
 
-    $min = Carbon::next()->format('m');
+    $min = Carbon::now()->format('i') * 100;
 
-    $ids = $wpdb->get_col('SELECT ID FROM wp_posts WHERE post_type = "post" AND post_status = "publish" LIMIT($min*100, 100)');
+    $ids = $wpdb->get_col('SELECT ID FROM wp_posts WHERE post_type = "post" AND post_status = "publish" LIMIT '.$min.', 100 ');
 
     foreach ($ids as $id) {
         update_field('field_5f9ff32f68d04', get_page_views($id));
@@ -126,3 +126,15 @@ function my_sortable_views_column( $columns ) {
 
     return $columns;
 }
+
+add_action( 'pre_get_posts', function( $query ) {
+    if( ! is_admin() )
+        return;
+
+    $orderby = $query->get( 'orderby');
+
+    if( 'views' == $orderby ) {
+        $query->set('meta_key','analytics_views');
+        $query->set('orderby','meta_value_num');
+    }
+});
