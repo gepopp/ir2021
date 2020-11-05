@@ -25,8 +25,8 @@
         @apply font-semibold text-2xl my-5;
     }
 
-    li{
-        @apply list-disc p-10;
+    ul{
+        @apply list-disc ml-10 py-5;
     }
 
 }
