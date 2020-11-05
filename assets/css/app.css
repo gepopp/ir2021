@@ -25,6 +25,10 @@
         @apply font-semibold text-2xl my-5;
     }
 
+    li{
+        @apply list-disc;
+    }
+
 }
 
 .wp-block-button {

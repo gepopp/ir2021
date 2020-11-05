@@ -10183,6 +10183,10 @@ video {
     margin-bottom: 1.25rem;
   }
 
+.content li{
+    list-style-type: disc;
+  }
+
 .wp-block-button {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;

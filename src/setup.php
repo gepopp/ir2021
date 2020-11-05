@@ -89,15 +89,19 @@ function manage_attachment_tag_column($column_name, $id)
     }
 
 }
-add_filter( 'manage_edit-post_sortable_columns', 'immobilien_redaktion_2020\my_sortable_views_column' );
-function my_sortable_views_column( $columns ) {
-    $columns['views'] = 'views';
-
- //   To make a column 'un-sortable' remove it from the array
-    unset($columns['date']);
-
-    return $columns;
-}
+//add_filter( 'manage_edit-post_sortable_columns', 'immobilien_redaktion_2020\my_sortable_views_column' );
+//function my_sortable_views_column( $columns ) {
+//
+//    $columns['views'] = 'views';
+//
+// // To make a column 'un-sortable' remove it from the array
+//    unset($columns['date']);
+//
+//
+//    wp_die(var_dump($columns));
+//
+//    return $columns;
+//}
 
 add_action( 'pre_get_posts', function( $query ) {
     if( ! is_admin() )
