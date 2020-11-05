@@ -2,7 +2,7 @@
 add_action('wp_ajax_get_page_views', 'get_page_views');
 add_action('wp_ajax_nopriv_get_page_views', 'get_page_views');
 
-function get_page_views($post_id = null)
+function get_page_views()
 {
 
     $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
@@ -18,7 +18,7 @@ function get_page_views($post_id = null)
         $analytics = new \Google_Service_Analytics($client);
 
 
-        $permalink = get_the_permalink($post_id ?? $_POST['id']);
+        $permalink = get_the_permalink($_POST['id']);
         $permalink = explode('/', $permalink);
         // $permalink = array_pop($permalink);
 
@@ -29,7 +29,7 @@ function get_page_views($post_id = null)
             'today',
             'ga:pageviews',
             [
-                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id'] ?? $post_id),
+                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id']),
 
             ]
         );
@@ -45,13 +45,10 @@ function get_page_views($post_id = null)
             $rows = $results->getRows();
             $sessions = $rows[0][0];
 
+            update_field('field_5f9ff32f68d04', $sessions, $_POST['id']);
 
-            if (defined('DOING_AJAX') && DOING_AJAX) {
-                // Print the results.
-                wp_die($sessions);
-            } else {
-                return $sessions;
-            }
+            // Print the results.
+            wp_die($sessions);
 
 
         } else {
