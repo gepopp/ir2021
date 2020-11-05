@@ -8,7 +8,11 @@
 
 namespace immobilien_redaktion_2020;
 
+use Carbon\Carbon;
+
 get_header();
+
+echo Carbon::now()->format('m');
 
 $query = new \WP_Query([
     'post_type'           => 'post',
