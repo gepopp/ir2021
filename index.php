@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 get_header();
 
-echo Carbon::now()->format('m');
+echo Carbon::now()->format('i');
 
 $query = new \WP_Query([
     'post_type'           => 'post',
