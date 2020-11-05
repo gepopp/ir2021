@@ -7,7 +7,11 @@ $cat = array_shift($cat);
 $cat = get_category($cat)
 
 ?>
-<?php if (!empty(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs']) && checkRemoteFile(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])): ?>
+<?php if (!empty(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])
+    && checkRemoteFile(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])
+    && !empty(get_field(get_the_author_meta('description')))
+
+): ?>
     <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
             <img src="<?php echo get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['author_small'] ?>" class="rounded-full w-12 h-12">

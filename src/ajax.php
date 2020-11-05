@@ -4,6 +4,7 @@ add_action('wp_ajax_nopriv_get_page_views', 'get_page_views');
 
 function get_page_views($post_id = null)
 {
+
     $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
 
     if (file_exists($KEY_FILE_LOCATION)) {
@@ -28,7 +29,7 @@ function get_page_views($post_id = null)
             'today',
             'ga:pageviews',
             [
-                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $post_id ?? $_POST['id']),
+                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id'] ?? $post_id),
 
             ]
         );
