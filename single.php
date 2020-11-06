@@ -11,7 +11,7 @@ $cat = get_category($cat);
 <?php if (!empty(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])
     && checkRemoteFile(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])
     && !empty(get_the_author_meta('description'))
-    ): ?>
+): ?>
 
     <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
@@ -24,7 +24,7 @@ $cat = get_category($cat);
 
     <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
-            <img src="<?php  echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="rounded-full w-12 h-12">
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="rounded-full w-12 h-12">
             <p class="ml-5 text-xl"><?php echo get_the_author_meta('display_name') ?></p>
         </div>
     </div>
@@ -148,42 +148,43 @@ $cat = get_category($cat);
                 </div>
             </div>
 
-
-            <div class="hidden lg:block">
-                <script>
-                    function data() {
-                        return {
-                            scrolled: 0,
+            <?php if ($cat): ?>
+                <div class="hidden lg:block">
+                    <script>
+                        function data() {
+                            return {
+                                scrolled: 0,
+                            }
                         }
-                    }
-                </script>
-                <div class="relative h-64 hidden lg:block" id="powered"
-                     x-data="data()"
-                     @scroll.window="scrolled = document.getElementById('powered').offsetTop - window.pageYOffset"
-                >
-                    <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
-                        <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
-                            <div id="scrollspy" class="flex flex-col justify-between h-full">
-                                <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
-                                <p class="p-5 text-white">
-                                    <a href="<?php echo get_category_link($cat) ?>" class="underline">
-                                        <?php echo $cat->count ?> Artikel
-                                    </a>
-                                </p>
-                            </div>
-                            <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
-                                <div class="absolute bottom-0 right-0 -ml-5 -mr-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
-                                    <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
-                                        <p class="text-xs text-gray-900">powered by</p>
-                                        <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-24 h-auto px-5">
-                                    </a>
+                    </script>
+                    <div class="relative h-64 hidden lg:block" id="powered"
+                         x-data="data()"
+                         @scroll.window="scrolled = document.getElementById('powered').offsetTop - window.pageYOffset"
+                    >
+                        <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
+                            <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
+                                <div id="scrollspy" class="flex flex-col justify-between h-full">
+                                    <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
+                                    <p class="p-5 text-white">
+                                        <a href="<?php echo get_category_link($cat) ?>" class="underline">
+                                            <?php echo $cat->count ?> Artikel
+                                        </a>
+                                    </p>
                                 </div>
-                            <?php endif; ?>
+                                <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
+                                    <div class="absolute bottom-0 right-0 -ml-5 -mr-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+                                        <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
+                                            <p class="text-xs text-gray-900">powered by</p>
+                                            <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-24 h-auto px-5">
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 
