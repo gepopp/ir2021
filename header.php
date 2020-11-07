@@ -65,7 +65,7 @@ if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('
                 <li class="uppercase text-white mr-3">
                     <a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a></li>
                 <li class="uppercase text-white mr-3"><a href="/sehen">SEHEN</a></li>
-                <li class="uppercase text-white mr-3"><a href="#">DISKUTIEREN</a></li>
+                <li class="uppercase text-white mr-3"><a href="/diskutieren">DISKUTIEREN</a></li>
             </ul>
             <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white" x-show="lesen" @mouseleave="lesen = false">
                 <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0 ]) ?>
