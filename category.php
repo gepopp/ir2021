@@ -7,7 +7,7 @@ $term = get_queried_object();
 ?>
 
 
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-20">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
             <a href="/lesen" class="underline">
                 lesen
@@ -16,7 +16,7 @@ $term = get_queried_object();
     </div>
 
 
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0">
         <div class="flex flex-col lg:flex-row items-end">
             <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
@@ -37,7 +37,7 @@ $term = get_queried_object();
 
 <?php //get_template_part('banner-templates/banner', 'thirds') ?>
 
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-20">
         <?php if (have_posts()): ?>
             <div class="grid grid-cols-2 gap-10">
                 <?php while (have_posts()): ?>

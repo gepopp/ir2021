@@ -6,7 +6,7 @@ get_header();
 ?>
 
 
-    <div class="container mx-auto mt-32 relative">
+    <div class="container mx-auto mt-20 relative">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">lesen</h1>
 
 
@@ -66,7 +66,7 @@ $query = new \WP_Query([
     'tag__not_in'         => 989,
 ]);
 ?>
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0">
     <div class="grid grid-cols-2 gap-10">
         <?php if ($query->have_posts()): ?>
             <?php while ($query->have_posts()): ?>
@@ -107,7 +107,7 @@ foreach ($cats as $cat):
 <!--    --><?php //get_template_part('banner-templates/banner', 'thirds2') ?>
 <?php endif; ?>
 
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0">
         <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
         <a href="<?php echo get_category_link($cat) ?>" class="text-xl font-bold mb-10"
            style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">

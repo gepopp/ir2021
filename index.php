@@ -22,7 +22,7 @@ $query = new \WP_Query([
 ]);
 ?>
 
-    <div class="container mx-auto mt-32 relative">
+    <div class="container mx-auto mt-20 relative">
         <div class="grid grid-cols-2 gap-10">
             <?php if ($query->have_posts()): ?>
                 <?php while ($query->have_posts()): ?>
@@ -104,7 +104,7 @@ $query = new \WP_Query([
     <?php get_template_part('page-templates/part', 'video') ?>
 
 
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-20">
     </div>
 
 

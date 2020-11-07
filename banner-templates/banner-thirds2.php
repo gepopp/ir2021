@@ -70,7 +70,7 @@ $banner_large = get_posts([
 ]);
 
 ?>
-<div class="container mx-auto mt-32">
+<div class="container mx-auto mt-20">
     <p class="text-xs text-gray-300">Werbung</p>
     <div class="flex flex-col lg:flex-row p-5 border">
         <div class="w-full lg:w-2/3 lg:pr-5 pb-5 lg:pb-0">

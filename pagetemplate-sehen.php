@@ -11,7 +11,7 @@ get_header();
     <div class="bg-gray-900">
 
 
-        <div class="container mx-auto mt-32 relative">
+        <div class="container mx-auto mt-20 relative">
             <h1 class="font-sans text-5xl uppercase font-semibold text-white text-center">sehen</h1>
         </div>
 
@@ -28,7 +28,7 @@ $headvideo = get_posts([
     'category__in'        => [17],
 ]);
 ?>
-    <div class="container mx-auto mt-32 px-5 lg:px-0 relative">
+    <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
     <div class="relative">
         <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
             <div id="headvideo"></div>
@@ -108,7 +108,7 @@ $query = new WP_Query([
 ]);
 ?>
 
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0">
         <a href="#" class="text-xl font-bold mb-10 text-white">Meist gesehen</a>
         <div class="grid grid-cols-6 gap-4">
             <?php
@@ -163,7 +163,7 @@ $query = new WP_Query([
 ?>
 
 
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0">
         <a href="#" class="text-xl font-bold mb-10 text-white">Neueste Videos</a>
         <div class="grid grid-cols-6 gap-4">
             <?php
@@ -256,7 +256,7 @@ foreach ($cats as $cat): ?>
     <?php wp_reset_postdata(); ?>
 
 
-    <div class="container mx-auto mt-32 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0">
         <a href="#" class="text-xl font-bold text-white"><?php echo $cat->name ?></a>
 
 

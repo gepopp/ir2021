@@ -8,7 +8,7 @@ $query = new \WP_Query([
     'tag__not_in'         => 989,
 ]);
 ?>
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-20">
     <div class="grid grid-cols-2 gap-10">
         <?php if ($query->have_posts()): ?>
             <?php while ($query->have_posts()): ?>

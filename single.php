@@ -13,7 +13,7 @@ $cat = get_category($cat);
     && !empty(get_the_author_meta('description'))
 ): ?>
 
-    <div class="conatainer mx-auto mt-32 flex justify-center items-center">
+    <div class="conatainer mx-auto mt-20 flex justify-center items-center">
         <div class="flex justify-center items-center">
             <img src="<?php echo get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['author_small'] ?>" class="rounded-full w-12 h-12">
             <p class="ml-5 text-xl underline"><?php echo get_the_author_posts_link(get_the_ID()) ?></p>
@@ -22,7 +22,7 @@ $cat = get_category($cat);
 
 <?php else: ?>
 
-    <div class="conatainer mx-auto mt-32 flex justify-center items-center">
+    <div class="conatainer mx-auto mt-20 flex justify-center items-center">
         <div class="flex justify-center items-center">
             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="rounded-full w-12 h-12">
             <p class="ml-5 text-xl"><?php echo get_the_author_meta('display_name') ?></p>
@@ -31,7 +31,7 @@ $cat = get_category($cat);
 
 <?php endif; ?>
 
-    <div class="container mx-auto mt-32">
+    <div class="container mx-auto mt-20">
         <div class="grid grid-cols-5 gap-4">
             <div class="hidden lg:block"></div>
             <div class="col-span-5 lg:col-span-3  py-5">
@@ -188,5 +188,6 @@ $cat = get_category($cat);
         </div>
     </div>
 
+    
 
 <?php get_footer();

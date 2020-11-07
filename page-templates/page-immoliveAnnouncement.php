@@ -23,7 +23,7 @@ if ($query->have_posts()):
         $query->the_post();
         ?>
 
-        <div class="container mx-auto mt-32 border-15 flex flex-col items-center relative"
+        <div class="container mx-auto mt-20 border-15 flex flex-col items-center relative"
              style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>);
                      background-size: cover;
                      background-position: center">
