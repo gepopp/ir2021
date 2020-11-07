@@ -34,6 +34,9 @@
     table{
         @apply table-auto;
     }
+    .wp-post-image, img{
+        @apply w-full h-auto;
+    }
 
 }
 

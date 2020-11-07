@@ -10201,6 +10201,11 @@ video {
     table-layout: auto;
   }
 
+.content .wp-post-image, .content img{
+    width: 100%;
+    height: auto;
+  }
+
 .wp-block-button {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;

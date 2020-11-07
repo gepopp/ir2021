@@ -38,7 +38,7 @@ $cat = get_category($cat);
                 <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900"><?php the_title() ?></h1>
                 <p class="my-5"><?php the_excerpt(); ?></p>
                 <div class="relative">
-                    <?php the_post_thumbnail('custom-thumbnail', ['class' => 'mt-5']); ?>
+                    <?php the_post_thumbnail('custom-thumbnail', ['class' => 'mt-5 w-full h-auto']); ?>
                     <?php if (get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID()))): ?>
                         <p class="absolute bottom-0 right-0 transform rotate-90 text-white mr-2" style=" transform-origin: right;">&copy <?php echo get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID())) ?></p>
                     <?php endif; ?>
@@ -188,6 +188,72 @@ $cat = get_category($cat);
         </div>
     </div>
 
-    
 
+<?php
+
+$search = in_category(159) ? get_the_title() : false;
+
+if ($search && get_field('field_5fa63966c0b24')) {
+
+    $search .= '+' . get_field('field_5fa63966c0b24');
+
+} elseif (get_field('field_5fa63966c0b24')) {
+
+    $search = get_field('field_5fa63966c0b24');
+
+}
+
+
+if ($search != '+'): ?>
+    <?php
+
+    $query = new WP_Query(
+        [
+            'post_type'           => 'post',
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => true,
+            'posts_per_page'      => 3,
+            's'                   => $search,
+            'post__not_in'        => [get_the_ID()],
+        ]
+    );
+
+    ?>
+
+
+    <?php if ($query->have_posts()): ?>
+        <div class="container mx-auto mt-20 flex justify-center items-center">
+        <div class="grid grid-cols-5 gap-4">
+            <div></div>
+            <?php while ($query->have_posts()): ?>
+            <?php $query->the_post(); ?>
+            <div class="col-span-3 lg:col-span-1">
+                <div class="relative">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
+                            <div class="bg-primary-100 w-full h-full" style="padding-top: 56.25%;"></div>
+                        <?php else: ?>
+                            <?php the_post_thumbnail('featured_small', ['class' => 'w-full h-auto max-w-full']); ?>
+                        <?php endif; ?>
+                        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                            <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                </div>
+                    <p class="mt-5 font-semibold text-xs pb-5">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_title() ?>
+                        </a>
+                    </p>
+                </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php wp_reset_postdata(); ?>
+<?php endif; ?>
+
+    </div>
 <?php get_footer();
