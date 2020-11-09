@@ -16,7 +16,7 @@ $term = get_queried_object();
     </div>
 
 
-    <div class="container mx-auto mt-20 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
         <div class="flex flex-col lg:flex-row items-end">
             <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
@@ -32,6 +32,13 @@ $term = get_queried_object();
                     </div>
                 <?php endif; ?>
             </div>
+        </div>
+        <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -350px">
+            <a href="#">
+                <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full');
+                ?><!--" class="">-->
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/EHL-2020.jpg">
+            </a>
         </div>
     </div>
 

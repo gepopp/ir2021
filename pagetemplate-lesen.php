@@ -46,12 +46,7 @@ get_header();
             ],
         ]);
         ?>
-        <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -150px">
-            <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
-                <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full'); ?><!--" class="">-->
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/EHL-2020.jpg">
-            </a>
-        </div>
+
 
     </div>
 
@@ -66,7 +61,7 @@ $query = new \WP_Query([
     'tag__not_in'         => 989,
 ]);
 ?>
-    <div class="container mx-auto mt-20 px-5 lg:px-0">
+    <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
     <div class="grid grid-cols-2 gap-10">
         <?php if ($query->have_posts()): ?>
             <?php while ($query->have_posts()): ?>
@@ -91,6 +86,13 @@ $query = new \WP_Query([
                 </div>
             <?php endwhile; ?>
         <?php endif; ?>
+        <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -350px">
+            <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
+                <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full');
+                ?><!--" class="">-->
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/EHL-2020.jpg">
+            </a>
+        </div>
     </div>
 <?php wp_reset_postdata(); ?>
 
@@ -109,8 +111,9 @@ foreach ($cats as $cat):
 
     <div class="container mx-auto mt-20 px-5 lg:px-0">
         <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
-        <a href="<?php echo get_category_link($cat) ?>" class="text-xl font-bold mb-10"
-           style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">
+        <a href="<?php echo get_category_link($cat) ?>" class="text-2xl font-bold hover:underline mb-3"
+           style="background: linear-gradient(0deg, <?php echo $color ?> 0%, <?php echo $color ?> 50%, transparent 50%, transparent 100%);">
+<!--            <div class="w-6 h-6 rounded-full mr-2" style="background: --><?php //echo $color ?><!--"></div>-->
             <?php echo $cat->name ?>
         </a>
         <div class="grid grid-cols-4 lg:grid-cols-5 gap-4">

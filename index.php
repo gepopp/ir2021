@@ -85,7 +85,7 @@ $query = new \WP_Query([
             ]);
             ?>
 
-            <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -150px">
+            <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -350px">
                 <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
                     <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full');
                     ?><!--" class="">-->

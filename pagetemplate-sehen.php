@@ -68,7 +68,13 @@ position: absolute;
                     </div>
                 </a>
             </div>
-
+            <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -350px">
+                <a href="#">
+                    <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full');
+                    ?><!--" class="">-->
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/EHL-2020.jpg">
+                </a>
+            </div>
         </div>
 
 

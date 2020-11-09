@@ -49,11 +49,14 @@ namespace immobilien_redaktion_2020;
 </head>
 
 <?php
-if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('video')) ) {
+if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('video'))) {
     $bg = 'bg-gray-900';
 } else {
     $bg = 'bg-primary-100 bg-opacity-5';
 }
+
+/**/
+
 ?>
 
 <body <?php body_class($bg); ?> itemscope itemtype="https://schema.org/WebPage">
@@ -68,13 +71,14 @@ if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('
                 <li class="uppercase text-white mr-3"><a href="/diskutieren">DISKUTIEREN</a></li>
             </ul>
             <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white" x-show="lesen" @mouseleave="lesen = false">
-                <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0 ]) ?>
+                <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
                 <ul>
                     <?php foreach ($cats as $cat): ?>
                         <li class="flex justify-between">
                             <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
-                            <a href="<?php echo get_category_link($cat) ?>" class="text-xl font-bold"
-                               style="background: repeating-linear-gradient(transparent,transparent,6px,<?php echo $color ?>,<?php echo $color ?>,6px,<?php echo $color ?>,<?php echo $color ?>,14px,transparent 14px,transparent 50px);">
+                            <a href="<?php echo get_category_link($cat) ?>" class="text-lg font-bold flex items-center space-x-3 hover:underline"
+                               style="background: linear-gradient(0deg, <?php echo $color ?> 0%, <?php echo $color ?> 50%, transparent 50%, transparent 100%);">
+                                <!--                                <div class="w-4 h-4 rounded-full mr-2" style="background: --><?php //echo $color ?><!--"></div>-->
                                 <?php echo $cat->name ?>
                             </a>
                         </li>
@@ -231,52 +235,24 @@ if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('
 </svg>
                     </a>
                 </li>
+                <li class="relative inline-flex rounded-md shadow-sm">
+
+                    <?php
+                    global $wp;
+                    ?>
+
+                    <a href="<?php if(!is_user_logged_in()): echo add_query_arg( ['redirect' => $wp->request] , home_url('/login') ); else: echo '/profil'; endif; ?> ">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+
+                        <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full <?php if(!is_user_logged_in()): ?> bg-warning  <?php else: ?> bg-success <?php endif; ?>opacity-50"></span>
+                    </span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
 </header>
-
-
-<!--	--><?php
-//	if ( has_nav_menu( 'primary' ) ) {
-//		wp_nav_menu( [
-//			'items_wrap'      => '<button class="toggle absolute pin-t pin-r mt-4 mr-4 button button-sm">Close</button><ul id="%1$s" class="%2$s">%3$s</ul>',
-//			'theme_location'  => 'primary',
-//			'container'       => 'nav',
-//			'container_class' => 'nav-mobile',
-//			'container_id'    => 'mobile-menu',
-//			'menu_class'      => 'list-reset m-12'
-//		] );
-//	}
-?>
-<!---->
-<!--	<header class="header">-->
-<!--		<div class="container mx-auto">-->
-<!--			--><?php
-//			$tag = 'p';
-//			if ( is_front_page() || is_home() ) {
-//				$tag = 'h1';
-//			}
-//
-//			printf( '<%1$s class="text-h1 m-0"><a class="text-xl no-underline uppercase" href="%2$s" rel="home">%3$s</a></%1$s>',
-//				$tag,
-//				esc_url( home_url( '/' ) ),
-//				esc_html( get_bloginfo( 'name' ) )
-//			);
-//
-//			if ( has_nav_menu( 'primary' ) ) {
-//				wp_nav_menu([
-//					'theme_location'  => 'primary',
-//					'container'       => 'nav',
-//					'container_class' => 'nav-primary ml-auto',
-//					'menu_class'      => 'list-reset m-0 md:flex md:justify-end md:items-center'
-//				]);
-//			}
-?>
-<!--			<div class="menu-item">-->
-<!--				<button class="toggle highlight">Menu</button>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</header>-->
-
 <main>
