@@ -10,6 +10,29 @@ use Carbon\Carbon;
  * @author Freeshifter LLC
  * @since  1.0.0
  */
+add_action( "after_switch_theme", function(){
+
+    global $wpdb;
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+    $sql = "CREATE TABLE IF NOT EXISTS wp_user_activation_token
+    (
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        token VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP NOT NULL,
+        PRIMARY KEY  (id)
+    );";
+
+    dbDelta( $sql );
+
+});
+
+
+
+
 add_action('after_setup_theme', function () {
 
     // Add default posts and comments RSS feed links to head.
@@ -47,6 +70,21 @@ add_action('after_setup_theme', function () {
     add_image_size('xs', 100, 100, true);
 
     add_theme_support('post-formats', ['video', 'gallery']);
+});
+
+
+add_role( 'registered', 'Registriert', [] );
+
+add_action( 'admin_init', function() {
+    global $wp_roles; // global class wp-includes/capabilities.php
+    $wp_roles->remove_cap( 'subscriber', 'read' );
+    $wp_roles->remove_cap( 'subscriber', 'edit_dashboard' );
+});
+
+add_filter( 'show_admin_bar', function (){
+    if ( ! current_user_can( 'manage_options' ) ) {
+        show_admin_bar( false );
+    }
 });
 
 
@@ -89,19 +127,19 @@ function manage_attachment_tag_column($column_name, $id)
     }
 
 }
-//add_filter( 'manage_edit-post_sortable_columns', 'immobilien_redaktion_2020\my_sortable_views_column' );
-//function my_sortable_views_column( $columns ) {
-//
-//    $columns['views'] = 'views';
-//
-// // To make a column 'un-sortable' remove it from the array
-//    unset($columns['date']);
-//
-//
-//    wp_die(var_dump($columns));
-//
-//    return $columns;
-//}
+add_filter( 'manage_edit-post_sortable_columns', 'immobilien_redaktion_2020\my_sortable_views_column' );
+function my_sortable_views_column( $columns ) {
+
+    $columns['views'] = 'views';
+
+ // To make a column 'un-sortable' remove it from the array
+    unset($columns['date']);
+
+
+    wp_die(var_dump($columns));
+
+    return $columns;
+}
 
 add_action( 'pre_get_posts', function( $query ) {
     if( ! is_admin() )
@@ -114,3 +152,12 @@ add_action( 'pre_get_posts', function( $query ) {
         $query->set('orderby','meta_value_num');
     }
 });
+
+
+add_action('after_setup_theme', 'immobilien_redaktion_2020\remove_admin_bar');
+
+function remove_admin_bar() {
+    if (!current_user_can('administrator') && !is_admin()) {
+        show_admin_bar(false);
+    }
+}

@@ -25,6 +25,17 @@ add_action( 'wp_enqueue_scripts', function() {
 		true
 	);
 
+	if(is_page_template('pagetemplate-login-register.php')){
+        wp_enqueue_script(
+            'immobilien_redaktion_2020_js_login',
+            immobilien_redaktion_2020_URL . "/dist/login{$min_ext}.js",
+            [],
+            immobilien_redaktion_2020_VERSION,
+            true
+        );
+    }
+
+
 	if(is_author()){
         wp_enqueue_script(
             'immobilien_redaktion_2020_js_author',
