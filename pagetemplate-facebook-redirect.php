@@ -19,6 +19,19 @@ $code = $_GET['code'];
 
 $user = $socialite->create('facebook')->userFromCode($code);
 
-echo $user->getId();        // 1472352
-echo $user->getName();      // "安正超"
-echo $user->getEmail();     // "anzhengchao@gmail.com"
+$name = $user->getName();      // "安正超"
+$email =  $user->getEmail();     // "anzhengchao@gmail.com"
+
+$name = explode(' ', $name);
+$firstname = '';
+
+if(count($name) > 1){
+    $firstname = array_shift($name);
+}
+$lastname = implode(' ', $name);
+
+$_SESSION['fristname'] = $firstname;
+$_SESSION['lastname'] = $lastname;
+$_SESSION['email'] = $email;
+
+wp_safe_redirect(home_url('login'));
