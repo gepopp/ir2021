@@ -19,8 +19,6 @@ $code = $_GET['code'];
 
 $user = $socialite->create('facebook')->userFromCode($code);
 
-$user->getId();        // 1472352
-$user->getNickname();  // "overtrue"
-$user->getUsername();  // "overtrue"
-$user->getName();      // "安正超"
-$user->getEmail();     // "anzhengchao@gmail.com"
+echo $user->getId();        // 1472352
+echo $user->getName();      // "安正超"
+echo $user->getEmail();     // "anzhengchao@gmail.com"
