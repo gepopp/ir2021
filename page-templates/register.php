@@ -88,7 +88,7 @@
             'facebook' => [
                 'client_id'     => '831950683917414',
                 'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                'redirect'      => home_url('fp-oauth'),
+                'redirect'      => home_url('fb-oauth'),
             ],
         ];
 
