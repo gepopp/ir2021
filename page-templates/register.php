@@ -58,7 +58,7 @@
                    type="email"
                    name="email"
                    placeholder="E-Mail Adresse"
-                   value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>">
+                   value="<?php echo isset($_SESSION['register_email']) ? $_SESSION['register_email'] : ''; unset($_SESSION['register_email']) ?>">
             <p x-show="error.email" x-text="error.email" class="text-warning text-xs"></p>
 
         </div>

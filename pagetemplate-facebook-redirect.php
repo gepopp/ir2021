@@ -22,6 +22,8 @@ $user = $socialite->create('facebook')->userFromCode($code);
 $name = $user->getName();      // "安正超"
 $email =  $user->getEmail();     // "anzhengchao@gmail.com"
 
+wp_die($email);
+
 $name = explode(' ', $name);
 $firstname = '';
 
@@ -32,6 +34,6 @@ $lastname = implode(' ', $name);
 
 $_SESSION['fristname'] = $firstname;
 $_SESSION['lastname'] = $lastname;
-$_SESSION['email'] = $email;
+$_SESSION['register_email'] = $email;
 
 wp_safe_redirect(home_url('login'));
