@@ -28,7 +28,7 @@
                        id="first_name"
                        type="text"
                        name="first_name"
-                       value="<?php echo isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '' ?>"
+                       value="<?php echo isset($_SESSION['register_fristname']) ? $_SESSION['register_fristname'] : ''; unset($_SESSION['register_firstname']) ?>"
                        placeholder="Vorname"
                        >
                 <p x-show="error.first_name" x-text="error.first_name" class="text-warning text-xs"></p>
@@ -41,7 +41,7 @@
                        id="last_name"
                        type="text"
                        name="last_name"
-                       value="<?php echo isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '' ?>"
+                       value="<?php echo isset($_SESSION['register_lastname']) ? $_SESSION['register_lastname'] : ''; unset($_SESSION['register_lastname']) ?>"
                        placeholder="Nachname">
                 <p x-show="error.last_name" x-text="error.last_name" class="text-warning text-xs"></p>
 

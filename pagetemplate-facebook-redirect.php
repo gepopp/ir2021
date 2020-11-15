@@ -30,8 +30,8 @@ if(count($name) > 1){
 }
 $lastname = implode(' ', $name);
 
-$_SESSION['fristname'] = $firstname;
-$_SESSION['lastname'] = $lastname;
+$_SESSION['register_fristname'] = $firstname;
+$_SESSION['register_lastname'] = $lastname;
 $_SESSION['register_email'] = $email;
 
 wp_safe_redirect(home_url('login'));
