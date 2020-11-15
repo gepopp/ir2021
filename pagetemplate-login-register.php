@@ -27,10 +27,7 @@ if ($token) {
         var error_global = '<?php echo isset($_SESSION['login_error']) ? addslashes(($_SESSION['login_error'])) : ''; unset($_SESSION['login_error']) ?>';
     </script>
     <div class="container mx-auto mt-20 relative">
-
-
             <?php if ($token && !empty($token_user)): ?>
-
                 <?php if (!$token_user): ?>
                     <div class="text-warning p-5 text-white flex space-x-3 items-center">
                         <div>
@@ -58,11 +55,25 @@ if ($token) {
                         </p>
                     </div>
                 <?php endif; ?>
-
             <?php endif; ?>
 
+        <?php if(isset($_SESSION['new_password'])): ?>
+            <div class="text-success p-5 text-white flex space-x-3 items-center">
+                <div>
+                    <div class="rounded-full bg-success bg-opacity-25 w-20 h-20 flex items-center justify-center">
+                        <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-success text-sm">
+                    Ihr neues Passwort wurde gesetzt. Sie können sich jetzt einloggen!
+                </p>
+            </div>
+        <?php endif; unset($_SESSION['new_password']) ?>
+
         <div class="grid grid-cols-6 gap-4">
-            <div class="col-span-3" x-data="loginForm('<?php echo $_SESSION['email'] ?? '';
+            <div class="col-span-6 lg:col-span-3" x-data="loginForm('<?php echo $_SESSION['email'] ?? '';
             unset($_SESSION['email']) ?>', error_global )">
                 <h1 class="text-2xl font-serif font-semibold mb-5">Login</h1>
                 <div class="w-full">
@@ -89,7 +100,7 @@ if ($token) {
                                    id="email"
                                    type="email"
                                    name="email"
-                                   placeholder="email"
+                                   placeholder="E-Mail Adresse"
                                    x-model="email"
                                    @keyup.debounce.500ms="ValidateEmail()">
                             <p x-show="error.email" x-text="error.email" class="text-warning text-xs"></p>
@@ -121,12 +132,15 @@ if ($token) {
                                     :disabled="!completed">
                                 einloggen
                             </button>
-                            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="<?php echo home_url('passwort-vergessen') ?>">
                                 Passwort vergessen?
                             </a>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+                <?php get_template_part('page-templates/register') ?>
             </div>
         </div>
     </div>

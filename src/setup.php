@@ -10,6 +10,24 @@ use Carbon\Carbon;
  * @author Freeshifter LLC
  * @since  1.0.0
  */
+
+add_action('template_redirect', function (){
+    if(is_page_template('pagetemplate-login-register.php') && is_user_logged_in()){
+        wp_safe_redirect(home_url('profile'));
+    }
+
+    if( (is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('pagetemplate-passwort-reset.php')) && is_user_logged_in()){
+        wp_safe_redirect(home_url('profile'));
+    }
+});
+
+
+add_action('wp_logout', function(){
+    wp_redirect( home_url() );
+    exit();
+});
+
+
 add_action( "after_switch_theme", function(){
 
     global $wpdb;
@@ -76,10 +94,28 @@ add_action('after_setup_theme', function () {
 add_role( 'registered', 'Registriert', [] );
 
 add_action( 'admin_init', function() {
+
     global $wp_roles; // global class wp-includes/capabilities.php
     $wp_roles->remove_cap( 'subscriber', 'read' );
     $wp_roles->remove_cap( 'subscriber', 'edit_dashboard' );
+
 });
+
+add_action( 'init', function (){
+
+    if(is_admin()){
+        $user = wp_get_current_user();
+        if(in_array('registered', $user->roles) || in_array('subscriber', $user->roles)){
+            global $wp_query;
+            $wp_query->set_404();
+            status_header( 404 );
+            get_template_part( 404 );
+            exit();
+        }
+    }
+});
+
+
 
 add_filter( 'show_admin_bar', function (){
     if ( ! current_user_can( 'manage_options' ) ) {
