@@ -30,7 +30,7 @@
                        name="first_name"
                        value="<?php echo isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '' ?>"
                        placeholder="Vorname"
-                       x-model="first_name">
+                       >
                 <p x-show="error.first_name" x-text="error.first_name" class="text-warning text-xs"></p>
             </div>
             <div>
@@ -42,9 +42,7 @@
                        type="text"
                        name="last_name"
                        value="<?php echo isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '' ?>"
-
-                       placeholder="Nachname"
-                       x-model="last_name">
+                       placeholder="Nachname">
                 <p x-show="error.last_name" x-text="error.last_name" class="text-warning text-xs"></p>
 
             </div>
@@ -60,9 +58,7 @@
                    type="email"
                    name="email"
                    placeholder="E-Mail Adresse"
-                   value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>"
-                   x-model="email"
-                   @keyup.debounce.500ms="ValidateEmail()">
+                   value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>">
             <p x-show="error.email" x-text="error.email" class="text-warning text-xs"></p>
 
         </div>
