@@ -22,8 +22,6 @@ $user = $socialite->create('facebook')->userFromCode($code);
 $name = $user->getName();      // "安正超"
 $email =  $user->getEmail();     // "anzhengchao@gmail.com"
 
-wp_die($email);
-
 $name = explode(' ', $name);
 $firstname = '';
 
