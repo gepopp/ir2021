@@ -15,9 +15,9 @@ $config = [
 
 $socialite = new SocialiteManager($config);
 
-$code = request()->query('code');
+$code = $_GET['code'];
 
-$user = $socialite->create('github')->userFromCode($code);
+$user = $socialite->create('facebook')->userFromCode($code);
 
 $user->getId();        // 1472352
 $user->getNickname();  // "overtrue"
