@@ -38,4 +38,9 @@ if (!is_wp_error($user)) {
 
     wp_safe_redirect(home_url('profil'));
     exit();
+}else{
+
+    $_SESSION['login_error'] = 'Wir konnten Sie mit dieser E-Mail Adresse nicht einloggen.';
+    wp_safe_redirect(home_url($_POST['login']));
+    exit;
 }
