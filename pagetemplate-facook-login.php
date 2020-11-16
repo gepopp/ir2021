@@ -30,7 +30,8 @@ if (count($name) > 1) {
 $lastname = implode(' ', $name);
 
 $user = get_user_by('email', $email);
-if (!is_wp_error($user)) {
+
+if ( $user ) {
     wp_clear_auth_cookie();
     wp_set_current_user($user->ID);
     wp_set_auth_cookie($user->ID);
