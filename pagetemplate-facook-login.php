@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Template Name: Facebook login
+ */
 use Overtrue\Socialite\SocialiteManager;
 
 $config = [
