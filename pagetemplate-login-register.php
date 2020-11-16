@@ -80,9 +80,8 @@ if ($token) {
             <div class="col-span-6 lg:col-span-3" x-data="loginForm('<?php echo $_SESSION['email'] ?? '';
             unset($_SESSION['email']) ?>', error_global )">
                 <h1 class="text-2xl font-serif font-semibold mb-5">Login</h1>
-
                 <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4">
-                    <form method="post" action="<?php echo admin_url('admin-post.php') ?>">
+                    <form class="mb-4" method="post" action="<?php echo admin_url('admin-post.php') ?>">
                         <div class="text-warning p-5 text-white flex space-x-3 items-center" x-show="error.global">
                             <div>
                                 <div class="rounded-full bg-warning bg-opacity-25 w-20 h-20 flex items-center justify-center">
