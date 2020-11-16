@@ -35,13 +35,10 @@ if ( $user ) {
     wp_clear_auth_cookie();
     wp_set_current_user($user->ID);
     wp_set_auth_cookie($user->ID);
-
-
     wp_safe_redirect(home_url('profil'));
     exit();
 }else{
-
     $_SESSION['login_error'] = 'Wir konnten Sie mit dieser E-Mail Adresse nicht einloggen.';
-    wp_safe_redirect(home_url($_POST['login']));
+    wp_safe_redirect(home_url('login'));
     exit;
 }
