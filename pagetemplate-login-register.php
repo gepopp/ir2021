@@ -151,7 +151,7 @@ if ($token) {
 
                         $socialite = new SocialiteManager($config);
                         ?>
-
+                        <div></div>
                         <hr class="my-4">
                         <div class="my-5 w-full">
                             <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
