@@ -2,6 +2,9 @@
 /**
  * Template Name: Login Register
  */
+
+use Overtrue\Socialite\SocialiteManager;
+
 get_header();
 
 $token = isset($_GET['token']) ? sanitize_text_field($_GET['token']) : false;
@@ -13,8 +16,8 @@ if ($token) {
     $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
     $token_user = get_user_by('email', $email);
 
-    if(!empty($token_user)){
-        if(!in_array('subscriber', $token_user->roles)){
+    if (!empty($token_user)) {
+        if (!in_array('subscriber', $token_user->roles)) {
             $token_user->add_role('subscriber');
             $token_user->remove_role('registered');
         }
@@ -27,37 +30,37 @@ if ($token) {
         var error_global = '<?php echo isset($_SESSION['login_error']) ? addslashes(($_SESSION['login_error'])) : ''; unset($_SESSION['login_error']) ?>';
     </script>
     <div class="container mx-auto mt-20 relative">
-            <?php if ($token && !empty($token_user)): ?>
-                <?php if (!$token_user): ?>
-                    <div class="text-warning p-5 text-white flex space-x-3 items-center">
-                        <div>
-                            <div class="rounded-full bg-warning bg-opacity-25 w-20 h-20 flex items-center justify-center">
-                                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
+        <?php if ($token && !empty($token_user)): ?>
+            <?php if (!$token_user): ?>
+                <div class="text-warning p-5 text-white flex space-x-3 items-center">
+                    <div>
+                        <div class="rounded-full bg-warning bg-opacity-25 w-20 h-20 flex items-center justify-center">
+                            <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
                         </div>
-                        <p class="text-warning text-sm">
-                            Wir konnten diesen Link nicht validieren, bitte versuchen Sie es noch einmal.
-                        </p>
                     </div>
-                <?php elseif($active): ?>
-                    <div class="text-warning p-5 text-white flex space-x-3 items-center">
-                        <div>
-                            <div class="rounded-full bg-success bg-opacity-25 w-20 h-20 flex items-center justify-center">
-                                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
+                    <p class="text-warning text-sm">
+                        Wir konnten diesen Link nicht validieren, bitte versuchen Sie es noch einmal.
+                    </p>
+                </div>
+            <?php elseif ($active): ?>
+                <div class="text-warning p-5 text-white flex space-x-3 items-center">
+                    <div>
+                        <div class="rounded-full bg-success bg-opacity-25 w-20 h-20 flex items-center justify-center">
+                            <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
                         </div>
-                        <p class="text-success text-sm">
-                            Vielen Dank, Ihre E-Mail Adresse ist bestätigt. Sie können sich jetzt einloggen!
-                        </p>
                     </div>
-                <?php endif; ?>
+                    <p class="text-success text-sm">
+                        Vielen Dank, Ihre E-Mail Adresse ist bestätigt. Sie können sich jetzt einloggen!
+                    </p>
+                </div>
             <?php endif; ?>
+        <?php endif; ?>
 
-        <?php if(isset($_SESSION['new_password'])): ?>
+        <?php if (isset($_SESSION['new_password'])): ?>
             <div class="text-success p-5 text-white flex space-x-3 items-center">
                 <div>
                     <div class="rounded-full bg-success bg-opacity-25 w-20 h-20 flex items-center justify-center">
@@ -70,7 +73,8 @@ if ($token) {
                     Ihr neues Passwort wurde gesetzt. Sie können sich jetzt einloggen!
                 </p>
             </div>
-        <?php endif; unset($_SESSION['new_password']) ?>
+        <?php endif;
+        unset($_SESSION['new_password']) ?>
 
         <div class="grid grid-cols-6 gap-4">
             <div class="col-span-6 lg:col-span-3" x-data="loginForm('<?php echo $_SESSION['email'] ?? '';
@@ -134,6 +138,25 @@ if ($token) {
                             </button>
                             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="<?php echo home_url('passwort-vergessen') ?>">
                                 Passwort vergessen?
+                            </a>
+                        </div>
+                        <?php
+                        $config = [
+                            'facebook' => [
+                                'client_id'     => '831950683917414',
+                                'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+                                'redirect'      => add_query_arg(['login' => true], home_url('fb-oauth')),
+                            ],
+                        ];
+
+                        $socialite = new SocialiteManager($config);
+                        ?>
+                        <hr class="my-4">
+                        <div class="my-5 w-full">
+                            <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+                               class="bg-primary-100 py-2 px-3 text-white w-full text-center block"
+                            >
+                                Mit Facebook einloggen
                             </a>
                         </div>
                     </form>

@@ -8,6 +8,25 @@
         <input type="hidden" name="redirect" value="<?php echo $_GET['redirect'] ?? '' ?>">
         <input type="hidden" name="function" value="<?php echo $_GET['function'] ?? '' ?>">
 
+        <?php
+        $config = [
+            'facebook' => [
+                'client_id'     => '831950683917414',
+                'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+                'redirect'      => home_url('fb-oauth'),
+            ],
+        ];
+
+        $socialite = new SocialiteManager($config);
+        ?>
+
+        <div class="my-5 w-full">
+            <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+               class="bg-primary-100 py-2 px-3 text-white w-full text-center block"
+            >Mit Facebook ausfüllen</a>
+        </div>
+
+        <hr class="my-4">
 
         <div class="grid grid-cols-3 gap-4 mb-4">
             <div>
@@ -28,9 +47,10 @@
                        id="first_name"
                        type="text"
                        name="first_name"
-                       value="<?php echo isset($_SESSION['register_fristname']) ? $_SESSION['register_fristname'] : ''; unset($_SESSION['register_firstname']) ?>"
+                       value="<?php echo isset($_SESSION['register_fristname']) ? $_SESSION['register_fristname'] : '';
+                       unset($_SESSION['register_firstname']) ?>"
                        placeholder="Vorname"
-                       >
+                >
                 <p x-show="error.first_name" x-text="error.first_name" class="text-warning text-xs"></p>
             </div>
             <div>
@@ -41,7 +61,8 @@
                        id="last_name"
                        type="text"
                        name="last_name"
-                       value="<?php echo isset($_SESSION['register_lastname']) ? $_SESSION['register_lastname'] : ''; unset($_SESSION['register_lastname']) ?>"
+                       value="<?php echo isset($_SESSION['register_lastname']) ? $_SESSION['register_lastname'] : '';
+                       unset($_SESSION['register_lastname']) ?>"
                        placeholder="Nachname">
                 <p x-show="error.last_name" x-text="error.last_name" class="text-warning text-xs"></p>
 
@@ -58,7 +79,8 @@
                    type="email"
                    name="email"
                    placeholder="E-Mail Adresse"
-                   value="<?php echo isset($_SESSION['register_email']) ? $_SESSION['register_email'] : ''; unset($_SESSION['register_email']) ?>">
+                   value="<?php echo isset($_SESSION['register_email']) ? $_SESSION['register_email'] : '';
+                   unset($_SESSION['register_email']) ?>">
             <p x-show="error.email" x-text="error.email" class="text-warning text-xs"></p>
 
         </div>
@@ -81,21 +103,6 @@
                 <span class="text-sm">Ich bin mit den AGB und der Datenschutzerklärung der unabhängigen Immobilien Redaktion einverstanden. <span class="text-warning">*</span></span>
             </label>
         </div>
-
-        <?php
-
-        $config = [
-            'facebook' => [
-                'client_id'     => '831950683917414',
-                'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                'redirect'      => home_url('fb-oauth'),
-            ],
-        ];
-
-        $socialite = new SocialiteManager($config);
-        ?>
-
-<a href="<?php echo $socialite->create('facebook')->redirect(); ?>">Via Facebook Registrieren</a>
 
         <div class="flex items-center justify-between">
             <button class="bg-primary-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
