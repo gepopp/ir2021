@@ -145,12 +145,13 @@ if ($token) {
                             'facebook' => [
                                 'client_id'     => '831950683917414',
                                 'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                                'redirect'      => add_query_arg(['login' => true], home_url('fb-oauth')),
+                                'redirect'      => home_url('fb-login'),
                             ],
                         ];
 
                         $socialite = new SocialiteManager($config);
                         ?>
+
                         <hr class="my-4">
                         <div class="my-5 w-full">
                             <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
