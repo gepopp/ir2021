@@ -31,8 +31,6 @@ $lastname = implode(' ', $name);
 
 $user = get_user_by('email', $email);
 
-wp_die(var_dump($user));
-
 if ( $user ) {
     wp_clear_auth_cookie();
     wp_set_current_user($user->ID);
