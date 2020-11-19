@@ -163,6 +163,31 @@
             },
             "default_value": "",
             "placeholder": ""
+        },
+        {
+            "key": "field_5fb6bc5f82e62",
+            "label": "Anrede",
+            "name": "anrede",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "f": "Frau",
+                "m": "Herr"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "label",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -180,7 +205,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1578829370
+    "modified": 1605815724
 }

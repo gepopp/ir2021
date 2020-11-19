@@ -16,10 +16,47 @@ if ($token) {
     $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
     $token_user = get_user_by('email', $email);
 
+
     if (!empty($token_user)) {
         if (!in_array('subscriber', $token_user->roles)) {
             $token_user->add_role('subscriber');
             $token_user->remove_role('registered');
+
+            wp_remote_post('https://api.createsend.com/api/v3.2/transactional/smartEmail/7303e85b-72c8-4acf-88ff-4e117ddb0fa9/send', [
+                'headers' => [
+                    'authorization' => 'Basic ' . base64_encode('fab3e169a5a467b38347a38dbfaaad6d'),
+                ],
+                'body'    => json_encode([
+                    'To'                  => $token_user->data->user_email,
+                    "Data"
+                                          => [
+                        'fullname' => $token_user->data->display_name,
+                    ],
+                    "AddRecipientsToList" => true,
+                    "ConsentToTrack"      => "Yes",
+                ]),
+            ]);
+
+
+
+            $response = wp_remote_post('https://api.createsend.com/api/v3.2/subscribers/2bf433e2872f0f1fb917ca1c98ff301e.json?email=' . $token_user->data->user_email, [
+                'headers' => [
+                    'authorization' => 'Basic ' . base64_encode('fab3e169a5a467b38347a38dbfaaad6d'),
+                ],
+                'body'    => json_encode([
+                    "EmailAddress"                           => $token_user->data->user_email,
+                    "Name"                                   => $token_user->data->display_name,
+                    "CustomFields"                           => [
+                        [
+                            "Key"   => 'anrede',
+                            "Value" => get_field('field_5fb6bc5f82e62', 'user_' . $token_user->ID ) == 'Herr' ? 'Sehr geehrter Herr' : 'Sehr geehrte Frau',
+                        ],
+                    ],
+                    "Resubscribe"                            => true,
+                    "RestartSubscriptionBasedAutoresponders" => true,
+                    "ConsentToTrack"                         => "Yes",
+                ]),
+            ]);
         }
         $active = true;
     }

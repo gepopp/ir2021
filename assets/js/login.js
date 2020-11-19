@@ -62,27 +62,74 @@ window.loginForm = function (email, global) {
 
 window.registerForm = () => {
     return {
-        regsiter_gender:'',
-        regsiter_firstname: '',
-        regsiter_lastname:'',
-        regsiter_email:'',
-        regsiter_password:'',
-        regsiter_errors:{
-            gender:false,
-            firstname:false,
-            lastname:false,
-            email:false,
-            password:false
+        data: {
+            gender: '',
+            firstname: '',
+            lastname: '',
+            email: '',
+            password: '',
         },
-        validate(){
+        regsiter_errors: {
+            gender: false,
+            firstname: false,
+            lastname: false,
+            email: false,
+            password: false
+        },
+        validate() {
 
-            console.log(this.regsiter_gender)
+            this.resetErrors();
 
-            if(this.regsiter_gender == ''){
+            if (this.data.gender == '') {
                 this.regsiter_errors.gender = 'Bitte wählen';
             }
 
+            if (this.data.lastname == '') {
+                this.regsiter_errors.lastname = 'Bitte geben Sie Ihren Nachnamen ein.';
+            }
 
-        }
+            this.ValidateEmail();
+
+            if (this.data.password.length < 8) {
+                this.regsiter_errors.password = "Bitte geben Sie mindestens 8 Zeichen ein."
+            }
+
+        },
+        valid() {
+            for (var o in this.regsiter_errors)
+                if ( this.regsiter_errors[o] !== false ) return false;
+
+            this.$refs.form.submit();
+        },
+        resetErrors() {
+            this.regsiter_errors = {
+                gender: false,
+                firstname: false,
+                lastname: false,
+                email: false,
+                password: false
+            }
+        },
+        ValidateEmail() {
+
+            this.regsiter_errors.email = "E-Mail wird geprüft...";
+
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.data.email)) {
+                var params = new URLSearchParams();
+                params.append('action', 'user_exists');
+                params.append('email', this.data.email);
+
+                axios.post(window.ajaxurl, params)
+                    .then((rsp) => {
+                        this.regsiter_errors.email = "Bitte geben Sie eine E-Mail Adresse ein die noch nicht registriert ist.";
+                    })
+                    .catch((err) => {
+                        this.regsiter_errors.email = false;
+                        this.valid();
+                    });
+            } else {
+                this.regsiter_errors.email = "Bitte eine gültige E-Mail Adresse eingeben.";
+            }
+        },
     }
 }
