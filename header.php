@@ -55,7 +55,7 @@ if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('
     $bg = 'bg-primary-100 bg-opacity-5';
 }
 if(is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('pagetemplate-login-register.php') || is_page_template('pagetemplate-passwort-reset.php')){
-    $bg .= ' min-h-screen relative';
+    $bg .= ' min-h-screen flex flex-col';
 }
 /**/
 
