@@ -1,8 +1,12 @@
 <?php use Overtrue\Socialite\SocialiteManager; ?>
 
 <h1 class="text-2xl font-serif font-semibold mb-5">Registrieren</h1>
-<div class="w-full">
-    <form class="bg-white shadow-md px-8 pt-6 pb-8 mb-4" method="post" action="<?php echo admin_url('admin-post.php') ?>">
+<div class="w-full" x-data="registerForm()">
+    <div>
+    <form class="bg-white shadow-md px-8 pt-6 pb-8 mb-4"
+          method="post" action="<?php echo admin_url('admin-post.php') ?>"
+          @submit.prevent="validate()"
+    >
         <?php wp_nonce_field('frontend_register', 'frontend_register') ?>
         <input type="hidden" name="action" value="frontend_register">
         <input type="hidden" name="redirect" value="<?php echo $_GET['redirect'] ?? '' ?>">
@@ -30,14 +34,21 @@
 
         <div class="grid grid-cols-3 gap-4 mb-4">
             <div>
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="gender">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="register_gender">
                     Anrede <span class="text-warning">*</span>
                 </label>
-                <select name="gender" id="gender" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-                    <option value="null">Bitte wählen</option>
+                <select name="register_gender"
+                        id="register_gender"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        required="required"
+                        x-model="register_gender"
+                        name="register_gender"
+                >
+                    <option value="">Bitte wählen</option>
                     <option value="f">Frau</option>
                     <option value="m">Herr</option>
                 </select>
+                <p x-show="regsiter_errors.gender" x-text="regsiter_errors.gender" class="text-warning text-xs"></p>
             </div>
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="first_name">
@@ -46,12 +57,10 @@
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        id="first_name"
                        type="text"
-                       name="first_name"
-                       value="<?php echo isset($_SESSION['register_fristname']) ? $_SESSION['register_fristname'] : '';
-                       unset($_SESSION['register_firstname']) ?>"
+                       x-model="regsiter_firstname"
                        placeholder="Vorname"
                 >
-                <p x-show="error.first_name" x-text="error.first_name" class="text-warning text-xs"></p>
+                <p x-show="regsiter_errors.first_name" x-text="regsiter_errors.first_name" class="text-warning text-xs"></p>
             </div>
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="last_name">
@@ -64,38 +73,37 @@
                        value="<?php echo isset($_SESSION['register_lastname']) ? $_SESSION['register_lastname'] : '';
                        unset($_SESSION['register_lastname']) ?>"
                        placeholder="Nachname">
-                <p x-show="error.last_name" x-text="error.last_name" class="text-warning text-xs"></p>
+                <p x-show="regsiter_errors.last_name" x-text="regsiter_errors.last_name" class="text-warning text-xs"></p>
 
             </div>
         </div>
 
 
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="register_email">
                 E-Mail Adresse <span class="text-warning">*</span>
             </label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                   id="email"
+                   id="register_email"
                    type="email"
-                   name="email"
+                   name="register_email"
                    placeholder="E-Mail Adresse"
                    value="<?php echo isset($_SESSION['register_email']) ? $_SESSION['register_email'] : '';
                    unset($_SESSION['register_email']) ?>">
-            <p x-show="error.email" x-text="error.email" class="text-warning text-xs"></p>
+            <p x-show="regsiter_errors.email" x-text="regsiter_errors.email" class="text-warning text-xs"></p>
 
         </div>
         <div class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="register_password">
                 Passwort <span class="text-warning">*</span>
             </label>
             <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                   id="password"
+                   id="register_password"
                    type="password"
                    name="password"
                    x-model="password"
-                   @keyup.debounce.500ms="checkCompleted()"
                    placeholder="******************">
-            <p x-show="error.password" x-text="error.password" class="text-warning text-xs"></p>
+            <p x-show="regsiter_errors.password" x-text="regsiter_errors.password" class="text-warning text-xs"></p>
         </div>
         <div class="md:flex md:items-center mb-6">
             <label class="block text-gray-500 font-bold">
@@ -106,14 +114,12 @@
 
         <div class="flex items-center justify-between">
             <button class="bg-primary-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    :class="{' cursor-not-allowed ': !completed }"
-                    type="submit"
-                    :disabled="!completed">
+                    type="submit">
                 registrieren
             </button>
         </div>
         <p class="text-xs mt-2">die mit <span class="text-warning">*</span> gekennzeichneten Felder sind Pflichtfelder.
         </p>
     </form>
-
+    </div>
 </div>

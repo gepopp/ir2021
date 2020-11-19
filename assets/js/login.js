@@ -59,3 +59,30 @@ window.loginForm = function (email, global) {
         }
     }
 }
+
+window.registerForm = () => {
+    return {
+        regsiter_gender:'',
+        regsiter_firstname: '',
+        regsiter_lastname:'',
+        regsiter_email:'',
+        regsiter_password:'',
+        regsiter_errors:{
+            gender:false,
+            firstname:false,
+            lastname:false,
+            email:false,
+            password:false
+        },
+        validate(){
+
+            console.log(this.regsiter_gender)
+
+            if(this.regsiter_gender == ''){
+                this.regsiter_errors.gender = 'Bitte wählen';
+            }
+
+
+        }
+    }
+}
