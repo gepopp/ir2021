@@ -54,8 +54,12 @@ if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('
 } else {
     $bg = 'bg-primary-100 bg-opacity-5';
 }
-if(is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('pagetemplate-login-register.php') || is_page_template('pagetemplate-passwort-reset.php')){
-    $bg .= ' min-h-screen flex flex-col';
+if(is_page_template('pagetemplate-passwort-vergessen.php')
+    || is_page_template('pagetemplate-login-register.php')
+    || is_page_template('pagetemplate-passwort-reset.php')
+    || is_404()
+){
+    $bg .= ' min-h-screen flex flex-col justify-between';
 }
 /**/
 
@@ -259,7 +263,7 @@ if(is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                         </svg>
-
+N
                         <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success  opacity-50"></span>
                     </span>
@@ -280,6 +284,10 @@ if(is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('
         </div>
     </div>
 </header>
-<main class="<?php if(is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('pagetemplate-login-register.php') || is_page_template('pagetemplate-passwort-reset.php')): ?>
+<main class="<?php if(is_page_template('pagetemplate-passwort-vergessen.php')
+    || is_page_template('pagetemplate-login-register.php')
+    || is_page_template('pagetemplate-passwort-reset.php')
+    || is_404()
+): ?>
     h-full flex items-center justify-center
 <?php endif; ?>">
