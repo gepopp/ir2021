@@ -67,6 +67,16 @@ add_action( 'wp_enqueue_scripts', function() {
         );
     }
 
+    if(is_page_template('pagetemplate-profil.php')){
+        wp_enqueue_script(
+            'immobilien_redaktion_2020_js_profil',
+            immobilien_redaktion_2020_URL . "/dist/profile{$min_ext}.js",
+            [],
+            immobilien_redaktion_2020_VERSION,
+            true
+        );
+    }
+
 
 
 	// CSS

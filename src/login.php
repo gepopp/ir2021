@@ -76,7 +76,6 @@ add_action('admin_post_nopriv_frontend_register', function (){
     update_user_meta($user, 'last_name', $lastname);
     wp_update_user( array( 'ID' => $user, 'display_name' => trim($firstname . ' ' . $lastname ) ) );
 
-
     update_field('field_5fb6bc5f82e62', $gender, 'user_' . $user);
 
     $user = get_user_by('ID', $user);
@@ -121,6 +120,31 @@ add_action('admin_post_nopriv_frontend_register', function (){
     ]);
 
     $_SESSION['register_sent_success'] = 'Registrierung erfolgreich! Wir haben Ihnen ein E-Mail mit einem Link zum bestätigen Ihrer E-Mail Adresse, bitte überprüfen Sie Ihre Posteingang';
+    wp_safe_redirect( home_url($_POST['_wp_http_referer']) );
+
+});
+
+add_action('admin_post_update_profile', function (){
+
+    if(!wp_verify_nonce($_POST['frontend_register'], 'frontend_register')){
+        $_SESSION['profile_error'] = "Wir konnten nicht verifizieren dass, das Formular von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.";
+        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
+        exit;
+    }
+
+    $user = wp_get_current_user();
+
+    $gender     = sanitize_text_field($_POST['register_gender']);
+    $firstname  = sanitize_text_field($_POST['fist_name']);
+    $lastname   = sanitize_text_field($_POST['last_name']);
+
+    update_user_meta($user->ID, 'first_name', $firstname);
+    update_user_meta($user->ID, 'last_name', $lastname);
+    wp_update_user( array( 'ID' => $user->ID, 'display_name' => trim($firstname . ' ' . $lastname ) ) );
+
+    update_field('field_5fb6bc5f82e62', $gender, 'user_' . $user->ID);
+
+    $_SESSION['profile_success'] = 'Ihre Daten wurden aktualisiert.';
     wp_safe_redirect( home_url($_POST['_wp_http_referer']) );
 
 });

@@ -59,6 +59,7 @@ const config = {
 		category:'./assets/js/category.js',
 		author:'./assets/js/author.js',
 		login:'./assets/js/login.js',
+		profile: './assets/js/profile.js'
 	},
 	optimization: {
 		minimizer: [
