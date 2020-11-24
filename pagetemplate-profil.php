@@ -183,10 +183,6 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>

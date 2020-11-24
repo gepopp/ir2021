@@ -41,3 +41,56 @@ window.articleViews = function (id){
        }
    }
 }
+
+window.readingLog = function (user,post, maxDepth){
+    return{
+        user: user,
+        post:post,
+        depth: 0,
+        maxdepth: maxDepth,
+        winheight:0,
+        docheight:0,
+        trackLength:0,
+        throttlescroll:0,
+        log(value){
+            console.log(value);
+            if(this.user != 0){
+                if(this.depth > this.maxdepth){
+                    this.maxdepth = this.depth;
+
+                    var params = new URLSearchParams();
+                    params.append('action', 'update_reading_log');
+                    params.append('post', this.post);
+                    params.append('user', this.user);
+                    params.append('depth', this.depth);
+
+
+                    axios.post(window.ajaxurl, params)
+                        .then((rsp)=>{
+                            console.log(rsp)
+                        });
+
+                }
+            }
+        },
+        getDocHeight() {
+            var D = document;
+            return Math.max(
+                D.body.scrollHeight, D.documentElement.scrollHeight,
+                D.body.offsetHeight, D.documentElement.offsetHeight,
+                D.body.clientHeight, D.documentElement.clientHeight
+            )
+        },
+        getmeasurements(){
+            this.winheight= window.innerHeight || (document.documentElement || document.body).clientHeight
+            this.docheight = this.getDocHeight()
+            this.trackLength = this.docheight - this.winheight
+        },
+        amountscrolled(){
+            var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+            var pctScrolled = Math.floor(scrollTop/this.trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+            this.depth = pctScrolled + 20;
+            this.log();
+        }
+    }
+}

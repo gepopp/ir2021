@@ -319,3 +319,18 @@ add_action('wp_ajax_validate_pin', function (){
 
 
 });
+
+add_action('wp_ajax_update_reading_log', function(){
+
+    $user = get_user_by('ID', sanitize_text_field($_POST['user']));
+    $post = get_post(sanitize_text_field($_POST['post']));
+
+    $depth = (int) sanitize_text_field($_POST['depth']) > 100 ? 100 : sanitize_text_field($_POST['depth']);
+
+    if($user && $post){
+        global $wpdb;
+        $wpdb->update('wp_reading_log', ['scroll_depth' => $depth], ['user_id' => $user->ID, 'post_id' => $post->ID]);
+    }
+
+
+});

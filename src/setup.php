@@ -65,6 +65,19 @@ add_action( "after_switch_theme", function(){
 
     dbDelta( $sql );
 
+    $sql = "CREATE TABLE IF NOT EXISTS wp_reading_log
+    (
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        post_id INT NOT NULL,
+        permalink VARCHAR(255) NOT NULL,
+        scroll_depth INT NULL,
+        created_at TIMESTAMP NOT NULL,
+        PRIMARY KEY  (id)
+    );";
+
+    dbDelta( $sql );
+
 
 });
 
@@ -130,7 +143,7 @@ add_action( 'init', function (){
     $allowed = ['update_profile'];
     $action = $_REQUEST['action'] ?? '';
 
-    if(is_admin() && !wp_doing_ajax() && !doing_action('admin_post') && !in_array($action, $allowed)){
+    if(is_admin() && !wp_doing_ajax() && !in_array($action, $allowed)){
         $user = wp_get_current_user();
         if(in_array('registered', $user->roles) || in_array('subscriber', $user->roles)){
 
