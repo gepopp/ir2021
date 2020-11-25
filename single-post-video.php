@@ -7,6 +7,23 @@ $cat = wp_get_post_categories(get_the_ID(), ['child_of' => 17]);
 $cat = array_shift($cat);
 $cat = get_category($cat)
 
+
+$user = wp_get_current_user();
+$post = get_the_ID();
+
+global $wpdb;
+$maxDepth = $wpdb->get_var(sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND post_id = %d', $user->ID, get_the_ID()));
+
+if($maxDepth == null && $user){
+    $wpdb->insert('wp_reading_log', [
+        'user_id' => $user->ID,
+        'post_id' => get_the_ID(),
+        'permalink' => get_the_permalink(),
+        'scroll_depth' => 0,
+        'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
+    ]);
+    $maxDepth = 0;
+}
 ?>
 
 
@@ -139,7 +156,19 @@ $next = get_posts([
                 <hr class="my-5">
             </div>
             <div class="col-span-5 lg:col-span-3">
-                <div class="content text-white">
+                <div class="content text-white"
+                     x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>, <?php echo $maxDepth ?>)"
+                     x-init="getmeasurements(); window.addEventListener('scroll',
+         function(){
+                 throttlescroll = setTimeout(function(){
+                     amountscrolled()
+                 }, 550)
+            }, false)
+            $watch('debth', value => log(value))
+         "
+                     @resize.window="getmeasurements()"
+                     ref="watched"
+                >
                     <div class="h-64 block lg:hidden float-right w-1/2 ml-5 pl-5 mb-5 pb-5 relative">
                         <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat) ?? '#5C97D0'; ?>">
                             <div class="flex flex-col justify-between h-full">
