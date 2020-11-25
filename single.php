@@ -14,6 +14,7 @@ $maxDepth = $wpdb->get_var(sprintf('SELECT * FROM wp_reading_log WHERE user_id =
 
 
 if($maxDepth == null && $user->ID != 0){
+
     $wpdb->insert('wp_reading_log', [
         'user_id' => $user->ID,
         'post_id' => get_the_ID(),
