@@ -327,9 +327,9 @@ add_action('wp_ajax_update_reading_log', function(){
 
     $depth = (int) sanitize_text_field($_POST['depth']) > 100 ? 100 : sanitize_text_field($_POST['depth']);
 
-    if($user && $post){
+    if($user && $post && $depth > 10){
         global $wpdb;
-        //$wpdb->update('wp_reading_log', ['scroll_depth' => $depth], ['user_id' => $user->ID, 'post_id' => $post->ID]);
+        $wpdb->update('wp_reading_log', ['scroll_depth' => $depth], ['user_id' => $user->ID, 'post_id' => $post->ID]);
     }
 
 
