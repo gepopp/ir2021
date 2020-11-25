@@ -3,8 +3,14 @@
 $user = wp_get_current_user();
 
 global $wpdb;
+
 $done    = $wpdb->get_results(sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth = 100 ORDER BY created_at DESC LIMIT 10', $user->ID));
+$done_count = $wpdb->get_var(sprintf('SELECT count(*) FROM wp_reading_log WHERE user_id = %d AND scroll_depth = 100 ORDER BY created_at DESC LIMIT 10', $user->ID))
+
+
 $allmost = $wpdb->get_results(sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth < 100 ORDER BY created_at DESC LIMIT 10', $user->ID));
+$done_allmost = $wpdb->get_results(sprintf('SELECT count(*) FROM wp_reading_log WHERE user_id = %d AND scroll_depth < 100 ORDER BY created_at DESC LIMIT 10', $user->ID));
+
 
 \Carbon\Carbon::setLocale('de');
 
@@ -17,10 +23,10 @@ $allmost = $wpdb->get_results(sprintf('SELECT * FROM wp_reading_log WHERE user_i
             <nav>
                 <div class="cursor-pointer p-2 border-b border-primary-100"
                      @click="active='fastfertig'" :class="{'bg-primary-100 text-white': active == 'fastfertig'}"
-                     style="transition: background-color 0.5s ease;">Fast fertig gelesen</div>
+                     style="transition: background-color 0.5s ease;">Begonnen (<?php echo $done_allmost ?>)</div>
                 <div class="cursor-pointer p-2 border-b border-primary-100"
                      @click="active='gelesen'" :class="{'bg-primary-100 text-white': active == 'gelesen'}"
-                style="transition: background-color 0.5s ease;">Bereits gelesen</div>
+                style="transition: background-color 0.5s ease;">Fertig gelesen (<?php echo $done_count ?>)</div>
             </nav>
         </div>
         <div class="col-span-4 p-10 bg-white shadow-lg" style="min-height: 500px">

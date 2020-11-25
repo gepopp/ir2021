@@ -7,7 +7,7 @@
 
 namespace immobilien_redaktion_2020;
 
-if (!isset($_SESSION)) session_start();
+if (session_status() != PHP_SESSION_ACTIVE) session_start();
 
 define( 'immobilien_redaktion_2020_VERSION', wp_get_theme()->version );
 define( 'immobilien_redaktion_2020_DIR', __DIR__ );
