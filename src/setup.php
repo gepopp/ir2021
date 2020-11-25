@@ -234,7 +234,7 @@ function my_sortable_views_column( $columns ) {
 add_action('after_setup_theme', 'immobilien_redaktion_2020\remove_admin_bar');
 
 function remove_admin_bar() {
-    if (!current_user_can('edit_post') && !is_admin()) {
+    if (!current_user_can('activate_plugins') && !is_admin()) {
         show_admin_bar(false);
     }
 }
