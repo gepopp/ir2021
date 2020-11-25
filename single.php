@@ -13,7 +13,7 @@ global $wpdb;
 $maxDepth = $wpdb->get_var(sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND post_id = %d', $user->ID, get_the_ID()));
 
 
-if($maxDepth == null && $user){
+if($maxDepth == null && $user->ID != 0){
     $wpdb->insert('wp_reading_log', [
         'user_id' => $user->ID,
         'post_id' => get_the_ID(),
