@@ -9,7 +9,7 @@ $done_count = $wpdb->get_var(sprintf('SELECT count(*) FROM wp_reading_log WHERE 
 
 
 $allmost = $wpdb->get_results(sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth < 100 ORDER BY created_at DESC LIMIT 10', $user->ID));
-$done_allmost = $wpdb->get_results(sprintf('SELECT count(*) FROM wp_reading_log WHERE user_id = %d AND scroll_depth < 100 ORDER BY created_at DESC LIMIT 10', $user->ID));
+$done_allmost = $wpdb->get_var(sprintf('SELECT count(*) FROM wp_reading_log WHERE user_id = %d AND scroll_depth < 100 ORDER BY created_at DESC LIMIT 10', $user->ID));
 
 
 \Carbon\Carbon::setLocale('de');
