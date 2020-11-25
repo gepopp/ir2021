@@ -203,6 +203,7 @@ function manage_attachment_tag_column($column_name, $id)
     }
 
 }
+
 add_filter( 'manage_edit-post_sortable_columns', 'immobilien_redaktion_2020\my_sortable_views_column' );
 function my_sortable_views_column( $columns ) {
 
@@ -217,23 +218,23 @@ function my_sortable_views_column( $columns ) {
     return $columns;
 }
 
-add_action( 'pre_get_posts', function( $query ) {
-    if( ! is_admin() )
-        return;
-
-    $orderby = $query->get( 'orderby');
-
-    if( 'views' == $orderby ) {
-        $query->set('meta_key','analytics_views');
-        $query->set('orderby','meta_value_num');
-    }
-});
+//add_action( 'pre_get_posts', function( $query ) {
+//    if( ! is_admin() )
+//        return;
+//
+//    $orderby = $query->get( 'orderby');
+//
+//    if( 'views' == $orderby ) {
+//        $query->set('meta_key','analytics_views');
+//        $query->set('orderby','meta_value_num');
+//    }
+//});
 
 
 add_action('after_setup_theme', 'immobilien_redaktion_2020\remove_admin_bar');
 
 function remove_admin_bar() {
-    if (!current_user_can('administrator') && !is_admin()) {
+    if (!current_user_can('edit_post') && !is_admin()) {
         show_admin_bar(false);
     }
 }
