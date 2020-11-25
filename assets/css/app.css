@@ -34,7 +34,7 @@
     table{
         @apply table-auto;
     }
-    .wp-post-image, img{
+    .wp-post-image {
         @apply w-full h-auto;
     }
 

@@ -12,6 +12,7 @@ $post = get_the_ID();
 global $wpdb;
 $maxDepth = $wpdb->get_var(sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND post_id = %d', $user->ID, get_the_ID()));
 
+
 if($maxDepth == null && $user){
     $wpdb->insert('wp_reading_log', [
         'user_id' => $user->ID,
@@ -26,14 +27,8 @@ if($maxDepth == null && $user){
 ?>
     <div class="content"
          x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>, <?php echo $maxDepth ?>)"
-         x-init="getmeasurements(); window.addEventListener('scroll',
-         function(){
-                 throttlescroll = setTimeout(function(){
-                     amountscrolled()
-                 }, 550)
-            }, false)
-            $watch('debth', value => log(value))
-         "
+         x-init="getmeasurements();"
+         @scroll.window.debounce.1s="amountscrolled()"
          @resize.window="getmeasurements()"
          ref="watched"
     >

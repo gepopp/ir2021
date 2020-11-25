@@ -17,7 +17,7 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
         <div class="grid grid-cols-3 gap-10">
             <div class="col-span-3 lg:col-span-1">
                 <h1 class="text-2xl font-serif font-semibold">Userdaten</h1>
-                <form class="bg-white shadow-md px-8 pt-6 pb-8 mb-4" method="post" action="<?php echo admin_url('admin-post.php') ?>">
+                <form class="bg-white shadow-md px-8 pt-6 pb-8 mb-4 h-full" method="post" action="<?php echo admin_url('admin-post.php') ?>">
                     <?php wp_nonce_field('frontend_register', 'frontend_register') ?>
                     <input type="hidden" name="action" value="update_profile">
                     <?php if (isset($_SESSION['profile_error'])): ?>
@@ -98,9 +98,9 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
                     </p>
                 </form>
             </div>
-            <div class="col-span-3 lg:col-span-1">
+            <div class="col-span-3 lg:col-span-1 h-full">
                 <h1 class="text-2xl font-serif font-semibold">E-Mail Adresse</h1>
-                <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4"
+                <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4 h-full"
                      x-data="alterEmail('<?php echo $user->user_email ?>')">
                     <div>
                         <label class="block text-gray-700 text-sm font-bold mb-2">Aktuelle E-Mail Adresse:</label>

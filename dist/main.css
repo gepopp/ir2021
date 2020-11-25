@@ -10309,7 +10309,7 @@ video {
     table-layout: auto;
   }
 
-.content .wp-post-image, .content img{
+.content .wp-post-image {
     width: 100%;
     height: auto;
   }

@@ -323,7 +323,7 @@ add_action('wp_ajax_validate_pin', function (){
 add_action('wp_ajax_update_reading_log', function(){
 
     $user = get_user_by('ID', sanitize_text_field($_POST['user']));
-    $post = get_post(sanitize_text_field($_POST['post']));
+    $post = get_post(   sanitize_text_field($_POST['post']));
 
     $depth = (int) sanitize_text_field($_POST['depth']) > 100 ? 100 : sanitize_text_field($_POST['depth']);
 

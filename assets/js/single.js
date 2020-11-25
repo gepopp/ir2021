@@ -52,10 +52,12 @@ window.readingLog = function (user,post, maxDepth){
         docheight:0,
         trackLength:0,
         throttlescroll:0,
-        log(value){
-            console.log(value);
+        log(){
+
             if(this.user != 0){
+
                 if(this.depth > this.maxdepth){
+
                     this.maxdepth = this.depth;
 
                     var params = new URLSearchParams();
@@ -87,6 +89,7 @@ window.readingLog = function (user,post, maxDepth){
             this.trackLength = this.docheight - this.winheight
         },
         amountscrolled(){
+
             var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
             var pctScrolled = Math.floor(scrollTop/this.trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
             this.depth = pctScrolled + 20;
