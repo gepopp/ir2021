@@ -329,7 +329,7 @@ add_action('wp_ajax_update_reading_log', function(){
 
     if($user && $post){
         global $wpdb;
-        $wpdb->update('wp_reading_log', ['scroll_depth' => $depth], ['user_id' => $user->ID, 'post_id' => $post->ID]);
+        //$wpdb->update('wp_reading_log', ['scroll_depth' => $depth], ['user_id' => $user->ID, 'post_id' => $post->ID]);
     }
 
 
