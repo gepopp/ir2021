@@ -218,17 +218,17 @@ function my_sortable_views_column( $columns ) {
     return $columns;
 }
 
-//add_action( 'pre_get_posts', function( $query ) {
-//    if( ! is_admin() )
-//        return;
-//
-//    $orderby = $query->get( 'orderby');
-//
-//    if( 'views' == $orderby ) {
-//        $query->set('meta_key','analytics_views');
-//        $query->set('orderby','meta_value_num');
-//    }
-//});
+add_action( 'pre_get_posts', function( $query ) {
+    if( ! is_admin() )
+        return;
+
+    $orderby = $query->get( 'orderby');
+
+    if( 'views' == $orderby ) {
+        $query->set('meta_key','analytics_views');
+        $query->set('orderby','meta_value_num');
+    }
+});
 
 
 add_action('after_setup_theme', 'immobilien_redaktion_2020\remove_admin_bar');
