@@ -255,7 +255,7 @@ if ($search != '+'): ?>
 
     <?php if ($query->have_posts()): ?>
         <div class="container mx-auto mt-20 flex justify-center items-center">
-            <div class="grid grid-cols-5 gap-4">
+            <div class="grid grid-cols-5 gap-4 w-full">
                 <div></div>
                 <?php while ($query->have_posts()): ?>
                     <?php $query->the_post(); ?>

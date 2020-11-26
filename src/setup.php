@@ -82,8 +82,6 @@ add_action( "after_switch_theme", function(){
 });
 
 
-
-
 add_action('after_setup_theme', function () {
 
     // Add default posts and comments RSS feed links to head.
@@ -219,11 +217,3 @@ add_action( 'pre_get_posts', function( $query ) {
     }
 });
 
-
-add_action('after_setup_theme', 'immobilien_redaktion_2020\remove_admin_bar');
-
-function remove_admin_bar() {
-    if (!current_user_can('activate_plugins') && !is_admin()) {
-        show_admin_bar(false);
-    }
-}
