@@ -164,17 +164,6 @@ add_filter( 'show_admin_bar', function (){
 });
 
 
-add_filter('single_template', function ($single_template) {
-
-
-    if (has_category('video')) {
-        $single_template = get_stylesheet_directory() . '/single-post-video.php';
-    }
-    return $single_template;
-
-}, PHP_INT_MAX, 2);
-
-
 add_filter('manage_posts_columns', 'immobilien_redaktion_2020\add_views_column');
 add_action('manage_posts_custom_column', 'immobilien_redaktion_2020\manage_attachment_tag_column', 10, 2);
 
