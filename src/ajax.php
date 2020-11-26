@@ -380,7 +380,7 @@ add_action('wp_ajax_load_log', function (){
             'id'        => $d->id,
             'title'     => html_entity_decode(get_the_title($d->post_id)),
             'permalink' => get_the_permalink($d->post_id),
-            'cat'       => $cat->name,
+            'cat'       => $cat->name ?? '',
             'author'    => $author,
             'time'      => ucfirst(\Carbon\Carbon::parse($d->created_at)->diffForHumans() . ' zu ' . $d->scroll_depth). '%'
         ];
