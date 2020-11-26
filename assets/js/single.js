@@ -44,6 +44,7 @@ window.articleViews = function (id){
 
 window.readingLog = function (user,post){
     return{
+        read: read,
         user: user,
         post:post,
         depth: 0,

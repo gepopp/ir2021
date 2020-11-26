@@ -67,3 +67,29 @@ window.alterEmail = function (old) {
         }
     }
 }
+window.logs = function (log, logs, all, user_id){
+    return {
+        logs: logs,
+        log_name: log,
+        user_id: user_id,
+        all: all,
+        loadNext(){
+
+            var params = new URLSearchParams();
+            params.append('action', 'load_log');
+            params.append('log', this.log_name);
+            params.append('offset', this.logs.length);
+            params.append('user_id', this.user_id);
+
+            axios.post(window.ajaxurl, params)
+                .then((rsp) => {
+                    rsp.data.map((log) => this.logs.push(log))
+                })
+                .catch((err) => {
+
+                });
+
+
+        }
+    }
+}

@@ -350,6 +350,42 @@ add_action('wp_ajax_update_reading_log', function(){
         }
         wp_die($depth);
     }
+});
 
+add_action('wp_ajax_load_log', function (){
+
+    global $wpdb;
+
+    $log = sanitize_text_field($_POST['log']);
+
+    if($log == 'read'){
+       $sql = sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth = 100 ORDER BY created_at DESC LIMIT %d, 10', sanitize_text_field($_POST['user_id']), sanitize_text_field($_POST['offset']));
+    }
+
+    if($log == 'not_read'){
+        $sql = sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth < 100 ORDER BY created_at DESC LIMIT %d, 10', sanitize_text_field($_POST['user_id']), sanitize_text_field($_POST['offset']));
+    }
+
+    $logs = $wpdb->get_results($sql);
+
+    $return = [];
+    foreach ($logs as $d) {
+
+        $cat = get_the_category($d->post_id);
+        $cat = array_shift($cat);
+
+        $author = 'Von ' . get_the_author_meta('display_name', get_post_field('post_author', $d->post_id)) . ' am ' . get_the_time('d.m.Y', $d->post_id);
+
+        $return[] = [
+            'id'        => $d->id,
+            'title'     => html_entity_decode(get_the_title($d->post_id)),
+            'permalink' => get_the_permalink($d->post_id),
+            'cat'       => $cat->name,
+            'author'    => $author,
+            'time'      => ucfirst(\Carbon\Carbon::parse($d->created_at)->diffForHumans() . ' zu ' . $d->scroll_depth). '%'
+        ];
+    }
+
+    wp_die(json_encode($return));
 
 });
