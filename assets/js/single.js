@@ -42,17 +42,18 @@ window.articleViews = function (id){
    }
 }
 
-window.readingLog = function (user,post, maxDepth){
+window.readingLog = function (user,post){
     return{
         user: user,
         post:post,
         depth: 0,
-        maxdepth: maxDepth,
+        maxdepth: 0,
         winheight:0,
         docheight:0,
         trackLength:0,
         throttlescroll:0,
         log(){
+
 
             if(this.user != 0){
 
@@ -69,7 +70,7 @@ window.readingLog = function (user,post, maxDepth){
 
                     axios.post(window.ajaxurl, params)
                         .then((rsp)=>{
-                            console.log(rsp)
+                            this.maxdepth = rsp.data
                         });
 
                 }
@@ -84,6 +85,7 @@ window.readingLog = function (user,post, maxDepth){
             )
         },
         getmeasurements(){
+
             this.winheight= window.innerHeight || (document.documentElement || document.body).clientHeight
             this.docheight = this.getDocHeight()
             this.trackLength = this.docheight - this.winheight

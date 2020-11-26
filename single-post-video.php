@@ -157,15 +157,9 @@ $next = get_posts([
             </div>
             <div class="col-span-5 lg:col-span-3">
                 <div class="content text-white"
-                     x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>, <?php echo $maxDepth ?>)"
-                     x-init="getmeasurements(); window.addEventListener('scroll',
-         function(){
-                 throttlescroll = setTimeout(function(){
-                     amountscrolled()
-                 }, 550)
-            }, false)
-            $watch('debth', value => log(value))
-         "
+                     x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>)"
+                     x-init="getmeasurements();"
+                     @scroll.window.debounce.1s="amountscrolled()"
                      @resize.window="getmeasurements()"
                      ref="watched"
                 >

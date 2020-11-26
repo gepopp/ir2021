@@ -9,25 +9,9 @@ $cat = get_category($cat);
 $user = wp_get_current_user();
 $post = get_the_ID();
 
-global $wpdb;
-$maxDepth = $wpdb->get_var(sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND post_id = %d', $user->ID, get_the_ID()));
-
-
-if($maxDepth == null && $user->ID != 0){
-
-    $wpdb->insert('wp_reading_log', [
-        'user_id' => $user->ID,
-        'post_id' => get_the_ID(),
-        'permalink' => get_the_permalink(),
-        'scroll_depth' => 0,
-        'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
-    ]);
-    $maxDepth = 0;
-}
-
 ?>
     <div class="content"
-         x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>, <?php echo $maxDepth ?>)"
+         x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>)"
          x-init="getmeasurements();"
          @scroll.window.debounce.1s="amountscrolled()"
          @resize.window="getmeasurements()"

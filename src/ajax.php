@@ -329,7 +329,26 @@ add_action('wp_ajax_update_reading_log', function(){
 
     if($depth > 10){
         global $wpdb;
-        $wpdb->update('wp_reading_log', ['scroll_depth' => $depth], ['user_id' => $user, 'post_id' => $post], ['%d'], ['%d', '%d']);
+
+        $exist = $wpdb->get_var(sprintf('SELECT id FROM wp_reading_log WHERE user_id = %d AND post_id = %d', $user, $post));
+
+        if($exist == null){
+            $wpdb->insert('wp_reading_log',
+            [
+                'user_id' => $user,
+                'post_id' => $post,
+                'scroll_depth' => $depth,
+                'permalink' => get_the_permalink($post),
+                'created_at'    => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
+            ], ['%d', '%d', '%d', '%s', '%s']);
+        }else{
+            $wpdb->update('wp_reading_log',
+                ['scroll_depth' => $depth],
+                ['id' => $exist],
+                ['%d'],
+                ['%d']);
+        }
+        wp_die($depth);
     }
 
 
