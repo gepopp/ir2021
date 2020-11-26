@@ -210,6 +210,30 @@ if ($search && get_field('field_5fa63966c0b24')) {
 
     $search = get_field('field_5fa63966c0b24');
 
+}else{
+
+    // Titel holen
+    $title = $s = str_replace(['?', '!', '.', ':'], ' ', html_entity_decode(get_the_title()));
+
+    // Wörter trennen
+    $word = explode(' ', $title);
+
+    // filter nur Würter mit mehr als 3 Buchstaben
+    $words = array_filter($word, function ($w){
+        if(strlen(htmlspecialchars_decode($w)) > 3 ){
+            return $w;
+        }
+    });
+
+    // Durcheinander bringen - random
+    shuffle($words);
+
+    // auf 5 Wörter kürzen
+    $words = array_chunk($words, 5);
+
+    // Suche zusammenbauen
+    $search = implode('+', $words[0]);
+
 }
 
 
