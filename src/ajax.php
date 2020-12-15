@@ -1,6 +1,9 @@
 <?php
-add_action('wp_ajax_get_page_views', 'get_page_views');
-add_action('wp_ajax_nopriv_get_page_views', 'get_page_views');
+namespace immobilien_redaktion_2020;
+
+
+add_action('wp_ajax_get_page_views', 'immobilien_redaktion_2020\get_page_views');
+add_action('wp_ajax_nopriv_get_page_views', 'immobilien_redaktion_2020\get_page_views');
 
 function get_page_views()
 {
@@ -59,8 +62,8 @@ function get_page_views()
     }
 }
 
-add_action('wp_ajax_load_more_category', 'load_more_category');
-add_action('wp_ajax_nopriv_load_more_category', 'load_more_category');
+add_action('wp_ajax_load_more_category', 'immobilien_redaktion_2020\load_more_category');
+add_action('wp_ajax_nopriv_load_more_category', 'immobilien_redaktion_2020\load_more_category');
 
 function load_more_category()
 {
@@ -97,8 +100,8 @@ function load_more_category()
 }
 
 
-add_action('wp_ajax_load_more_author', 'load_more_author');
-add_action('wp_ajax_nopriv_load_more_author', 'load_more_author');
+add_action('wp_ajax_load_more_author', 'immobilien_redaktion_2020\load_more_author');
+add_action('wp_ajax_nopriv_load_more_author', 'immobilien_redaktion_2020\load_more_author');
 
 function load_more_author()
 {
@@ -137,8 +140,8 @@ function load_more_author()
 }
 
 
-add_action('wp_ajax_load_videos', 'load_videos');
-add_action('wp_ajax_nopriv_load_videos', 'load_videos');
+add_action('wp_ajax_load_videos', 'immobilien_redaktion_2020\load_videos');
+add_action('wp_ajax_nopriv_load_videos', 'immobilien_redaktion_2020\load_videos');
 
 function load_videos()
 {

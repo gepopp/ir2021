@@ -12,8 +12,10 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
 //echo var_dump($user);
 ?>
 
+<?php get_template_part('page-templates/reading', 'log') ?>
 
-    <div class="container mx-auto mt-64 relative">
+
+    <div class="container mx-auto mt-48 relative px-5 lg:px-0">
         <div class="grid grid-cols-3 gap-10">
             <div class="col-span-3 lg:col-span-1">
                 <h1 class="text-2xl font-serif font-semibold">Userdaten</h1>
@@ -52,7 +54,7 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
                             </p>
                         </div>
                     <?php endif; ?>
-                    <div>
+                    <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="register_gender">Anrede
                             <span class="text-warning">*</span></label>
                         <select name="register_gender" id="register_gender"
@@ -98,7 +100,9 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
                     </p>
                 </form>
             </div>
-            <div class="col-span-3 lg:col-span-1 h-full">
+
+
+            <div class="col-span-3 lg:col-span-1 lg:h-full mt-24 lg:mt-0">
                 <h1 class="text-2xl font-serif font-semibold">E-Mail Adresse</h1>
                 <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4 h-full"
                      x-data="alterEmail('<?php echo $user->user_email ?>')">
@@ -145,22 +149,15 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
                     <?php endif; ?>
 
                     <div x-show="!pinSent">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="new_email">Neue E-Mail Adresse</label>
-                        <div class="grid grid-cols-5 gap-2">
-                            <div class="col-span-3">
-
-                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                       id="new_email"
-                                       type="email"
-                                       x-model="email"
-                                >
-                                <p x-show="errors.email" x-text="errors.email" class="text-warning text-xs"></p>
-                            </div>
-                            <div class="col-span-2">
-                                <div class="bg-primary-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" @click="ValidateEmail()">
-                                    Pin senden
-                                </div>
-                            </div>
+                        <label class="mt-4 block text-gray-700 text-sm font-bold mb-2" for="new_email">Neue E-Mail Adresse</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                               id="new_email"
+                               type="email"
+                               x-model="email"
+                        >
+                        <p x-show="errors.email" x-text="errors.email" class="text-warning text-xs"></p>
+                        <div class="mt-4 bg-primary-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer text-center" @click="ValidateEmail()">
+                            Pin senden
                         </div>
                     </div>
 
@@ -187,7 +184,7 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . $user->ID);
             </div>
         </div>
     </div>
-    <?php get_template_part('page-templates/reading', 'log') ?>
+
 <?php
 get_footer();
 

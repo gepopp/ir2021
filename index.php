@@ -22,7 +22,14 @@ $query = new \WP_Query([
 ]);
 ?>
 
-    <div class="container mx-auto mt-20 relative">
+
+
+
+
+    <div class="container mx-auto mt-20 relative px-5 lg:px-0">
+
+        <?php get_template_part('banner-templates/banner', 'mega') ?>
+
         <div class="grid grid-cols-2 gap-10">
             <?php if ($query->have_posts()): ?>
                 <?php while ($query->have_posts()): ?>
@@ -47,64 +54,13 @@ $query = new \WP_Query([
                     </div>
                 <?php endwhile; ?>
             <?php endif; ?>
-
-            <?php
-            $today = date('Ymd');
-            $banner_large = get_posts([
-                'post_type'      => 'ir_ad',
-                'posts_per_page' => 1,
-                'tax_query'      => [
-                    'relation' => 'and',
-                    [
-                        'taxonomy'         => 'position',
-                        'terms'            => 'startseite-horizontal',
-                        'field'            => 'slug',
-                        'meta_query'       => [
-                            'relation' => 'AND',
-                            [
-                                'key'     => 'start',
-                                'compare' => '<=',
-                                'value'   => $today,
-                            ],
-                            [
-                                'key'     => 'ende',
-                                'compare' => '>=',
-                                'value'   => $today,
-                            ],
-                            [
-                                'key'   => 'banner_status', // name of custom field
-                                'value' => [3, 5],
-                            ],
-                        ],
-                        'include_children' => false,
-                        'operator'         => 'IN',
-                    ],
-                    'orderby'  => 'menu_order',
-                    'order'    => 'ASC',
-                ],
-            ]);
-            ?>
-
-            <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -350px">
-                <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
-                    <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full');
-                    ?><!--" class="">-->
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/EHL-2020.jpg">
-                </a>
-            </div>
         </div>
         <?php wp_reset_postdata(); ?>
-    </div>
 
-    <?php get_template_part('page-templates/part', 'fourbanner') ?>
-    <!--   --><?php //get_template_part('banner-templates/banner', 'thirds' )
-?>
-    <?php get_template_part('page-templates/page', 'immoliveAnnouncement') ?>
-    <?php get_template_part('banner-templates/banner', 'thirds2') ?>
-    <?php get_template_part('page-templates/part', 'video') ?>
-
-
-    <div class="container mx-auto mt-20">
+        <?php get_template_part('banner-templates/banner', 'fourbanner') ?>
+        <?php get_template_part('page-templates/page', 'immoliveAnnouncement') ?>
+        <?php get_template_part('banner-templates/banner', 'thirds2') ?>
+        <?php get_template_part('page-templates/part', 'video') ?>
     </div>
 
 

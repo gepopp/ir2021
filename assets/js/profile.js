@@ -88,7 +88,20 @@ window.logs = function (log, logs, all, user_id){
                 .catch((err) => {
 
                 });
+        },
+        removeBookmark(id){
+            var params = new URLSearchParams();
+            params.append('action', 'remove_user_bookmark');
+            params.append('id', id);
 
+            axios.post(window.ajaxurl, params)
+                .then((rsp) => {
+                    for(i = 0; i < this.logs.length; i++){
+                        if(this.logs[i].id == id){
+                            this.logs.splice(i, 1);
+                        }
+                    }
+                })
 
         }
     }

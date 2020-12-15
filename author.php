@@ -8,7 +8,7 @@ get_header();
 $query = new \WP_Query([
     'post_type'           => 'post',
     'post_status'         => 'publish',
-    'author'              => $author->ID,
+    'author'              => $author->data->ID,
     'ignore_sticky_posts' => true,
     'posts_per_page'      => 10,
     'category__not_in'    => [17, 696, 159],

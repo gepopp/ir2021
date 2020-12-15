@@ -54,11 +54,11 @@ if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('
 } else {
     $bg = 'bg-primary-100 bg-opacity-5';
 }
-if(is_page_template('pagetemplate-passwort-vergessen.php')
+if (is_page_template('pagetemplate-passwort-vergessen.php')
     || is_page_template('pagetemplate-login-register.php')
     || is_page_template('pagetemplate-passwort-reset.php')
     || is_404()
-){
+) {
     $bg .= ' min-h-screen flex flex-col justify-between';
 }
 /**/
@@ -245,46 +245,51 @@ if(is_page_template('pagetemplate-passwort-vergessen.php')
 
                     <?php
                     global $wp;
-                    if(!is_user_logged_in()):
-                    ?>
-                    <a href="<?php echo add_query_arg( ['redirect' => $wp->request] , home_url('/login') );?>">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                        </svg>
+                    if (!is_user_logged_in()):
+                        ?>
+                        <a href="<?php echo add_query_arg(['redirect' => $wp->request], home_url('/login')); ?>">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
 
-                        <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
+                            <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-warning  opacity-50"></span>
                     </span>
-                    </a>
+                        </a>
                     <?php else: ?>
-                    <div class="relative" x-data="{show: false}"
-                    @mouseover="show = true"
-                    >
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                        </svg>
+                        <div class="relative" x-data="{show: false}"
+                             @mouseover="show = true"
+                        >
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
 
-                        <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
+                            <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success  opacity-50"></span>
                     </span>
-                        <div class="absolute top-0 left-0 bg-white mt-8 p-5" x-show="show" @mouseleave="show = false">
-                            <ul>
-                                <li class="text-lg font-semibold">
-                                    <a href="<?php echo home_url('profil') ?>">Profil</a>
-                                </li>
-                                <li class="text-lg font-semibold">
-                                    <a href="<?php echo wp_logout_url(home_url()) ?>">Logout</a>
-                                </li>
-                            </ul>
+                            <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
+                                <ul>
+                                    <li class="text-lg font-semibold">
+                                        <a href="<?php echo home_url('profil') ?>">Profil</a>
+                                    </li>
+                                    <li class="text-lg font-semibold">
+                                        <a href="<?php echo wp_logout_url(home_url()) ?>">Logout</a>
+                                    </li>
+                                    <?php if (current_user_can('edit_posts')): ?>
+                                        <li class="text-lg font-semibold">
+                                            <a href="<?php echo admin_url() ?>">backend</a>
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
                 </li>
             </ul>
         </div>
     </div>
 </header>
-<main class="<?php if(is_page_template('pagetemplate-passwort-vergessen.php')
+<main class="<?php if (is_page_template('pagetemplate-passwort-vergessen.php')
     || is_page_template('pagetemplate-login-register.php')
     || is_page_template('pagetemplate-passwort-reset.php')
     || is_404()

@@ -1,5 +1,40 @@
 const readingTime = require('reading-time');
 const axios = require('axios');
+const cookie = require('js-cookie');
+
+window.readingFunctions = function (){
+    return {
+        showHint: false,
+        bookmarkSet: false,
+        load(){
+            var current = cookie.get('reading-hint');
+            if( current == undefined ){
+                window.setTimeout(() => {
+                    this.showHint = true;
+                }, 5000 );
+            }
+        },
+        close(withCookie){
+            if(withCookie){
+                cookie.set('reading-hint', true, { expires: 180 });
+            }
+            this.showHint = false;
+        },
+        setBookmark(id){
+            var params = new URLSearchParams();
+            params.append('action', 'set_user_bookmark');
+            params.append('id', id);
+
+            axios.post(window.ajaxurl, params)
+                .then((rsp)=>{
+                    this.bookmarkSet = true;
+                }).catch((rsp)=>{
+                this.bookmarkSet = true;
+            });
+
+        }
+    }
+}
 
 window.readTime = function (text){
     return {
@@ -7,7 +42,6 @@ window.readTime = function (text){
 
        get minutes(){
             var reading =  readingTime(this.text);
-
             var seconds =  reading.time / 1000;
             var minutes = parseInt(seconds / 60 );
             if(minutes > 1){
@@ -22,9 +56,7 @@ window.readTime = function (text){
 
 window.articleViews = function (id){
    return{
-
        views: false,
-
        viewsXHR(){
 
            let views = 0;
@@ -44,7 +76,6 @@ window.articleViews = function (id){
 
 window.readingLog = function (user,post){
     return{
-        read: read,
         user: user,
         post:post,
         depth: 0,

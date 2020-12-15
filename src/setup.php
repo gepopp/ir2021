@@ -23,8 +23,6 @@ add_action('template_redirect', function (){
     if(is_page_template('pagetemplate-profil.php') && !is_user_logged_in()){
         wp_safe_redirect(home_url('login'));
     }
-
-
 });
 
 
@@ -77,6 +75,21 @@ add_action( "after_switch_theme", function(){
     );";
 
     dbDelta( $sql );
+
+
+    $sql = "CREATE TABLE IF NOT EXISTS wp_user_bookmarks
+    (
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        post_id INT NOT NULL,
+        permalink VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP NOT NULL,
+        PRIMARY KEY  (id),
+        UNIQUE (user_id, post_id)
+    );";
+
+    dbDelta( $sql );
+
 
 
 });
