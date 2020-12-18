@@ -1,4 +1,6 @@
 const axios = require('axios');
+const flatpickr = require('flatpickr');
+
 
 window.alterEmail = function (old) {
     return{
@@ -106,3 +108,16 @@ window.logs = function (log, logs, all, user_id){
         }
     }
 }
+
+window.reminderDate = function (id, text, initialDate){
+    return {
+        id: id,
+        text:text,
+        initalDate: initialDate,
+        picker: flatpickr(".picker", {}),
+
+
+
+    }
+}
+

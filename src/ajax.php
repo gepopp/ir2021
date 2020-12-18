@@ -7,6 +7,9 @@ add_action('wp_ajax_nopriv_get_page_views', 'immobilien_redaktion_2020\get_page_
 
 function get_page_views()
 {
+    echo 100;
+    exit;
+
 
     $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
 

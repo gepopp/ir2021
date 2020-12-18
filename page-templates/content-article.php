@@ -186,10 +186,10 @@ $post = get_the_ID();
                                     </div>
                                 <?php endif; ?>
                             </div>
-                            <div x-data="readingFunctions()"
+                            <div x-data="readingFunctions(<?php echo get_current_user_id() ?>)"
                                  x-init="load()"
                                  x-cloak>
-                            <div class="w-full bg-white text-gray-900 flex justify-between p-5 relative">
+                                <div class="w-full bg-white text-gray-900 flex justify-between p-5 relative">
                                     <div x-show.transition.in.fade.300ms="showHint" class="absolute -bottom-0 left-0 bg-gray-900 mt-16 -ml-48 p-5 text-white w-64 shadow-lg rounded bg-opacity-75">
                                         <div class="flex justify-start">
                                             <svg class="w-4 h-4 text-white cursor-pointer" @click="close(false)" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -277,14 +277,11 @@ $post = get_the_ID();
                                             </div>
                                         </div>
                                         <p class="text-sm">
-                                            Mit unseren neuen Funktionen können Sie Lesezeichen anlegen um Ihre Inhalte schneller wieder zu finden.
-                                        </p>
-                                        <p class="text-sm">
-                                            Oder einen Artikel zum später Lesen vormerken, wir senden Ihnen dann ein Erinnerungsmail nach einigen Tagen.
+                                            Mit unseren neuen Funktionen können Sie Lesezeichen anlegen, um Ihre Inhalte schneller wiederzufinden, oder einen Artikel zum später Lesen vormerken – Sie erhalten dann ein Erinnerungsmail nach einigen Tagen.
                                         </p>
                                         <p class="text-right text-primary-100 underline cursor-pointer" @click="close(true)">verstanden</p>
                                     </div>
-                                    <div x-show.transition.fade.300ms="bookmarkSet" class="absolute -bottom-0 left-0 bg-gray-900 mt-16 -ml-48 p-5 text-white w-64 shadow-lg rounded bg-opacity-75">
+                                    <div x-show.transition.fade.300ms="bookmarkSet" @click.away="bookmarkSet = false" class="absolute -bottom-0 left-0 bg-gray-900 mt-16 -ml-48 p-5 text-white w-64 shadow-lg rounded bg-opacity-75">
                                         <div class="flex justify-start">
                                             <svg class="w-4 h-4 text-white cursor-pointer" @click="bookmarkSet = false" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -297,10 +294,58 @@ $post = get_the_ID();
                                             <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
                                             </svg>
-                                            </div>
+                                        </div>
                                         <p class="text-sm">
-                                            Ihre Lesezeichen finden Sie in Ihrem <a href="<?php echo home_url('profil') ?>" target="_blank" class="text-primary-100 underline">Userprofil</a>.
+                                            Ihre Lesezeichen finden Sie in Ihrem
+                                            <a href="<?php echo home_url('profil') ?>" target="_blank" class="text-primary-100 underline">Userprofil</a>.
                                         </p>
+                                    </div>
+
+                                    <div x-show.transition.fade.300ms="reminderSet" @click.away="reminderSet = false" class="absolute -bottom-0 left-0 bg-gray-900 mt-16 -ml-48 p-5 text-white w-64 shadow-lg rounded bg-opacity-75">
+                                        <div class="flex justify-start">
+                                            <svg class="w-4 h-4 text-white cursor-pointer" @click="reminderSet = false" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <h3 class="font-serif text-2xl">Erinnerung gesetzt!</h3>
+                                            </div>
+                                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-sm">
+                                            Wir senden Ihnen in 3 Tagen ein Erinnerungsmail. Sie können den Zeitpunkt dieses Mails in Ihrem
+                                            <a href="<?php echo home_url('profil') ?>" target="_blank" class="text-primary-100 underline">Userprofil</a> ändern.
+                                        </p>
+                                    </div>
+
+
+                                    <div x-show.transition.fade.300ms="loginRequired" @click.away="loginRequired = false" class="absolute -bottom-0 left-0 bg-gray-900 mt-16 -ml-48 p-5 text-white w-64 shadow-lg rounded bg-opacity-75">
+                                        <div class="flex justify-start">
+                                            <svg class="w-6 h-6 text-white cursor-pointer" @click="loginRequired = false" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <h3 class="font-serif text-2xl">Login erforderlich!</h3>
+                                            </div>
+                                            <svg class="w-12 h-12 text-warning" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-sm">
+                                            Um Lesezeichen und Erinnerungen zu setzen müssen Sie eingeloggt sein.
+                                        </p>
+                                        <div class="flex flex-col space-y-3">
+                                            <div>
+                                                <a href="<?php echo home_url('login') ?>" class="bg-primary-100 text-white text-center block w-full py-2" style="color:white !important;">Login</a>
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                     <div class="bg-primary-100 rounded-full flex justify-center items-center p-2 shadow-lg hover:shadow-none cursor-pointer"
                                          @click="setBookmark(<?php echo get_the_ID() ?>)">
@@ -309,7 +354,9 @@ $post = get_the_ID();
                                         </svg>
                                     </div>
 
-                                    <div class="bg-primary-100 rounded-full flex justify-center items-center p-2 shadow-lg hover:shadow-none">
+                                    <div class="bg-primary-100 rounded-full flex justify-center items-center p-2 shadow-lg hover:shadow-none"
+                                    @click="remindReading(<?php echo get_the_ID() ?>)"
+                                    >
                                         <svg class="w-6 h-6 text-white cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
                                         </svg>

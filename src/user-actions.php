@@ -2,6 +2,37 @@
 
 namespace immobilien_redaktion_2020;
 
+use Carbon\Carbon;
+
+add_action('wp_ajax_set_user_reading_reminder', function (){
+
+    $post = sanitize_text_field($_POST['id']);
+    $user = wp_get_current_user();
+
+    global $wpdb;
+
+    $wpdb->show_errors = false;
+
+    $insert = $wpdb->insert('wp_user_read_later', [
+        'user_id' => $user->ID,
+        'post_id' => $post,
+        'permalink' => get_the_permalink($post),
+        'remind_at' => Carbon::now()->addDays(3)->format('Y-m-d H:i:s')
+    ], ['%d', '%d', '%s', '%s']);
+
+    if(!$insert){
+        wp_die('', 401);
+    }else{
+        wp_die('');
+
+    }
+
+
+
+});
+
+
+
 add_action('wp_ajax_set_user_bookmark', function (){
 
 
@@ -19,7 +50,7 @@ add_action('wp_ajax_set_user_bookmark', function (){
     ], ['%d', '%d', '%s']);
 
     if(!$insert){
-        wp_die('', 400);
+        wp_die('', 401);
     }else{
         wp_die('');
 

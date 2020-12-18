@@ -12,7 +12,9 @@
 namespace immobilien_redaktion_2020;
 
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php use Predis\Client;
+
+language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -296,3 +298,8 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
 ): ?>
     h-full flex items-center justify-center
 <?php endif; ?>">
+    <h3>redis test</h3>
+    <?php
+        $client = new Client();
+        echo $client->incr('views');
+        ?>

@@ -39,6 +39,7 @@ class ComposerStaticInitd82b92dce78b62dab35bc260b14ce80b
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'Psr\\Cache\\' => 10,
+            'Predis\\' => 7,
         ),
         'O' => 
         array (
@@ -110,6 +111,10 @@ class ComposerStaticInitd82b92dce78b62dab35bc260b14ce80b
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'Predis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/predis/predis/src',
         ),
         'Overtrue\\Socialite\\' => 
         array (

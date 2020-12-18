@@ -90,6 +90,20 @@ add_action( "after_switch_theme", function(){
 
     dbDelta( $sql );
 
+    $sql = "CREATE TABLE IF NOT EXISTS wp_user_read_later
+    (
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        post_id INT NOT NULL,
+        permalink VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP NOT NULL,
+        remind_at DATETIME NOT NULL,
+        PRIMARY KEY  (id),
+        UNIQUE (user_id, post_id)
+    );";
+
+    dbDelta( $sql );
+
 
 
 });

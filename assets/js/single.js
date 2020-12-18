@@ -2,10 +2,13 @@ const readingTime = require('reading-time');
 const axios = require('axios');
 const cookie = require('js-cookie');
 
-window.readingFunctions = function (){
+window.readingFunctions = function (user_id){
     return {
+        user_id: user_id,
         showHint: false,
         bookmarkSet: false,
+        loginRequired: false,
+        reminderSet: false,
         load(){
             var current = cookie.get('reading-hint');
             if( current == undefined ){
@@ -21,6 +24,12 @@ window.readingFunctions = function (){
             this.showHint = false;
         },
         setBookmark(id){
+
+            if(this.user_id == 0){
+                this.loginRequired = true;
+                return;
+            }
+
             var params = new URLSearchParams();
             params.append('action', 'set_user_bookmark');
             params.append('id', id);
@@ -28,10 +37,29 @@ window.readingFunctions = function (){
             axios.post(window.ajaxurl, params)
                 .then((rsp)=>{
                     this.bookmarkSet = true;
-                }).catch((rsp)=>{
-                this.bookmarkSet = true;
-            });
+                })
+                .catch((err) => {
+                    this.bookmarkSet = true;
+                });
+        },
+        remindReading(id){
 
+            if(this.user_id == 0){
+                this.loginRequired = true;
+                return;
+            }
+
+            var params = new URLSearchParams();
+            params.append('action', 'set_user_reading_reminder');
+            params.append('id', id);
+
+            axios.post(window.ajaxurl, params)
+                .then((rsp)=>{
+                    this.reminderSet = true;
+                })
+                .catch((err) => {
+                    this.reminderSet = true;
+                });
         }
     }
 }
