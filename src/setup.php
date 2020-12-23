@@ -13,11 +13,11 @@ use Carbon\Carbon;
 
 add_action('template_redirect', function (){
     if(is_page_template('pagetemplate-login-register.php') && is_user_logged_in()){
-        wp_safe_redirect(home_url('profile'));
+        wp_safe_redirect(home_url('profil'));
     }
 
     if( (is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('pagetemplate-passwort-reset.php')) && is_user_logged_in()){
-        wp_safe_redirect(home_url('profile'));
+        wp_safe_redirect(home_url('profil'));
     }
 
     if(is_page_template('pagetemplate-profil.php') && !is_user_logged_in()){

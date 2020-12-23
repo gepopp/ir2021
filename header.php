@@ -10,6 +10,7 @@
  */
 
 namespace immobilien_redaktion_2020;
+global $FormSession;
 
 ?><!DOCTYPE html>
 <html <?php use Predis\Client;
@@ -298,8 +299,3 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
 ): ?>
     h-full flex items-center justify-center
 <?php endif; ?>">
-    <h3>redis test</h3>
-    <?php
-        $client = new Client();
-        echo $client->incr('views');
-        ?>

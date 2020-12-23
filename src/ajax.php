@@ -203,54 +203,6 @@ add_action('wp_ajax_user_exists', function () {
     }
 });
 
-add_action('wp_ajax_nopriv_resend_confirmation_email', function () {
-
-
-    $user = get_user_by('email', sanitize_email($_POST['email']));
-
-
-    if(is_wp_error($user)){
-        wp_die('Bitte geben Sie ihre E-Mail Adresse ein! <span @click="resendConfirmation(\''.$user->data->user_email . '\')" class="font-semibold underline cursor-pointer">Nocheinmal senden.</span>', 404);
-    }
-
-
-    global $wpdb;
-    $table = 'wp_user_activation_token';
-
-    $wpdb->delete($table, ['email' => $user->data->user_email]);
-
-    $token = wp_generate_uuid4();
-
-    $wpdb->insert($table, [
-        'user_id' => $user->ID,
-        'email' => $user->data->user_email,
-        'token' => $token,
-        'created_at' => \Carbon\Carbon::now()->format('d.m.Y H:i:s')
-    ],
-    [
-        '%d',
-        '%s',
-        '%s',
-        '%s',
-    ]);
-
-
-    $result = wp_remote_post('https://api.createsend.com/api/v3.2/transactional/smartEmail/7b1481ba-8715-48a0-8b4f-d17127675e23/send', [
-        'headers' => [
-            'authorization' => 'Basic ' . base64_encode('fab3e169a5a467b38347a38dbfaaad6d'),
-        ],
-        'body'    => json_encode([
-            'To'                  => $user->data->user_email,
-            "Data"
-            => [
-                'fullname' => $user->data->display_name,
-                'link'     => add_query_arg(['token' => $token], home_url('login')),
-            ],
-            "AddRecipientsToList" => true,
-            "ConsentToTrack"      => "Yes",
-        ]),
-    ]);
-});
 
 
 add_action('wp_ajax_send_email_pin', function (){

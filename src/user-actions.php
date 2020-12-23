@@ -4,7 +4,37 @@ namespace immobilien_redaktion_2020;
 
 use Carbon\Carbon;
 
-add_action('wp_ajax_set_user_reading_reminder', function (){
+
+function activate_user($token){
+
+    global $FormSession;
+
+    if ($token != '') {
+
+        global $wpdb;
+        $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
+        $wpdb->delete('wp_user_activation_token', ['token' => $token ]);
+        $token_user = get_user_by('email', $email);
+
+
+        if (!empty($token_user)) {
+            if (!in_array('subscriber', $token_user->roles)) {
+
+                $token_user->add_role('subscriber');
+                $token_user->remove_role('registered');
+
+             $sent =  (new CampaignMonitor())->transactional('registration_activated', $token_user);
+             $updated =   (new CampaignMonitor())->updateUser($token_user);
+
+            }
+        }else{
+            $FormSession->addToErrorBag('login_error', 'token_expired');
+        }
+        $FormSession->set('token_success', 'account_acitvated');
+    }
+}
+
+add_action('wp_ajax_set_user_reading_reminder', function () {
 
     $post = sanitize_text_field($_POST['id']);
     $user = wp_get_current_user();
@@ -14,27 +44,22 @@ add_action('wp_ajax_set_user_reading_reminder', function (){
     $wpdb->show_errors = false;
 
     $insert = $wpdb->insert('wp_user_read_later', [
-        'user_id' => $user->ID,
-        'post_id' => $post,
+        'user_id'   => $user->ID,
+        'post_id'   => $post,
         'permalink' => get_the_permalink($post),
-        'remind_at' => Carbon::now()->addDays(3)->format('Y-m-d H:i:s')
+        'remind_at' => Carbon::now()->addDays(3)->format('Y-m-d H:i:s'),
     ], ['%d', '%d', '%s', '%s']);
 
-    if(!$insert){
+    if (!$insert) {
         wp_die('', 401);
-    }else{
+    } else {
         wp_die('');
 
     }
 
-
-
 });
 
-
-
-add_action('wp_ajax_set_user_bookmark', function (){
-
+add_action('wp_ajax_set_user_bookmark', function () {
 
     $post = sanitize_text_field($_POST['id']);
     $user = wp_get_current_user();
@@ -44,121 +69,107 @@ add_action('wp_ajax_set_user_bookmark', function (){
     $wpdb->show_errors = false;
 
     $insert = $wpdb->insert('wp_user_bookmarks', [
-        'user_id' => $user->ID,
-        'post_id' => $post,
-        'permalink' => get_the_permalink($post)
+        'user_id'   => $user->ID,
+        'post_id'   => $post,
+        'permalink' => get_the_permalink($post),
     ], ['%d', '%d', '%s']);
 
-    if(!$insert){
+    if (!$insert) {
         wp_die('', 401);
-    }else{
+    } else {
         wp_die('');
 
     }
 
 });
 
-add_action('wp_ajax_remove_user_bookmark', function (){
+add_action('wp_ajax_remove_user_bookmark', function () {
 
     $bookmark_id = sanitize_text_field($_POST['id']);
     $user = wp_get_current_user();
 
     global $wpdb;
     $bookmark_user_id = $wpdb->get_var(sprintf('SELECT user_id FROM wp_user_bookmarks WHERE id = %d', $bookmark_id));
-    if($user->ID == $bookmark_user_id){
+    if ($user->ID == $bookmark_user_id) {
         $del = $wpdb->delete('wp_user_bookmarks', ['id' => $bookmark_id]);
     }
 
-    if(!is_wp_error($del)){
+    if (!is_wp_error($del)) {
         wp_die('');
-    }else{
+    } else {
         wp_die('', 400);
     }
 
-
 });
 
+add_action('admin_post_nopriv_frontend_login', function () {
 
+    global $FormSession;
 
-
-
-add_action('admin_post_nopriv_frontend_login', function (){
-
-
-    if(!wp_verify_nonce(sanitize_text_field($_POST['frontend_login']), 'frontend_login')){
-        $_SESSION['login_error'] = "Wir konnten nicht verifizieren dass, das Formular von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.";
-        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
-        exit;
+    if (!wp_verify_nonce(sanitize_text_field($_POST['frontend_login']), 'frontend_login')) {
+        $FormSession->addToErrorBag('login_error', 'nonce')->redirect();
     }
 
     $user = get_user_by('email', sanitize_email($_POST['email']));
-    $role = $user->roles[0];
+    $roles = $user->roles;
 
-    if ($role == 'registered') {
-        $_SESSION['login_error'] = __('Sie haben Ihre E-Mail Adresse noch nicht bestätigt, bitte überprüfen Sie Ihr E-Mail Postfach. Sollten Sie kein E-Mail erhalten haben können Sie <span @click="resendConfirmation(\''. sanitize_email($_POST['email']) . '\')" class="font-semibold underline cursor-pointer">hier ein neues anfordern.</span>');
-        $_SESSION['email'] = sanitize_email($_POST['email']);
-        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
-        exit;
+    if (in_array('registered', $roles)) {
+        $FormSession->addToErrorBag('login_error', 'not_activated')->redirect();
     }
 
     $user = wp_signon([
         'user_login'    => sanitize_email($_POST['email']),
         'user_password' => sanitize_text_field($_POST['password']),
-        'remember'      => isset($_POST['remember']) ? (bool) $_POST['remember'] : false
+        'remember'      => isset($_POST['remember']) ? (bool)$_POST['remember'] : false,
     ], false);
 
 
     if (is_wp_error($user)) {
-        $_SESSION['login_error'] = 'Wir konnten Sie mit dieser Kombination aus E-Mail und Passwort nicht einloggen. Bitte versuchen Sie es erneut.';
-        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
-        exit;
-    }
-
-    if(!empty(sanitize_text_field($_POST['redirect']))){
-        wp_safe_redirect(home_url($_POST['redirect']));
-        exit;
+        $FormSession->addToErrorBag('login_errror', 'login_credentials')->redirect();
     }
 
     wp_safe_redirect(home_url('profil'));
 
 });
 
-add_action('admin_post_nopriv_frontend_register', function (){
+add_action('admin_post_nopriv_frontend_register', function () {
 
-    if(!wp_verify_nonce($_POST['frontend_register'], 'frontend_register')){
-        $_SESSION['register_error'] = "Wir konnten nicht verifizieren dass, das Formular von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.";
-        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
-        exit;
+    global $FormSession;
+
+    if (!wp_verify_nonce($_POST['frontend_register'], 'frontend_register')) {
+        $FormSession->addToErrorBag('register_error', 'nonce')->redirect();
     }
 
-    if(sanitize_text_field($_POST['agb']) != 'on'){
-        $_SESSION['register_error'] = "Bitte akzeptieren Sie die AGB.";
-        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
-        exit;
+    if (sanitize_text_field($_POST['agb']) != 'on') {
+        $FormSession->addToErrorBag('register_error', 'agb')->redirect();
     }
 
+    $gender = sanitize_text_field($_POST['register_gender']);
+    $firstname = sanitize_text_field($_POST['first_name']);
+    $lastname = sanitize_text_field($_POST['last_name']);
+    $email = sanitize_email($_POST['register_email']);
+    $password = sanitize_text_field($_POST['password']);
 
-    $gender     = sanitize_text_field($_POST['register_gender']);
-    $firstname  = sanitize_text_field($_POST['fist_name']);
-    $lastname   = sanitize_text_field($_POST['last_name']);
-    $email      = sanitize_email($_POST['register_email']);
-    $password   = sanitize_text_field($_POST['password']);
-
-
-    $username = trim($firstname . ' ' . $lastname . ' ' . uniqid());
-
-    $user = wp_create_user( $username,  $password, $email );
-
-    if(is_wp_error($user)){
-        $_SESSION['register_error'] = "Wir konnten Ihre Daten nicht speichern, bitte versuchen Sie es später noch einmal.";
-        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
-        exit;
+    if (get_user_by('email', $email)) {
+        $FormSession->addToErrorBag('register_error', 'user_exists')->redirect();
     }
 
-    update_user_meta($user, 'first_name', $firstname);
-    update_user_meta($user, 'last_name', $lastname);
-    wp_update_user( array( 'ID' => $user, 'display_name' => trim($firstname . ' ' . $lastname ) ) );
+    if (strlen($password) < 8) {
+        $FormSession->addToErrorBag('register_error', 'password_length')->redirect();
+    }
 
+    $user = wp_create_user(trim($firstname . ' ' . $lastname . ' ' . uniqid()), $password, $email);
+
+    if (is_wp_error($user)) {
+        $FormSession->addToErrorBag('register_error', 'register_error')->redirect();
+    }
+
+    wp_update_user([
+        'ID'           => $user,
+        'display_name' => trim($firstname . ' ' . $lastname),
+        'first_name'   => $firstname,
+        'last_name'    => $lastname,
+    ]);
     update_field('field_5fb6bc5f82e62', $gender, 'user_' . $user);
 
     $user = get_user_by('ID', $user);
@@ -170,110 +181,120 @@ add_action('admin_post_nopriv_frontend_register', function (){
     $table = 'wp_user_activation_token';
 
     $wpdb->delete($table, ['email' => $user->data->user_email]);
-
     $token = wp_generate_uuid4();
 
     $wpdb->insert($table, [
-        'user_id' => $user->ID,
-        'email' => $user->data->user_email,
-        'token' => $token,
-        'created_at' => \Carbon\Carbon::now()->format('d.m.Y H:i:s')
+        'user_id'    => $user->ID,
+        'email'      => $user->data->user_email,
+        'token'      => $token,
+        'created_at' => \Carbon\Carbon::now()->format('d.m.Y H:i:s'),
     ],
-        [
-            '%d',
-            '%s',
-            '%s',
-            '%s',
-        ]);
+        ['%d', '%s', '%s', '%s']);
 
-    $result = wp_remote_post('https://api.createsend.com/api/v3.2/transactional/smartEmail/7b1481ba-8715-48a0-8b4f-d17127675e23/send', [
-        'headers' => [
-            'authorization' => 'Basic ' . base64_encode('fab3e169a5a467b38347a38dbfaaad6d'),
-        ],
-        'body'    => json_encode([
-            'To'                  => $user->data->user_email,
-            "Data"
-                                  => [
-                'fullname' => $user->data->display_name,
-                'link'     => add_query_arg(['token' => $token], home_url('login')),
-            ],
-            "AddRecipientsToList" => true,
-            "ConsentToTrack"      => "Yes",
-        ]),
-    ]);
-
-    $_SESSION['register_sent_success'] = 'Registrierung erfolgreich! Wir haben Ihnen ein E-Mail mit einem Link zum bestätigen Ihrer E-Mail Adresse, bitte überprüfen Sie Ihre Posteingang';
-    wp_safe_redirect( home_url($_POST['_wp_http_referer']) );
+    $sent = (new CampaignMonitor())->transactional('confirm_email_address', $user, ['link' => add_query_arg(['token' => $token], home_url('login'))]);
+    if ($sent) {
+        $FormSession->set('register_sent_success', 'register_sent_success')->redirect();
+    } else {
+        $FormSession->addToErrorBag('register_error', 'not_sent')->redirect();
+    }
 
 });
 
-add_action('admin_post_update_profile', function (){
+add_action('admin_post_update_profile', function () {
 
-    if(!wp_verify_nonce($_POST['frontend_register'], 'frontend_register')){
-        $_SESSION['profile_error'] = "Wir konnten nicht verifizieren dass, das Formular von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.";
-        wp_safe_redirect(home_url($_POST['_wp_http_referer']));
-        exit;
+    global $FormSession;
+
+    if (!wp_verify_nonce($_POST['frontend_register'], 'frontend_register')) {
+        $FormSession->addToErrorBag('profile_error', 'nonce')->redirect();
     }
 
     $user = wp_get_current_user();
-
-    $gender     = sanitize_text_field($_POST['register_gender']);
-    $firstname  = sanitize_text_field($_POST['fist_name']);
-    $lastname   = sanitize_text_field($_POST['last_name']);
+    $gender = sanitize_text_field($_POST['register_gender']);
+    $firstname = sanitize_text_field($_POST['fist_name']);
+    $lastname = sanitize_text_field($_POST['last_name']);
 
     update_user_meta($user->ID, 'first_name', $firstname);
     update_user_meta($user->ID, 'last_name', $lastname);
-    wp_update_user( array( 'ID' => $user->ID, 'display_name' => trim($firstname . ' ' . $lastname ) ) );
+    wp_update_user(['ID' => $user->ID, 'display_name' => trim($firstname . ' ' . $lastname)]);
 
     update_field('field_5fb6bc5f82e62', $gender, 'user_' . $user->ID);
 
-    $_SESSION['profile_success'] = 'Ihre Daten wurden aktualisiert.';
-    wp_safe_redirect( home_url($_POST['_wp_http_referer']) );
-
+    $FormSession->set('profile_updated', 'profile_updated');
 });
 
-add_action('admin_post_nopriv_new_password', function (){
+add_action('admin_post_nopriv_new_password', function () {
 
-    if(!wp_verify_nonce(sanitize_text_field($_POST['set_password']), 'set_password')){
-        $_SESSION['email_error'] = 'Wir konnten nicht validieren das diese Anfrage von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.';
-        wp_safe_redirect( home_url($_POST['passwort-vergessen']) );
+    global $FormSession;
+
+    if (!wp_verify_nonce(sanitize_text_field($_POST['new_password']), 'new_password')) {
+        $FormSession->addToErrorBag('frontend_reset_password', 'nonce')->redirect();
     }
 
     global $wpdb;
-    $user = get_user_by('email', $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . sanitize_text_field($_POST['token']) . '"'));
+    $user = get_user_by('email', sanitize_email($_POST['email']));
 
-    if(!$user){
-        $_SESSION['email_error'] = 'Wir konnten kein neues Passwort setzten, bitte veruschen Sie es noch einmal.';
-        wp_safe_redirect( home_url($_POST['passwort-vergessen']) );
+    if (!$user) {
+        $FormSession->addToErrorBag('frontend_reset_password', 'register_error')->redirect();
     }
 
-    if(!in_array('subscriber', $user->roles)){
+    if (!in_array('subscriber', $user->roles)) {
         $user->add_role('subscriber');
         $user->remove_role('registered');
     }
 
     wp_set_password(sanitize_text_field($_POST['pw']), $user->ID);
 
-    $wpdb->delete('wp_user_activation_token', ['email' => $user->data->user_email]);
-
-    $_SESSION['new_password'] = true;
-    wp_safe_redirect( home_url('login') );
+    $FormSession->set('token_success', 'password_changed')->redirect('login');
 
 });
 
-add_action('admin_post_nopriv_frontend_reset_password', function (){
+add_action('admin_post_nopriv_frontend_reset_password', function () {
 
-    if(!wp_verify_nonce(sanitize_text_field($_POST['reset_password']), 'reset_password')){
-        $_SESSION['email_error'] = 'Wir konnten nicht validieren das diese Anfrage von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.';
-        wp_safe_redirect( home_url($_POST['_wp_http_referer']) );
+    global $FormSession;
+
+    if (!wp_verify_nonce(sanitize_text_field($_POST['reset_password']), 'reset_password')) {
+        $FormSession->addToErrorBag('passwort_reset_error', 'nonce')->redirect();
     }
 
     $user = get_user_by('email', sanitize_email($_POST['email']));
 
-    if(!$user){
-        $_SESSION['email_error'] = 'Wir konnten zu dieser Adresse keinen Eintrag finden, bitte versuchen Sie es noch einmal.';
-        wp_safe_redirect( home_url($_POST['_wp_http_referer']) );
+    if (!$user) {
+        $FormSession->addToErrorBag('passwort_reset_error', 'email_not_found')->redirect();
     }
+
+    global $wpdb;
+    $table = 'wp_user_activation_token';
+
+    $wpdb->delete($table, ['email' => $user->data->user_email]);
+
+    $token = wp_generate_uuid4();
+
+    $wpdb->insert($table, [
+        'user_id'    => $user->ID,
+        'email'      => $user->data->user_email,
+        'token'      => $token,
+        'created_at' => \Carbon\Carbon::now()->format('d.m.Y H:i:s'),
+    ],
+        ['%d', '%s', '%s', '%s']);
+
+    $sent = (new CampaignMonitor())->transactional('reset_password', $user, ['link' => add_query_arg(['token' => $token], home_url('passwort-setzen'))]);
+
+    if($sent){
+        $FormSession->set('passwort_reset', 'reset_success')->redirect();
+    }else{
+        $FormSession->addToErrorBag('passwort_reset_error', 'register_error')->redirect();
+    }
+
+});
+
+add_action('wp_ajax_nopriv_resend_confirmation_email', function () {
+
+    $user = get_user_by('email', sanitize_email($_POST['email']));
+
+    if(is_wp_error($user)){
+        wp_die('Bitte geben Sie ihre E-Mail Adresse ein! <span @click="resendConfirmation(\''.$user->data->user_email . '\')" class="font-semibold underline cursor-pointer">Nocheinmal senden.</span>', 404);
+    }
+
 
     global $wpdb;
     $table = 'wp_user_activation_token';
@@ -288,30 +309,8 @@ add_action('admin_post_nopriv_frontend_reset_password', function (){
         'token' => $token,
         'created_at' => \Carbon\Carbon::now()->format('d.m.Y H:i:s')
     ],
-        [
-            '%d',
-            '%s',
-            '%s',
-            '%s',
-        ]);
+        [ '%d', '%s', '%s', '%s' ]);
 
-    $result = wp_remote_post('https://api.createsend.com/api/v3.2/transactional/smartEmail/0fd34ccb-86f1-4aa5-99e0-43c64ddc6379/send', [
-        'headers' => [
-            'authorization' => 'Basic ' . base64_encode('fab3e169a5a467b38347a38dbfaaad6d'),
-        ],
-        'body'    => json_encode([
-            'To'                  => $user->data->user_email,
-            "Data"
-                                  => [
-                'fullname' => $user->data->display_name,
-                'link'     => add_query_arg(['token' => $token], home_url('passwort-reset')),
-            ],
-            "AddRecipientsToList" => true,
-            "ConsentToTrack"      => "Yes",
-        ]),
-    ]);
-
-    $_SESSION['sent_success'] = 'Wir haben Ihnen ein E-Mail mit einem Link zum zurücksetzen Ihres Passwortes gesendet, bitte überprüfen Sie Ihre Posteingang';
-    wp_safe_redirect( home_url($_POST['_wp_http_referer']) );
+    wp_die((new CampaignMonitor())->transactional('confirm_email_address', $user, ['link' => add_query_arg(['token' => $token], home_url('login'))]));
 
 });
