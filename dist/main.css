@@ -10251,6 +10251,10 @@ video {
           transition-delay: 1000ms;
 }
 
+iframe{
+  max-width: 100% !important;
+}
+
 .image-holder{
   background-image: url(2aaf73785e27b9e0a00f6ca044a94d97.svg);
   background-position: center;
