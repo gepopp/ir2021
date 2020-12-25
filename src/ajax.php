@@ -19,42 +19,42 @@ add_action('wp_ajax_nopriv_get_page_views', 'immobilien_redaktion_2020\get_page_
 function get_page_views()
 {
 
-//    $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
-//
-//    if (file_exists($KEY_FILE_LOCATION)) {
-//
-//        $client = new \Google_Client();
-//        $client->setApplicationName("immobilien-redaktion-264213");
-//        $client->setAuthConfig($KEY_FILE_LOCATION);
-//        $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
-//        $analytics = new \Google_Service_Analytics($client);
-//
-//        $results = $analytics->data_ga->get(
-//            'ga:192606539',
-//            '2005-01-01',
-//            'today',
-//            'ga:pageviews',
-//            [
-//                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id']),
-//
-//            ]
-//        );
-//
-//        if (count($results->getRows()) > 0) {
-//
-//            $rows = $results->getRows();
-//            $sessions = $rows[0][0];
-//
-//            update_field('field_5f9ff32f68d04', $sessions, $_POST['id']);
-//            wp_die($sessions);
-//
-//
-//        } else {
-//            return "No results found.";
-//        }
-//    } else {
-//        echo 'no json';
-//    }
+    $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
+
+    if (file_exists($KEY_FILE_LOCATION)) {
+
+        $client = new \Google_Client();
+        $client->setApplicationName("immobilien-redaktion-264213");
+        $client->setAuthConfig($KEY_FILE_LOCATION);
+        $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+        $analytics = new \Google_Service_Analytics($client);
+
+        $results = $analytics->data_ga->get(
+            'ga:192606539',
+            '2005-01-01',
+            'today',
+            'ga:pageviews',
+            [
+                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id']),
+
+            ]
+        );
+
+        if (count($results->getRows()) > 0) {
+
+            $rows = $results->getRows();
+            $sessions = $rows[0][0];
+
+            update_field('field_5f9ff32f68d04', $sessions, $_POST['id']);
+            wp_die($sessions);
+
+
+        } else {
+            return "No results found.";
+        }
+    } else {
+        echo 'no json';
+    }
 }
 
 add_action('wp_ajax_load_more_category', 'immobilien_redaktion_2020\load_more_category');
