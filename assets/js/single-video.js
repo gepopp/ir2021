@@ -1,4 +1,4 @@
-window.prerolled = function (main_id, preroll_id, image){
+window.prerolled = function (main_id, preroll_id, image, skip){
     return {
         mainId: main_id,
         prerollId: preroll_id,
@@ -6,7 +6,7 @@ window.prerolled = function (main_id, preroll_id, image){
         played:false,
         prerolls: false,
         main: false,
-        countdown: 5,
+        countdown: skip,
         play(){
             var preroll = {
                 id: this.prerollId,

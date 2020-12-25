@@ -2,13 +2,12 @@
 
 $cat = wp_get_post_categories(get_the_ID(), ['child_of' => 17]);
 
-if(empty($cat)){
+if (empty($cat)) {
     $cat = get_category(17);
-}else{
+} else {
     $cat = array_shift($cat);
     $cat = get_category($cat);
 }
-
 
 
 $user = wp_get_current_user();
@@ -116,13 +115,30 @@ $next = get_posts([
 
     <?php elseif (get_field('field_5fe2884da38a5')): ?>
 
+    <?php
+    $preroll = get_field('field_5fe62b82702a2', 'option');
+    $preroll_link = get_field('field_5fe62ba8702a5', 'option');
+
+    if ($preroll == '') {
+        $preroll = get_field('field_5fe62b98702a4', 'option');
+        $preroll_link = get_field('field_5fe62ba8702a5', 'option');
+    }
+    $skip = get_field('field_5fe62d517e847', 'option');
+    ?>
+
+
         <div class="container mx-auto">
-            <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '494671064', '<?php echo $body['pictures']['sizes'][6]['link_with_play_button'] ?>')">
+            <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '<?php echo $preroll ?>', '<?php echo $body['pictures']['sizes'][6]['link_with_play_button'] ?>', <?php echo $skip ?>)">
                 <img :src="image" x-show="!played" @click="play()" class="cursor-pointer w-full h-auto">
+
                 <div id="preroll" class="w-full h-auto relative" x-show.transition.in.fade="prerolls">
-                    <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer">Überspringen</div>
-                    <div x-show="countdown > 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white">Überspringen in <span x-text="countdown"></span> Sekunden</div>
+                    <a href="<?php echo $preroll_link ?>" target="_blank" class="absolute w-full h-full"></a>
+                    <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer">Werbung überspringen</div>
+                    <div x-show="countdown > 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white">Werbung überspringen in
+                        <span x-text="countdown"></span> Sekunden
+                    </div>
                 </div>
+
                 <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>
             </div>
         </div>
