@@ -7,14 +7,23 @@ window.prerolled = function (main_id, preroll_id, image, skip){
         prerolls: false,
         main: false,
         countdown: skip,
+        loading:false,
+        video01Player: false,
         play(){
+
+            this.loading = true;
+
             var preroll = {
                 id: this.prerollId,
                 width: "1280",
-                controls: false
+                controls: false,
+                quality: "1080p"
             };
-            var video01Player = new Vimeo.Player('preroll', preroll);
-            video01Player.play().then(() =>  {
+
+
+            this.video01Player = new Vimeo.Player('preroll', preroll);
+            this.video01Player.play().then(() =>  {
+                this.loading = false;
                 this.played = true;
                 this.prerolls = true;
 
@@ -27,28 +36,36 @@ window.prerolled = function (main_id, preroll_id, image, skip){
                 }, 1000)
 
             });
-            video01Player.on('ended', ()=>{
+            this.video01Player.on('ended', ()=>{
                 this.playMain();
             });
 
-            video01Player.on('play', function() {
+            this.video01Player.on('play', function() {
                 console.log('Played the first video');
             });
 
         },
-        playMain(){
+        playMain(autoplay = true){
+
+            this.video01Player.pause();
+
             var main = {
                 id: this.mainId,
                 width: "1280",
                 controls: true
             };
             var video01Player = new Vimeo.Player('clip', main);
-            video01Player.play().then(() =>  {
-                this.played = true;
-                this.prerolls = false;
-                this.main = true;
+            this.played = true;
+            this.prerolls = false;
+            this.main = true;
 
-            });
+            if(autoplay){
+                video01Player.play().then(() =>  {
+
+
+                });
+            }
+
 
 
         }
