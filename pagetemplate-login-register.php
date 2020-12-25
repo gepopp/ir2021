@@ -2,9 +2,6 @@
 /**
  * Template Name: Login Register
  */
-
-use Overtrue\Socialite\SocialiteManager;
-
 get_header();
 
 if (isset($_GET['token'])) {

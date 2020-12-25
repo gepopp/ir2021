@@ -4,6 +4,7 @@
         "nesbot/carbon": "^2.41",
         "google/apiclient": "^2.8",
         "overtrue/socialite": "^3.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "vimeo/vimeo-api": "2.0"
     }
 }

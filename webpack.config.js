@@ -59,7 +59,8 @@ const config = {
 		category:'./assets/js/category.js',
 		author:'./assets/js/author.js',
 		login:'./assets/js/login.js',
-		profile: './assets/js/profile.js'
+		profile: './assets/js/profile.js',
+		sehen: './assets/js/sehen.js'
 	},
 	optimization: {
 		minimizer: [
@@ -108,7 +109,18 @@ const config = {
 						},
 					}
 				],
-			}
+			},
+			{
+				test: /\.svg$/,
+				use: [
+					{
+						loader: 'svg-url-loader',
+						options: {
+							limit: 10000,
+						},
+					},
+				],
+			},
 		]
 	},
 	resolve: {

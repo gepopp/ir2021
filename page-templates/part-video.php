@@ -19,6 +19,9 @@ $query = new \WP_Query([
                             <img src="https://cdn.jwplayer.com/v2/media/<?php the_field('field_5c65130772844') ?>/poster.jpg" class="w-full h-auto max-w-full">
                         <?php elseif (get_field('field_5f96fa1673bac')): ?>
                             <img src="https://img.youtube.com/vi/<?php the_field('field_5f96fa1673bac') ?>/mqdefault.jpg" class="w-full h-auto max-w-full">
+                        <?php  elseif(get_field('field_5fe2884da38a5')): ?>
+                            <iframe src="https://player.vimeo.com/video/<?php the_field('field_5fe2884da38a5') ?>" width="100%" height="455" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <script src="https://player.vimeo.com/api/player.js"></script>
                         <?php endif; ?>
                         <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
                         <div class="absolute bottom-0 left-0 m-5 hidden lg:block">

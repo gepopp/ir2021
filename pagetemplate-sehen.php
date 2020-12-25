@@ -30,7 +30,7 @@ $headvideo = get_posts([
 ?>
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
         <div class="relative">
-            <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
+                <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
                 <div id="headvideo"></div>
                 <script>
                     var player = jwplayer('headvideo');
@@ -54,6 +54,29 @@ position: absolute;
   height: 100%;
   border: 0;
 "></iframe>
+                </div>
+            <?php elseif (get_field('field_5fe2884da38a5', $headvideo[0]->ID)): ?>
+                <div class="video-container" style="
+                            position: relative;
+                            width: 100%;
+                            padding-bottom: 56.25%;
+                            ">
+                    <iframe src="https://player.vimeo.com/video/<?php the_field('field_5fe2884da38a5', $headvideo[0]->ID) ?>"
+                            width="100%"
+                            height="800"
+                            frameborder="0"
+                            webkitallowfullscreen
+                            mozallowfullscreen
+                            allowfullscreen
+                            style="
+position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+"></iframe>
+                    <script src="https://player.vimeo.com/api/player.js"></script>
                 </div>
             <?php endif; ?>
 
@@ -129,8 +152,12 @@ $query = new WP_Query([
                                     <img src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844') ?>/poster.jpg"/>
                                 <?php elseif (get_field('field_5f96fa1673bac')): ?>
                                     <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
+                                <?php elseif (get_field('field_5fe2884da38a5')): ?>
+                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>')">
+                                        <img :src="imgUrl">
+                                    </div>
                                 <?php endif; ?>
-                              <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                                     <div class="w-4 h-4 bg-white rounded-full">
                                         <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
@@ -182,6 +209,10 @@ $query = new WP_Query([
                                     <img src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844') ?>/poster.jpg"/>
                                 <?php elseif (get_field('field_5f96fa1673bac')): ?>
                                     <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
+                                <?php elseif (get_field('field_5fe2884da38a5')): ?>
+                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>')">
+                                        <img :src="imgUrl">
+                                    </div>
                                 <?php endif; ?>
                                 <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                                     <div class="w-4 h-4 bg-white rounded-full">
@@ -239,6 +270,11 @@ foreach ($cats as $cat): ?>
                 $url = "https://cdn.jwplayer.com/v2/media/" . get_field('field_5c65130772844') . "/poster.jpg";
             elseif (get_field('field_5f96fa1673bac')):
                 $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
+            elseif (get_field('field_5fe2884da38a5')):
+                $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
+                $body = $response['body'];
+                $url = $body['pictures']['sizes'][2]['link'];
             else:
                 $url = false;
             endif;
@@ -282,9 +318,7 @@ $watch('active', (value) => {
                     <div class="w-full flex-shrink-0 text-white flex items-center justify-center">
                         <div class="grid grid-cols-6 gap-4">
                             <template x-for="post in row">
-
                                 <div class="col-span-3 lg:col-span-1">
-
                                     <div class="relative">
                                         <a :href="post.permalink">
                                             <div class="w-full bg-cover" :style="'padding-top: 56.25%; background-image: url(' + post.img + ')'"></div>

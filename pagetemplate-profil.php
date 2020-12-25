@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Profil
+ * Template Name: User Profil
  */
 get_header();
 the_post();

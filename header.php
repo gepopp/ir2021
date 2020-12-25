@@ -13,9 +13,7 @@ namespace immobilien_redaktion_2020;
 global $FormSession;
 
 ?><!DOCTYPE html>
-<html <?php use Predis\Client;
-
-language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,19 +25,13 @@ language_attributes(); ?>>
         window.ajaxurl = '<?php echo admin_url('admin-ajax.php') ?>';
     </script>
 
-    <?php if (is_page_template('pagetemplate-sehen.php')): ?>
-        <script src="https://cdn.jwplayer.com/libraries/gjECD05K.js"></script>
-    <?php endif; ?>
-
     <?php if (is_singular()): ?>
         <meta property="og:url" content="<?php the_permalink(); ?>"/>
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="<?php the_title() ?>"/>
         <meta property="og:description" content="<?php echo get_the_excerpt(); ?>"/>
         <?php if (get_post_format() == 'video'): ?>
-            <?php if (get_field('field_5c65130772844')): ?>
-                <meta property="og:image" content="<?php echo 'https://cdn.jwplayer.com/v2/media/' . get_field('field_5c65130772844') . '/poster.jpg' ?>"/>
-            <?php elseif (get_field('field_5f96fa1673bac')): ?>
+            <?php if (get_field('field_5f96fa1673bac')): ?>
                 <meta property="og:image" content="<?php echo 'https://img.youtube.com/vi/' . get_field('field_5f96fa1673bac') . '/hqdefault.jpg' ?>"/>
             <?php endif; ?>
         <?php else: ?>

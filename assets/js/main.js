@@ -8,6 +8,7 @@ import menu_init from './modules/menu'
 document.addEventListener('DOMContentLoaded', menu_init);
 
 const axios = require('axios');
+
 window.slider = function ( start, cat, pages) {
     return {
         rows: [start],

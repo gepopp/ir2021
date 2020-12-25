@@ -24,6 +24,10 @@ class ComposerStaticInitd82b92dce78b62dab35bc260b14ce80b
         array (
             'phpseclib\\' => 10,
         ),
+        'V' => 
+        array (
+            'Vimeo\\' => 6,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -71,6 +75,10 @@ class ComposerStaticInitd82b92dce78b62dab35bc260b14ce80b
         'phpseclib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
+        'Vimeo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vimeo/vimeo-api/src/Vimeo',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (

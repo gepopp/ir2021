@@ -10251,6 +10251,14 @@ video {
           transition-delay: 1000ms;
 }
 
+.image-holder{
+  background-image: url(2aaf73785e27b9e0a00f6ca044a94d97.svg);
+  background-position: center;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  background-color: #1a202c;
+}
+
 .animate-ping {
   -webkit-animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
           animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;

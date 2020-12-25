@@ -63,36 +63,22 @@ $query = new \WP_Query([
 ?>
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
 
-    <?php get_template_part('banner-templates/banner', 'mega') ?>
+<?php get_template_part('banner-templates/banner', 'mega') ?>
 
     <div class="grid grid-cols-2 gap-10">
         <?php if ($query->have_posts()): ?>
             <?php while ($query->have_posts()): ?>
                 <?php $query->the_post(); ?>
                 <div class="col-span-2 md:col-span-1 relative">
-                    <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900 h-full">
-
-                        <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
-                            <div class="bg-primary-100 w-full h-full pt-75p"></div>
-                        <?php else: ?>
-                            <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full']); ?>
-                        <?php endif; ?>
-                        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                            <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
-                            <?php endif; ?>
-                        </div>
-                        <div class="absolute bottom-0 left-0 m-5">
-                            <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
-                        </div>
+                    <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder" style="padding-top: 56%">
+                        <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'", 'style' => "margin-top:-56%"]); ?>
+                        <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
                     </a>
                 </div>
             <?php endwhile; ?>
         <?php endif; ?>
     </div>
 <?php wp_reset_postdata(); ?>
-
-<?php //get_template_part('page-templates/part', 'fourbanner') ?>
 
 <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
 
@@ -110,7 +96,7 @@ foreach ($cats as $cat):
         <a href="<?php echo get_category_link($cat) ?>" class="text-2xl font-bold hover:underline mb-3"
            style="background: linear-gradient(0deg, <?php echo $color ?> 0%, <?php echo $color ?> 50%, transparent 50%, transparent 100%);">
 
-           <?php echo $cat->name ?>
+            <?php echo $cat->name ?>
         </a>
         <div class="grid grid-cols-4 lg:grid-cols-5 gap-4">
             <?php
@@ -127,20 +113,11 @@ foreach ($cats as $cat):
                     ?>
                     <div class="<?php if ($runner != 5): ?>col-span-2 <?php else: ?>col-span-4 <?php endif; ?>lg:col-span-1">
                         <div class="relative">
-                            <a href="<?php the_permalink(); $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'article'); ?>">
-                                <?php if (!has_post_thumbnail() || !checkRemoteFile($thumb_url)): ?>
-                                    <div class="bg-primary-100 w-full h-full" style="padding-top: 56.25%;"></div>
-                                <?php else: ?>
-                                    <?php the_post_thumbnail('featured_small', ['class' => 'w-full h-auto max-w-full']); ?>
-                                <?php endif; ?>
-                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                                    <?php if (!has_post_thumbnail() || !checkRemoteFile($thumb_url)): ?>
-                                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
-                                    <?php endif; ?>
-                                </div>
+
+                            <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder" style="padding-top: 56%">
+                                <?php the_post_thumbnail('featured_small', ['class' => 'w-full h-auto max-w-full', 'style' => 'margin-top:-56%', 'onerror' => "this.style.display='none'"]); ?>
                             </a>
                             <?php if ($runner == 5): ?>
-
                                 <div class="absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex justify-center items-center">
                                     <p class="font-bold text-xs">
                                         <a href="<?php echo get_category_link($cat) ?>" class="underline">

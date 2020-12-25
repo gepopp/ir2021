@@ -1,68 +1,60 @@
 <?php
 namespace immobilien_redaktion_2020;
 
+add_action('wp_ajax_load_vimeo_thumbnail', 'immobilien_redaktion_2020\load_vimeo_image');
+add_action('wp_ajax_nopriv_load_vimeo_thumbnail', 'immobilien_redaktion_2020\load_vimeo_image');
+
+function load_vimeo_image(){
+    $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+    $response = $lib->request('/videos/' . $_POST['id'], [], 'GET');
+    $body = $response['body'];
+
+    wp_die( $body['pictures']['sizes'][2]['link'] );
+
+}
 
 add_action('wp_ajax_get_page_views', 'immobilien_redaktion_2020\get_page_views');
 add_action('wp_ajax_nopriv_get_page_views', 'immobilien_redaktion_2020\get_page_views');
 
 function get_page_views()
 {
-    echo 100;
-    exit;
 
-
-    $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
-
-    if (file_exists($KEY_FILE_LOCATION)) {
-        // Create and configure a new client object.
-        $client = new \Google_Client();
-
-
-        $client->setApplicationName("immobilien-redaktion-264213");
-        $client->setAuthConfig($KEY_FILE_LOCATION);
-        $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
-        $analytics = new \Google_Service_Analytics($client);
-
-
-        $permalink = get_the_permalink($_POST['id']);
-        $permalink = explode('/', $permalink);
-        // $permalink = array_pop($permalink);
-
-
-        $results = $analytics->data_ga->get(
-            'ga:192606539',
-            '2005-01-01',
-            'today',
-            'ga:pageviews',
-            [
-                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id']),
-
-            ]
-        );
-
-        // Parses the response from the Core Reporting API and prints
-        // the profile name and total sessions.
-        if (count($results->getRows()) > 0) {
-
-            // Get the profile name.
-            $profileName = $results->getProfileInfo()->getProfileName();
-
-            // Get the entry for the first entry in the first row.
-            $rows = $results->getRows();
-            $sessions = $rows[0][0];
-
-            update_field('field_5f9ff32f68d04', $sessions, $_POST['id']);
-
-            // Print the results.
-            wp_die($sessions);
-
-
-        } else {
-            return "No results found.";
-        }
-    } else {
-        echo 'no json';
-    }
+//    $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
+//
+//    if (file_exists($KEY_FILE_LOCATION)) {
+//
+//        $client = new \Google_Client();
+//        $client->setApplicationName("immobilien-redaktion-264213");
+//        $client->setAuthConfig($KEY_FILE_LOCATION);
+//        $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+//        $analytics = new \Google_Service_Analytics($client);
+//
+//        $results = $analytics->data_ga->get(
+//            'ga:192606539',
+//            '2005-01-01',
+//            'today',
+//            'ga:pageviews',
+//            [
+//                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id']),
+//
+//            ]
+//        );
+//
+//        if (count($results->getRows()) > 0) {
+//
+//            $rows = $results->getRows();
+//            $sessions = $rows[0][0];
+//
+//            update_field('field_5f9ff32f68d04', $sessions, $_POST['id']);
+//            wp_die($sessions);
+//
+//
+//        } else {
+//            return "No results found.";
+//        }
+//    } else {
+//        echo 'no json';
+//    }
 }
 
 add_action('wp_ajax_load_more_category', 'immobilien_redaktion_2020\load_more_category');
@@ -149,12 +141,12 @@ add_action('wp_ajax_nopriv_load_videos', 'immobilien_redaktion_2020\load_videos'
 function load_videos()
 {
 
-    $query = new WP_Query([
+    $query = new \WP_Query([
         'post_type'           => 'post',
         'post_status'         => 'publish',
         'ignore_sticky_posts' => true,
         'posts_per_page'      => 6,
-        'paged'               => (int)$_POST['page'],
+        'paged'               => (int)$_POST['page'] + 1,
         'category__in'        => [(int)$_POST['cat']],
     ]);
 
@@ -169,6 +161,11 @@ function load_videos()
                 $url = "https://cdn.jwplayer.com/v2/media/" . get_field('field_5c65130772844') . "/poster.jpg";
             elseif (get_field('field_5f96fa1673bac')):
                 $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
+            elseif (get_field('field_5fe2884da38a5')):
+                $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
+                $body = $response['body'];
+                $url = $body['pictures']['sizes'][2]['link'];
             else:
                 $url = false;
             endif;
@@ -206,7 +203,6 @@ add_action('wp_ajax_user_exists', function () {
 
 
 add_action('wp_ajax_send_email_pin', function (){
-
 
     $user = get_user_by('email', sanitize_email($_POST['old_email']));
 
@@ -251,7 +247,7 @@ add_action('wp_ajax_send_email_pin', function (){
         wp_die('Wir konnten keinen Pin senden.', 400);
     }
     wp_die('success');
-
+//
 });
 
 

@@ -29,12 +29,14 @@
 		"postcss-loader": "^3.0.0",
 		"resolve-url-loader": "^3.1.1",
 		"style-loader": "^1.2.1",
+		"svg-url-loader": "^7.1.1",
 		"tailwindcss": "^1.5.2",
 		"uglifyjs-webpack-plugin": "^2.2.0",
 		"webpack": "^4.43.0",
 		"webpack-cli": "^3.3.12"
 	},
 	"dependencies": {
+		"@vimeo/player": "^2.14.1",
 		"axios": "^0.21.0",
 		"flatpickr": "^4.6.6",
 		"js-cookie": "^2.2.1",

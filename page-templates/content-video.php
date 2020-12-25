@@ -6,11 +6,20 @@ $cat = get_category($cat);
 
 $user = wp_get_current_user();
 $post = get_the_ID();
+
+
+$lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+$response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
+$body = $response['body'];
 ?>
+
+
 <?php if (!empty(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs']) && checkRemoteFile(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['xs'])): ?>
     <div class="conatainer mx-auto mt-32 flex justify-center items-center">
         <div class="flex justify-center items-center">
-            <img src="<?php echo get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['author_small'] ?>" class="rounded-full w-12 h-12">
+            <?php if (checkRemoteFile(get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['author_small'])): ?>
+                <img src="<?php echo get_field('field_5ded37c474589', 'user_' . get_the_author_meta('ID'))['sizes']['author_small'] ?>" class="rounded-full w-12 h-12">
+            <?php endif; ?>
             <p class="ml-5 text-xl text-white underline"><?php echo get_the_author_posts_link(get_the_ID()) ?></p>
         </div>
     </div>
@@ -97,6 +106,20 @@ $next = get_posts([
                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
         </div>
+
+    <?php elseif (get_field('field_5fe2884da38a5')): ?>
+        <div class="container mx-auto">
+            <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '494384871', '<?php echo $body['pictures']['sizes'][6]['link_with_play_button'] ?>')">
+                <img :src="image" x-show="!played" @click="play()" class="cursor-pointer">
+                <div id="preroll" class="w-full h-auto relative" x-show.transition.in.fade="prerolls">
+                    <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer">Überspringen</div>
+                    <div x-show="countdown > 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white">Überspringen in <span x-text="countdown"></span> Sekunden</div>
+                </div>
+                <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>
+            </div>
+        </div>
+
+
     <?php endif; ?>
 </div>
 
@@ -192,7 +215,6 @@ $next = get_posts([
                 </div>
 
 
-
                 <p class="mb-5 text-white"><?php echo get_the_excerpt(); ?></p>
                 <?php echo preg_replace('#\[[^\]]+\]#', '', get_the_content()); ?>
             </div>
@@ -245,8 +267,14 @@ $next = get_posts([
                                     <img class="w-full h-auto" src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844', $next_id) ?>/poster.jpg"/>
                                 <?php elseif (get_field('field_5f96fa1673bac', $next_id)): ?>
                                     <img class="w-full h-auto" src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac', $next_id) ?>/mqdefault.jpg"/>
-                                <?php endif;
-                                ?>
+                                <?php elseif (get_field('field_5fe2884da38a5', $next_id)): ?>
+                                    <?php
+                                    $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+                                    $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5', $next_id), [], 'GET');
+                                    $body = $response['body'];
+                                    ?>
+                                    <img src="<?php echo $body['pictures']['sizes'][3]['link'] ?>">
+                                <?php endif; ?>
                                 <div class="absolute w-full h-full flex flex-col justify-end top-0 left-0 p-5">
                                     <div class="inline ">
                                                 <span class="bg-white text-gray-900 text-sm py-2 px-3 font-bold">

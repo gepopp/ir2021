@@ -2,7 +2,13 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
+.image-holder{
+    background-image: url("../../assets/images/icon.svg");
+    background-position: center;
+    background-size: 25%;
+    background-repeat: no-repeat;
+    background-color: #1a202c;
+}
 
 .animate-ping {
     animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;

@@ -77,6 +77,16 @@ add_action( 'wp_enqueue_scripts', function() {
         );
     }
 
+    if(is_page_template('pagetemplate-sehen.php')){
+        wp_enqueue_script(
+            'immobilien_redaktion_2020_js_sehen',
+            immobilien_redaktion_2020_URL . "/dist/sehen{$min_ext}.js",
+            [],
+            immobilien_redaktion_2020_VERSION,
+            true
+        );
+    }
+
 
 
 	// CSS

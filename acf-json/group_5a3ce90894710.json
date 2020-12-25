@@ -58,6 +58,25 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5fe2884da38a5",
+            "label": "Vimeo ID",
+            "name": "vimeo_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -94,5 +113,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1604317915
+    "modified": 1608812136
 }

@@ -12,6 +12,7 @@ use Carbon\Carbon;
  */
 
 add_action('template_redirect', function (){
+
     if(is_page_template('pagetemplate-login-register.php') && is_user_logged_in()){
         wp_safe_redirect(home_url('profil'));
     }
@@ -23,6 +24,7 @@ add_action('template_redirect', function (){
     if(is_page_template('pagetemplate-profil.php') && !is_user_logged_in()){
         wp_safe_redirect(home_url('login'));
     }
+
 });
 
 
@@ -226,8 +228,6 @@ function my_sortable_views_column( $columns ) {
  // To make a column 'un-sortable' remove it from the array
     unset($columns['date']);
 
-
-    wp_die(var_dump($columns));
 
     return $columns;
 }
