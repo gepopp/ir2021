@@ -93,10 +93,12 @@ window.articleViews = function (id){
            params.append('action', 'get_page_views_from_ga_api');
            params.append('id', id);
 
-           axios.post(window.ajaxurl, params)
-               .then((rsp)=>{
-                   this.views = rsp.data;
-               });
+           // axios.post(window.ajaxurl, params)
+           //     .then((rsp)=>{
+           //         this.views = rsp.data;
+           //     });
+
+           this.views = 10000;
 
        }
    }
