@@ -128,7 +128,7 @@ $next = get_posts([
 
 
         <div class="container mx-auto">
-            <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '<?php echo $preroll ?>', '<?php echo $body['pictures']['sizes'][6]['link_with_play_button'] ?>', <?php echo $skip ?>)">
+            <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '<?php echo $preroll ?>', '<?php echo $body['pictures']['sizes'][6]['link'] ?>', <?php echo $skip ?>)">
 
                 <div  x-show="!played" class="relative">
                     <img :src="image" @click="play()" class="cursor-pointer w-full h-auto">
