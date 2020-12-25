@@ -1,6 +1,11 @@
 <?php
 
 $cat = wp_get_post_categories(get_the_ID(), ['child_of' => 17]);
+
+if(empty($cat)){
+    $cat = get_categories(['ID' => 17]);
+}
+
 $cat = array_shift($cat);
 $cat = get_category($cat);
 
