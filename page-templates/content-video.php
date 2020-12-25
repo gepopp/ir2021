@@ -3,11 +3,13 @@
 $cat = wp_get_post_categories(get_the_ID(), ['child_of' => 17]);
 
 if(empty($cat)){
-    $cat = get_categories(['ID' => 17]);
+    $cat = get_category(17);
+}else{
+    $cat = array_shift($cat);
+    $cat = get_category($cat);
 }
 
-$cat = array_shift($cat);
-$cat = get_category($cat);
+
 
 $user = wp_get_current_user();
 $post = get_the_ID();
