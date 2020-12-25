@@ -2,6 +2,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+iframe{
+    max-width: 100%;
+    height: auto;
+}
+
 .image-holder{
     background-image: url("../../assets/images/icon.svg");
     background-position: center;
