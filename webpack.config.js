@@ -60,7 +60,8 @@ const config = {
 		author:'./assets/js/author.js',
 		login:'./assets/js/login.js',
 		profile: './assets/js/profile.js',
-		sehen: './assets/js/sehen.js'
+		sehen: './assets/js/sehen.js',
+		singlevideo: './assets/js/single-video.js'
 	},
 	optimization: {
 		minimizer: [

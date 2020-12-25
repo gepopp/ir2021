@@ -13,10 +13,10 @@ function load_vimeo_image(){
 
 }
 
-add_action('wp_ajax_get_page_views', 'immobilien_redaktion_2020\get_page_views');
-add_action('wp_ajax_nopriv_get_page_views', 'immobilien_redaktion_2020\get_page_views');
+add_action('wp_ajax_get_page_views_from_ga_api', 'immobilien_redaktion_2020\get_page_views_from_ga_api');
+add_action('wp_ajax_nopriv_get_page_views_from_ga_api', 'immobilien_redaktion_2020\get_page_views_from_ga_api');
 
-function get_page_views()
+function get_page_views_from_ga_api()
 {
 
     $KEY_FILE_LOCATION = get_stylesheet_directory() . '/immobilien-redaktion-264213-b40469a0e617.json';
@@ -50,10 +50,10 @@ function get_page_views()
 
 
         } else {
-            return "No results found.";
+            wp_die( "No results found." );
         }
     } else {
-        echo 'no json';
+        wp_die( 'no json' );
     }
 }
 

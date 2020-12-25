@@ -55,6 +55,17 @@ add_action( 'wp_enqueue_scripts', function() {
             immobilien_redaktion_2020_VERSION,
             true
         );
+
+        if(get_post_format() == 'video'){
+            wp_enqueue_script(
+                'immobilien_redaktion_2020_js_single_video',
+                immobilien_redaktion_2020_URL . "/dist/singlevideo{$min_ext}.js",
+                [],
+                immobilien_redaktion_2020_VERSION,
+                true
+            );
+        }
+
     }
 
     if(is_category()){

@@ -90,7 +90,7 @@ window.articleViews = function (id){
            let views = 0;
 
            var params = new URLSearchParams();
-           params.append('action', 'get_page_views');
+           params.append('action', 'get_page_views_from_ga_api');
            params.append('id', id);
 
            axios.post(window.ajaxurl, params)

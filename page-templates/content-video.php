@@ -115,6 +115,7 @@ $next = get_posts([
         </div>
 
     <?php elseif (get_field('field_5fe2884da38a5')): ?>
+
         <div class="container mx-auto">
             <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '494384871', '<?php echo $body['pictures']['sizes'][6]['link_with_play_button'] ?>')">
                 <img :src="image" x-show="!played" @click="play()" class="cursor-pointer">
@@ -125,7 +126,6 @@ $next = get_posts([
                 <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>
             </div>
         </div>
-
 
     <?php endif; ?>
 </div>

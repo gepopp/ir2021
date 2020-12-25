@@ -25,6 +25,14 @@ global $FormSession;
         window.ajaxurl = '<?php echo admin_url('admin-ajax.php') ?>';
     </script>
 
+
+    <?php if (is_single()): ?>
+        <?php if (get_post_format() == 'video'): ?>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+        <?php endif; ?>
+    <?php endif; ?>
+
+
     <?php if (is_singular()): ?>
         <meta property="og:url" content="<?php the_permalink(); ?>"/>
         <meta property="og:type" content="article"/>
