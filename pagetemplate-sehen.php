@@ -29,8 +29,9 @@ $headvideo = get_posts([
 ]);
 ?>
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
+        <?php get_template_part('banner-templates/banner', 'mega') ?>
         <div class="relative">
-                <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
+            <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
                 <div id="headvideo"></div>
                 <script>
                     var player = jwplayer('headvideo');
@@ -56,29 +57,17 @@ position: absolute;
 "></iframe>
                 </div>
             <?php elseif (get_field('field_5fe2884da38a5', $headvideo[0]->ID)): ?>
-                <div class="video-container" style="
-                            position: relative;
-                            width: 100%;
-                            padding-bottom: 56.25%;
-                            ">
-                    <iframe src="https://player.vimeo.com/video/<?php the_field('field_5fe2884da38a5', $headvideo[0]->ID) ?>"
-                            width="100%"
-                            height="800"
-                            frameborder="0"
-                            webkitallowfullscreen
-                            mozallowfullscreen
-                            allowfullscreen
-                            style="
-position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-"></iframe>
-                    <script src="https://player.vimeo.com/api/player.js"></script>
-                </div>
+            <?php if (get_field('field_5fe7058a647cb', $headvideo[0]->ID) == '') {
+                $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5', $headvideo[0]->ID), [], 'GET');
+                $body = $response['body'];
+                $img_url = $body['pictures']['sizes'][2]['link'];
+            } else {
+                $img_url = get_field('field_5fe7058a647cb', $headvideo[0]->ID);
+            } ?>
+            <img src="<?php echo $img_url ?>" class="w-full h-auto">
             <?php endif; ?>
+
 
             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center lg:hidden">
                 <a href="<?php echo get_the_permalink($headvideo[0]->ID) ?>">
@@ -91,20 +80,19 @@ position: absolute;
                     </div>
                 </a>
             </div>
-            <div class="hidden lg:block absolute top-0 right-0" style="margin-right: -350px">
-                <a href="#">
-                    <!--                <img src="--><?php //echo get_the_post_thumbnail_url($banner_large[0]->ID, 'full');
-                    ?><!--" class="">-->
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/EHL-2020.jpg">
-                </a>
-            </div>
         </div>
 
+        <div class="absolute bottom-0 left-0 p-10 hidden lg:block bg-gray-900 bg-opacity-50">
+            <a href="<?php echo get_the_permalink($headvideo[0]->ID) ?>">
+                <h1 class="text-3xl text-white"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
+                <p class="text-2xl text-white flex items-center"><?php echo get_field('field_5a3ce915590ae', $headvideo[0]->ID) ?> | <?php echo get_the_time('d.m.Y', $headvideo[0]->ID) ?></p>
+            </a>
+        </div>
 
-        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 p-10 flex flex-col justify-between hidden lg:flex" style="box-shadow: inset 0 0 5em 1em #1a202c;">
-            <h1 class="text-3xl text-white hidden lg:block"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
-            <div class="inline flex justify-between ">
-                <a href="<?php echo get_the_permalink($headvideo[0]->ID) ?>" class="bg-white text-gray-900 text-2xl px-3 py-2 rounded shadow-lg flex items-center ">
+        <div class="absolute top-0 left-0 hidden lg:block w-full h-full" style="box-shadow: inset 0 0 5em 1em #000000;">
+            <a href="<?php echo get_the_permalink($headvideo[0]->ID) ?>" class="w-full h-full flex justify-center items-center">
+            <div class="inline flex justify-between">
+                <div class="bg-white text-gray-900 text-2xl px-3 py-2 rounded shadow-lg flex items-center pr-10">
                     <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">
                         <div class="w-12 h-12 animate-ping bg-white rounded-full">
                             <svg class="w-12 h-12 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -112,16 +100,16 @@ position: absolute;
                             </svg>
                         </div>
                     </div>
-                    Jetzt ansehen
-                </a>
-                <p class="text-2xl text-white flex items-center"><?php echo get_field('field_5a3ce915590ae', $headvideo[0]->ID) ?> | <?php echo get_the_time('d.m.Y', $headvideo[0]->ID) ?></p>
+                    <span class="underline">Jetzt ansehen</span>
+                </div>
             </div>
+            </a>
         </div>
 
-
-        <h1 class="lg:hidden text-white text-xl"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
     </div>
-
+    <div class="container mx-auto px-5 lg:px-0 relative">
+        <h1 class="text-xl text-white lg:hidden"><?php echo get_the_title($headvideo[0]->ID) ?></h1>
+    </div>
 
 <?php
 $query = new WP_Query([
@@ -210,7 +198,7 @@ $query = new WP_Query([
                                 <?php elseif (get_field('field_5f96fa1673bac')): ?>
                                     <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
                                 <?php elseif (get_field('field_5fe2884da38a5')): ?>
-                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>')">
+                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>', <?php echo get_the_ID() ?>)">
                                         <img :src="imgUrl">
                                     </div>
                                 <?php endif; ?>
@@ -271,10 +259,17 @@ foreach ($cats as $cat): ?>
             elseif (get_field('field_5f96fa1673bac')):
                 $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
             elseif (get_field('field_5fe2884da38a5')):
-                $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
-                $body = $response['body'];
-                $url = $body['pictures']['sizes'][2]['link'];
+
+                if (get_field('field_5fe7058a647cb') == '') {
+                    $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+                    $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
+                    $body = $response['body'];
+                    $url = $body['pictures']['sizes'][2]['link'];
+                } else {
+                    $url = get_field('field_5fe7058a647cb');
+                }
+
+
             else:
                 $url = false;
             endif;

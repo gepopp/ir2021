@@ -49,6 +49,12 @@ module.exports = {
 				100: '#81d742'
 			}
 		},
+		gradientColorStops: theme => ({
+			...theme('colors'),
+			'primary': '#3490dc',
+			'secondary': '#ffed4a',
+			'danger': '#e3342f',
+		}),
 		spacing: {
 			px: '1px',
 			'0': '0',
@@ -70,6 +76,7 @@ module.exports = {
 			'56': '14rem',
 			'64': '16rem',
 			'75p':'75%',
+			'100': '100%'
 		},
 		backgroundColor: theme => theme('colors'),
 		backgroundPosition: {

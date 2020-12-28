@@ -2,30 +2,30 @@ const readingTime = require('reading-time');
 const axios = require('axios');
 const cookie = require('js-cookie');
 
-window.readingFunctions = function (user_id){
+window.readingFunctions = function (user_id) {
     return {
         user_id: user_id,
         showHint: false,
         bookmarkSet: false,
         loginRequired: false,
         reminderSet: false,
-        load(){
+        load() {
             var current = cookie.get('reading-hint');
-            if( current == undefined ){
+            if (current == undefined) {
                 window.setTimeout(() => {
                     this.showHint = true;
-                }, 5000 );
+                }, 5000);
             }
         },
-        close(withCookie){
-            if(withCookie){
-                cookie.set('reading-hint', true, { expires: 180 });
+        close(withCookie) {
+            if (withCookie) {
+                cookie.set('reading-hint', true, {expires: 180});
             }
             this.showHint = false;
         },
-        setBookmark(id){
+        setBookmark(id) {
 
-            if(this.user_id == 0){
+            if (this.user_id == 0) {
                 this.loginRequired = true;
                 return;
             }
@@ -35,46 +35,50 @@ window.readingFunctions = function (user_id){
             params.append('id', id);
 
             axios.post(window.ajaxurl, params)
-                .then((rsp)=>{
+                .then((rsp) => {
                     this.bookmarkSet = true;
                 })
                 .catch((err) => {
                     this.bookmarkSet = true;
                 });
         },
-        remindReading(id){
+        remindReading(id) {
 
-            if(this.user_id == 0){
+            if (this.user_id == 0) {
                 this.loginRequired = true;
                 return;
             }
 
             var params = new URLSearchParams();
-            params.append('action', 'set_user_reading_reminder');
+            params.append('action', 'set_reading_reminder');
             params.append('id', id);
 
-            axios.post(window.ajaxurl, params)
-                .then((rsp)=>{
+            axios.post(window.ajaxurl, params, {
+                //AxiosRequestConfig parameter
+                withCredentials: true //correct
+            })
+                .then((rsp) => {
                     this.reminderSet = true;
                 })
                 .catch((err) => {
+                    console.log(err.response);
                     this.reminderSet = true;
                 });
         }
     }
 }
 
-window.readTime = function (text){
+window.readTime = function (text) {
     return {
-       text: text,
+        text: text,
 
-       get minutes(){
-            var reading =  readingTime(this.text);
-            var seconds =  reading.time / 1000;
-            var minutes = parseInt(seconds / 60 );
-            if(minutes > 1){
+        get minutes() {
+            var reading = readingTime(this.text);
+            var seconds = reading.time / 1000;
+            var minutes = parseInt(seconds / 60);
+            if (minutes > 1) {
                 return minutes + ' Minuten';
-            }else{
+            } else {
                 return '1 Minute';
             }
         }
@@ -82,44 +86,40 @@ window.readTime = function (text){
     }
 }
 
-window.articleViews = function (id){
-   return{
-       views: false,
-       viewsXHR(){
+window.articleViews = function (id) {
+    return {
+        views: false,
+        viewsXHR() {
 
-           let views = 0;
+            let views = 0;
 
-           var params = new URLSearchParams();
-           params.append('action', 'get_page_views_from_ga_api');
-           params.append('id', id);
+            var params = new URLSearchParams();
+            params.append('action', 'get_page_views_from_ga_api');
+            params.append('id', id);
 
-           // axios.post(window.ajaxurl, params)
-           //     .then((rsp)=>{
-           //         this.views = rsp.data;
-           //     });
+            axios.post(window.ajaxurl, params)
+                .then((rsp) => {
+                    this.views = rsp.data;
+                });
 
-           this.views = 10000;
-
-       }
-   }
+        }
+    }
 }
 
-window.readingLog = function (user,post){
-    return{
+window.readingLog = function (user, post) {
+    return {
         user: user,
-        post:post,
+        post: post,
         depth: 0,
         maxdepth: 0,
-        winheight:0,
-        docheight:0,
-        trackLength:0,
-        throttlescroll:0,
-        log(){
+        winheight: 0,
+        docheight: 0,
+        trackLength: 0,
+        throttlescroll: 0,
+        log() {
+            if (this.user != 0) {
 
-
-            if(this.user != 0){
-
-                if(this.depth > this.maxdepth){
+                if (this.depth > this.maxdepth) {
 
                     this.maxdepth = this.depth;
 
@@ -131,9 +131,10 @@ window.readingLog = function (user,post){
 
 
                     axios.post(window.ajaxurl, params)
-                        .then((rsp)=>{
+                        .then((rsp) => {
                             this.maxdepth = rsp.data
-                        });
+                        })
+                        .catch(()=>{});
 
                 }
             }
@@ -146,18 +147,20 @@ window.readingLog = function (user,post){
                 D.body.clientHeight, D.documentElement.clientHeight
             )
         },
-        getmeasurements(){
+        getmeasurements() {
 
-            this.winheight= window.innerHeight || (document.documentElement || document.body).clientHeight
+            this.winheight = window.innerHeight || (document.documentElement || document.body).clientHeight
             this.docheight = this.getDocHeight()
             this.trackLength = this.docheight - this.winheight
         },
-        amountscrolled(){
+        amountscrolled() {
 
             var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
-            var pctScrolled = Math.floor(scrollTop/this.trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+            var pctScrolled = Math.floor(scrollTop / this.trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+
             this.depth = pctScrolled + 20;
-            this.log();
+
+           this.log();
         }
     }
 }

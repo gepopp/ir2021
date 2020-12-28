@@ -4,6 +4,8 @@
  */
 get_header();
 the_post();
+
+global $wpdb;
 ?>
 
 <?php get_template_part('page-templates/reading', 'log') ?>
@@ -18,11 +20,3 @@ the_post();
 
 <?php
 get_footer();
-
-
-
-
-
-
-
-

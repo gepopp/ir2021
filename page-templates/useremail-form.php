@@ -6,7 +6,7 @@
             <label class="block text-gray-700 text-sm font-bold mb-2">Aktuelle E-Mail Adresse:</label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-300 leading-tight focus:outline-none focus:shadow-outline cursor-not-allowed"
                    type="email"
-                   value=""
+                   value="<?php echo get_userdata(get_current_user_id())->user_email ?>"
                    disabled
             >
         </div>

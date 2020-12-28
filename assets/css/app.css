@@ -2,6 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
+input:focus{
+    outline: none !important;
+}
+
+
 iframe{
     max-width: 100% !important;
 }
@@ -12,6 +18,11 @@ iframe{
     background-size: 25%;
     background-repeat: no-repeat;
     background-color: #1a202c;
+    padding-top: 75%;
+
+    img{
+        margin-top: -75%;
+    }
 }
 
 .animate-ping {

@@ -45,31 +45,12 @@ $term = get_queried_object();
             <div class="grid grid-cols-2 gap-10">
                 <?php while (have_posts()): ?>
                     <?php the_post(); ?>
-
-
                     <div class="col-span-2 md:col-span-1 relative">
-                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900 h-full">
-
-                            <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
-                                <div class="bg-primary-100 w-full h-full pt-75p flex items-center justify-center">
-
-                                </div>
-                            <?php else: ?>
-                                <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full']); ?>
-                            <?php endif; ?>
-                            <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                                <?php if (!has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article'))): ?>
-                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto">
-                                <?php endif; ?>
-                            </div>
-                            <div class="absolute bottom-0 left-0 m-5">
-                                <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
-                                <p class="text-white text-sm">Geschrieben von <?php echo get_the_author_link() ?> am <?php the_time('d.m.Y'); ?></p>
-                            </div>
+                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder" style="padding-top: 56%">
+                            <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'", 'style' => "margin-top:-56%"]); ?>
+                            <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
                         </a>
                     </div>
-
-
                 <?php endwhile; ?>
             </div>
         <?php endif; ?>
@@ -84,11 +65,8 @@ $term = get_queried_object();
                 <div class="col-span-2 md:col-span-1 relative">
                     <a :href="post.permalink" class="relative block bg-primary bg-gray-900 h-full">
 
-                        <div class="bg-primary-100 w-full h-full pt-75p flex items-center justify-center" x-show="!post.img_url"></div>
-                        <img :src="post.img_url" class="w-full h-auto">
-
-                        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto" x-show="!post.img_url">
+                        <div class="image-holder">
+                            <img :src="post.img_url" class="w-full h-auto" onerror="this.style.display='none';">
                         </div>
                         <div class="absolute bottom-0 left-0 m-5">
                             <h1 class="font-serif text-white text-2xl" x-text="post.title"></h1>

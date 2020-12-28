@@ -61,7 +61,8 @@ const config = {
 		login:'./assets/js/login.js',
 		profile: './assets/js/profile.js',
 		sehen: './assets/js/sehen.js',
-		singlevideo: './assets/js/single-video.js'
+		singlevideo: './assets/js/single-video.js',
+		diskutieren:  './assets/js/diskutieren.js',
 	},
 	optimization: {
 		minimizer: [

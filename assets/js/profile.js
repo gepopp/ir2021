@@ -1,6 +1,4 @@
 const axios = require('axios');
-const flatpickr = require('flatpickr');
-
 
 window.alterEmail = function (old) {
     return{
@@ -13,8 +11,6 @@ window.alterEmail = function (old) {
             pin: false
         },
         ValidateEmail() {
-
-
             this.errors.email = false;
 
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email)) {
@@ -75,6 +71,9 @@ window.logs = function (log, logs, all, user_id){
         log_name: log,
         user_id: user_id,
         all: all,
+        modalOpen: false,
+        editReminder: {},
+        remindInDays: 3,
         loadNext(){
 
             var params = new URLSearchParams();
@@ -105,19 +104,34 @@ window.logs = function (log, logs, all, user_id){
                     }
                 })
 
+        },
+        updateReminder(log){
+            this.editReminder = log;
+            this.modalOpen = true;
+        },
+        setReminder(){
+            var params = new URLSearchParams();
+            params.append('action', 'update_reminder_date');
+            params.append('id', this.editReminder.id);
+            params.append('days', this.remindInDays);
+
+            axios.post(window.ajaxurl, params)
+                .then((rsp) => {
+
+                    for( i = 0; i < this.logs.length; i++){
+                        if( this.logs[i].id == this.editReminder.id ){
+                            this.logs[i].time = rsp.data.time;
+                            this.logs[i].date = rsp.data.remind_at;
+                        }
+                    }
+
+                    this.editReminder = {};
+                    this.modalOpen = false;
+
+                })
         }
     }
 }
 
-window.reminderDate = function (id, text, initialDate){
-    return {
-        id: id,
-        text:text,
-        initalDate: initialDate,
-        picker: flatpickr(".picker", {}),
 
-
-
-    }
-}
 

@@ -70,8 +70,8 @@ $query = new \WP_Query([
             <?php while ($query->have_posts()): ?>
                 <?php $query->the_post(); ?>
                 <div class="col-span-2 md:col-span-1 relative">
-                    <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder" style="padding-top: 56%">
-                        <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'", 'style' => "margin-top:-56%"]); ?>
+                    <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
+                        <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
                         <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
                     </a>
                 </div>
@@ -114,8 +114,8 @@ foreach ($cats as $cat):
                     <div class="<?php if ($runner != 5): ?>col-span-2 <?php else: ?>col-span-4 <?php endif; ?>lg:col-span-1">
                         <div class="relative">
 
-                            <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder" style="padding-top: 56%">
-                                <?php the_post_thumbnail('featured_small', ['class' => 'w-full h-auto max-w-full', 'style' => 'margin-top:-56%', 'onerror' => "this.style.display='none'"]); ?>
+                            <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
+                                <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full']); ?>
                             </a>
                             <?php if ($runner == 5): ?>
                                 <div class="absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex justify-center items-center">

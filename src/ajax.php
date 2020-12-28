@@ -1,16 +1,27 @@
 <?php
+
 namespace immobilien_redaktion_2020;
+
+use Google\Exception;
 
 add_action('wp_ajax_load_vimeo_thumbnail', 'immobilien_redaktion_2020\load_vimeo_image');
 add_action('wp_ajax_nopriv_load_vimeo_thumbnail', 'immobilien_redaktion_2020\load_vimeo_image');
 
-function load_vimeo_image(){
-    $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-    $response = $lib->request('/videos/' . $_POST['id'], [], 'GET');
-    $body = $response['body'];
+function load_vimeo_image()
+{
+    if (get_field('field_5fe7058a647cb', $_POST['post_id']) == '') {
 
-    wp_die( $body['pictures']['sizes'][2]['link'] );
+        $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
+        $response = $lib->request('/videos/' . $_POST['id'], [], 'GET');
+        $body = $response['body'];
 
+        wp_die($body['pictures']['sizes'][2]['link']);
+
+    } else {
+
+        wp_die(get_field('field_5fe7058a647cb', $_POST['post_id']));
+
+    }
 }
 
 add_action('wp_ajax_get_page_views_from_ga_api', 'immobilien_redaktion_2020\get_page_views_from_ga_api');
@@ -29,31 +40,37 @@ function get_page_views_from_ga_api()
         $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
         $analytics = new \Google_Service_Analytics($client);
 
-        $results = $analytics->data_ga->get(
-            'ga:192606539',
-            '2005-01-01',
-            'today',
-            'ga:pageviews',
-            [
-                'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id']),
+        try{
+            $results = $analytics->data_ga->get(
+                'ga:192606539',
+                '2005-01-01',
+                'today',
+                'ga:pageviews',
+                [
+                    'filters' => 'ga:pagePath=@' . get_post_field('post_name', $_POST['id']),
 
-            ]
-        );
+                ]
+            );
 
-        if (count($results->getRows()) > 0) {
+            if (count($results->getRows()) > 0) {
 
-            $rows = $results->getRows();
-            $sessions = $rows[0][0];
+                $rows = $results->getRows();
+                $sessions = $rows[0][0];
 
-            update_field('field_5f9ff32f68d04', $sessions, $_POST['id']);
-            wp_die($sessions);
+                update_field('field_5f9ff32f68d04', $sessions, $_POST['id']);
+                wp_die($sessions);
+            } else {
+                wp_die("No results found.");
+            }
 
-
-        } else {
-            wp_die( "No results found." );
+            }catch (Exception $e){
+            wp_die( get_field('field_5f9ff32f68d04', $_POST['id']));
         }
+
+
+
     } else {
-        wp_die( 'no json' );
+        wp_die('no json');
     }
 }
 
@@ -62,7 +79,8 @@ add_action('wp_ajax_nopriv_load_more_category', 'immobilien_redaktion_2020\load_
 
 function load_more_category()
 {
-    $query = new WP_Query([
+
+    $query = new \WP_Query([
 
         'post_type'           => 'post',
         'post_status'         => 'publish',
@@ -83,7 +101,7 @@ function load_more_category()
                 'ID'        => get_the_ID(),
                 'title'     => get_the_title(),
                 'permalink' => get_the_permalink(),
-                'img_url'   => !has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article')) ? false : get_the_post_thumbnail_url(get_the_ID(), 'article'),
+                'img_url'   => get_the_post_thumbnail_url(get_the_ID(), 'article'),
                 'author'    => get_the_author(),
                 'date'      => get_the_time('d.m.Y'),
             ];
@@ -200,13 +218,11 @@ add_action('wp_ajax_user_exists', function () {
     }
 });
 
-
-
-add_action('wp_ajax_send_email_pin', function (){
+add_action('wp_ajax_send_email_pin', function () {
 
     $user = get_user_by('email', sanitize_email($_POST['old_email']));
 
-    if(!$user){
+    if (!$user) {
         wp_die("Wir konnten keinen Pin senden, laden Sie die Seite neu und versuchen sie es erneut.", 400);
     }
 
@@ -214,15 +230,15 @@ add_action('wp_ajax_send_email_pin', function (){
 
     $wpdb->delete('wp_user_pending_email', ['user_id' => $user->ID]);
 
-    $pin = rand(1001,9999);
+    $pin = rand(1001, 9999);
 
     $wpdb->insert('wp_user_pending_email',
-    [
-       'user_id' => $user->ID,
-       'new_email' => sanitize_email($_POST['email']),
-       'pin' => $pin
-    ],
-    ['%d', '%s', '%d']);
+        [
+            'user_id'   => $user->ID,
+            'new_email' => sanitize_email($_POST['email']),
+            'pin'       => $pin,
+        ],
+        ['%d', '%s', '%d']);
 
 
     $result = wp_remote_post('https://api.createsend.com/api/v3.2/transactional/smartEmail/0ee71250-5880-473a-b721-bd741fa17f0d/send', [
@@ -234,13 +250,12 @@ add_action('wp_ajax_send_email_pin', function (){
             "Data"
                                   => [
                 'fullname' => $user->data->display_name,
-                'PIN'     => $pin,
+                'PIN'      => $pin,
             ],
             "AddRecipientsToList" => false,
             "ConsentToTrack"      => "Yes",
         ]),
     ]);
-
 
 
     if (wp_remote_retrieve_response_code($result) < 200 || wp_remote_retrieve_response_code($result) > 299) {
@@ -250,23 +265,21 @@ add_action('wp_ajax_send_email_pin', function (){
 //
 });
 
-
-add_action('wp_ajax_validate_pin', function (){
+add_action('wp_ajax_validate_pin', function () {
 
 
     global $wpdb;
     $pin_row = $wpdb->get_row('SELECT * FROM wp_user_pending_email WHERE pin = ' . sanitize_text_field($_POST['pin']));
 
 
-
-    if(!$pin_row || sanitize_email($_POST['email']) != $pin_row->new_email){
+    if (!$pin_row || sanitize_email($_POST['email']) != $pin_row->new_email) {
         wp_die('Pin falsch', 400);
     }
 
 
     wp_update_user([
-       'ID' =>$pin_row->user_id,
-       'user_email' => $pin_row->new_email
+        'ID'         => $pin_row->user_id,
+        'user_email' => $pin_row->new_email,
     ]);
 
     wp_die('update erfolgreich');
@@ -274,28 +287,32 @@ add_action('wp_ajax_validate_pin', function (){
 
 });
 
-add_action('wp_ajax_update_reading_log', function(){
+add_action('wp_ajax_update_reading_log', 'immobilien_redaktion_2020\update_reading_log');
+//add_action('wp_ajax_nopriv_update_reading_log', 'immobilien_redaktion_2020\update_reading_log');
+
+function update_reading_log()
+{
 
     $user = sanitize_text_field($_POST['user']);
     $post = sanitize_text_field($_POST['post']);
 
-    $depth = (int) sanitize_text_field($_POST['depth']) > 100 ? 100 : sanitize_text_field($_POST['depth']);
+    $depth = (int)sanitize_text_field($_POST['depth']) > 100 ? 100 : sanitize_text_field($_POST['depth']);
 
-    if($depth > 10){
+    if ($depth > 10) {
+
         global $wpdb;
-
         $exist = $wpdb->get_var(sprintf('SELECT id FROM wp_reading_log WHERE user_id = %d AND post_id = %d', $user, $post));
 
-        if($exist == null){
+        if ($exist == null) {
             $wpdb->insert('wp_reading_log',
-            [
-                'user_id' => $user,
-                'post_id' => $post,
-                'scroll_depth' => $depth,
-                'permalink' => get_the_permalink($post),
-                'created_at'    => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
-            ], ['%d', '%d', '%d', '%s', '%s']);
-        }else{
+                [
+                    'user_id'      => $user,
+                    'post_id'      => $post,
+                    'scroll_depth' => $depth,
+                    'permalink'    => get_the_permalink($post),
+                    'created_at'   => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                ], ['%d', '%d', '%d', '%s', '%s']);
+        } else {
             $wpdb->update('wp_reading_log',
                 ['scroll_depth' => $depth],
                 ['id' => $exist],
@@ -304,19 +321,19 @@ add_action('wp_ajax_update_reading_log', function(){
         }
         wp_die($depth);
     }
-});
+}
 
-add_action('wp_ajax_load_log', function (){
+add_action('wp_ajax_load_log', function () {
 
     global $wpdb;
 
     $log = sanitize_text_field($_POST['log']);
 
-    if($log == 'read'){
-       $sql = sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth = 100 ORDER BY created_at DESC LIMIT %d, 10', sanitize_text_field($_POST['user_id']), sanitize_text_field($_POST['offset']));
+    if ($log == 'read') {
+        $sql = sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth = 100 ORDER BY created_at DESC LIMIT %d, 10', sanitize_text_field($_POST['user_id']), sanitize_text_field($_POST['offset']));
     }
 
-    if($log == 'not_read'){
+    if ($log == 'not_read') {
         $sql = sprintf('SELECT * FROM wp_reading_log WHERE user_id = %d AND scroll_depth < 100 ORDER BY created_at DESC LIMIT %d, 10', sanitize_text_field($_POST['user_id']), sanitize_text_field($_POST['offset']));
     }
 
@@ -336,7 +353,7 @@ add_action('wp_ajax_load_log', function (){
             'permalink' => get_the_permalink($d->post_id),
             'cat'       => $cat->name ?? '',
             'author'    => $author,
-            'time'      => ucfirst(\Carbon\Carbon::parse($d->created_at)->diffForHumans() . ' zu ' . $d->scroll_depth). '%'
+            'time'      => ucfirst(\Carbon\Carbon::parse($d->created_at)->diffForHumans() . ' zu ' . $d->scroll_depth) . '%',
         ];
     }
 

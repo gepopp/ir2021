@@ -13,6 +13,7 @@ class CampaignMonitor
         'confirm_email_address'  => '7b1481ba-8715-48a0-8b4f-d17127675e23',
         'registration_activated' => '7303e85b-72c8-4acf-88ff-4e117ddb0fa9',
         'reset_password'         => '0fd34ccb-86f1-4aa5-99e0-43c64ddc6379',
+        'reading_log_reminder'   => '83eeff44-68bc-4c85-a261-515cd60b3a09',
     ];
 
 

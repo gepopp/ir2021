@@ -165,6 +165,9 @@ add_action( 'admin_init', function() {
 
 add_action( 'init', function (){
 
+    global $FormSession;
+    $FormSession = FormSession::session();
+
     global $wp_query;
 
     $allowed = ['update_profile'];
@@ -185,9 +188,10 @@ add_action( 'init', function (){
 
 
 add_filter( 'show_admin_bar', function (){
-    if ( ! current_user_can( 'manage_options' ) ) {
-        show_admin_bar( false );
+    if ( ! current_user_can( 'administrator' ) ) {
+       return false;
     }
+    return true;
 });
 
 

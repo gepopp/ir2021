@@ -35,7 +35,7 @@ global $FormSession;
                         name="register_gender"
                 >
 
-                    <option value="">Bitte wählen</option>
+                    <option value="">Bitte w&auml;hlen</option>
                     <option value="f">Frau</option>
                     <option value="m">Herr</option>
                 </select>
