@@ -21,13 +21,15 @@ add_action('send_reminder_daily', function (){
 
         $cm = new \immobilien_redaktion_2020\CampaignMonitor();
 
-        $cm->transactional('reading_log_reminder',
+        $sent = $cm->transactional('reading_log_reminder',
             $user,
             [
                 'title'   => get_the_title($reminder->post_id),
                 'excerpt' => get_the_excerpt($reminder->post_id),
                 'link'    => get_the_permalink($reminder->post_id),
             ]);
+
+        $wpdb->delete('wp_user_read_later', ['id' => $reminder->id]);
 
     }
 
