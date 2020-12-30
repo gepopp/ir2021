@@ -96,7 +96,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
             </div>
         </div>
 
-        <a href="<?php echo home_url() ?>">
+        <a href="<?php echo home_url() ?>" class="z-50">
             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo.svg" class="h-24 w-auto pt-0 mt-0">
         </a>
         <div class="pt-2 block lg:hidden">
