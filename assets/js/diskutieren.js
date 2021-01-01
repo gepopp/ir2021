@@ -1,10 +1,14 @@
+var moment = require("moment");
+var duration = require("moment-duration-format")
+
+
 window.calendar = function () {
     return {
         month: '',
         year: '',
         no_of_days: [],
         blankdays: [],
-        days: [ 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa','So'],
+        days: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
         month_names: ['Jänner', 'Feber', 'März', 'April', 'Main', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
 
         events: [
@@ -112,19 +116,19 @@ window.calendar = function () {
             //close the modal
             this.openEventModal = false;
         },
-        prevMonth(){
-            if(this.month > 0){
+        prevMonth() {
+            if (this.month > 0) {
                 this.month--;
-            }else{
+            } else {
                 this.year--;
                 this.month = 11;
             }
         },
-        nextMonth(){
+        nextMonth() {
 
-            if(this.month < 11){
+            if (this.month < 11) {
                 this.month++
-            }else{
+            } else {
                 this.year++;
                 this.month = 0;
             }
@@ -137,20 +141,44 @@ window.calendar = function () {
             // find where to start calendar day of week
             let dayOfWeek = new Date(this.year, this.month).getDay();
             dayOfWeek--;
-            if(dayOfWeek < 0 ) dayOfWeek = 6;
+            if (dayOfWeek < 0) dayOfWeek = 6;
 
             let blankdaysArray = [];
-            for ( var i=1; i <= dayOfWeek; i++) {
+            for (var i = 1; i <= dayOfWeek; i++) {
                 blankdaysArray.push(i);
             }
 
             let daysArray = [];
-            for ( var i=1; i <= daysInMonth; i++) {
+            for (var i = 1; i <= daysInMonth; i++) {
                 daysArray.push(i);
             }
 
             this.blankdays = blankdaysArray;
             this.no_of_days = daysArray;
+        }
+    }
+}
+
+
+window.counter = function (datetime) {
+    return {
+        end: datetime,
+        counts: '',
+        days: '',
+        hours: '',
+        minutes: '',
+        seconds: '',
+        count() {
+
+
+            setInterval(() => {
+                const zeroPad = (num, places) => String(num).padStart(places, '0')
+                var diff = moment().diff(moment(this.end), 'seconds') * -1;
+                this.days = zeroPad(parseInt(diff / (60 * 60 * 24)), 2);
+                this.hours = zeroPad(parseInt((diff - (this.days * 60 * 60 * 24)) / (60 * 60)),2);
+                this.minutes = zeroPad(parseInt((diff - ((this.days * 60 * 60 * 24) + (this.hours * 60 * 60))) / 60),2);
+                this.seconds = zeroPad(parseInt((diff - ((this.days * 60 * 60 * 24) + (this.hours * 60 * 60) + (this.minutes * 60)))),2);
+            }, 1000)
         }
     }
 }
