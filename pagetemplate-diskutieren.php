@@ -33,7 +33,7 @@ if ($query->have_posts()):
         <div class="h-screen-75 flex">
             <div class="w-1/2 bg-white h-full relative flex justify-center items-center">
                 <div class="w-1/2">
-
+                    <p class="font-semibold">Diese Livestream startet am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.</p>
                     <h1 class="text-5xl font-semibold font-serif"><?php the_title() ?></h1>
                     <p><?php the_content(); ?></p>
                     <div class="grid grid-cols-1 md:grid-cols-1">
@@ -51,7 +51,7 @@ if ($query->have_posts()):
             </div>
             <div class="w-1/2 bg-primary-100 h-full">
                 <div class="relative w-full h-full flex justify-center items-center">
-                    <div class="bg-white p-5 shadow-lg" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
+                    <div class="bg-white px-5 py-10 shadow-lg" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
                         <p class="text-5xl font-semibold text-center">Immo<span class="text-primary-100">Live</span> in</p>
                         <div class="flex justify-center space-x-4">
                             <div class="text-center">
@@ -79,7 +79,7 @@ if ($query->have_posts()):
                                 <span class="text-xl font-bold">Sekunden</span>
                             </div>
                         </div>
-                        <p class="py-10 text-center font-semibold">Diese Veranstaltung startet am <br><?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.</p>
+                        <p class="py-10 text-center font-semibold">Diese Livestream startet am <br><?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.</p>
                     </div>
                     <div class="absolute bottom-0 right-0 w-full h-auto">
                         <img src="<?php the_field('field_5fec51051a3f8'); ?>" class="w-full h-auto z-10">
