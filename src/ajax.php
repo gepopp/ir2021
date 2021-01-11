@@ -12,7 +12,7 @@ function load_vimeo_image()
     if (get_field('field_5fe7058a647cb', $_POST['post_id']) == '') {
 
         $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-        $response = $lib->request('/videos/' . $_POST['id'], [], 'GET');
+        $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5', $_POST['id']), [], 'GET');
         $body = $response['body'];
 
         wp_die($body['pictures']['sizes'][2]['link']);
@@ -140,7 +140,7 @@ function load_more_immolive()
             if (get_field('field_5fe7058a647cb') == '') {
 
                 $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-                $response = $lib->request('/videos/' . get_the_ID(), [], 'GET');
+                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
                 $body = $response['body'];
 
                 $img = $body['pictures']['sizes'][2]['link'];
