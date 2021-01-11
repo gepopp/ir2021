@@ -1,7 +1,33 @@
 var moment = require("moment");
 var duration = require("moment-duration-format")
+const axios = require('axios');
 
+window.loadMoreImmolive = function (){
+    return{
 
+        offset: 10,
+        loaded: [],
+        load(){
+
+            let views = 0;
+
+            var params = new URLSearchParams();
+            params.append('action', 'load_more_immolive');
+            params.append('offset', this.offset);
+
+            axios.post(window.ajaxurl, params)
+                .then((rsp)=>{
+
+                    rsp.data.map((post) => {
+                        this.loaded.push(post);
+                    })
+
+                    this.offset += 10;
+                });
+
+        }
+    }
+}
 window.calendar = function () {
     return {
         month: '',

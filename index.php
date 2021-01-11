@@ -8,8 +8,6 @@
 
 namespace immobilien_redaktion_2020;
 
-use Carbon\Carbon;
-
 get_header();
 
 $query = new \WP_Query([
@@ -45,8 +43,12 @@ $query = new \WP_Query([
         <?php wp_reset_postdata(); ?>
 
         <?php get_template_part('banner-templates/banner', 'fourbanner') ?>
+
+
         <?php get_template_part('page-templates/page', 'immoliveAnnouncement') ?>
+
         <?php get_template_part('banner-templates/banner', 'thirds2') ?>
+
         <?php get_template_part('page-templates/part', 'video') ?>
     </div>
 

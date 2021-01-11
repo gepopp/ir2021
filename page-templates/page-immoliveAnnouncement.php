@@ -24,19 +24,22 @@ if ($query->have_posts()):
         ?>
 
         <div class="container mx-auto mt-20 border-15 flex flex-col items-center justify-center relative" style="height: 512px;  background-image: url(<?php echo get_the_post_thumbnail_url() ?>);
-                     background-size: cover;
-                     background-position: center">
+                background-size: cover;
+                background-position: center">
             <div class="flex flex-col justify-center text-center">
                 <h1 class="bg-white text-2xl px-5 text-center inline font-semibold"><?php the_title() ?></h1>
                 <h1 class="bg-white text-2xl px-5 text-center inline font-semibold">Ein
                     <span class="font-serif uppercase">Immo</span>
                     <span class="font-serif text-primary-100 uppercase">Live</span> am
                     <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i') ?> Uhr </h1>
-                <div class="mt-10">
-                    <a href="<?php the_permalink(); ?>" class="bg-primary-100 px-5 lg:text-center text-white text-2xl py-2">
-                        Jetzt Anmelden
-                    </a>
-                </div>
+
+                <?php if (!empty(get_field('field_5ed52801c227a'))): ?>
+                    <div class="mt-10">
+                        <a href="<?php the_field('field_5ed52801c227a') ?>" class="bg-primary-100 px-5 lg:text-center text-white text-2xl py-2">
+                            Jetzt Anmelden
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="absolute bottom-0 right-0 m-6">
@@ -45,5 +48,39 @@ if ($query->have_posts()):
         </div>
     <?php
     endwhile;
+else:
+    $query = new \WP_Query([
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'ignore_sticky_posts' => true,
+        'posts_per_page'      => 2,
+        'offset'              => 2,
+        'category__not_in'    => [17, 696, 159],
+        'tag__not_in'         => 989,
+    ]);
+    ?>
+
+
+    <div class="container mx-auto mt-20 relative px-5 lg:px-0">
+
+    <?php get_template_part('banner-templates/banner', 'mega') ?>
+
+    <div class="grid grid-cols-2 gap-10">
+        <?php if ($query->have_posts()): ?>
+            <?php while ($query->have_posts()): ?>
+                <?php $query->the_post(); ?>
+                <div class="col-span-2 md:col-span-1 relative">
+                    <div class="col-span-2 md:col-span-1 relative">
+                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
+                            <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
+                            <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
+                        </a>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php endif; ?>
+    </div>
+    <?php wp_reset_postdata(); ?>
+<?php
 endif;
 wp_reset_postdata();
