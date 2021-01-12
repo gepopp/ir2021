@@ -37,7 +37,7 @@ if ($query->have_posts()):
                 <div class="lg:w-1/2 bg-white h-full relative flex justify-center items-center">
                     <div class="lg:w-1/2">
 
-                        <div class="py-10 lg:hidden">
+                        <div class="pb-10 pt-20 lg:hidden">
                             <p class="text-3xl font-semibold text-center mb-5">Immo<span class="text-primary-100">Live</span> in</p>
                             <div class="flex justify-center space-x-4">
                                 <div class="flex flex-col items-center justify-center text-center">
@@ -70,10 +70,10 @@ if ($query->have_posts()):
 
 
 
-                        <p class="font-semibold hidden lg:block">Diese Livestream startet am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.</p>
-                        <h1 class="text-3xl font-semibold font-serif leading-tight"><?php the_title() ?></h1>
-                        <p><?php the_content(); ?></p>
-                        <div class="grid grid-cols-1 md:grid-cols-1">
+                        <p class="font-semibold hidden lg:block px-5 lg:px-0">Diese Livestream startet am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.</p>
+                        <h1 class="text-3xl font-semibold font-serif leading-tight px-5 lg:px-0"><?php the_title() ?></h1>
+                        <p class="px-5 lg:px-0"><?php the_content(); ?></p>
+                        <div class="grid grid-cols-1 md:grid-cols-1 px-5 lg:px-0">
                             <?php if (!empty(get_field('field_5ed52801c227a'))): ?>
                                 <div class="my-10 p-5 hover:shadow-none shadow-lg bg-primary-100 text-white text-center font-semibold cursor-pointer">
                                     <a href="<?php the_field('field_5ed52801c227a') ?>">Jetzt anmelden</a>
