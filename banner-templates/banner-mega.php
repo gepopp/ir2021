@@ -57,7 +57,7 @@ $query = new WP_Query($banner_args);
 </div>
 
 <?php if( isset( $link )): ?>
-<div class="absolute top-0 right-0" style="margin-right: -400px; margin-top: -18px;">
+<div class="absolute top-0 right-0 hidden lg:block" style="margin-top: -18px; left: 100%; margin-left:15px;width: 120px">
     <p class="text-xs text-gray-300">Werbung</p>
     <div class="flex flex-col lg:flex-row p-5 border">
         <div class="w-full">
