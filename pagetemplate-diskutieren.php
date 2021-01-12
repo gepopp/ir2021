@@ -84,7 +84,7 @@ if ($query->have_posts()):
                             <img src="<?php the_field('field_5fec51051a3f8'); ?>" class="w-full h-auto z-10">
                         </div>
                     </div>
-                    <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2 z-50" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2 z-40" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                         <polygon points="50,0 100,0 50,100 0,100"/>
                     </svg>
                 </div>
