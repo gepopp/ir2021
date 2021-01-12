@@ -38,17 +38,15 @@ $term = get_queried_object();
         </div>
     </div>
 
-<?php //get_template_part('banner-templates/banner', 'thirds') ?>
-
-    <div class="container mx-auto mt-20">
+    <div class="container mx-auto mt-20 px-5 md:px-5">
         <?php if (have_posts()): ?>
             <div class="grid grid-cols-2 gap-10">
                 <?php while (have_posts()): ?>
                     <?php the_post(); ?>
                     <div class="col-span-2 md:col-span-1 relative">
-                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder" style="padding-top: 56%">
+                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full" style="padding-top: 56%">
                             <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'", 'style' => "margin-top:-56%"]); ?>
-                            <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
+                            <h1 class="md:absolute bottom-0 left-0 text-white font-serif p-5 text-xl  md:text-2xl leading-tight"><?php the_title() ?></h1>
                         </a>
                     </div>
                 <?php endwhile; ?>
@@ -57,26 +55,17 @@ $term = get_queried_object();
     </div>
 
 
-
-
-    <div class="container mx-auto mt-10" x-data="loadMore(<?php echo $term->term_id ?>)">
+    <div class="container mx-auto mt-10 px-5 md:px-5" x-data="loadMore(<?php echo $term->term_id ?>)">
         <div class="grid grid-cols-2 gap-10">
             <template x-for="post in loaded">
-                <div class="col-span-2 md:col-span-1 relative">
-                    <a :href="post.permalink" class="relative block bg-primary bg-gray-900 h-full">
 
-                        <div class="image-holder">
-                            <img :src="post.img_url" class="w-full h-auto" onerror="this.style.display='none';">
-                        </div>
-                        <div class="absolute bottom-0 left-0 m-5">
-                            <h1 class="font-serif text-white text-2xl" x-text="post.title"></h1>
-                            <p class="text-white text-sm">Geschrieben von <span x-text="post.author"></span> am <span x-text="post.date"></span></p>
-                        </div>
+                <div class="col-span-2 md:col-span-1 relative">
+                    <a :href="post.permalink" class="relative block bg-primary-100 h-full" style="padding-top: 56%">
+                        <img :src="post.img_url" class="w-full h-auto max-w-full" onerror="this.style.display='none';" style="margin-top: -56%;">
+                        <h1 class="md:absolute bottom-0 left-0 text-white font-serif p-5 text-xl  md:text-2xl leading-tight" x-text="post.title"></h1>
                     </a>
                 </div>
             </template>
-
-
 
             <div class="flex items-center justify-center w-full my-32 col-span-2">
                 <div class="inline">

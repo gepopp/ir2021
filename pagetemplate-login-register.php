@@ -10,7 +10,7 @@ if (isset($_GET['token'])) {
 
 
 ?>
-    <div class="container mx-auto mt-20 relative">
+    <div class="container mx-auto mt-20 relative px-5 md:px-0">
         <div class="grid grid-cols-6 gap-4">
             <div class="col-span-6 lg:col-span-3">
                 <?php get_template_part('page-templates/login') ?>

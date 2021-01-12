@@ -13,7 +13,7 @@ namespace immobilien_redaktion_2020;
 
 ?>
 </main>
-<footer class="footer bg-gray-900 text-white mt-32 pt-8 pb-16 lg:mx-0 px-5 lg:px-0
+<footer class="footer bg-gray-900 text-white mt-32 pt-8 pb-16 lg:mx-0 md:px-5
 <?php if(is_page_template('pagetemplate-passwort-vergessen.php')
     || is_page_template('pagetemplate-login-register.php')
     || is_page_template('pagetemplate-passwort-reset.php')
@@ -30,7 +30,7 @@ mt-auto
                 </div>
 
 
-                <div class="lg:w-1/4 text-center lg:text-left">
+                <div class="lg:w-1/4 text-center lg:text-left pr-5 lg:pr-0">
                     <div class="text-xl text-right">
                         <h3 class="font-serif text-xl text-white">Impressum</h3>
                         <p class="text-sm">

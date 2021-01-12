@@ -9,13 +9,9 @@ get_header();
 
 
     <div class="bg-gray-900">
-
-
         <div class="container mx-auto mt-20 relative">
             <h1 class="font-sans text-5xl uppercase font-semibold text-white text-center">sehen</h1>
         </div>
-
-
     </div>
 
 
@@ -141,8 +137,8 @@ $query = new WP_Query([
                                 <?php elseif (get_field('field_5f96fa1673bac')): ?>
                                     <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
                                 <?php elseif (get_field('field_5fe2884da38a5')): ?>
-                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>')">
-                                        <img :src="imgUrl">
+                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>')" class="bg-primary-100" style="padding-top: 56%">
+                                        <img :src="imgUrl" style="margin-top: -56%">
                                     </div>
                                 <?php endif; ?>
                                 <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
@@ -198,8 +194,8 @@ $query = new WP_Query([
                                 <?php elseif (get_field('field_5f96fa1673bac')): ?>
                                     <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
                                 <?php elseif (get_field('field_5fe2884da38a5')): ?>
-                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>', <?php echo get_the_ID() ?>)">
-                                        <img :src="imgUrl">
+                                    <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>', <?php echo get_the_ID() ?>)" class="bg-primay-100" style="padding-top: 56%">
+                                        <img :src="imgUrl" style="margin-top: -56%">
                                     </div>
                                 <?php endif; ?>
                                 <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">

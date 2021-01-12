@@ -22,7 +22,7 @@ global $FormSession;
         <?php $FormSession->flashErrorBag('register_error'); ?>
         <?php $FormSession->flashSuccess('register_sent_success'); ?>
 
-        <div class="grid grid-cols-3 gap-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="register_gender">
                     Anrede <span class="text-warning">*</span>
