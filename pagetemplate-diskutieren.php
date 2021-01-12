@@ -33,7 +33,7 @@ if ($query->have_posts()):
         $query->the_post();
         if ($runner == 1):
             ?>
-            <div class="lg:h-screen-75 flex -mx-5" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
+            <div class="lg:h-screen-75 flex lg:-mx-5" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
                 <div class="lg:w-1/2 bg-white h-full relative flex justify-center items-center">
                     <div class="lg:w-1/2">
 
@@ -129,7 +129,7 @@ if ($query->have_posts()):
                     </div>
                 </div>
             </div>
-            <div class="bg-white border-t-8 border-primary-100 -mx-5 shadow-xl">
+            <div class="bg-white border-t-8 border-primary-100 lg:-mx-5 shadow-xl">
             <div class="container mx-auto lg:flex ">
         <?php else: ?>
             <div class="w-full lg:w-1/2 py-10 px-5 flex flex-col flex-grow">
