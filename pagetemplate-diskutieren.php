@@ -129,7 +129,7 @@ if ($query->have_posts()):
                     </div>
                 </div>
             </div>
-            <div class="bg-white border-t-8 border-primary-100">
+            <div class="bg-white border-t-8 border-primary-100 -mx-5">
             <div class="container mx-auto lg:flex ">
         <?php else: ?>
             <div class="w-full lg:w-1/2 py-10 px-5 flex flex-col flex-grow">
