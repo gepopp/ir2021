@@ -34,7 +34,7 @@ if ($query->have_posts()):
         if ($runner == 1):
             ?>
             <div class="lg:h-screen-75 flex -mx-5" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
-                <div class="lg:w-1/2 bg-white h-full relative flex justify-center items-center p-5 lg:p-5">
+                <div class="lg:w-1/2 bg-white h-full relative flex justify-center items-center">
                     <div class="lg:w-1/2">
 
                         <div class="py-10 lg:hidden">
