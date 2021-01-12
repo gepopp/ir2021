@@ -106,7 +106,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                 </ul>
             </nav>
 
-            <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white" x-show="lesen" @mouseleave="lesen = false">
+            <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white" x-show="lesen" @mouseleave="lesen = false" x-cloak>
                 <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
                 <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <ul>
@@ -320,7 +320,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
     </div>
 
 
-    <div class="absolute left-0 top-0 mt-10 w-full bg-white pt-16 z-30 shadow-2xl" x-show.transition.ease-in-out.300ms="showMobile" @click.away="showMobile = false" @mouseleave="showMobile = false">
+    <div class="absolute left-0 top-0 mt-10 w-full bg-white pt-16 z-30 shadow-2xl" x-show.transition.ease-in-out.300ms="showMobile" @click.away="showMobile = false" @mouseleave="showMobile = false" x-cloak>
         <div class="p-5 relative">
             <div class="absolute top-0 right-0 flex justify-end -mt-10 mr-5">
                 <div class="w-10 h-10 rounded-full bg-primary-100 flex justify-center items-center" @click="showMobile = false">
