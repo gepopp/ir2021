@@ -123,7 +123,7 @@ if ($query->have_posts()):
                                 <br><?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.
                             </p>
                         </div>
-                        <div class="absolute bottom-0 right-0 w-full h-auto z-30">
+                        <div class="absolute bottom-0 right-0 w-full h-auto z-10">
                             <img src="<?php the_field('field_5fec51051a3f8'); ?>" class="w-full h-auto">
                         </div>
                     </div>
