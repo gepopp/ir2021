@@ -1,6 +1,6 @@
 <?php
 $user = wp_get_current_user();
-$post = get_the_ID();
+$post_id = get_the_ID();
 ?>
 
 <div class="text-white">
@@ -18,7 +18,7 @@ $post = get_the_ID();
         </div>
     </div>
 
-    <div x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>)"
+    <div x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post_id ?>)"
          x-init="getmeasurements();"
          @scroll.window.debounce.1s="amountscrolled()"
          @resize.window="getmeasurements()"

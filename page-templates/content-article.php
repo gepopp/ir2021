@@ -2,6 +2,7 @@
 $user = wp_get_current_user();
 $post = get_the_ID();
 ?>
+
 <div class="px-5 lg:px-5"
      x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post ?>)"
      x-init="getmeasurements();"

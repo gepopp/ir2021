@@ -34,15 +34,18 @@ $banner_args = [
     'orderby'        => 'menu_order',
     'order'          => 'ASC',
 ];
-$query = new WP_Query($banner_args);
+$query_banner = new WP_Query($banner_args);
 ?>
 <div class="container mx-auto mt-20 lg:hidden mb-12">
     <p class="text-xs text-gray-300">Werbung</p>
     <div class="flex flex-col lg:flex-row p-5 border">
-        <?php if ($query->have_posts()): ?>
-            <?php while ($query->have_posts()): ?>
-                <?php $query->the_post(); ?>
-                <?php $thumb =  get_the_post_thumbnail_url(); $link = get_field('field_5c6325e38e0aa') ?>
+        <?php if ($query_banner->have_posts()): ?>
+            <?php while ($query_banner->have_posts()): ?>
+                <?php
+                    $query_banner->the_post();
+                    $thumb  =   get_the_post_thumbnail_url();
+                    $link   =   get_field('field_5c6325e38e0aa');
+                ?>
                 <?php if(get_field('field_5c6325e38e0aa') != ''): ?>
                 <div class="w-full">
                     <a href="<?php the_field('field_5c6325e38e0aa') ?>">
@@ -52,7 +55,6 @@ $query = new WP_Query($banner_args);
                 <?php endif; ?>
             <?php endwhile; ?>
         <?php endif; ?>
-        <?php wp_reset_postdata(); ?>
     </div>
 </div>
 
@@ -68,4 +70,4 @@ $query = new WP_Query($banner_args);
     </div>
 </div>
 <?php endif; ?>
-
+<?php wp_reset_postdata(); ?>

@@ -1,3 +1,6 @@
+
+
+
 <?php
 $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
 $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
@@ -5,6 +8,8 @@ $body = $response['body'];
 ?>
 
 <div class="container mx-auto mt-32 relative">
+
+    <?php get_template_part('banner-templates/banner', 'mega') ?>
 
     <?php if (get_field('field_5f96fa1673bac')): ?>
         <div class="video-container" style="position: relative;width: 100%;padding-bottom: 56.25%;">
@@ -14,16 +19,12 @@ $body = $response['body'];
         </div>
 
     <?php elseif (get_field('field_5fe2884da38a5')):
-
         $preroll = get_field('field_5fe62b82702a2', 'option') != '' ? get_field('field_5fe62b82702a2', 'option') : get_field('field_5fe62b98702a4', 'option');
         $preroll_link = get_field('field_5fe62ba8702a5', 'option') != '' ? get_field('field_5fe62ba8702a5', 'option') : get_field('field_5fe62ba8702a5', 'option');
         $skip = get_field('field_5fe62d517e847', 'option');
         ?>
-
-
         <div class="container mx-auto">
             <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '<?php echo $preroll ?>', '<?php echo $body['pictures']['sizes'][6]['link'] ?>', <?php echo $skip ?>)">
-
                 <div x-show="!played" class="relative">
                     <img :src="image" @click="play()" class="cursor-pointer w-full h-auto">
                     <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center" @click="play()">
@@ -36,7 +37,6 @@ $body = $response['body'];
                         </div>
                     </div>
                 </div>
-
                 <div id="preroll" class="w-full h-auto relative" x-show.transition.in.fade="prerolls">
                     <a href="<?php echo $preroll_link ?>" target="_blank" class="absolute w-full h-full" @click="playMain(false)"></a>
                     <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer">Werbung überspringen</div>
@@ -44,10 +44,9 @@ $body = $response['body'];
                         <span x-text="countdown"></span> Sekunden
                     </div>
                 </div>
-
                 <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>
             </div>
         </div>
-
     <?php endif; ?>
+
 </div>

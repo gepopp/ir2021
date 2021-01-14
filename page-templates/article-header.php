@@ -1,6 +1,7 @@
 <?php get_template_part('page-templates/article', 'author') ?>
 
 
+
 <div class="container mx-auto mt-20">
     <div class="grid grid-cols-5 gap-4">
         <div class="hidden lg:block"></div>
@@ -19,6 +20,7 @@
                 <?php if (get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID()))): ?>
                     <p class="absolute bottom-0 right-0 transform rotate-90 text-white mr-2" style=" transform-origin: right;">&copy <?php echo get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID())) ?></p>
                 <?php endif; ?>
+                <?php get_template_part('banner-templates/banner', 'mega') ?>
             </div>
         </div>
         <div class="hidden lg:block"></div>
