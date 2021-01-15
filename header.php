@@ -75,7 +75,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
             <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
                 <ul class="flex">
                     <li class="uppercase text-white mr-3">
-                        <a href="<?php echo home_url() ?>" class="cursor-pointer" @mouseenter="lesen = !lesen">START</a>
+                        <a href="<?php echo home_url() ?>" class="cursor-pointer">START</a>
                     </li>
                     <li class="uppercase text-white mr-3" @click.away="lesen = false">
                         <a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a>
@@ -112,7 +112,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                 </ul>
             </nav>
 
-            <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white" x-show="lesen" @mouseleave="lesen = false" x-cloak>
+            <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white w-64" x-show="lesen" @mouseleave="lesen = false" x-cloak>
                 <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
                 <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <ul>
