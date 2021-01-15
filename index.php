@@ -48,6 +48,10 @@ $query = new \WP_Query([
 
     <?php get_template_part('banner-templates/banner', 'fourbanner') ?>
 
+    <?php get_template_part('banner-templates/banner', 'thirds2') ?>
+
+    <?php get_template_part('page-templates/part', 'video') ?>
+
     <?php
 
         $query = new \WP_Query([
@@ -81,9 +85,7 @@ $query = new \WP_Query([
         </div>
         <?php wp_reset_postdata(); ?>
 
-        <?php get_template_part('banner-templates/banner', 'thirds2') ?>
 
-        <?php get_template_part('page-templates/part', 'video') ?>
     </div>
 
 
