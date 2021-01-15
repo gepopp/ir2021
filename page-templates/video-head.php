@@ -7,9 +7,9 @@ $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GE
 $body = $response['body'];
 ?>
 
-<div class="container mx-auto mt-32 relative">
+<?php get_template_part('banner-templates/banner', 'mega') ?>
 
-    <?php get_template_part('banner-templates/banner', 'mega') ?>
+<div class="container mx-auto mt-20 relative px-5 lg:px-0">
 
     <?php if (get_field('field_5f96fa1673bac')): ?>
         <div class="video-container" style="position: relative;width: 100%;padding-bottom: 56.25%;">

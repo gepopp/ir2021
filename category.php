@@ -15,11 +15,10 @@ $term = get_queried_object();
         </h1>
     </div>
 
+<?php get_template_part('banner-templates/banner', 'mega') ?>
+
 
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
-
-        <?php get_template_part('banner-templates/banner', 'mega') ?>
-
         <div class="flex flex-col lg:flex-row items-end">
             <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>

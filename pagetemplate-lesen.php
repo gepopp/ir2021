@@ -8,44 +8,47 @@ get_header();
 
     <div class="container mx-auto mt-20 relative">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">lesen</h1>
+    </div>
+
+<?php get_template_part('banner-templates/banner', 'mega') ?>
 
 
-        <?php
-        $today = date('Ymd');
-        $banner_large = get_posts([
-            'post_type'      => 'ir_ad',
-            'posts_per_page' => 1,
-            'tax_query'      => [
-                'relation' => 'and',
+<?php
+$today = date('Ymd');
+$banner_large = get_posts([
+    'post_type'      => 'ir_ad',
+    'posts_per_page' => 1,
+    'tax_query'      => [
+        'relation' => 'and',
+        [
+            'taxonomy'         => 'position',
+            'terms'            => 'startseite-horizontal',
+            'field'            => 'slug',
+            'meta_query'       => [
+                'relation' => 'AND',
                 [
-                    'taxonomy'         => 'position',
-                    'terms'            => 'startseite-horizontal',
-                    'field'            => 'slug',
-                    'meta_query'       => [
-                        'relation' => 'AND',
-                        [
-                            'key'     => 'start',
-                            'compare' => '<=',
-                            'value'   => $today,
-                        ],
-                        [
-                            'key'     => 'ende',
-                            'compare' => '>=',
-                            'value'   => $today,
-                        ],
-                        [
-                            'key'   => 'banner_status', // name of custom field
-                            'value' => [3, 5],
-                        ],
-                    ],
-                    'include_children' => false,
-                    'operator'         => 'IN',
+                    'key'     => 'start',
+                    'compare' => '<=',
+                    'value'   => $today,
                 ],
-                'orderby'  => 'menu_order',
-                'order'    => 'ASC',
+                [
+                    'key'     => 'ende',
+                    'compare' => '>=',
+                    'value'   => $today,
+                ],
+                [
+                    'key'   => 'banner_status', // name of custom field
+                    'value' => [3, 5],
+                ],
             ],
-        ]);
-        ?>
+            'include_children' => false,
+            'operator'         => 'IN',
+        ],
+        'orderby'  => 'menu_order',
+        'order'    => 'ASC',
+    ],
+]);
+?>
 
 
     </div>
@@ -63,22 +66,25 @@ $query = new \WP_Query([
 ?>
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
 
-<?php get_template_part('banner-templates/banner', 'mega') ?>
 
-    <div class="grid grid-cols-2 gap-10">
-        <?php if ($query->have_posts()): ?>
-            <?php while ($query->have_posts()): ?>
-                <?php $query->the_post(); ?>
-                <div class="col-span-2 md:col-span-1 relative">
-                    <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
-                        <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
-                        <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
-                    </a>
-                </div>
-            <?php endwhile; ?>
-        <?php endif; ?>
+        <div class="grid grid-cols-2 gap-10">
+            <?php if ($query->have_posts()): ?>
+                <?php while ($query->have_posts()): ?>
+                    <?php $query->the_post(); ?>
+                    <div class="col-span-2 md:col-span-1 relative">
+                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
+                            <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
+                            <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
+                        </a>
+                    </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
+        <?php wp_reset_postdata(); ?>
     </div>
-<?php wp_reset_postdata(); ?>
+
+
+
 
 <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
 

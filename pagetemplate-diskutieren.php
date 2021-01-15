@@ -38,7 +38,8 @@ if ($query->have_posts()):
                     <div class="lg:w-1/2">
 
                         <div class="mt-20 mb-10 lg:hidden">
-                            <p class="text-3xl font-semibold text-center mb-5">Immo<span class="text-primary-100">Live</span> in</p>
+                            <p class="text-3xl font-semibold text-center mb-5">Immo<span class="text-primary-100">Live</span> in
+                            </p>
                             <div class="flex justify-center space-x-4">
                                 <div class="flex flex-col items-center justify-center text-center">
                                     <div class="flex items-center justify-center rounded-full bg-primary-100 w-12 h-12 p-3 shadow-lg">
@@ -66,8 +67,6 @@ if ($query->have_posts()):
                                 </div>
                             </div>
                         </div>
-
-
 
 
                         <p class="font-semibold hidden lg:block px-5 lg:px-0">Diese Livestream startet am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.</p>
@@ -130,9 +129,11 @@ if ($query->have_posts()):
                 </div>
             </div>
             <div class="bg-white border-t-8 border-primary-100 lg:-mx-5 shadow-xl">
-            <div class="container mx-auto lg:flex ">
+            <div class="container mx-auto lg:flex">
+
+
         <?php else: ?>
-            <div class="w-full lg:w-1/2 py-10 px-5 flex flex-col flex-grow">
+            <div class="w-full lg:w-1/2 py-10 px-5 flex flex-col flex-grow runner">
                 <h1 class="text-3xl font-semibold font-serif leading-tight"><?php the_title() ?></h1>
                 <p class="mb-5">
                     <span class="font-serif text-primary-100 uppercase">Live</span> am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i') ?> Uhr
@@ -158,8 +159,12 @@ if ($query->have_posts()):
         $runner++;
     endwhile;
 endif;
+?>
+
+<?php get_template_part('banner-templates/banner', 'mega') ?>
 
 
+<?php
 $query = new \WP_Query([
     'post_type'           => 'post',
     'post_status'         => 'publish',
@@ -168,7 +173,7 @@ $query = new \WP_Query([
     'tag__in'             => 989,
 ]);
 ?>
-    <div class="container mx-auto mt-20 px-5">
+    <div class="container mx-auto mt-20 px-5 relative">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <?php if ($query->have_posts()): ?>
                 <?php while ($query->have_posts()): ?>

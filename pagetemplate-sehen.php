@@ -15,6 +15,9 @@ get_header();
     </div>
 
 
+<?php get_template_part('banner-templates/banner', 'mega') ?>
+
+
 <?php
 $headvideo = get_posts([
     'post_type'           => 'post',
@@ -25,7 +28,6 @@ $headvideo = get_posts([
 ]);
 ?>
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
-        <?php get_template_part('banner-templates/banner', 'mega') ?>
         <div class="relative">
             <?php if (get_field('field_5c65130772844', $headvideo[0]->ID)): ?>
                 <div id="headvideo"></div>

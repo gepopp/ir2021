@@ -74,9 +74,15 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
 
             <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
                 <ul class="flex">
+                    <li class="uppercase text-white mr-3">
+                        <a href="<?php echo home_url() ?>" class="cursor-pointer" @mouseenter="lesen = !lesen">START</a>
+                    </li>
                     <li class="uppercase text-white mr-3" @click.away="lesen = false">
-                        <a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a></li>
-                    <li class="uppercase text-white mr-3"><a href="/sehen">SEHEN</a></li>
+                        <a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a>
+                    </li>
+                    <li class="uppercase text-white mr-3">
+                        <a href="/sehen">SEHEN</a>
+                    </li>
 
                     <?php
                     $date = date('Y-m-d H:i:s');

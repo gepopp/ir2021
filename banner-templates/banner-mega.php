@@ -36,38 +36,52 @@ $banner_args = [
 ];
 $query_banner = new WP_Query($banner_args);
 ?>
-<div class="container mx-auto mt-20 lg:hidden mb-12">
-    <p class="text-xs text-gray-300">Werbung</p>
-    <div class="flex flex-col lg:flex-row p-5 border">
-        <?php if ($query_banner->have_posts()): ?>
-            <?php while ($query_banner->have_posts()): ?>
-                <?php
-                    $query_banner->the_post();
-                    $thumb  =   get_the_post_thumbnail_url();
-                    $link   =   get_field('field_5c6325e38e0aa');
-                ?>
-                <?php if(get_field('field_5c6325e38e0aa') != ''): ?>
-                <div class="w-full">
-                    <a href="<?php the_field('field_5c6325e38e0aa') ?>">
-                        <img src="<?php echo the_field('field_5f0d5b0270f63'); ?>" class="w-full h-auto">
-                    </a>
-                </div>
-                <?php endif; ?>
-            <?php endwhile; ?>
-        <?php endif; ?>
-    </div>
-</div>
-
-<?php if( isset( $link )): ?>
-<div class="absolute top-0 right-0 hidden lg:block" style="margin-top: -18px; left: 100%; margin-left:15px;width: 120px">
-    <p class="text-xs text-gray-300">Werbung</p>
-    <div class="flex flex-col lg:flex-row p-5 border">
-        <div class="w-full">
-            <a href="<?php echo $link ?>">
-                <img src="<?php echo $thumb ?>" class="w-full h-auto">
-            </a>
+<?php if (!is_single() || (is_single() && get_post_format() == 'video' )): ?>
+    <div class="container mx-auto mt-12 mb-12 px-5 lg:px-0">
+        <p class="text-xs text-gray-300">Werbung</p>
+        <div class="flex flex-col lg:flex-row p-5 border">
+            <?php if ($query_banner->have_posts()): ?>
+                <?php while ($query_banner->have_posts()): ?>
+                    <?php $query_banner->the_post(); ?>
+                    <div class="w-full">
+                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden xl:block">
+                            <img src="<?php echo the_post_thumbnail_url('full') ?>" class="w-full h-auto">
+                        </a>
+                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden lg:block xl:hidden">
+                            <img src="<?php echo the_field('field_60011a6a053b7') ?>" class="w-full h-auto">
+                        </a>
+                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden sm:block lg:hidden">
+                            <img src="<?php echo the_field('field_60011a7d053b8') ?>" class="w-full h-auto">
+                        </a>
+                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="block sm:hidden">
+                            <img src="<?php echo the_field('field_5f0d5b0270f63') ?>" class="w-full h-auto">
+                        </a>
+                    </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
         </div>
     </div>
-</div>
+<?php else: ?>
+    <div class="container mx-auto">
+        <p class="text-xs text-gray-300">Werbung</p>
+        <div class="flex flex-col lg:flex-row p-5 border">
+            <?php if ($query_banner->have_posts()): ?>
+                <?php while ($query_banner->have_posts()): ?>
+                    <?php $query_banner->the_post(); ?>
+                    <div class="w-full">
+                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden lg:block">
+                            <img src="<?php echo the_field('field_60011a6a053b7') ?>" class="w-full h-auto">
+                        </a>
+                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden sm:block lg:hidden">
+                            <img src="<?php echo the_field('field_60011a7d053b8') ?>" class="w-full h-auto">
+                        </a>
+                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="block sm:hidden">
+                            <img src="<?php echo the_field('field_5f0d5b0270f63') ?>" class="w-full h-auto">
+                        </a>
+                    </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
+    </div>
 <?php endif; ?>
 <?php wp_reset_postdata(); ?>
