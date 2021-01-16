@@ -61,8 +61,6 @@ window.prerolled = function (main_id, preroll_id, image, skip){
 
             if(autoplay){
                 video01Player.play().then(() =>  {
-
-
                 });
             }
 

@@ -1,5 +1,24 @@
 
-
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "<?php the_title() ?>",
+        "description": "<?php echo get_the_excerpt() ?>",
+        "thumbnailUrl": [
+            "<?php echo get_field('field_5fe2884da38a5') ?>",
+        ],
+        "uploadDate": "<?php the_time('c') ?>",
+        "duration": "<?php echo get_field('field_5a3ce915590ae') ?>",
+        "contentUrl": "<?php the_permalink(); ?>",
+        "interactionStatistic": {
+            "@type": "InteractionCounter",
+            "interactionType": { "@type": "http://schema.org/WatchAction" },
+            "userInteractionCount": <?php echo get_field('field_5f9ff32f68d04') ?>
+        },
+        "regionsAllowed": "DE"
+    }
+</script>
 
 <?php
 $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
