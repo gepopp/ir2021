@@ -6,8 +6,10 @@ $body = $response['body'];
 $time = explode(':', get_field('field_5a3ce915590ae')  );
 $duration = 'PT';
 if(count($time) == 3){
-    $duration .= 'H';
+
     $duration .= array_shift($time);
+}else{
+    $duration .= 0;
 }
 $duration .= 'M';
 $duration .= array_shift($time);
