@@ -45,14 +45,11 @@ $query = new \WP_Query([
 
                     <div class="col-span-2 md:col-span-1 relative">
                         <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900 h-full">
-
-                                <div class="bg-primary-100 w-full h-full pt-75p flex items-center justify-center" style="padding-top: 56%">
-                                    <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'style' => 'margin-top: -56%' ]); ?>
-                                </div>
+                            <div class="bg-primary-100 w-full h-full pt-75p flex items-center justify-center" style="padding-top: 56%">
+                                <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'style' => 'margin-top: -56%']); ?>
                             </div>
                             <div class="absolute bottom-0 left-0 m-5">
                                 <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
-                                <p class="text-white text-sm">Geschrieben von <?php echo get_the_author_link() ?> am <?php the_time('d.m.Y'); ?></p>
                             </div>
                         </a>
                     </div>
