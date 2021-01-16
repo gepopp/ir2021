@@ -103,6 +103,6 @@ iframe{
     scroll-snap-align: center;
 }
 
-figure.size-large.wp-block-image{
+figure.size-large{
     @apply m-0;
 }
