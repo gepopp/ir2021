@@ -5,7 +5,6 @@ $query = new \WP_Query([
     'ignore_sticky_posts' => true,
     'posts_per_page'      => 2,
     'category__in'        => [17],
-    'tag__not_in'         => 989,
 ]);
 ?>
     <div class="container mx-auto mt-20">
