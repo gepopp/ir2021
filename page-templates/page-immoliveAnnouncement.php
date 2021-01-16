@@ -31,12 +31,14 @@ if ($query->have_posts()):
                          background-position: center">
                 <div class="flex justify-between w-full bg-white p-5">
                     <div>
-                        <p class="bg-white text-xl  lg:text-2xl px-5 font-semibold"><?php the_title() ?></p>
-                        <p class="bg-white text-sm lg:text-xl px-5 font-semibold">Ein
-                            <span class="font-serif uppercase">Immo</span>
-                            <span class="font-serif text-primary-100 uppercase">Live</span> am
-                            <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i') ?> Uhr
-                        </p>
+                        <a href="<?php echo home_url('diskutieren') ?>">
+                            <p class="bg-white text-xl  lg:text-2xl px-5 font-semibold"><?php the_title() ?></p>
+                            <p class="bg-white text-sm lg:text-xl px-5 font-semibold">Ein
+                                <span class="font-serif uppercase">Immo</span>
+                                <span class="font-serif text-primary-100 uppercase">Live</span> am
+                                <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i') ?> Uhr
+                            </p>
+                        </a>
                     </div>
 
                     <?php if (!empty(get_field('field_5ed52801c227a'))): ?>
