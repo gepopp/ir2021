@@ -26,8 +26,8 @@ $query = new \WP_Query([
                             <img src="<?php echo $body['pictures']['sizes'][3]['link'] ?>" class="w-full h-auto">
                         <?php endif; ?>
                         <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
-                        <div class="absolute bottom-0 left-0 p-5 w-full hidden lg:block">
-                            <h1 class="font-serif text-white text-2xl bg-gray-800 bg-opacity-50 w-full"><?php the_title() ?></h1>
+                        <div class="absolute bottom-0 left-0 w-full hidden lg:block">
+                            <h1 class="font-serif text-white p-5 text-2xl bg-gray-800 bg-opacity-50 w-full"><?php the_title() ?></h1>
                         </div>
                         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                             <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">
