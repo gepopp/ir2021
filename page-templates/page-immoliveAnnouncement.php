@@ -44,9 +44,9 @@ if ($query->have_posts()):
                 <?php endif; ?>
             </div>
 
-            <div class="absolute top-0 right-0 m-6">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/poweredbygoreeo.png" class="w-24 h-24">
-            </div>
+<!--            <div class="absolute top-0 right-0 m-6">-->
+<!--                <img src="--><?php //echo get_stylesheet_directory_uri() ?><!--/assets/images/poweredbygoreeo.png" class="w-24 h-24">-->
+<!--            </div>-->
         </div>
     <?php
     endwhile;
