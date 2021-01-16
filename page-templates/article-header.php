@@ -11,7 +11,7 @@
                     <p class="text-xs"> ( <?php echo edit_post_link() ?> ) </p>
                 <?php endif; ?>
             </h1>
-            <p class="my-5"><?php the_excerpt(); ?></p>
+            <p class="my-5 font-semibold"><?php the_excerpt(); ?></p>
         </div>
     </div>
 </div>
