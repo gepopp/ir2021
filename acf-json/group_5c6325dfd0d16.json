@@ -126,6 +126,46 @@
             "first_day": 1
         },
         {
+            "key": "field_6002b1af949d9",
+            "label": "Version XL",
+            "name": "version_xl",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_6002b1de949da",
+            "label": "Version XL Hmtl5",
+            "name": "version_xl_hmtl5",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
             "key": "field_60011a6a053b7",
             "label": "Version large",
             "name": "version_large",
@@ -148,6 +188,22 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_6002b1f6949db",
+            "label": "Version Large html5",
+            "name": "version_large_html5",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         },
         {
             "key": "field_60011a7d053b8",
@@ -174,6 +230,22 @@
             "mime_types": ""
         },
         {
+            "key": "field_6002b205949dc",
+            "label": "Version Tablet Html5",
+            "name": "version_tablet_html5",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
             "key": "field_5f0d5b0270f63",
             "label": "Mobile Version",
             "name": "mobile_version",
@@ -196,6 +268,22 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_6002b224949dd",
+            "label": "Version Mobile Html5",
+            "name": "version_mobile_html5",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -215,5 +303,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1610685669
+    "modified": 1610789429
 }
