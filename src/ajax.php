@@ -199,7 +199,7 @@ function load_more_author()
                 'ID'        => get_the_ID(),
                 'title'     => get_the_title(),
                 'permalink' => get_the_permalink(),
-                'img_url'   => !has_post_thumbnail() || !checkRemoteFile(get_the_post_thumbnail_url(get_the_ID(), 'article')) ? false : get_the_post_thumbnail_url(get_the_ID(), 'article'),
+                'img_url'   => get_the_post_thumbnail_url(get_the_ID(), 'article'),
                 'author'    => get_the_author(),
                 'date'      => get_the_time('d.m.Y'),
             ];

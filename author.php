@@ -49,7 +49,7 @@ $query = new \WP_Query([
                                 <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'style' => 'margin-top: -56%']); ?>
                             </div>
                             <div class="absolute bottom-0 left-0 m-5">
-                                <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
+                                <h1 class="font-serif text-white text-2xl  bg-gray-800 bg-opacity-50 w-full"><?php the_title() ?></h1>
                             </div>
                         </a>
                     </div>
@@ -74,9 +74,7 @@ $query = new \WP_Query([
                             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto" x-show="!post.img_url">
                         </div>
                         <div class="absolute bottom-0 left-0 m-5">
-                            <h1 class="font-serif text-white text-2xl" x-text="post.title"></h1>
-                            <p class="text-white text-sm">Geschrieben von <span x-text="post.author"></span> am
-                                <span x-text="post.date"></span></p>
+                            <h1 class="font-serif text-white text-2xl bg-gray-800 bg-opacity-50 w-full" x-text="post.title"></h1>
                         </div>
                     </a>
                 </div>
