@@ -134,15 +134,15 @@ $query = new WP_Query([
                     <div class="col-span-3 lg:col-span-1">
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
-                                <?php if (get_field('field_5c65130772844')): ?>
-                                    <img src="https://cdn.jwplayer.com/v2/media/<?php echo get_field('field_5c65130772844') ?>/poster.jpg"/>
-                                <?php elseif (get_field('field_5f96fa1673bac')): ?>
-                                    <img src="https://img.youtube.com/vi/<?php echo get_field('field_5f96fa1673bac') ?>/mqdefault.jpg"/>
-                                <?php elseif (get_field('field_5fe2884da38a5')): ?>
+<!--                                --><?php //if (get_field('field_5c65130772844')): ?>
+<!--                                    <img src="https://cdn.jwplayer.com/v2/media/--><?php //echo get_field('field_5c65130772844') ?><!--/poster.jpg"/>-->
+<!--                                --><?php //elseif (get_field('field_5f96fa1673bac')): ?>
+<!--                                    <img src="https://img.youtube.com/vi/--><?php //echo get_field('field_5f96fa1673bac') ?><!--/mqdefault.jpg"/>-->
+<!--                                --><?php //elseif (get_field('field_5fe2884da38a5')): ?>
                                     <div x-data="loadVimeoImage()" x-init="loadUrl('<?php echo get_field('field_5fe2884da38a5') ?>')" class="bg-primary-100" style="padding-top: 56%">
                                         <img :src="imgUrl" style="margin-top: -56%">
                                     </div>
-                                <?php endif; ?>
+<!--                                --><?php //endif; ?>
                                 <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                                     <div class="w-4 h-4 bg-white rounded-full">
                                         <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

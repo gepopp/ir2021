@@ -161,7 +161,6 @@ if ($query->have_posts()):
 endif;
 ?>
 
-<?php get_template_part('banner-templates/banner', 'mega') ?>
 
 
 <?php
@@ -173,6 +172,9 @@ $query = new \WP_Query([
     'tag__in'             => 989,
 ]);
 ?>
+
+<?php get_template_part('banner-templates/banner', 'mega') ?>
+
     <div class="container mx-auto mt-20 px-5 relative">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <?php if ($query->have_posts()): ?>
