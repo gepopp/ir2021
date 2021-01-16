@@ -98,7 +98,7 @@ $banner_large = get_posts([
             <?php if (!empty($banner_large)): ?>
                 <div class="">
                     <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
-                        <img src="<?php echo the_field('field_5f0d5b0270f63', $banner_large[0]->ID); ?>" class="w-full h-auto">
+                        <img src="<?php the_field('field_5f0d5b0270f63', $banner_large[0]->ID); ?>" class="w-full h-auto">
                     </a>
                 </div>
             <?php endif; ?>
@@ -107,7 +107,7 @@ $banner_large = get_posts([
             <?php if (!empty($banner_small)): ?>
                 <div class="">
                     <a href="<?php the_field('field_5c6325e38e0aa', $banner_small[0]->ID) ?>">
-                        <img src="<?php echo get_field('field_5f0d5b0270f63'); ?>" class="w-full h-auto">
+                        <img src="<?php echo get_field('field_5f0d5b0270f63', $banner_small[0]->ID); ?>" class="w-full h-auto">
                     </a>
                 </div>
             <?php endif; ?>
