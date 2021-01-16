@@ -204,6 +204,7 @@ function getCSSWhitelistPatterns() {
 		/^depth(-.*)?$/,
 		/^children(-.*)?$/,
 		/^figure(-.*)?$/,
+		/^figcaption(-.*)?$/,
 	];
 }
 

@@ -106,3 +106,6 @@ iframe{
 figure.size-large{
     @apply m-0;
 }
+figcaption{
+    @apply text-center text-gray-600 pb-5;
+}
