@@ -90,15 +90,37 @@ $query_banner = new WP_Query($banner_args);
                 <?php while ($query_banner->have_posts()): ?>
                     <?php $query_banner->the_post(); ?>
                     <div class="w-full">
-                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden lg:block">
-                            <img src="<?php echo the_field('field_60011a6a053b7') ?>" class="w-full h-auto">
-                        </a>
-                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden sm:block lg:hidden">
-                            <img src="<?php echo the_field('field_60011a7d053b8') ?>" class="w-full h-auto">
-                        </a>
-                        <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="block sm:hidden">
-                            <img src="<?php echo the_field('field_5f0d5b0270f63') ?>" class="w-full h-auto">
-                        </a>
+                        <?php if (get_field('field_6002b1de949da')): ?>
+                            <embed src="<?php echo get_field('field_6002b1de949da') ?>" width="100%" height="auto" class="overflow-hidden hidden xl:block" style="max-height: 110px">
+                        <?php else: ?>
+                            <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden xl:block">
+                                <img src="<?php echo get_field('field_6002b1af949d9') ?>" class="w-full h-auto">
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (get_field('field_6002b1f6949db')): ?>
+                            <embed src="<?php echo get_field('field_6002b1f6949db') ?>" width="100%" height="auto" class="overflow-hidden hidden lg:block xl:hidden" style="max-height: 110px">
+                        <?php else: ?>
+                            <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden lg:block xl:hidden">
+                                <img src="<?php echo get_field('field_60011a6a053b7') ?>" class="w-full h-auto">
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (get_field('field_6002b205949dc')): ?>
+                            <embed src="<?php echo get_field('field_6002b205949dc') ?>" width="100%" height="auto" class="overflow-hidden hidden sm:block lg:hidden" style="max-height: 110px">
+                        <?php else: ?>
+                            <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden sm:block lg:hidden">
+                                <img src="<?php echo get_field('field_60011a7d053b8') ?>" class="w-full h-auto">
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (get_field('field_6002b224949dd')): ?>
+                            <embed src="<?php echo get_field('field_6002b224949dd') ?>" width="100%" height="auto" class="overflow-hidden block sm:hidden" style="max-height: 250px">
+                        <?php else: ?>
+                            <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="block sm:hidden">
+                                <img src="<?php echo the_field('field_5f0d5b0270f63') ?>" class="w-full h-auto">
+                            </a>
+                        <?php endif; ?>
                     </div>
                 <?php endwhile; ?>
             <?php endif; ?>
