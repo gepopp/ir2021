@@ -13,6 +13,8 @@ $body = $response['body'];
         "description": "<?php echo get_the_excerpt() ?>",
         "thumbnailUrl": [
             "<?php echo $body['pictures']['sizes'][2]['link'] ?>"
+            "<?php echo $body['pictures']['sizes'][0]['link'] ?>"
+            "<?php echo $body['pictures']['sizes'][1]['link'] ?>"
         ],
         "uploadDate": "<?php the_time('c') ?>",
         "duration": "<?php echo get_field('field_5a3ce915590ae') ?>",
