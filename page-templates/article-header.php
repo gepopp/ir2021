@@ -1,5 +1,36 @@
 <?php get_template_part('page-templates/article', 'author') ?>
 
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "<?php echo the_permalink() ?>"
+        },
+        "headline": "<?php echo the_title() ?>",
+        "image": [
+            "<?php echo the_post_thumbnail_url('thumbnail') ?>",
+            "<?php echo the_post_thumbnail_url('large') ?>",
+            "<?php echo the_post_thumbnail_url('full') ?>"
+        ],
+        "datePublished": "<?php echo the_time('c') ?>",
+        "dateModified": "<?php echo the_modified_time('c') ?>",
+        "author": {
+            "@type": "Person",
+            "name": "<?php the_author_meta('full_name'); ?>"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Die unabhängige Immobilien Redaktion",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "<?php echo get_stylesheet_directory_uri() . '/assests/images/logo.png'?>"
+            }
+        }
+    }
+</script>
+
 
 <div class="container mx-auto mt-20">
     <div class="grid grid-cols-5 gap-4">
