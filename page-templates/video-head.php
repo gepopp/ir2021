@@ -6,7 +6,7 @@
         "name": "<?php the_title() ?>",
         "description": "<?php echo get_the_excerpt() ?>",
         "thumbnailUrl": [
-            "<?php echo get_field('field_5fe2884da38a5') ?>",
+            "<?php echo get_field('field_5fe7058a647cb') ?>",
         ],
         "uploadDate": "<?php the_time('c') ?>",
         "duration": "<?php echo get_field('field_5a3ce915590ae') ?>",
