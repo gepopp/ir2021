@@ -203,6 +203,7 @@ function getCSSWhitelistPatterns() {
 		/^(.*)?-?paged(-.*)?$/,
 		/^depth(-.*)?$/,
 		/^children(-.*)?$/,
+		/^figure(-.*)?$/,
 	];
 }
 
