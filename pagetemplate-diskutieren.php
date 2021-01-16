@@ -193,9 +193,9 @@ $query = new \WP_Query([
 
                                 <img src="<?php echo $body['pictures']['sizes'][3]['link'] ?>" class="w-full h-auto">
                             <?php endif; ?>
-                            <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25"></div>
-                            <div class="absolute bottom-0 left-0 m-5 hidden lg:block">
-                                <h1 class="font-serif text-white text-2xl"><?php the_title() ?></h1>
+                            <div class="absolute top-0 left-0 w-full h-full"></div>
+                            <div class="absolute bottom-0 left-0 hidden lg:block w-full">
+                                <?php get_template_part('page-templates/snippet', 'heading') ?>
                             </div>
                             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                                 <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">
@@ -208,7 +208,7 @@ $query = new \WP_Query([
                             </div>
                         </a>
                         <a href="<?php the_permalink(); ?>" class="block lg:hidden mt-5">
-                            <h1 class="text-gray-800 text-sm lg:text-2xl"><?php the_title() ?></h1>
+                            <h1 class="text-gray-800 text-lg font-semibold"><?php the_title() ?></h1>
                         </a>
                     </div>
                 <?php endwhile; ?>

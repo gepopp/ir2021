@@ -37,20 +37,21 @@ $banner_args = [
 $query = new WP_Query($banner_args);
 //echo var_dump(count($banners));
 ?>
+<div class="px-5 xl:px-0">
+    <div class="container mx-auto mt-20">
+        <p class="text-xs text-gray-300">Werbung</p>
+        <div class="grid grid-cols-4 gap-5 p-5 border">
+            <?php if ($query->have_posts()): ?>
+                <?php while ($query->have_posts()): ?>
+                    <?php $query->the_post(); ?>
 
-<div class="container mx-auto mt-20">
-    <p class="text-xs text-gray-300">Werbung</p>
-    <div class="grid grid-cols-4 gap-5 p-5 border">
-        <?php if ($query->have_posts()): ?>
-            <?php while ($query->have_posts()): ?>
-                <?php $query->the_post(); ?>
-
-            <div class="col-span-2 lg:col-span-1 flex justify-center">
-                <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full') ?>">
-            </div>
+                    <div class="col-span-2 lg:col-span-1 flex justify-center">
+                        <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full') ?>">
+                    </div>
 
 
-            <?php endwhile; ?>
-        <?php endif; ?>
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
     </div>
 </div>

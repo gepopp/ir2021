@@ -31,7 +31,7 @@ $query = new \WP_Query([
                         <div class="col-span-2 md:col-span-1 relative">
                             <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
                                 <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
-                                <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl bg-gray-800 bg-opacity-50 w-full"><?php the_title() ?></h1>
+                                <?php get_template_part('page-templates/snippet', 'heading') ?>
                             </a>
                         </div>
                     </div>
@@ -76,7 +76,7 @@ $query = new \WP_Query([
                         <div class="col-span-2 md:col-span-1 relative">
                             <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
                                 <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
-                                <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl w-full bg-gray-800 bg-opacity-50"><?php the_title() ?></h1>
+                                <?php get_template_part('page-templates/snippet', 'heading') ?>
                             </a>
                         </div>
                     </div>

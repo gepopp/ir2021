@@ -45,7 +45,7 @@ $term = get_queried_object();
                     <div class="col-span-2 md:col-span-1 relative">
                         <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full" style="padding-top: 56%">
                             <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'", 'style' => "margin-top:-56%"]); ?>
-                            <h1 class="md:absolute bottom-0 left-0 text-white font-serif p-5 text-xl w-full md:text-2xl leading-tight bg-gray-800 bg-opacity-50"><?php the_title() ?></h1>
+                            <?php get_template_part('page-templates/snippet', 'heading') ?>
                         </a>
                     </div>
                 <?php endwhile; ?>
