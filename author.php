@@ -48,7 +48,7 @@ $query = new \WP_Query([
                             <div class="bg-primary-100 w-full h-full pt-75p flex items-center justify-center" style="padding-top: 56%">
                                 <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'style' => 'margin-top: -56%']); ?>
                             </div>
-                            <div class="absolute bottom-0 left-0 m-5">
+                            <div class="absolute bottom-0 left-0">
                                 <h1 class="font-serif text-white text-2xl  bg-gray-800 bg-opacity-50 w-full"><?php the_title() ?></h1>
                             </div>
                         </a>
@@ -73,7 +73,7 @@ $query = new \WP_Query([
                         <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                             <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto" x-show="!post.img_url">
                         </div>
-                        <div class="absolute bottom-0 left-0 m-5">
+                        <div class="absolute bottom-0 left-0">
                             <h1 class="font-serif text-white text-2xl bg-gray-800 bg-opacity-50 w-full" x-text="post.title"></h1>
                         </div>
                     </a>
