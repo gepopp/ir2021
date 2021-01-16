@@ -4,15 +4,17 @@ $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GE
 $body = $response['body'];
 
 $time = explode(':', get_field('field_5a3ce915590ae')  );
-$duration = 'PT1';
+$duration = 'PT';
 if(count($time) == 3){
-    $duration .= 'H';
     $duration .= array_shift($time);
+    $duration .= 'H';
+
 }
+$duration .= array_shift($time);
 $duration .= 'M';
+
 $duration .= array_shift($time);
 $duration .= 'S';
-$duration .= array_shift($time);
 
 
 
