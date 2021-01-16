@@ -63,8 +63,6 @@ else:
 
     <div class="container mx-auto mt-20 relative px-5 lg:px-0">
 
-    <?php get_template_part('banner-templates/banner', 'mega') ?>
-
     <div class="grid grid-cols-2 gap-10">
         <?php if ($query->have_posts()): ?>
             <?php while ($query->have_posts()): ?>
