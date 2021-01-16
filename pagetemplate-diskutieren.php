@@ -151,7 +151,7 @@ if ($query->have_posts()):
                 </div>
             </div>
         <?php endif; ?>
-        <?php if ($runner == 3): ?>
+        <?php if ($runner ==  $query->post_count): ?>
         </div>
         </div>
     <?php endif; ?>
