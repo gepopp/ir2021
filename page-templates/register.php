@@ -125,10 +125,10 @@ global $FormSession;
         $socialite = new SocialiteManager($config);
         ?>
 
-        <div class="my-5 w-full">
-            <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
-               class="bg-primary-100 py-2 px-3 text-white w-full text-center block"
-            >Mit Facebook ausfüllen</a>
-        </div>
+<!--        <div class="my-5 w-full">-->
+<!--            <a href="--><?php //echo $socialite->create('facebook')->redirect(); ?><!--"-->
+<!--               class="bg-primary-100 py-2 px-3 text-white w-full text-center block"-->
+<!--            >Mit Facebook ausfüllen</a>-->
+<!--        </div>-->
     </form>
 </div>
