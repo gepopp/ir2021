@@ -29,7 +29,7 @@ if ($query->have_posts()):
                          background-image: url(<?php echo get_the_post_thumbnail_url() ?>);
                          background-size: cover;
                          background-position: center">
-                <div class="flex justify-between w-full bg-white p-5">
+                <div class="flex flex-col lg:flex-row justify-between w-full bg-white p-5">
                     <div>
                         <a href="<?php echo home_url('diskutieren') ?>">
                             <p class="bg-white text-xl  lg:text-2xl px-5 font-semibold"><?php the_title() ?></p>
@@ -42,7 +42,7 @@ if ($query->have_posts()):
                     </div>
 
                     <?php if (!empty(get_field('field_5ed52801c227a'))): ?>
-                        <div class="flex items-center">
+                        <div class="flex items-center mt-10 lg:mt-0 pl-5 lg:pl-0">
                             <a href="<?php the_field('field_5ed52801c227a') ?>" class="bg-primary-100 px-5 lg:text-center text-white text-lg lg:text-2xl py-2 whitespace-no-wrap">
                                 Jetzt Anmelden
                             </a>
