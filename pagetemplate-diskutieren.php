@@ -72,7 +72,7 @@ if ($query->have_posts()):
             ?>
             <div class="lg:h-screen-75 flex lg:-mx-5" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
                 <div class="lg:w-1/2 bg-white h-full relative flex justify-center items-center">
-                    <div class="lg:w-1/2">
+                    <div class="lg:w-3/4 xl:w-1/2">
 
                         <div class="mt-20 mb-10 lg:hidden">
                             <p class="text-3xl font-semibold text-center mb-5">Immo<span class="text-primary-100">Live</span> in
