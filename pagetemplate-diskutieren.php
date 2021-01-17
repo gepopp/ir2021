@@ -51,7 +51,7 @@ if ($query->have_posts()):
         "<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium') ?>",
         "<?php echo get_the_post_thumbnail_url(get_the_ID(), 'thumbnail') ?>"
        ],
-      "description": "<?php echo wp_filter_nohtml_kses(get_the_content()) ?>",
+      "description": "<?php echo wp_strip_all_tags(get_the_content()) ?>",
       "offers": {
         "@type": "Offer",
         "url": "<?php echo get_field('field_5ed52801c227a') ?>",
