@@ -47,7 +47,7 @@ $query_banner = new WP_Query($banner_args);
 
 
                         <?php if (get_field('field_6002b1de949da')): ?>
-                            <embed src="<?php echo get_field('field_6002b1de949da') ?>" width="100%" height="auto" class="overflow-hidden hidden xl:block" style="max-height: 110px">
+                            <embed src="<?php echo get_field('field_6002b1de949da') ?>" width="100%" height="auto" class="overflow-hidden hidden xl:block" style="max-height: 110px;">
                         <?php else: ?>
                             <a href="<?php the_field('field_5c6325e38e0aa') ?>" class="hidden xl:block">
                                 <img src="<?php echo get_field('field_6002b1af949d9') ?>" class="w-full h-auto">

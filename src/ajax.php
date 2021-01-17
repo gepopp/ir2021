@@ -7,23 +7,63 @@ use Google\Exception;
 add_action('wp_ajax_load_vimeo_thumbnail', 'immobilien_redaktion_2020\load_vimeo_image');
 add_action('wp_ajax_nopriv_load_vimeo_thumbnail', 'immobilien_redaktion_2020\load_vimeo_image');
 
-function load_vimeo_image()
+function load_vimeo_image($post_id = false, $ajax = true)
 {
 
-    if (get_field('field_5fe7058a647cb', $_POST['post_id']) == '') {
+    if(!$post_id)
+    $post_id = $_POST['post_id'];
+
+    if(!has_post_thumbnail($post_id)) {
 
         $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-        $response = $lib->request('/videos/' .  $_POST['id'], [], 'GET');
+        $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5', $post_id), [], 'GET');
         $body = $response['body'];
 
-        update_field('field_5fe7058a647cb',$body['pictures']['sizes'][2]['link'], $_POST['post_id']);
+        if(isset($body['pictures'])){
+            $file = $body['pictures']['sizes'][3]['link'];
 
-        wp_die($body['pictures']['sizes'][2]['link']);
+            preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $file, $matches );
+            if ( ! $matches ) {
+                return new WP_Error( 'image_sideload_failed', __( 'Invalid image URL' ) );
+            }
 
-    } else {
+            $file_array = array();
+            $file_array['name'] = basename( $matches[0] );
 
-        wp_die(get_field('field_5fe7058a647cb', $_POST['post_id']));
+            if(!function_exists('download_url')){
+                require_once 'wp-admin/includes/file.php';
+            }
+            // Download file to temp location.
+            $file_array['tmp_name'] = download_url( $file );
 
+            // If error storing temporarily, return the error.
+            if ( is_wp_error( $file_array['tmp_name'] ) ) {
+                return $file_array['tmp_name'];
+            }
+
+
+            if(!function_exists('media_handle_sideload')){
+                require_once 'wp-admin/includes/media.php';
+                require_once 'wp-admin/includes/image.php';
+            }
+            // Do the validation and storage stuff.
+            $id = media_handle_sideload( $file_array, $post_id );
+
+            // If error storing permanently, unlink.
+            if ( is_wp_error( $id ) ) {
+                @unlink( $file_array['tmp_name'] );
+                return $id;
+            }
+            set_post_thumbnail( $post_id, $id );
+        }
+
+
+    }
+
+    if(wp_doing_ajax() && $ajax){
+        wp_die(get_the_post_thumbnail_url($post_id, 'full'));
+    }else{
+        return get_the_post_thumbnail_url($post_id, 'full');
     }
 }
 
@@ -43,7 +83,7 @@ function get_page_views_from_ga_api()
         $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
         $analytics = new \Google_Service_Analytics($client);
 
-        try{
+        try {
             $results = $analytics->data_ga->get(
                 'ga:192606539',
                 '2005-01-01',
@@ -66,10 +106,9 @@ function get_page_views_from_ga_api()
                 wp_die("No results found.");
             }
 
-            }catch (Exception $e){
-            wp_die( get_field('field_5f9ff32f68d04', $_POST['id']));
+        } catch (Exception $e) {
+            wp_die(get_field('field_5f9ff32f68d04', $_POST['id']));
         }
-
 
 
     } else {
@@ -129,7 +168,7 @@ function load_more_immolive()
         'post_status'         => 'publish',
         'ignore_sticky_posts' => true,
         'posts_per_page'      => 10,
-        'tag__in'                 => 989,
+        'tag__in'             => 989,
         'offset'              => (int)$_POST['offset'],
     ]);
 
@@ -139,18 +178,11 @@ function load_more_immolive()
         while ($query->have_posts()) {
             $query->the_post();
 
+            $img='';
+
             if (get_field('field_5fe7058a647cb') == '') {
 
-                $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
-                $body = $response['body'];
-
-                $img = $body['pictures']['sizes'][2]['link'];
-                update_field('field_5fe7058a647cb', $img);
-
-            } else {
-
-                $img = get_field('field_5fe7058a647cb');
+               $img = load_vimeo_image(get_the_ID(), false);
 
             }
 
@@ -233,25 +265,20 @@ function load_videos()
         while ($query->have_posts()):
             $query->the_post();
 
-            if (get_field('field_5c65130772844')):
-                $url = "https://cdn.jwplayer.com/v2/media/" . get_field('field_5c65130772844') . "/poster.jpg";
-            elseif (get_field('field_5f96fa1673bac')):
-                $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
-            elseif (get_field('field_5fe2884da38a5')):
-                $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
-                $body = $response['body'];
-                $url = $body['pictures']['sizes'][2]['link'];
-            else:
-                $url = false;
-            endif;
+//           if (get_field('field_5f96fa1673bac')):
+//                $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
+//            elseif (get_field('field_5fe2884da38a5')):
+//                $url = load_vimeo_image(get_the_ID());
+//            else:
+//                $url = false;
+//            endif;
 
 
             $posts[] = [
                 'ID'        => get_the_ID(),
                 'permalink' => get_the_permalink(),
                 'title'     => get_the_title(),
-                'img'       => $url,
+                'img'       => '',
             ];
             $runner++;
         endwhile;

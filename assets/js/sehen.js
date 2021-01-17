@@ -1,15 +1,14 @@
 const axios = require('axios');
 
-window.loadVimeoImage = function (){
+window.loadVimeoImage = function () {
     return {
         imgUrl: false,
-        loadUrl(id, post_id){
+        loadUrl(post_id) {
             var params = new URLSearchParams();
             params.append('action', 'load_vimeo_thumbnail');
-            params.append('id', id );
-            params.append('post_id', post_id );
+            params.append('post_id', post_id);
             axios.post(window.ajaxurl, params)
-                .then((rsp)=>{
+                .then((rsp) => {
                     this.imgUrl = rsp.data;
                 });
         }
@@ -17,9 +16,7 @@ window.loadVimeoImage = function (){
 }
 
 
-
-
-window.slider = function ( start, cat, pages) {
+window.slider = function (start, cat, pages) {
     return {
         rows: [start],
         cat: cat,
@@ -28,41 +25,60 @@ window.slider = function ( start, cat, pages) {
         loading: false,
         next($refs) {
 
-            if(!this.loading)
+            if (!this.loading)
                 $refs.slider.scrollLeft = $refs.slider.scrollLeft + ($refs.slider.scrollWidth / this.rows.length);
 
         },
-        prev($refs){
-            if(!this.loading)
+        prev($refs) {
+            if (!this.loading)
                 $refs.slider.scrollLeft = $refs.slider.scrollLeft - ($refs.slider.scrollWidth / this.rows.length)
         },
-        load(){
+        loadImage() {
 
-            if(this.rows.length <= pages){
+            this.rows.map((row => {
+                row.map(post => {
+                    if (post.img == '') {
+
+                        var params = new URLSearchParams();
+                        params.append('action', 'load_vimeo_thumbnail');
+                        params.append('post_id', post.ID);
+                        axios.post(window.ajaxurl, params)
+                            .then((rsp) => {
+                                post.img = rsp.data;
+                            });
+                    }
+                })
+            }))
+
+
+        },
+        load() {
+
+            if (this.rows.length <= pages) {
 
                 this.loading = true;
 
                 var params = new URLSearchParams();
                 params.append('action', 'load_videos');
-                params.append('cat', this.cat );
+                params.append('cat', this.cat);
                 params.append('page', this.active + 1);
 
                 axios.post(window.ajaxurl, params)
-                    .then((rsp)=>{
+                    .then((rsp) => {
                         this.rows.push(rsp.data);
-
-                        setTimeout(() => this.loading = false, 1500 );
+                        this.loadImage();
+                        setTimeout(() => this.loading = false, 1500);
                     });
 
             }
         },
-        setBg(post, $refs ){
+        setBg(post, $refs) {
 
             var id = 'img' + post.id;
-            setTimeout(() => this.$el.querySelector('#img-' + post.ID).style.backgroundImage = "url('" + post.img + "')", 15 );
+            setTimeout(() => this.$el.querySelector('#img-' + post.ID).style.backgroundImage = "url('" + post.img + "')", 15);
 
         },
-        $watch(){
+        $watch() {
             active: (value) => {
                 console.log(value);
             }

@@ -1,4 +1,6 @@
 <?php
+
+use function immobilien_redaktion_2020\load_vimeo_image;
 /**
  * Template Name: Diskutieren
  */
@@ -182,16 +184,10 @@ $query = new \WP_Query([
                     <?php $query->the_post(); ?>
                     <div class="col-span-2 md:col-span-1 relative">
                         <a href="<?php the_permalink(); ?>" class="relative block bg-primary bg-gray-900">
-                            <?php if (get_field('field_5c65130772844')): ?>
-                                <img src="https://cdn.jwplayer.com/v2/media/<?php the_field('field_5c65130772844') ?>/poster.jpg" class="w-full h-auto max-w-full">
-                            <?php elseif (get_field('field_5f96fa1673bac')): ?>
+                            <?php if (get_field('field_5f96fa1673bac')): ?>
                                 <img src="https://img.youtube.com/vi/<?php the_field('field_5f96fa1673bac') ?>/mqdefault.jpg" class="w-full h-auto max-w-full">
-                            <?php elseif (get_field('field_5fe2884da38a5')):
-                                $lib = new \Vimeo\Vimeo('f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9');
-                                $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5'), [], 'GET');
-                                $body = $response['body']; ?>
-
-                                <img src="<?php echo $body['pictures']['sizes'][3]['link'] ?>" class="w-full h-auto">
+                            <?php elseif (get_field('field_5fe2884da38a5')): ?>
+                               <img src="<?php echo load_vimeo_image(get_the_ID()) ?>" class="w-full h-auto">
                             <?php endif; ?>
                             <div class="absolute top-0 left-0 w-full h-full"></div>
                             <div class="absolute bottom-0 left-0 hidden lg:block w-full">
