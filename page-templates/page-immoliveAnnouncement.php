@@ -24,11 +24,8 @@ if ($query->have_posts()):
         ?>
 
         <div class="px-5 xl:px-0">
-            <div class="container mx-auto mt-20 border-15 flex flex-col justify-end relative"
-                 style=" height: 512px;
-                         background-image: url(<?php echo get_the_post_thumbnail_url() ?>);
-                         background-size: cover;
-                         background-position: center">
+            <div class="container mx-auto mt-20 border-15 flex flex-col justify-end relative bg-no-repeat bg-top xl:bg-center bg-contain lg:bg-cover pt-25p lg:pt-20p xl:pt-15p"
+                 style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>);">
                 <div class="flex flex-col lg:flex-row justify-between w-full bg-white p-5">
                     <div>
                         <a href="<?php echo home_url('diskutieren') ?>">

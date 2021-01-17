@@ -75,6 +75,9 @@ module.exports = {
 			'48': '12rem',
 			'56': '14rem',
 			'64': '16rem',
+			'15p':'15%',
+			'20p':'20%',
+			'25p':'25%',
 			'75p':'75%',
 			'100': '100%'
 		},
@@ -306,7 +309,7 @@ module.exports = {
 			'11': '11',
 			'12': '12',
 		},
-		padding: theme => theme('spacing'),
+		padding:  theme => theme('spacing'),
 		stroke: {
 			current: 'currentColor',
 		},
