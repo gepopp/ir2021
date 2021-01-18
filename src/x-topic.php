@@ -14,11 +14,11 @@ ob_start();
 ?>
 
 
-    <div class="w-full bg-primary-100 p-5 my-10 flex flex-col lg:flex-row lg:space-x-4">
-        <div class="w-full lg:w-1/3">
+    <div class="w-full bg-primary-100 bg-opacity-50 p-5 my-10 flex flex-col lg:flex-row lg:space-x-4">
+        <div class="w-full lg:w-1/4">
             <img src="<?php echo get_the_post_thumbnail_url($id, 'small') ?>" class="w-full h-auto"/>
         </div>
-        <div class="text-white w-full lg:w-2/3 pt-5 lg:pt-0">
+        <div class="text-white w-full lg:w-3/4 pt-5 lg:pt-0">
             <p class="text-sm"><?php echo $atts['title'] ?></p>
             <h1 class="text-2xl font-serif"><?php echo get_the_title($id) ?></h1>
             <p><?php echo get_the_excerpt($id) ?></p>
