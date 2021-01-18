@@ -109,3 +109,10 @@ figure.size-large{
 figcaption{
     @apply text-center text-gray-600 pb-5;
 }
+.wp-block-button{
+    @apply flex justify-center;
+}
+
+.wp-block-button__link{
+    @apply p-3 text-center text-white bg-primary-100 font-semibold shadow-xl;
+}
