@@ -20,10 +20,10 @@ if($cat):
         <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
             <div class="h-full" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
                 <div id="scrollspy" class="flex flex-col justify-between h-full">
-                    <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?></p>
+                    <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?? '' ?></p>
                     <p class="p-5 text-white">
                         <a href="<?php echo get_category_link($cat) ?>">
-                            <span class="text-white underline"><?php echo $cat->count ?> Artikel</span>
+                            <span class="text-white underline"><?php echo $cat->count ?? '' ?> Artikel</span>
                         </a>
                     </p>
                 </div>

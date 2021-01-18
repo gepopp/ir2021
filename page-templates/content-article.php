@@ -18,7 +18,8 @@ $post = get_the_ID();
                 <?php get_template_part('page-templates/article', 'left') ?>
             </div>
             <div class="content col-span-5 lg:col-span-3" id="article-content">
-                <?php echo preg_replace('#\[[^\]]+\]#', '', get_the_content()); ?>
+                <?php the_content(); ?>
+<!--                --><?php //echo preg_replace('#\[[^\]]+\]#', '', get_the_content()); ?>
             </div>
             <div>
                 <?php get_template_part('page-templates/article', 'right') ?>
