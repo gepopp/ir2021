@@ -28,7 +28,8 @@ $post_id = get_the_ID();
         <div class="grid grid-cols-5 gap-4 px-5 lg:px-0" style="min-height: 800px">
             <div class="col-span-5 lg:col-span-3 content text-white" id="article-content">
                 <p class="mb-5 text-white"><?php echo get_the_excerpt(); ?></p>
-                <?php echo preg_replace('#\[[^\]]+\]#', '', get_the_content()); ?>
+                <?php the_content(); ?>
+<!--                --><?php //echo preg_replace('#\[[^\]]+\]#', '', get_the_content()); ?>
             </div>
             <?php get_template_part('page-templates/video', 'sidebar') ?>
         </div>
