@@ -16,7 +16,7 @@ $query = new \WP_Query([
     'post_status'         => 'publish',
     'ignore_sticky_posts' => true,
     'posts_per_page'      => 2,
-    'category__not_in'    => [17, 696, 159],
+    'category__not_in'    => [17, 696, 159, 996],
     'tag__not_in'         => 989,
 ]);
 ?>
@@ -60,7 +60,7 @@ $query = new \WP_Query([
             'ignore_sticky_posts' => true,
             'posts_per_page'      => 2,
             'offset'              => 2,
-            'category__not_in'    => [17, 696, 159],
+            'category__not_in'    => [17, 696, 159, 996],
             'tag__not_in'         => 989,
         ]);
 ?>
