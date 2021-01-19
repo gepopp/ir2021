@@ -47,7 +47,6 @@
     </div>
 </div>
 
-
 <div class="container mx-auto">
     <div class="grid grid-cols-5 gap-4">
         <div class="hidden lg:block"></div>
