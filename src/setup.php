@@ -13,6 +13,12 @@ use Carbon\Carbon;
 
 add_action('template_redirect', function (){
 
+
+    if(is_tag('immolive')){
+        wp_safe_redirect(home_url('diskutieren'));
+    }
+
+
     if(is_page_template('pagetemplate-login-register.php') && is_user_logged_in()){
         wp_safe_redirect(home_url('profil'));
     }
