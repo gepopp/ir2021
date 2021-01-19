@@ -117,7 +117,7 @@ figcaption{
     @apply p-3 text-center text-white bg-primary-100 font-semibold shadow-xl;
 }
 
-figure.is-type-video{
+figure.wp-block-embed-youtube{
     @apply my-10;
 }
 
