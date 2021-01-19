@@ -18,40 +18,43 @@ global $FormSession;
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
+    <meta name="keywords" content="immobilienredaktion, immobilienmagazin, Immobilien Redaktion, Immobilien Magazin, Wien, Immobilien, Immoflash, ImmoWelt, International, Investment, Markt, Mieten, Wohnen, Österreich">
+    <meta name="description" content="<?php echo get_the_excerpt() ?>">
     <link rel="icon" type="image/png" href="<?= get_stylesheet_directory_uri() . '/assets/images/favicon.png'; ?>">
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <?php wp_head(); ?>
     <script>
         window.ajaxurl = '<?php echo admin_url('admin-ajax.php') ?>';
     </script>
-
     <?php if (is_single()): ?>
         <?php if (get_post_format() == 'video'): ?>
             <script src="https://player.vimeo.com/api/player.js"></script>
         <?php endif; ?>
     <?php endif; ?>
 
-    <?php if (is_singular()): ?>
-        <meta property="og:url" content="<?php the_permalink(); ?>"/>
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="<?php the_title() ?>"/>
-        <meta property="og:description" content="<?php echo get_the_excerpt(); ?>"/>
-        <?php if (get_post_format() == 'video'): ?>
-            <?php if (get_field('field_5f96fa1673bac')): ?>
-                <meta property="og:image" content="<?php echo 'https://img.youtube.com/vi/' . get_field('field_5f96fa1673bac') . '/hqdefault.jpg' ?>"/>
-            <?php endif; ?>
-        <?php else: ?>
-            <meta property="og:image" content="<?php the_post_thumbnail_url('article'); ?>"/>
+    <meta property="og:url" content="<?php the_permalink(); ?>"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="<?php the_title() ?>"/>
+    <meta property="og:description" content="<?php echo get_the_excerpt(); ?>"/>
+    <?php if (get_post_format() == 'video'): ?>
+        <?php if (get_field('field_5f96fa1673bac')): ?>
+            <meta property="og:image" content="<?php echo 'https://img.youtube.com/vi/' . get_field('field_5f96fa1673bac') . '/hqdefault.jpg' ?>"/>
         <?php endif; ?>
-        <meta property="fb:app_id" content="831950683917414">
-        <meta property="og:image:width" content="600"/>
-        <meta property="og:image:height" content="450"/>
+    <?php else: ?>
+        <meta property="og:image" content="<?php the_post_thumbnail_url('article'); ?>"/>
     <?php endif; ?>
+    <meta property="fb:app_id" content="831950683917414">
+    <meta property="og:image:width" content="600"/>
+    <meta property="og:image:height" content="450"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137371315-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-137371315-1');
@@ -60,7 +63,11 @@ global $FormSession;
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX5BK23RTW"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-DX5BK23RTW');
@@ -152,7 +159,8 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
         </a>
         <div class="pt-2 block lg:hidden">
             <ul class="flex">
-                <li class="uppercase text-white mr-3"><a href="#" class="underline" @click="showMobile = !showMobile">Menü</a></li>
+                <li class="uppercase text-white mr-3">
+                    <a href="#" class="underline" @click="showMobile = !showMobile">Menü</a></li>
             </ul>
         </div>
 
@@ -348,7 +356,9 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
         <div class="p-5 relative">
             <div class="absolute top-0 right-0 flex justify-end -mt-10 mr-5">
                 <div class="w-10 h-10 rounded-full bg-primary-100 flex justify-center items-center" @click="showMobile = false">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
                 </div>
             </div>
             <ul class="border-b border-primary-100 pb-5 mb-5">
