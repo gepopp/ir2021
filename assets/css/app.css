@@ -116,3 +116,13 @@ figcaption{
 .wp-block-button__link{
     @apply p-3 text-center text-white bg-primary-100 font-semibold shadow-xl;
 }
+
+figure.is-type-video{
+    @apply my-10;
+}
+
+figure iframe{
+    width: 100%;
+    height: auto;
+    min-height: 480px;
+}
