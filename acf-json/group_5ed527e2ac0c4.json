@@ -157,6 +157,23 @@
                     "mime_types": ""
                 }
             ]
+        },
+        {
+            "key": "field_6007f944300ba",
+            "label": "Notizen",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "h-64",
+                "id": ""
+            },
+            "message": "<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<",
+            "new_lines": "br",
+            "esc_html": 0
         }
     ],
     "location": [
@@ -176,5 +193,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1611135215
+    "modified": 1611135415
 }
