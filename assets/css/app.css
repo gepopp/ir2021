@@ -126,3 +126,7 @@ figure iframe{
     height: auto;
     min-height: 480px;
 }
+
+ol{
+    @apply list-decimal pl-5;
+}
