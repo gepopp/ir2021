@@ -7,7 +7,7 @@ use function immobilien_redaktion_2020\load_vimeo_image;
 get_header();
 the_post();
 
-$date = date('Y-m-d H:i:s');
+$date = date('Ymd');
 $query = new WP_Query([
     'post_type'      => 'immolive',
     'post_status'    => 'publish',
@@ -15,16 +15,14 @@ $query = new WP_Query([
     'meta_query'     => [
         'relation' => 'AND',
         [
-            'key'     => 'termin',
+            'key'     => 'il_datum',
             'value'   => $date,
             'compare' => '>=',
-            'type'    => 'DATETIME',
         ],
     ],
     'order'          => 'ASC',
-    'meta_key'       => 'termin',
-    'meta_type'      => 'DATETIME',
-    'orderby'        => 'meta_value_date',
+    'meta_key'       => 'il_datum',
+    'orderby'        => 'meta_value_num',
 ]);
 $count = $query->post_count;
 
@@ -33,6 +31,10 @@ if ($query->have_posts()):
     $runner = 1;
     while ($query->have_posts()):
         $query->the_post(); ?>
+
+
+    <?php echo get_field('field_601048b4330d8', get_the_ID(), false) ?>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
