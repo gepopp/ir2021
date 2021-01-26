@@ -7,16 +7,15 @@ $query = new WP_Query([
     'meta_query'     => [
         'relation' => 'AND',
         [
-            'key'     => 'termin',
+            'key'     => 'il_datum',
             'value'   => $date,
             'compare' => '>=',
             'type'    => 'DATETIME',
         ],
     ],
     'order'          => 'ASC',
-    'meta_key'       => 'termin',
-    'meta_type'      => 'DATETIME',
-    'orderby'        => 'meta_value_date',
+    'meta_key'       => 'il_datum',
+    'orderby'        => 'meta_value_num',
 ]);
 if ($query->have_posts()):
     while ($query->have_posts()):
