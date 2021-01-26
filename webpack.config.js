@@ -28,6 +28,8 @@ if ( isProduction ) {
 				'./*.php',
 				'./src/**/*.php',
 				'./page-templates/*.php',
+				'./pagetemplate-diskutieren.php',
+				'./index.php',
 				'./banner-templates/*.php',
 				'./assets/images/**/*.svg',
 				'./assets/scss/whitelist/*.css',
