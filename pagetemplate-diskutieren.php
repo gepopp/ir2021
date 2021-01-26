@@ -33,8 +33,6 @@ if ($query->have_posts()):
         $query->the_post(); ?>
 
 
-    <?php echo get_field('field_601048b4330d8', get_the_ID(), false) ?>
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
