@@ -13,7 +13,7 @@ $query = new WP_Query([
             'type'    => 'DATETIME',
         ],
     ],
-    'order'          => 'DESC',
+    'order'          => 'ASC',
     'meta_key'       => 'termin',
     'meta_type'      => 'DATETIME',
     'orderby'        => 'meta_value_date',
