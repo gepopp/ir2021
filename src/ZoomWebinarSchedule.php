@@ -13,7 +13,7 @@ add_action('init', function() {
     register_deactivation_hook( __FILE__, 'immobilien_redaktion_2020\svd_deactivate' );
 
     if (! wp_next_scheduled ( 'zoom_webinar_cron' )) {
-        wp_schedule_event( time(), 'daily', 'zoom_webinar_cron' );
+        wp_schedule_event( time(), 'twicedaily', 'zoom_webinar_cron' );
     }
 });
 
