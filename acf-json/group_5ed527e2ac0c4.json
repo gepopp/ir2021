@@ -38,8 +38,8 @@
         },
         {
             "key": "field_5ed52801c227a",
-            "label": "Zoom Link",
-            "name": "zoom_link",
+            "label": "Zoom Anmelde Link",
+            "name": "zoom_anmelde_link",
             "type": "url",
             "instructions": "",
             "required": 0,
@@ -51,6 +51,25 @@
             },
             "default_value": "",
             "placeholder": ""
+        },
+        {
+            "key": "field_6012878b61fb0",
+            "label": "Zoom Join Link",
+            "name": "zoom_join_link",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_5fec51051a3f8",
@@ -200,6 +219,25 @@
             ]
         },
         {
+            "key": "field_60127a6c90f6b",
+            "label": "Zoom Webinar ID",
+            "name": "zoom_webinar_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_6007f944300ba",
             "label": "Notizen",
             "name": "",
@@ -234,5 +272,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1611734017
+    "modified": 1611827102
 }

@@ -106,7 +106,7 @@ if ($query->have_posts()):
                         </div>
 
 
-                        <p class="font-semibold hidden lg:block px-5 lg:px-0">Diese Livestream startet am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y \u\m H:m') ?> Uhr.</p>
+                        <p class="font-semibold hidden lg:block px-5 lg:px-0">Diese Livestream startet am <?php echo get_field('field_5ed527e9c2279') ?> Uhr.</p>
                         <h1 class="text-3xl font-semibold font-serif leading-tight px-5 lg:px-0 py-5"><?php the_title() ?></h1>
                         <div class="px-5 lg:px-0"><?php the_content(); ?></div>
                         <div class="grid grid-cols-1 md:grid-cols-1 px-5 lg:px-0">

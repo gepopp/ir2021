@@ -15,3 +15,9 @@ function my_acf_op_init() {
         ));
     }
 }
+
+acf_add_options_sub_page(array(
+    'page_title'  => __('Zoom Einstellungen'),
+    'menu_title'  => __('Zoom'),
+    'parent_slug' => 'edit.php?post_type=immolive',
+));
