@@ -25,7 +25,7 @@ add_action( 'wp_enqueue_scripts', function() {
 		true
 	);
 
-	if(is_page_template('pagetemplate-login-register.php')){
+	if(is_page_template('pagetemplate-login-register.php') || is_singular('immolive')){
         wp_enqueue_script(
             'immobilien_redaktion_2020_js_login',
             immobilien_redaktion_2020_URL . "/dist/login{$min_ext}.js",
@@ -98,7 +98,7 @@ add_action( 'wp_enqueue_scripts', function() {
         );
     }
 
-    if(is_page_template('pagetemplate-diskutieren.php')){
+    if(is_page_template('pagetemplate-diskutieren.php') || is_singular('immolive')){
         wp_enqueue_script(
             'immobilien_redaktion_2020_js_diskutieren',
             immobilien_redaktion_2020_URL . "/dist/diskutieren{$min_ext}.js",
