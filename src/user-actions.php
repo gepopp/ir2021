@@ -137,15 +137,17 @@ add_action('wp_ajax_remove_user_bookmark', function () {
 
 add_action('wp_ajax_nopriv_resend_confirmation_email', function () {
 
+    global $wpdb;
+    $table = 'wp_user_activation_token';
+
+    $token = $wpdb->get_row(sprint_f('SELECT * FROM %s WHERE email = "%s" ORDER BY created_at LIMIT 1', $table, sanitize_email($_POST['email'])));
+
     $user = get_user_by('email', sanitize_email($_POST['email']));
 
     if (is_wp_error($user)) {
         wp_die('Bitte geben Sie ihre E-Mail Adresse ein! <span @click="resendConfirmation(\'' . $user->data->user_email . '\')" class="font-semibold underline cursor-pointer">Nocheinmal senden.</span>', 404);
     }
 
-
-    global $wpdb;
-    $table = 'wp_user_activation_token';
 
     $wpdb->delete($table, ['email' => $user->data->user_email]);
 
@@ -189,8 +191,11 @@ add_action('admin_post_nopriv_frontend_login', function () {
         $FormSession->addToErrorBag('login_errror', 'login_credentials')->redirect();
     }
 
-    wp_safe_redirect(home_url('profil'));
-
+    if(!empty($_POST['redirect'])){
+        wp_safe_redirect($_POST['redirect']);
+    }else{
+        wp_safe_redirect(home_url('profil'));
+    }
 });
 
 add_action('admin_post_nopriv_frontend_register', function () {
@@ -248,11 +253,12 @@ add_action('admin_post_nopriv_frontend_register', function () {
         'user_id'    => $user->ID,
         'email'      => $user->data->user_email,
         'token'      => $token,
+        'redirect'   => $_POST['redirect'],
         'created_at' => \Carbon\Carbon::now()->format('d.m.Y H:i:s'),
     ],
         ['%d', '%s', '%s', '%s']);
 
-    $sent = (new CampaignMonitor())->transactional('confirm_email_address', $user, ['link' => add_query_arg(['token' => $token], home_url('login'))]);
+    $sent = (new CampaignMonitor())->transactional('confirm_email_address', $user, ['link' => add_query_arg(['token' => $token, 'redirect' => $_POST['redirect']], home_url('login'))]);
     if ($sent) {
         $FormSession->set('register_sent_success', 'register_sent_success')->redirect();
     } else {

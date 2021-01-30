@@ -25,6 +25,7 @@ use Overtrue\Socialite\SocialiteManager;
     </div>
     <?php wp_nonce_field('frontend_login', 'frontend_login') ?>
     <input type="hidden" name="action" value="frontend_login">
+    <input type="hidden" name="redirect" value="<?php echo sanitize_text_field($_GET['redirect'] ?? '') ?>">
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
             E-Mail Adresse

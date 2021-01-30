@@ -2,6 +2,23 @@ var moment = require("moment");
 var duration = require("moment-duration-format")
 const axios = require('axios');
 
+
+window.subscribe = function(id, loggedIn){
+    return {
+        immoLiveId: id,
+        isLoggedin: loggedIn,
+        showSubscriptionForm: false,
+        confirm: false,
+        email: true,
+        question: '',
+        submit: function (){
+            this.$refs.subsribe.submit();
+        }
+    }
+}
+
+
+
 window.loadMoreImmolive = function (){
     return{
 

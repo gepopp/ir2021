@@ -31,7 +31,7 @@ function get_zoom_webinars(){
     if ($webinars) {
         foreach ($webinars['webinars'] as $webinar) {
 
-            $post = get_posts(['post_type' => 'ImmoLive', 'meta_name' => 'zoom_webinar_id', 'meta_value' => $webinar['id']]);
+            $post = get_posts(['post_type' => 'ImmoLive', 'meta_name' => 'zoom_webinar_id', 'meta_value' => $webinar['id'], 'post_status' => 'any']);
             if (!count($post)) {
 
                 $immolive = wp_insert_post([
@@ -48,8 +48,7 @@ function get_zoom_webinars(){
                 wp_update_post([
                     'ID'           => $immolive,
                     'post_title'   => $webinar['topic'],
-                    'post_content' => $webinar['agenda'] ?? '',
-                    'post_status'  => 'publish',
+                    'post_content' => $webinar['agenda'] ?? ''
                 ]);
             }
 

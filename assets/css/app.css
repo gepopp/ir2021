@@ -3,6 +3,10 @@
 @import "tailwindcss/utilities";
 
 
+body{
+    @apply min-h-screen flex flex-col justify-between;
+}
+
 input:focus{
     outline: none !important;
 }

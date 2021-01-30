@@ -235,7 +235,8 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": ""
+            "maxlength": "",
+            "readonly": 1
         },
         {
             "key": "field_6007f944300ba",
@@ -272,5 +273,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1611827102
+    "modified": 1611910927
 }

@@ -108,32 +108,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                     <li class="uppercase text-white mr-3">
                         <a href="/sehen">SEHEN</a>
                     </li>
-
-                    <?php
-                    $date = date('Y-m-d H:i:s');
-                    $query = new \WP_Query([
-                        'post_type'      => 'immolive',
-                        'post_status'    => 'publish',
-                        'posts_per_page' => 3,
-                        'meta_query'     => [
-                            'relation' => 'AND',
-                            [
-                                'key'     => 'termin',
-                                'value'   => $date,
-                                'compare' => '>=',
-                                'type'    => 'DATETIME',
-                            ],
-                        ],
-                        'order'          => 'DESC',
-                        'meta_key'       => 'termin',
-                        'meta_type'      => 'DATETIME',
-                        'orderby'        => 'meta_value_date',
-                    ]);
-
-                    if ($query->post_count >= 1):
-                        ?>
-                        <li class="uppercase text-white mr-3"><a href="/diskutieren">LIVE</a></li>
-                    <?php endif; ?>
+                    <li class="uppercase text-white mr-3"><a href="/diskutieren">LIVE</a></li>
                 </ul>
             </nav>
 
