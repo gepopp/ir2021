@@ -241,7 +241,7 @@ if ($query->have_posts()):
                             <span class="font-serif text-primary-100 uppercase">Live</span> am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i') ?> Uhr
                         </p>
                         <p><?php echo the_content() ?></p>
-                        <div class="relative mt-auto h-64">
+                        <div class="relative mt-auto h-64 flex flex-col justify-end">
                             <img src="<?php the_field('field_5fec51051a3f8'); ?>" class="w-full h-auto">
                             <?php if (!empty(get_field('field_5ed52801c227a'))): ?>
                                 <div class="absolute bottom-0 right-0 m-5">
