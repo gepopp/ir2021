@@ -6,6 +6,9 @@
 use Overtrue\Socialite\SocialiteManager;
 use immobilien_redaktion_2020\CampaignMonitor;
 
+wp_die('hier');
+
+
 $config = [
     'facebook' => [
         'client_id'     => '831950683917414',
@@ -51,7 +54,5 @@ if (!$user) {
 wp_clear_auth_cookie();
 wp_set_current_user($user->ID);
 wp_set_auth_cookie($user->ID);
-wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
-
 wp_safe_redirect(isset($_GET['state']) ? $_GET['state'] : get_field('field_601bc4580a4fc', 'option'));
 
