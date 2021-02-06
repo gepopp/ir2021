@@ -28,11 +28,11 @@ add_action('template_redirect', function (){
     }
 
     if( (is_page_template('pagetemplate-passwort-vergessen.php') || is_page_template('pagetemplate-passwort-reset.php')) && is_user_logged_in()){
-        wp_safe_redirect(home_url('profil'));
+        wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
     }
 
     if(is_page_template('pagetemplate-profil.php') && !is_user_logged_in()){
-        wp_safe_redirect(home_url('login'));
+        wp_safe_redirect(get_field('field_601bbffe28967', 'option'));
     }
 
 });
@@ -180,7 +180,7 @@ add_action( 'init', function (){
 
     global $wp_query;
 
-    $allowed = ['update_profile'];
+    $allowed = ['update_profile', 'subscribe_immolive'];
     $action = $_REQUEST['action'] ?? '';
 
     if(is_admin() && !wp_doing_ajax() && !in_array($action, $allowed)){

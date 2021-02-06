@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-window.loginForm = function (formdata, errorbag, successMessage = false) {
+window.loginForm = function (formdata) {
     return {
         email: formdata.email !== undefined ? formdata.email : '',
         password: '',
@@ -9,9 +9,7 @@ window.loginForm = function (formdata, errorbag, successMessage = false) {
         error: {
             email: false,
             password: false,
-            global: errorbag.login_error !== undefined ? errorbag.login_error : false
         },
-        successMessage: successMessage,
         ValidateEmail() {
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email)) {
                 var params = new URLSearchParams();

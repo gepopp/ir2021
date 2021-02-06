@@ -32,7 +32,7 @@ add_filter('acf/load_field/key=field_601273dde8eb6', function ($field) {
     if ($result) {
         $zoom_user_id = $result['id'];
     }
-    $webinars = $wrapper->doRequest('GET', '/users/' . $zoom_user_id . '/webinars');
+    $webinars = $wrapper->doRequest('GET', '/webinars/82588347464/registrants');
 
     ob_start();
     ?>

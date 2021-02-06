@@ -96,6 +96,44 @@
                     "maxlength": "",
                     "rows": "",
                     "new_lines": ""
+                },
+                {
+                    "key": "field_601e6883e81c7",
+                    "label": "Zoom Registrant ID",
+                    "name": "zoom_registrant_id",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_601e688fe81c8",
+                    "label": "Zoom Teilnehmer Link",
+                    "name": "zoom_teilnehmer_link",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 }
             ]
         }
@@ -117,5 +155,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1611950278
+    "modified": 1612605610
 }

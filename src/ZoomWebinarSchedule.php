@@ -1,23 +1,26 @@
 <?php
+
 namespace immobilien_redaktion_2020;
 
 use Carbon\Carbon;
 
 
-function svd_deactivate() {
-    wp_clear_scheduled_hook( 'zoom_webinar_cron' );
+function svd_deactivate()
+{
+    wp_clear_scheduled_hook('zoom_webinar_cron');
 }
 
-add_action('init', function() {
-    add_action( 'zoom_webinar_cron', 'immobilien_redaktion_2020\get_zoom_webinars' );
-    register_deactivation_hook( __FILE__, 'immobilien_redaktion_2020\svd_deactivate' );
+add_action('init', function () {
+    add_action('zoom_webinar_cron', 'immobilien_redaktion_2020\get_zoom_webinars');
+    register_deactivation_hook(__FILE__, 'immobilien_redaktion_2020\svd_deactivate');
 
-    if (! wp_next_scheduled ( 'zoom_webinar_cron' )) {
-        wp_schedule_event( time(), 'twicedaily', 'zoom_webinar_cron' );
+    if (!wp_next_scheduled('zoom_webinar_cron')) {
+        wp_schedule_event(time(), 'twicedaily', 'zoom_webinar_cron');
     }
 });
 
-function get_zoom_webinars(){
+function get_zoom_webinars()
+{
 
     $wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
     $result = $wrapper->doRequest('GET', '/users/' . get_field('field_6012782af436e', 'option'));
@@ -30,6 +33,8 @@ function get_zoom_webinars(){
 
     if ($webinars) {
         foreach ($webinars['webinars'] as $webinar) {
+
+            if (stripos($webinar['topic'], 'test')) continue;
 
             $post = get_posts(['post_type' => 'ImmoLive', 'meta_name' => 'zoom_webinar_id', 'meta_value' => $webinar['id'], 'post_status' => 'any']);
             if (!count($post)) {
@@ -48,7 +53,7 @@ function get_zoom_webinars(){
                 wp_update_post([
                     'ID'           => $immolive,
                     'post_title'   => $webinar['topic'],
-                    'post_content' => $webinar['agenda'] ?? ''
+                    'post_content' => $webinar['agenda'] ?? '',
                 ]);
             }
 
@@ -66,6 +71,32 @@ function get_zoom_webinars(){
             foreach ($tracking_links['tracking_sources'] as $tracking_source) {
                 if ($tracking_source['source_name'] == 'IR' || $tracking_source['source_name'] == 'UIR') {
                     update_field('field_5ed52801c227a', $tracking_source['tracking_url'], $immolive);
+                }
+            }
+
+            $existing_registrants = get_field('field_601451bb66bc3', $immolive);
+            $registrants = $wrapper->doRequest('GET', '/webinars/' . $webinar['id'] . '/registrants');
+
+
+            foreach ($registrants['registrants'] as $registrant) {
+
+                $exists = false;
+
+                foreach ($existing_registrants as $existing_registrant) {
+                    if ($existing_registrant['user_email'] == $registrant['email']) {
+                        $exists = true;
+                    }
+                }
+
+                if (!$exists) {
+                    add_row('field_601451bb66bc3', [
+                        'user_name'            => $registrant['first_name'] . ' ' . $registrant['last_name'],
+                        'user_email'           => $registrant['email'],
+                        'hat_dsg_bestatigt'    => 0,
+                        'frage_ans_podium'     => $registrant['comment'],
+                        'zoom_registrant_id'   => $registrant['id'],
+                        'zoom_teilnehmer_link' => $registrant['join_url'],
+                    ], $immolive);
                 }
             }
 

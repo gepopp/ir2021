@@ -1,11 +1,11 @@
 {
-    "key": "group_601bbff201370",
-    "title": "Login und Registrierungsseiten",
+    "key": "group_601e5f2bbb441",
+    "title": "Landingpages",
     "fields": [
         {
-            "key": "field_601bbffe28967",
-            "label": "Loginseite",
-            "name": "theme_loginseite",
+            "key": "field_601e5f31bb2b1",
+            "label": "Landingpage Sehen",
+            "name": "landingpage_sehen",
             "type": "page_link",
             "instructions": "",
             "required": 0,
@@ -24,9 +24,9 @@
             "multiple": 0
         },
         {
-            "key": "field_601bc00528968",
-            "label": "Registrierungsseite",
-            "name": "theme_registrierungsseite",
+            "key": "field_601e5f42bb2b2",
+            "label": "Landingpage Lesen",
+            "name": "landingpage_lesen",
             "type": "page_link",
             "instructions": "",
             "required": 0,
@@ -45,51 +45,9 @@
             "multiple": 0
         },
         {
-            "key": "field_601bc4580a4fc",
-            "label": "Profilseite",
-            "name": "profilseite",
-            "type": "page_link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "page"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "allow_archives": 1,
-            "multiple": 0
-        },
-        {
-            "key": "field_601e59c9336d7",
-            "label": "Passwort vergessen Seite",
-            "name": "option_passwort_vergessen_seite",
-            "type": "page_link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "page"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "allow_archives": 1,
-            "multiple": 0
-        },
-        {
-            "key": "field_601e5b029887d",
-            "label": "Passwort zurücksetzen Seite",
-            "name": "passwort_zurucksetzen_seite",
+            "key": "field_601e5f56775db",
+            "label": "Landingpage Live",
+            "name": "landingpage_live",
             "type": "page_link",
             "instructions": "",
             "required": 0,
@@ -113,7 +71,7 @@
             {
                 "param": "options_page",
                 "operator": "==",
-                "value": "acf-options-login-registrierung"
+                "value": "theme-general-settings"
             }
         ]
     ],
@@ -125,5 +83,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1612602142
+    "modified": 1612603308
 }

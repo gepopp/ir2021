@@ -76,110 +76,115 @@ if ($query->have_posts()):
 
 
 
+
+
+
         </script>
         <?php
     if ($runner == 1):
         ?>
         <div class="lg:h-screen-75 flex lg:-mx-5">
             <div class="lg:w-1/2 bg-white h-full relative flex justify-center items-center">
-                <div class="lg:w-3/4 xl:w-1/2" x-data="subscribe(<?php echo get_the_ID() ?>, <?php echo is_user_logged_in() ?>)">
+                <div class="lg:w-3/4 xl:w-1/2">
                     <div class="mt-20 mb-10 lg:hidden" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
                         <?php get_template_part('page-templates/immolive', 'counter') ?>
                     </div>
                     <p class="font-semibold hidden lg:block px-5 lg:px-0">Diese Livestream startet am <?php echo get_field('field_5ed527e9c2279') ?> Uhr.</p>
                     <h1 class="text-3xl font-semibold font-serif leading-tight px-5 lg:px-0 pb-5"><?php the_title() ?></h1>
+                    <div class="px-5 lg:px-0"><?php the_content(); ?></div>
+                    <div x-data="subscribe(<?php echo get_the_ID() ?>, <?php echo is_user_logged_in() ?>)" class="mt-10">
+                        <div x-show.transition.in.fade="!showSubscriptionForm">
 
 
-                    <div x-show.transition.in.fade="!showSubscriptionForm">
-                        <div class="px-5 lg:px-0"><?php the_content(); ?></div>
+                            <?php
+                            $subscribed = false;
+                            $registrants = get_field('field_601451bb66bc3');
 
-                        <?php
-                        $subscribed = false;
-                        $registrants = get_field('field_601451bb66bc3');
-                        $user = wp_get_current_user();
-                        foreach ($registrants as $registrant) {
-                            if ($registrant['user_email'] == $user->user_email) {
-                                $subscribed = true;
+
+                            $user = wp_get_current_user();
+                            if ($registrants) {
+                                foreach ($registrants as $registrant) {
+                                    if ($registrant['user_email'] == $user->user_email) {
+                                        $subscribed = true;
+                                    }
+                                }
                             }
-                        }
-                        if(!$subscribed):
-                        ?>
-                        <a class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-xl cursor-pointer" @click="showSubscriptionForm = true">jetzt anmelden</a>
-                        <?php else: ?>
-                            <p class="my-3 p-3 border border-primary-100 text-primary-100 text-xl">
-                                Sie sind bereits zu diese Veranstaltung angemeldet.
-                            </p>
-                        <?php endif; ?>
-                    </div>
-
-
-                    <div class="relative p-5 xl:p-0" x-show.transition.in.fade="showSubscriptionForm" x-cloak>
-                        <div class="absolute top-0 right-0 -mt-5 bg-primary-100 bg-opacity-5" @click="showSubscriptionForm = false">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
+                            if (!$subscribed || !is_user_logged_in()):
+                                ?>
+                                <a class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-xl cursor-pointer" @click="showSubscriptionForm = true">jetzt anmelden</a>
+                            <?php else: ?>
+                                <p class="my-3 p-3 border border-primary-100 text-primary-100 text-xl text-center w-full">
+                                    Sie sind bereits zu dieser Veranstaltung angemeldet.
+                                </p>
+                            <?php endif; ?>
                         </div>
-                        <div class="bg-primary-100 bg-opacity-5 p-5">
-                            <div x-show="isLoggedin">
-                                <?php $user = wp_get_current_user(); ?>
-                                <h2 class="font-serif font-semibold text-xl mb-4"><?php echo $user->first_name ?> <?php echo $user->last_name ?>, wir freuen uns auf Ihre Teilnahme!</h2>
-                                <form action="<?php echo admin_url('admin-post.php') ?>" method="post" @submit.prevent="submit()" x-ref="subsribe">
-                                    <?php wp_nonce_field('subscribe_immolive', 'subscribe_immolive') ?>
-                                    <input type="hidden" name="action" value="subscribe_immolive">
-                                    <input type="hidden" name="immolive_id" value="<?php echo get_the_ID() ?>">
-                                    <label class="mb-4 block" for="confirm">
-                                        <input type="checkbox" name="confirm" id="confirm" x-model="confirm" required>
-                                        <span class="inline text-gray-700 text-sm font-bold mb-2">Ja, ich nehme an diesem Live Webinar teil und bin mit der Datenschutzbestimmungen der Immobilienredaktion einverstanden.</span>
-                                    </label>
-                                    <label class="mb-4 block" for="email">
-                                        <input type="checkbox" name="email" id="email" x-model="email" required>
-                                        <span class="inline text-gray-700 text-sm font-bold">Ja, ich möchte Informationen zu dieser Veranstaltung vie E-Mail erhalten.</span>
-                                    </label>
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Ihre Frage an unser Poduim</label>
-                                    <textarea id="question" name="question" x-model="question" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"></textarea>
-                                    <button type="submit" class="block w-full bg-primary-100 text-white font-semibold py-3 px-3 focus:outline-none">jetzt anmelden</button>
-                                </form>
+                        <div class="relative p-5 xl:p-0" x-show.transition.in.fade="showSubscriptionForm" x-cloak>
+                            <div class="absolute top-0 right-0 -mt-5 bg-primary-100 bg-opacity-5" @click="showSubscriptionForm = false">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
                             </div>
-                            <div x-show="!isLoggedin">
-                                <h2 class="font-serif font-semibold text-xl mb-4">Um sich zu unseren ImmoLive Webinaren anmelden zu können müssen Sie sich einloggen.</h2>
-                                <p class="mb-4">Sie haben noch keinen Account bei der Immobilien Redaktion? Kein Problen, einfach, schnell und
-                                    <a class="text-primary-100 underline"
-                                       href="<?php echo add_query_arg(['redirect' => urlencode(get_permalink())], get_field('field_6013cf36d4689', 'option')) ?>">
-                                        kostenlos registrieren
-                                    </a>
-                                    .</p>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="col-span-2 xl:col-span-1">
-                                        <a href="<?php echo add_query_arg(['redirect' => urlencode(home_url('diskutieren'))], get_field('field_6013cf1ad4688', 'option')) ?>"
-                                           class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
-                                            E-Mail login
-                                        </a>
-                                    </div>
-                                    <div class="col-span-2 xl:col-span-1">
-                                        <?php
-                                        $config = [
-                                            'facebook' => [
-                                                'client_id'     => '831950683917414',
-                                                'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                                                'redirect'      => home_url('fb-login'),
-                                            ],
-                                        ];
-
-                                        $socialite = new SocialiteManager($config);
-                                        ?>
-
-                                        <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
-                                           class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
-                                        >
-                                            Facebook login
-                                        </a>
-                                    </div>
+                            <div class="bg-primary-100 bg-opacity-5 p-5">
+                                <div x-show="isLoggedin">
+                                    <?php $user = wp_get_current_user(); ?>
+                                    <h2 class="font-serif font-semibold text-xl mb-4"><?php echo $user->first_name ?> <?php echo $user->last_name ?>, wir freuen uns auf Ihre Teilnahme!</h2>
+                                    <form action="<?php echo admin_url('admin-post.php') ?>" method="post" @submit.prevent="submit()" x-ref="subsribe">
+                                        <?php wp_nonce_field('subscribe_immolive', 'subscribe_immolive') ?>
+                                        <input type="hidden" name="action" value="subscribe_immolive">
+                                        <input type="hidden" name="immolive_id" value="<?php echo get_the_ID() ?>">
+                                        <label class="mb-4 block" for="confirm">
+                                            <input type="checkbox" name="confirm" id="confirm" x-model="confirm" required>
+                                            <span class="inline text-gray-700 text-sm font-bold mb-2">Ja, ich nehme an diesem Live Webinar teil und bin mit der Datenschutzbestimmungen der Immobilienredaktion einverstanden.</span>
+                                        </label>
+                                        <label class="mb-4 block" for="email">
+                                            <input type="checkbox" name="email" id="email" x-model="email" required>
+                                            <span class="inline text-gray-700 text-sm font-bold">Ja, ich möchte Informationen zu dieser Veranstaltung vie E-Mail erhalten.</span>
+                                        </label>
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Ihre Frage an unser Poduim</label>
+                                        <textarea id="question" name="question" x-model="question" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"></textarea>
+                                        <button type="submit" class="block w-full bg-primary-100 text-white font-semibold py-3 px-3 focus:outline-none">jetzt anmelden</button>
+                                    </form>
                                 </div>
+                                <div x-show="!isLoggedin">
+                                    <h2 class="font-serif font-semibold text-xl mb-4">Um sich zu unseren ImmoLive Webinaren anmelden zu können müssen Sie sich einloggen.</h2>
+                                    <p class="mb-4">Sie haben noch keinen Account bei der Immobilien Redaktion? Kein Problen, einfach, schnell und
+                                        <a class="text-primary-100 underline"
+                                           href="<?php echo add_query_arg(['redirect' => urlencode(get_permalink())], get_field('field_6013cf36d4689', 'option')) ?>">
+                                            kostenlos registrieren
+                                        </a>
+                                        .</p>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="col-span-2 xl:col-span-1">
+                                            <a href="<?php echo add_query_arg(['redirect' => urlencode(home_url('diskutieren'))], get_field('field_601bbffe28967', 'option')) ?>"
+                                               class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
+                                                E-Mail login
+                                            </a>
+                                        </div>
+                                        <div class="col-span-2 xl:col-span-1">
+                                            <?php
+                                            $config = [
+                                                'facebook' => [
+                                                    'client_id'     => '831950683917414',
+                                                    'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+                                                    'redirect'      => home_url('fb-login'),
+                                                ],
+                                            ];
 
+                                            $socialite = new SocialiteManager($config);
+                                            ?>
+
+                                            <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+                                               class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
+                                            >
+                                                Facebook login
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-
 
                     <div class="w-full h-auto lg:hidden">
                         <img src="<?php the_field('field_5fec51051a3f8'); ?>" class="w-full h-auto z-10">
@@ -232,24 +237,110 @@ if ($query->have_posts()):
         </div>
         <div class="bg-white border-t-8 border-primary-100 lg:-mx-5 shadow-xl">
             <div class="container mx-auto lg:flex">
-
-
                 <?php else: ?>
-                    <div class="w-full lg:w-1/2 py-10 px-5 flex flex-col flex-grow runner">
+                    <div class="w-full lg:w-1/2 pt-10 px-5 <?php echo $runner == 2 ? 'mr-5' : 'ml-5' ?> flex flex-col runner">
                         <h1 class="text-3xl font-semibold font-serif leading-tight"><?php the_title() ?></h1>
                         <p class="mb-5">
                             <span class="font-serif text-primary-100 uppercase">Live</span> am <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i') ?> Uhr
                         </p>
                         <p><?php echo the_content() ?></p>
-                        <div class="relative mt-auto h-64 flex flex-col justify-end">
-                            <img src="<?php the_field('field_5fec51051a3f8'); ?>" class="w-full h-auto">
+
+
+                        <div class="relative flex flex-col justify-end">
                             <?php if (!empty(get_field('field_5ed52801c227a'))): ?>
-                                <div class="absolute bottom-0 right-0 m-5">
-                                    <a href="<?php the_field('field_5ed52801c227a') ?>" class="bg-primary-100 px-5 lg:text-center text-white text-2xl py-2">
-                                        Jetzt Anmelden
-                                    </a>
+                                <div x-data="subscribe(<?php echo get_the_ID() ?>, <?php echo is_user_logged_in() ?>)">
+                                    <div x-show.transition.in.fade="!showSubscriptionForm" class="mt-24 flex justify-end">
+
+                                        <?php
+                                        $subscribed = false;
+                                        $registrants = get_field('field_601451bb66bc3');
+
+                                        $user = wp_get_current_user();
+                                        if ($registrants) {
+                                            foreach ($registrants as $registrant) {
+                                                if ($registrant['user_email'] == $user->user_email) {
+                                                    $subscribed = true;
+                                                }
+                                            }
+                                        }
+                                        if (!$subscribed || !is_user_logged_in()):
+                                            ?>
+                                            <a class="px-5 bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-xl cursor-pointer" @click="showSubscriptionForm = true">jetzt anmelden</a>
+                                        <?php else: ?>
+                                            <p class="my-3 p-3 border border-primary-100 text-primary-100 text-xl text-center w-full">
+                                                Sie sind bereits zu dieser Veranstaltung angemeldet.
+                                            </p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="relative mt-10 p-5 xl:p-0" x-show.transition.in.fade="showSubscriptionForm" x-cloak>
+                                        <div class="absolute top-0 right-0 -mt-5 bg-primary-100 bg-opacity-5" @click="showSubscriptionForm = false">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="bg-primary-100 bg-opacity-5 p-5">
+                                            <div x-show="isLoggedin">
+                                                <?php $user = wp_get_current_user(); ?>
+                                                <h2 class="font-serif font-semibold text-xl mb-4"><?php echo $user->first_name ?> <?php echo $user->last_name ?>, wir freuen uns auf Ihre Teilnahme!</h2>
+                                                <form action="<?php echo admin_url('admin-post.php') ?>" method="post" @submit.prevent="submit()" x-ref="subsribe">
+                                                    <?php wp_nonce_field('subscribe_immolive', 'subscribe_immolive') ?>
+                                                    <input type="hidden" name="action" value="subscribe_immolive">
+                                                    <input type="hidden" name="immolive_id" value="<?php echo get_the_ID() ?>">
+                                                    <label class="mb-4 block" for="confirm">
+                                                        <input type="checkbox" name="confirm" id="confirm" x-model="confirm" required>
+                                                        <span class="inline text-gray-700 text-sm font-bold mb-2">Ja, ich nehme an diesem Live Webinar teil und bin mit der Datenschutzbestimmungen der Immobilienredaktion einverstanden.</span>
+                                                    </label>
+                                                    <label class="mb-4 block" for="email">
+                                                        <input type="checkbox" name="email" id="email" x-model="email" required>
+                                                        <span class="inline text-gray-700 text-sm font-bold">Ja, ich möchte Informationen zu dieser Veranstaltung vie E-Mail erhalten.</span>
+                                                    </label>
+                                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Ihre Frage an unser Poduim</label>
+                                                    <textarea id="question" name="question" x-model="question" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"></textarea>
+                                                    <button type="submit" class="block w-full bg-primary-100 text-white font-semibold py-3 px-3 focus:outline-none">jetzt anmelden</button>
+                                                </form>
+                                            </div>
+                                            <div x-show="!isLoggedin">
+                                                <h2 class="font-serif font-semibold text-xl mb-4">Um sich zu unseren ImmoLive Webinaren anmelden zu können müssen Sie sich einloggen.</h2>
+                                                <p class="mb-4">Sie haben noch keinen Account bei der Immobilien Redaktion? Kein Problen, einfach, schnell und
+                                                    <a class="text-primary-100 underline"
+                                                       href="<?php echo add_query_arg(['redirect' => urlencode(get_permalink())], get_field('field_6013cf36d4689', 'option')) ?>">
+                                                        kostenlos registrieren
+                                                    </a>
+                                                    .</p>
+                                                <div class="grid grid-cols-2 gap-4">
+                                                    <div class="col-span-2 xl:col-span-1">
+                                                        <a href="<?php echo add_query_arg(['redirect' => urlencode(home_url('diskutieren'))], get_field('field_601bbffe28967', 'option')) ?>"
+                                                           class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
+                                                            E-Mail login
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-span-2 xl:col-span-1">
+                                                        <?php
+                                                        $config = [
+                                                            'facebook' => [
+                                                                'client_id'     => '831950683917414',
+                                                                'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+                                                                'redirect'      => home_url('fb-login'),
+                                                            ],
+                                                        ];
+
+                                                        $socialite = new SocialiteManager($config);
+                                                        ?>
+
+                                                        <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+                                                           class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
+                                                        >
+                                                            Facebook login
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             <?php endif; ?>
+                            <img src="<?php the_field('field_5fec51051a3f8'); ?>" class="w-full h-auto">
                         </div>
                     </div>
                 <?php endif; ?>

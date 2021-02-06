@@ -11,15 +11,10 @@ if (isset($_GET['token'])) {
 global $FormSession;
 
 ?>
-    <script>
-        var login_data = <?php echo json_encode($FormSession->getFormData()) ?>;
-        var errorbag = <?php echo json_encode($FormSession->get('errorBag')) ?>;
-        var successMessage = <?php echo  "'" . $FormSession->get('token_success') . "'" ?>;
-    </script>
     <div class="container mx-auto relative px-5 md:px-0 flex justify-center pt-32">
-        <div class="h-auto" x-data="loginForm(login_data, errorbag, successMessage)">
+        <div class="h-auto" x-data="loginForm(login_data)">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="bg-white p-5 shadow-xl">
+                <div class="bg-white p-5 shadow-xl w-96">
                     <h3 class="text-xl font-medium mb-4">Login</h3>
                     <?php get_template_part('page-templates/login', 'form') ?>
                 </div>

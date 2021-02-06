@@ -2,29 +2,13 @@
 
 use Overtrue\Socialite\SocialiteManager;
 
+global $FormSession;
 ?>
 
-<form class="mb-4 w-64" method="post" action="<?php echo admin_url('admin-post.php') ?>">
-    <div class="text-warning p-5 text-white flex space-x-3 items-center" x-show="error.global">
-        <div>
-            <div class="rounded-full bg-warning bg-opacity-25 w-20 h-20 flex items-center justify-center">
-                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                </svg>
-            </div>
-        </div>
-        <p x-html="Object.values(error.global)[0]" class="text-warning text-sm"></p>
-    </div>
-    <div class="tebg-success p-5 text-white flex space-x-3 items-center" x-show="successMessage">
-        <div>
-            <div class="rounded-full bg-success bg-opacity-25 w-20 h-20 flex items-center justify-center">
-                <svg class="h-16 w-16 text-white animate-ping" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-            </div>
-        </div>
-        <p x-html="successMessage" class="text-success text-sm"></p>
-    </div>
+<form class="mb-4" method="post" action="<?php echo admin_url('admin-post.php') ?>">
+    <?php $FormSession->flashSuccess('token_success') ?>
+    <?php $FormSession->flashErrorBag('token_expired') ?>
+
     <?php wp_nonce_field('frontend_login', 'frontend_login') ?>
     <input type="hidden" name="action" value="frontend_login">
     <input type="hidden" name="redirect" value="<?php echo sanitize_text_field($_GET['redirect'] ?? '') ?>">
@@ -46,7 +30,7 @@ use Overtrue\Socialite\SocialiteManager;
     <div class="mb-2">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
             Passwort
-            <a class="inline align-baseline text-xs underline text-blue-500 hover:text-blue-800" href="<?php echo home_url('passwort-vergessen') ?>">
+            <a class="inline align-baseline text-xs underline text-blue-500 hover:text-blue-800" href="<?php the_field('field_601e59c9336d7', 'option') ?>">
                 ( vergessen? )
             </a>
         </label>
