@@ -6,9 +6,6 @@
 use Overtrue\Socialite\SocialiteManager;
 use immobilien_redaktion_2020\CampaignMonitor;
 
-wp_die('hier');
-
-
 $config = [
     'facebook' => [
         'client_id'     => '831950683917414',
