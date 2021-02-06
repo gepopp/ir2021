@@ -3,6 +3,9 @@
  * Template Name: Facebook login
  */
 
+wp_die('hier');
+
+
 use Overtrue\Socialite\SocialiteManager;
 use immobilien_redaktion_2020\CampaignMonitor;
 
