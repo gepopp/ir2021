@@ -54,7 +54,7 @@ wp_clear_auth_cookie();
 wp_set_current_user($user->ID);
 wp_set_auth_cookie($user->ID);
 
-$redirect = !empty($_GET['state']) ? base64_decode($_GET['state']) : get_field('field_601bc4580a4fc', 'option');
+$redirect = get_field('field_601bc4580a4fc', 'option');
 wp_safe_redirect($redirect);
 die();
 
