@@ -35,7 +35,7 @@ if ( $user ) {
     wp_clear_auth_cookie();
     wp_set_current_user($user->ID);
     wp_set_auth_cookie($user->ID);
-    wp_safe_redirect(home_url('profil'));
+    wp_safe_redirect(isset($_GET['goto']) ? $_GET['goto']: home_url('profil'));
     exit();
 }else{
     $_SESSION['login_error'] = 'Wir konnten Sie mit dieser E-Mail Adresse nicht einloggen.';
