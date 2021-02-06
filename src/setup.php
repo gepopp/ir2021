@@ -22,6 +22,7 @@ add_action('template_redirect', function (){
     if( (
         is_page_template('pagetemplate-login-register.php') ||
         is_page_template('pagetemplate-login.php') ||
+        is_page_template('pagetemplate-resend-activation.php') ||
         is_page_template('pagetemplate-register.php') )
         && is_user_logged_in()){
         wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
@@ -180,7 +181,7 @@ add_action( 'init', function (){
 
     global $wp_query;
 
-    $allowed = ['update_profile', 'subscribe_immolive'];
+    $allowed = ['update_profile', 'subscribe_immolive', 'resend_activation'];
     $action = $_REQUEST['action'] ?? '';
 
     if(is_admin() && !wp_doing_ajax() && !in_array($action, $allowed)){

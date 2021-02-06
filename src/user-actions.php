@@ -138,21 +138,26 @@ add_action('wp_ajax_remove_user_bookmark', function () {
 
 });
 
-add_action('wp_ajax_nopriv_resend_confirmation_email', function () {
+add_action('admin_post_nopriv_resend_activation', function () {
+
+    global $FormSession;
+
+    $email = sanitize_email($_POST['email']);
+    $user = get_user_by('email', $email);
+
+    if(!$user){
+        $FormSession->addToErrorBag('resend_activation', 'email_not_found')->redirect();
+    }
+
+    if(in_array('subscriber', $user->roles)){
+        $FormSession->set('token_success', 'account_acitvated')->redirect(get_field('field_601bbffe28967', 'option'));
+
+    }
 
     global $wpdb;
     $table = 'wp_user_activation_token';
 
-    $token = $wpdb->get_row(sprint_f('SELECT * FROM %s WHERE email = "%s" ORDER BY created_at LIMIT 1', $table, sanitize_email($_POST['email'])));
-
-    $user = get_user_by('email', sanitize_email($_POST['email']));
-
-    if (is_wp_error($user)) {
-        wp_die('Bitte geben Sie ihre E-Mail Adresse ein! <span @click="resendConfirmation(\'' . $user->data->user_email . '\')" class="font-semibold underline cursor-pointer">Nocheinmal senden.</span>', 404);
-    }
-
-
-    $wpdb->delete($table, ['email' => $user->data->user_email]);
+    $wpdb->delete($table, ['email' => $email ]);
 
     $token = wp_generate_uuid4();
 
@@ -164,7 +169,9 @@ add_action('wp_ajax_nopriv_resend_confirmation_email', function () {
     ],
         ['%d', '%s', '%s', '%s']);
 
-    wp_die((new CampaignMonitor())->transactional('confirm_email_address', $user, ['link' => add_query_arg(['token' => $token], home_url('login'))]));
+    (new CampaignMonitor())->transactional('confirm_email_address', $user, ['link' => add_query_arg(['token' => $token], get_field('field_601bbffe28967', 'option'))]);
+
+    $FormSession->set('resend_activation', 'register_sent_success')->redirect();
 
 });
 
