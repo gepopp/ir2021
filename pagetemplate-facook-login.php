@@ -18,8 +18,6 @@ $code = $_GET['code'];
 
 $user = $socialite->create('facebook')->userFromCode($code);
 
-wp_die(var_dump($user) . var_dump($_GET));
-
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
 
@@ -37,13 +35,13 @@ if ( $user ) {
     wp_clear_auth_cookie();
     wp_set_current_user($user->ID);
     wp_set_auth_cookie($user->ID);
-    wp_safe_redirect(home_url('profil'));
+    wp_safe_redirect(isset($_GET['state']) ? $_GET['sate'] : get_field('field_601bc4580a4fc', 'option'));
 
     exit();
 }else{
 
     $_SESSION['login_error'] = 'Wir konnten Sie mit dieser E-Mail Adresse nicht einloggen.';
     $_SESSION['email'] = $email;
-    wp_safe_redirect(home_url('login'));
+    wp_safe_redirect(get_field('field_601bbffe28967', 'option'));
     exit;
 }
