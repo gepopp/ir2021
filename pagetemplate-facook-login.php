@@ -2,7 +2,9 @@
 /**
  * Template Name: Facebook login
  */
+
 use Overtrue\Socialite\SocialiteManager;
+use immobilien_redaktion_2020\CampaignMonitor;
 
 $config = [
     'facebook' => [
@@ -31,17 +33,25 @@ $lastname = implode(' ', $name);
 
 $user = get_user_by('email', $email);
 
-if ( $user ) {
-    wp_clear_auth_cookie();
-    wp_set_current_user($user->ID);
-    wp_set_auth_cookie($user->ID);
-    wp_safe_redirect(isset($_GET['state']) ? $_GET['state'] : get_field('field_601bc4580a4fc', 'option'));
+if (!$user) {
 
-    exit();
-}else{
+    $wp_user = wp_create_user($name . ' ' . uniqid(), uniqid(), $email);
+    wp_update_user([
+        'ID'           => $wp_user,
+        'display_name' => trim($firstname . ' ' . $lastname),
+        'first_name'   => $firstname,
+        'last_name'    => $lastname,
+    ]);
 
-    $_SESSION['login_error'] = 'Wir konnten Sie mit dieser E-Mail Adresse nicht einloggen.';
-    $_SESSION['email'] = $email;
-    wp_safe_redirect(get_field('field_601bbffe28967', 'option'));
-    exit;
+    $wp_user->add_role('subscriber');
+
+    (new CampaignMonitor())->transactional('registration_activated', $wp_user);
+
 }
+
+
+wp_clear_auth_cookie();
+wp_set_current_user($user->ID);
+wp_set_auth_cookie($user->ID);
+wp_safe_redirect(isset($_GET['state']) ? $_GET['state'] : get_field('field_601bc4580a4fc', 'option'));
+
