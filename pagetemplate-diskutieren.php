@@ -309,6 +309,7 @@ if ($query->have_posts()):
                                                     <?php wp_nonce_field('subscribe_immolive', 'subscribe_immolive') ?>
                                                     <input type="hidden" name="action" value="subscribe_immolive">
                                                     <input type="hidden" name="immolive_id" value="<?php echo get_the_ID() ?>">
+                                                    <input type="hidden" name="referer" value="<?php echo isset($_GET['ref']) ? substr(sanitize_text_field($_GET['ref']), 0, 8) : '' ?>">
                                                     <label class="mb-4 block" for="confirm">
                                                         <input type="checkbox" name="confirm" id="confirm" x-model="confirm" required>
                                                         <span class="inline text-gray-700 text-sm font-bold mb-2">
