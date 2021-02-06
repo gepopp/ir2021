@@ -167,14 +167,14 @@ if ($query->have_posts()):
                                                 'facebook' => [
                                                     'client_id'     => '831950683917414',
                                                     'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                                                    'redirect'      => home_url('fb-login') . '&goto=' . get_field('field_601e5f56775db', 'option'),
+                                                    'redirect'      => home_url('fb-login'),
                                                 ],
                                             ];
 
                                             $socialite = new SocialiteManager($config);
                                             ?>
 
-                                            <a href="<?php echo $socialite->create('facebook') ->with(['hd' => 'example.com'])->redirect(); ?>"
+                                            <a href="<?php echo $socialite->create('facebook') ->withState(get_field('field_601e5f56775db', 'option'))->redirect(); ?>"
                                                class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
                                             >
                                                 Facebook login
