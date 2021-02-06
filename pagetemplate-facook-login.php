@@ -35,15 +35,13 @@ $user = get_user_by('email', $email);
 
 if (!$user) {
 
-    $wp_user = wp_create_user($name . ' ' . uniqid(), uniqid(), $email);
+    $wp_user = wp_create_user($firstname . ' ' . $lastname . ' ' . uniqid(), uniqid(), $email);
     wp_update_user([
         'ID'           => $wp_user,
         'display_name' => trim($firstname . ' ' . $lastname),
         'first_name'   => $firstname,
         'last_name'    => $lastname,
     ]);
-
-    $wp_user->add_role('subscriber');
 
     (new CampaignMonitor())->transactional('registration_activated', $wp_user);
 
