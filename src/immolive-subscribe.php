@@ -53,7 +53,7 @@ add_action('admin_post_subscribe_immolive', function () {
     }
 
 
-    $response = $wrapper->doRequest('POST', '/webinars/' . get_field('field_60127a6c90f6b', $immolive_id) . '/registrants', [], [], [
+    $response = $wrapper->doRequest('POST', '/webinars/' . get_field('field_60127a6c90f6b', $immolive_id) . '/registrants', ['page_size' => 300], [], [
         'email'      => $user->user_email,
         'first_name' => $user->first_name,
         'last_name'  => $user->last_name,

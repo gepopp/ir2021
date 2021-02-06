@@ -75,7 +75,7 @@ function get_zoom_webinars()
             }
 
             $existing_registrants = get_field('field_601451bb66bc3', $immolive);
-            $registrants = $wrapper->doRequest('GET', '/webinars/' . $webinar['id'] . '/registrants');
+            $registrants = $wrapper->doRequest('GET', '/webinars/' . $webinar['id'] . '/registrants', ['page_size' => 300]);
 
 
             foreach ($registrants['registrants'] as $registrant) {
