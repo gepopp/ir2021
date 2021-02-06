@@ -106,6 +106,27 @@
             "allow_null": 0,
             "allow_archives": 1,
             "multiple": 0
+        },
+        {
+            "key": "field_601ed5b0226a0",
+            "label": "Aktivierungslink senden",
+            "name": "aktivierungslink_senden",
+            "type": "page_link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "allow_archives": 1,
+            "multiple": 0
         }
     ],
     "location": [
@@ -125,5 +146,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1612602142
+    "modified": 1612633534
 }

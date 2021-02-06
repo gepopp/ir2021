@@ -4,7 +4,7 @@
 
 
 <div class="container mx-auto mt-20 relative px-5 lg:px-0">
-    <h1 class="text-2xl font-serif font-semibold">Ihre Inhlate</h1>
+    <h1 class="text-2xl font-serif font-semibold">Ihre Inhalte</h1>
     <div class="grid grid-cols-5 gap-10"
          x-data="{ active: 'reminder' }">
         <div class="col-span-5 lg:col-span-1">

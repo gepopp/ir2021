@@ -23,7 +23,7 @@ if (isset($_GET['token'])) {
     <div class="container mx-auto mt-20 relative">
         <div class="grid grid-cols-6 gap-4">
             <div class="col-span-6">
-                <h1 class="text-2xl font-serif font-semibold mb-5">Neues Passwort setzten</h1>
+                <h1 class="text-2xl font-serif font-semibold mb-5">Neues Passwort setzen</h1>
 
                 <?php $FormSession->flashErrorBag('passwort_reset_error'); ?>
 

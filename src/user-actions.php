@@ -10,32 +10,32 @@ function activate_user($token)
 
     global $FormSession;
 
-    if ($token != '') {
+    if ($token == '') return;
 
-        global $wpdb;
-        $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
+    global $wpdb;
 
-        wp_die(var_dump($email));
+    $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
+    $wpdb->delete('wp_user_activation_token', ['token' => $token]);
+    $token_user = get_user_by('email', $email);
 
-        $wpdb->delete('wp_user_activation_token', ['token' => $token]);
-        $token_user = get_user_by('email', $email);
-
-
-        if (!empty($token_user)) {
-            if (!in_array('subscriber', $token_user->roles)) {
-
-                $token_user->add_role('subscriber');
-                $token_user->remove_role('registered');
-
-                $sent = (new CampaignMonitor())->transactional('registration_activated', $token_user);
-                $updated = (new CampaignMonitor())->updateUser($token_user);
-
-            }
-        } else {
-            $FormSession->addToErrorBag('login_errror', 'token_expired');
-        }
-        $FormSession->set('token_success', 'account_acitvated');
+    if (!$token_user) {
+        $FormSession->addToErrorBag('login_errror', 'token_expired');
+        return;
     }
+
+    if (!in_array('subscriber', $token_user->roles)) {
+
+        $token_user->add_role('subscriber');
+        $token_user->remove_role('registered');
+
+        $sent = (new CampaignMonitor())->transactional('registration_activated', $token_user);
+        $updated = (new CampaignMonitor())->updateUser($token_user);
+        $FormSession->set('token_success', 'account_acitvated');
+        return;
+    }
+
+    $FormSession->addToErrorBag('login_errror', 'token_expired');
+    return;
 }
 
 add_action('wp_ajax_update_reminder_date', function () {

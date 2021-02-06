@@ -98,7 +98,11 @@ global $FormSession;
     <div class="md:flex md:items-center mb-6">
         <label class="block text-gray-500 font-bold">
             <input class="mr-2 leading-tight bg-primary-100" type="checkbox" name="agb" required>
-            <span class="text-sm">Ich bin mit den AGB und der Datenschutzerklärung der unabhängigen Immobilien Redaktion einverstanden. <span class="text-warning">*</span></span>
+            <span class="text-sm">Ich bin der
+                 <a href="<?php echo get_field('field_601ec7cd84c47', 'option') ?>" target="_blank" class="text-primary-100 underline">
+                     Datenschutzerklärung
+                </a>
+                der unabhängigen Immobilien Redaktion einverstanden. <span class="text-warning">*</span></span>
         </label>
     </div>
 

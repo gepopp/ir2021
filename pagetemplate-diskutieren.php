@@ -80,6 +80,8 @@ if ($query->have_posts()):
 
 
 
+
+
         </script>
         <?php
     if ($runner == 1):
@@ -135,7 +137,21 @@ if ($query->have_posts()):
                                         <input type="hidden" name="immolive_id" value="<?php echo get_the_ID() ?>">
                                         <label class="mb-4 block" for="confirm">
                                             <input type="checkbox" name="confirm" id="confirm" x-model="confirm" required>
-                                            <span class="inline text-gray-700 text-sm font-bold mb-2">Ja, ich nehme an diesem Live Webinar teil und bin mit der <a href="<?php echo get_field('field_601ec7cd84c47', 'option') ?>" target="_blank" class="text-primary-100 underline">Datenschutzbestimmungen</a> der Immobilienredaktion einverstanden.</span>
+                                            <span class="inline text-gray-700 text-sm font-bold mb-2">
+                                            Ja, ich nehme an diesem Live Webinar über Zoom teil und bin mit den
+                                                <a href="<?php echo get_field('field_601ec7cd84c47', 'option') ?>" target="_blank" class="text-primary-100 underline">
+                                                Datenschutzbestimmungen
+                                                </a>
+                                                der Immobilienredaktion sowie meiner Registrierung auf Zoom (
+                                                <a href="https://us02web.zoom.us/privacy" target="_blank" class="text-primary-100 underline">
+                                                    Datenschutzrichtlinien
+                                                </a>
+                                                und
+                                                <a href="https://us02web.zoom.us/terms" target="_blank" class="text-primary-100 underline">
+                                                Nutzungsbedingungen
+                                                </a>
+                                                ) einverstanden.
+                                            </span>
                                         </label>
                                         <label class="mb-4 block" for="email">
                                             <input type="checkbox" name="email" id="email" x-model="email" required>
@@ -174,7 +190,7 @@ if ($query->have_posts()):
                                             $socialite = new SocialiteManager($config);
                                             ?>
 
-                                            <a href="<?php echo $socialite->create('facebook') ->withState(get_field('field_601e5f56775db', 'option'))->redirect(); ?>"
+                                            <a href="<?php echo $socialite->create('facebook')->withState(get_field('field_601e5f56775db', 'option'))->redirect(); ?>"
                                                class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
                                             >
                                                 Facebook login
@@ -288,7 +304,20 @@ if ($query->have_posts()):
                                                     <input type="hidden" name="immolive_id" value="<?php echo get_the_ID() ?>">
                                                     <label class="mb-4 block" for="confirm">
                                                         <input type="checkbox" name="confirm" id="confirm" x-model="confirm" required>
-                                                        <span class="inline text-gray-700 text-sm font-bold mb-2">Ja, ich nehme an diesem Live Webinar teil und bin mit der <a href="<?php echo get_field('field_601ec7cd84c47', 'option') ?>" target="_blank" class="text-primary-100 underline">Datenschutzbestimmungen</a> der Immobilienredaktion einverstanden.</span>
+                                                        <span class="inline text-gray-700 text-sm font-bold mb-2">
+                                                            Ja, ich nehme an diesem Live Webinar über Zoom teil und bin mit den
+                                                            <a href="<?php echo get_field('field_601ec7cd84c47', 'option') ?>" target="_blank" class="text-primary-100 underline">
+                                                            Datenschutzbestimmungen
+                                                            </a>
+                                                            der Immobilienredaktion sowie meiner Registrierung auf Zoom (
+                                                            <a href="https://us02web.zoom.us/privacy" target="_blank" class="text-primary-100 underline">
+                                                                Datenschutzrichtlinien
+                                                            </a>
+                                                            und
+                                                            <a href="https://us02web.zoom.us/terms" target="_blank" class="text-primary-100 underline">
+                                                            Nutzungsbedingungen
+                                                            </a>
+                                                            ) einverstanden.
                                                     </label>
                                                     <label class="mb-4 block" for="email">
                                                         <input type="checkbox" name="email" id="email" x-model="email" required>
