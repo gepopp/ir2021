@@ -18,6 +18,8 @@ $code = $_GET['code'];
 
 $user = $socialite->create('facebook')->userFromCode($code);
 
+wp_die(var_dump($user) . var_dump($_GET));
+
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
 
