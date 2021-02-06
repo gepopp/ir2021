@@ -10,16 +10,6 @@ use Carbon\Carbon;
  * @author Freeshifter LLC
  * @since  1.0.0
  */
-
-add_action( 'init', function(){
-    add_rewrite_rule(
-        'fb-login/([0-9]+)/?$',
-        'index.php?pagename=fb-login&state=$matches[1]',
-        'top' );
-});
-
-
-
 add_action('template_redirect', function (){
 
 

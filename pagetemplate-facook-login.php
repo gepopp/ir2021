@@ -51,5 +51,8 @@ if (!$user) {
 wp_clear_auth_cookie();
 wp_set_current_user($user->ID);
 wp_set_auth_cookie($user->ID);
+
+wp_redirect(home_url());
+
 wp_safe_redirect(isset($_GET['state']) ? $_GET['state'] : get_field('field_601bc4580a4fc', 'option'));
 
