@@ -54,9 +54,11 @@ wp_clear_auth_cookie();
 wp_set_current_user($user->ID);
 wp_set_auth_cookie($user->ID);
 
-wp_die(var_dump($_GET['state']));
+if(!empty($_GET['state'])){
+    wp_redirect(urldecode_deep($_GET['state']));
+    exit();
+}
 
-$redirect = get_field('field_601bc4580a4fc', 'option');
-wp_safe_redirect($redirect);
-die();
+wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
+exit();
 
