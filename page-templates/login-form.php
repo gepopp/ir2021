@@ -6,8 +6,11 @@ global $FormSession;
 ?>
 
 <form class="mb-4" method="post" action="<?php echo admin_url('admin-post.php') ?>">
+
     <?php $FormSession->flashSuccess('token_success') ?>
-    <?php $FormSession->flashErrorBag('token_expired') ?>
+
+    <?php $FormSession->flashErrorBag('login_errror') ?>
+
 
     <?php wp_nonce_field('frontend_login', 'frontend_login') ?>
     <input type="hidden" name="action" value="frontend_login">

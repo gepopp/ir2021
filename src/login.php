@@ -4,14 +4,21 @@ add_action('admin_post_nopriv_frontend_login', function () {
     global $FormSession;
 
     if (!wp_verify_nonce(sanitize_text_field($_POST['frontend_login']), 'frontend_login')) {
-        $FormSession->addToErrorBag('login_error', 'nonce')->redirect();
+        $FormSession->addToErrorBag('login_errror', 'nonce')->redirect();
     }
 
+
+
     $user = get_user_by('email', sanitize_email($_POST['email']));
+    if(!$user){
+        $FormSession->addToErrorBag('login_errror', 'login_credentials')->redirect();
+    }
+
+
     $roles = $user->roles;
 
     if (in_array('registered', $roles)) {
-        $FormSession->addToErrorBag('login_error', 'not_activated')->redirect();
+        $FormSession->addToErrorBag('login_errror', 'not_activated')->redirect();
     }
 
     $user = wp_signon([
