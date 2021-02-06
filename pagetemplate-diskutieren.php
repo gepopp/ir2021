@@ -180,7 +180,6 @@ if ($query->have_posts()):
                                             </a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
