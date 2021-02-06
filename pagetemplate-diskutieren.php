@@ -197,7 +197,7 @@ if ($query->have_posts()):
                                             $socialite = new SocialiteManager($config);
                                             ?>
 
-                                            <a href="<?php echo $socialite->create('facebook')->withState(($redirect))->redirect(); ?>"
+                                            <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
                                                class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
                                             >
                                                 Facebook login
