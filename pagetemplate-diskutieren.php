@@ -139,7 +139,7 @@ if ($query->have_posts()):
                                         </label>
                                         <label class="mb-4 block" for="email">
                                             <input type="checkbox" name="email" id="email" x-model="email" required>
-                                            <span class="inline text-gray-700 text-sm font-bold">Ja, ich möchte Informationen zu dieser Veranstaltung vie E-Mail erhalten.</span>
+                                            <span class="inline text-gray-700 text-sm font-bold">Ja, ich möchte Informationen der Immobilien Redaktion via E-Mail erhalten.</span>
                                         </label>
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Ihre Frage an unser Poduim</label>
                                         <textarea id="question" name="question" x-model="question" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"></textarea>
@@ -292,7 +292,7 @@ if ($query->have_posts()):
                                                     </label>
                                                     <label class="mb-4 block" for="email">
                                                         <input type="checkbox" name="email" id="email" x-model="email" required>
-                                                        <span class="inline text-gray-700 text-sm font-bold">Ja, ich möchte Informationen zu dieser Veranstaltung vie E-Mail erhalten.</span>
+                                                        <span class="inline text-gray-700 text-sm font-bold">Ja, ich möchte Informationen der Immobilien Redaktion via E-Mail erhalten.</span>
                                                     </label>
                                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Ihre Frage an unser Poduim</label>
                                                     <textarea id="question" name="question" x-model="question" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"></textarea>
