@@ -15,7 +15,7 @@ function activate_user($token)
         global $wpdb;
         $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
 
-        wp_die($email);
+        wp_die(var_dump($email));
 
         $wpdb->delete('wp_user_activation_token', ['token' => $token]);
         $token_user = get_user_by('email', $email);

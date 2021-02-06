@@ -2,11 +2,13 @@
 /**
  * Template Name: Loginpage
  */
-get_header();
 
 if (isset($_GET['token'])) {
     \immobilien_redaktion_2020\activate_user(sanitize_text_field($_GET['token']));;
 }
+
+get_header();
+
 
 global $FormSession;
 
