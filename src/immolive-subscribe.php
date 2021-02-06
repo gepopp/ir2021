@@ -7,7 +7,6 @@ add_action('admin_post_subscribe_immolive', function () {
     $wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
 
 
-
     if (!wp_verify_nonce($_POST['subscribe_immolive'], 'subscribe_immolive')) {
         wp_redirect(home_url());
     }
@@ -68,6 +67,7 @@ add_action('admin_post_subscribe_immolive', function () {
         'frage_ans_podium'     => sanitize_text_field($_POST['question']),
         'zoom_registrant_id'   => $response['registrant_id'],
         'zoom_teilnehmer_link' => $response['join_url'],
+        'referer'              => sanitize_text_field($_POST['referer']),
     ], $immolive_id);
 
 

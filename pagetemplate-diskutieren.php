@@ -135,6 +135,7 @@ if ($query->have_posts()):
                                         <?php wp_nonce_field('subscribe_immolive', 'subscribe_immolive') ?>
                                         <input type="hidden" name="action" value="subscribe_immolive">
                                         <input type="hidden" name="immolive_id" value="<?php echo get_the_ID() ?>">
+                                        <input type="hidden" name="referer" value="<?php echo isset($_GET['ref']) ? substr(sanitize_text_field($_GET['ref']), 0, 8) : '' ?>">
                                         <label class="mb-4 block" for="confirm">
                                             <input type="checkbox" name="confirm" id="confirm" x-model="confirm" required>
                                             <span class="inline text-gray-700 text-sm font-bold mb-2">
@@ -169,10 +170,12 @@ if ($query->have_posts()):
                                            href="<?php echo add_query_arg(['redirect' => urlencode(get_permalink())], get_field('field_6013cf36d4689', 'option')) ?>">
                                             kostenlos registrieren
                                         </a>
+
                                         .</p>
                                     <div class="grid grid-cols-2 gap-4">
                                         <div class="col-span-2 xl:col-span-1">
-                                            <a href="<?php echo add_query_arg(['redirect' => urlencode(home_url('diskutieren'))], get_field('field_601bbffe28967', 'option')) ?>"
+                                            <?php $redirect = urlencode( add_query_arg( ['ref' => $_GET['ref']], get_field('field_601e5f56775db', 'option'))) ?>
+                                            <a href="<?php echo add_query_arg(['redirect' => $redirect], get_field('field_601bbffe28967', 'option')) ?>"
                                                class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
                                                 E-Mail login
                                             </a>
@@ -190,7 +193,7 @@ if ($query->have_posts()):
                                             $socialite = new SocialiteManager($config);
                                             ?>
 
-                                            <a href="<?php echo $socialite->create('facebook')->withState(get_field('field_601e5f56775db', 'option'))->redirect(); ?>"
+                                            <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
                                                class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
                                             >
                                                 Facebook login
@@ -338,7 +341,8 @@ if ($query->have_posts()):
                                                     .</p>
                                                 <div class="grid grid-cols-2 gap-4">
                                                     <div class="col-span-2 xl:col-span-1">
-                                                        <a href="<?php echo add_query_arg(['redirect' => urlencode(home_url('diskutieren'))], get_field('field_601bbffe28967', 'option')) ?>"
+                                                        <?php $redirect = urlencode( add_query_arg( ['ref' => $_GET['ref']], get_field('field_601e5f56775db', 'option'))) ?>
+                                                        <a href="<?php echo add_query_arg(['redirect' => $redirect], get_field('field_601bbffe28967', 'option')) ?>"
                                                            class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
                                                             E-Mail login
                                                         </a>
@@ -356,7 +360,7 @@ if ($query->have_posts()):
                                                         $socialite = new SocialiteManager($config);
                                                         ?>
 
-                                                        <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+                                                        <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
                                                            class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
                                                         >
                                                             Facebook login
