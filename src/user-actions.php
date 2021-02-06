@@ -14,6 +14,9 @@ function activate_user($token)
 
         global $wpdb;
         $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
+
+        wp_die($email);
+
         $wpdb->delete('wp_user_activation_token', ['token' => $token]);
         $token_user = get_user_by('email', $email);
 
@@ -29,7 +32,7 @@ function activate_user($token)
 
             }
         } else {
-            $FormSession->addToErrorBag('login_error', 'token_expired');
+            $FormSession->addToErrorBag('login_errror', 'token_expired');
         }
         $FormSession->set('token_success', 'account_acitvated');
     }
