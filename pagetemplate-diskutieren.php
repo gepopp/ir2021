@@ -174,7 +174,10 @@ if ($query->have_posts()):
                                         .</p>
                                     <div class="grid grid-cols-2 gap-4">
                                         <div class="col-span-2 xl:col-span-1">
-                                            <?php $redirect = urlencode( add_query_arg( ['ref' => $_GET['ref'] ?? ''], get_field('field_601e5f56775db', 'option'))) ?>
+
+                                            <?php
+                                            $ref = $_GET['ref'] ?? 'none';
+                                            $redirect = urlencode( add_query_arg( ['ref' => $ref ], get_field('field_601e5f56775db', 'option'))) ?>
                                             <a href="<?php echo add_query_arg(['redirect' => $redirect], get_field('field_601bbffe28967', 'option')) ?>"
                                                class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
                                                 E-Mail login
