@@ -3,11 +3,9 @@
  * Template Name: Facebook login
  */
 
-wp_die('hier');
-
-
 use Overtrue\Socialite\SocialiteManager;
 use immobilien_redaktion_2020\CampaignMonitor;
+
 
 $config = [
     'facebook' => [
@@ -22,6 +20,8 @@ $socialite = new SocialiteManager($config);
 $code = $_GET['code'];
 
 $user = $socialite->create('facebook')->userFromCode($code);
+
+wp_die(var_dump($user));
 
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
