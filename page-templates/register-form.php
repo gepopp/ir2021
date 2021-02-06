@@ -12,6 +12,7 @@ global $FormSession;
       @submit.prevent="validate()"
       x-ref="form"
 >
+    <h3 class="text-xl font-medium mb-4">Registrieren</h3>
     <?php wp_nonce_field('frontend_register', 'frontend_register') ?>
     <input type="hidden" name="action" value="frontend_register">
     <input type="hidden" name="redirect" value="<?php echo $_GET['redirect'] ?? '' ?>">

@@ -147,3 +147,9 @@ figure iframe{
 ol{
     @apply list-decimal pl-5;
 }
+
+.mobile-menu{
+    li{
+        @apply py-2;
+    }
+}

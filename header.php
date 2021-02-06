@@ -95,38 +95,19 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
 
 <header class="header bg-primary-100 w-full h-10 relative md:px-5" x-data="{ showMobile : false }">
     <div class="container mx-auto flex justify-between ">
-        <div class="pt-2 hidden lg:block relative" x-data="{ lesen: false }">
+        <div class="pt-2 hidden lg:block relative" x-data="{ open: false }">
 
-            <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
-                <ul class="flex">
-                    <li class="uppercase text-white mr-3">
-                        <a href="<?php echo home_url() ?>" class="cursor-pointer">START</a>
-                    </li>
-                    <li class="uppercase text-white mr-3" @click.away="lesen = false">
-                        <a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a>
-                    </li>
-                    <li class="uppercase text-white mr-3">
-                        <a href="/sehen">SEHEN</a>
-                    </li>
-                    <li class="uppercase text-white mr-3"><a href="/diskutieren">LIVE</a></li>
-                </ul>
-            </nav>
+            <?php
+            wp_nav_menu([
+                'theme_location' => 'primary',
+                'menu_class'     => 'flex space-x-2',
+                'container'      => 'nav',
+                'depth'          => 2,
+                'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                'walker'         => new TailwindNavWalker(),
+            ]);
+            ?>
 
-            <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white w-64" x-show="lesen" @mouseleave="lesen = false" x-cloak>
-                <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
-                <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
-                    <ul>
-                        <?php foreach ($cats as $cat): ?>
-                            <li class="flex justify-between">
-                                <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
-                                <a href="<?php echo get_category_link($cat) ?>" class="text-lg font-bold flex items-center space-x-3 hover:underline" style="background: linear-gradient(0deg, <?php echo $color ?> 0%, <?php echo $color ?> 50%, transparent 50%, transparent 100%);">
-                                    <?php echo $cat->name ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </nav>
-            </div>
         </div>
 
         <a href="<?php echo home_url() ?>" class="z-50">
@@ -279,35 +260,48 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                     </a>
                 </li>
                 <li class="relative inline-flex rounded-md shadow-sm">
+                    <div class="relative" x-data="{show: false}"
+                         @mouseover="show = true"
+                    >
+                        <?php
 
-                    <?php
-                    global $wp;
-                    if (!is_user_logged_in()):
-                        ?>
-                        <a href="<?php echo add_query_arg(['redirect' => $wp->request], home_url('/login')); ?>">
+                        global $wp;
+                        if (!is_user_logged_in()):
+
+                            ?>
                             <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                             </svg>
-
-                            <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-warning  opacity-50"></span>
-                    </span>
-                        </a>
-                    <?php else: ?>
-                        <div class="relative" x-data="{show: false}"
-                             @mouseover="show = true"
-                        >
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                            </svg>
-
-                            <span class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success  opacity-50"></span>
-                    </span>
+                            <div class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-warning  opacity-50"></span>
+                            </div>
                             <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
                                 <ul>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php echo home_url('profil') ?>">Profil</a>
+                                        <a href="<?php the_field('field_601bbffe28967', 'option'); ?>">Login</a>
+                                    </li>
+                                    <li class="text-lg font-semibold">
+                                        <a href="<?php the_field('field_601bc00528968', 'option') ?>">Registrieren</a>
+                                    </li>
+                                    <?php if (current_user_can('edit_posts')): ?>
+                                        <li class="text-lg font-semibold">
+                                            <a href="<?php echo admin_url() ?>">backend</a>
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                        <?php else: ?>
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
+
+                            <div class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success  opacity-50"></span>
+                            </div>
+                            <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
+                                <ul>
+                                    <li class="text-lg font-semibold">
+                                        <a href="<?php the_field('field_601bc4580a4fc', 'option'); ?>">Profil</a>
                                     </li>
                                     <li class="text-lg font-semibold">
                                         <a href="<?php echo wp_logout_url(home_url()) ?>">Logout</a>
@@ -319,8 +313,8 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                                     <?php endif; ?>
                                 </ul>
                             </div>
-                        </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -336,53 +330,18 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                     </svg>
                 </div>
             </div>
-            <ul class="border-b border-primary-100 pb-5 mb-5">
-                <li class="uppercase text-primary-100 mr-3">
-                    <a href="/lesen" class="cursor-pointer text-2xl font-semibold">LESEN</a>
-                    <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
-                    <ul class="pl-5 text-gray-800 mb-5">
-                        <?php foreach ($cats as $cat): ?>
-                            <li class="flex justify-between">
-                                <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
-                                <a href="<?php echo get_category_link($cat) ?>" class="text-lg font-bold flex items-center space-x-3 hover:underline" style="background: linear-gradient(0deg, <?php echo $color ?> 0%, <?php echo $color ?> 50%, transparent 50%, transparent 100%);">
-                                    <?php echo $cat->name ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </li>
-                <li class="uppercase text-primary-100 mr-3">
-                    <a class="text-2xl font-semibold" href="/sehen">SEHEN</a>
-                </li>
-
+            <div class="py-5 mb-5 border-b border-primary-100 font-semibold uppercase">
                 <?php
-                $date = date('Y-m-d H:i:s');
-                $query = new \WP_Query([
-                    'post_type'      => 'immolive',
-                    'post_status'    => 'publish',
-                    'posts_per_page' => 3,
-                    'meta_query'     => [
-                        'relation' => 'AND',
-                        [
-                            'key'     => 'termin',
-                            'value'   => $date,
-                            'compare' => '>=',
-                            'type'    => 'DATETIME',
-                        ],
-                    ],
-                    'order'          => 'DESC',
-                    'meta_key'       => 'termin',
-                    'meta_type'      => 'DATETIME',
-                    'orderby'        => 'meta_value_date',
+                wp_nav_menu([
+                    'theme_location'  => 'primary',
+                    'container'       => 'nav',
+                    'container_class' => 'mobile-menu',
+                    'depth'           => 1,
+                    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                 ]);
+                ?>
+            </div>
 
-                if ($query->post_count >= 1):
-                    ?>
-                    <li class="uppercase text-primary-100 mr-3">
-                        <a class="text-2xl font-semibold" href="/diskutieren">LIVE</a>
-                    </li>
-                <?php endif; ?>
-            </ul>
 
             <ul class="flex justify-between px-3">
                 <li class="uppercase text-white mr-3">
@@ -540,7 +499,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                         <div class="relative" x-data="{show: false}"
                              @mouseover="show = true"
                         >
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="w-10 h-10 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                             </svg>
 

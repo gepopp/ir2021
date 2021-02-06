@@ -1,8 +1,10 @@
 <?php
+
 use Overtrue\Socialite\SocialiteManager;
+
 ?>
 
-<form class="mb-4" method="post" action="<?php echo admin_url('admin-post.php') ?>">
+<form class="mb-4 w-64" method="post" action="<?php echo admin_url('admin-post.php') ?>">
     <div class="text-warning p-5 text-white flex space-x-3 items-center" x-show="error.global">
         <div>
             <div class="rounded-full bg-warning bg-opacity-25 w-20 h-20 flex items-center justify-center">
@@ -41,11 +43,14 @@ use Overtrue\Socialite\SocialiteManager;
         <p x-show="error.email" x-text="error.email" class="text-warning text-xs"></p>
 
     </div>
-    <div class="mb-6">
+    <div class="mb-2">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
             Passwort
+            <a class="inline align-baseline text-xs underline text-blue-500 hover:text-blue-800" href="<?php echo home_url('passwort-vergessen') ?>">
+                ( vergessen? )
+            </a>
         </label>
-        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                id="password"
                type="password"
                name="password"
@@ -55,6 +60,8 @@ use Overtrue\Socialite\SocialiteManager;
                autocomplete="current-password">
         <p x-show="error.password" x-text="error.password" class="text-warning text-xs"></p>
     </div>
+
+
     <div class="md:flex md:items-center mb-6">
         <label class="block text-gray-500 font-bold">
             <input class="mr-2 leading-tight bg-primary-100" type="checkbox" name="remember">
@@ -62,15 +69,12 @@ use Overtrue\Socialite\SocialiteManager;
         </label>
     </div>
     <div class="flex items-center justify-between">
-        <button class="bg-primary-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        <button class="w-full bg-primary-100 text-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 :class="{' cursor-not-allowed ': !completed }"
                 type="submit"
                 :disabled="!completed">
             einloggen
         </button>
-        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="<?php echo home_url('passwort-vergessen') ?>">
-            Passwort vergessen?
-        </a>
     </div>
 </form>
 <?php
@@ -93,4 +97,8 @@ $socialite = new SocialiteManager($config);
             Mit Facebook einloggen
         </a>
     </div>
+</div>
+<div class="py-2">
+    <p class="font-medium">Noch keinen Account?</p>
+    <p><a href="<?php echo get_field('field_601bc00528968', 'option') ?>" class="text-primary-100 underline">Hier registrieren</a></p>
 </div>

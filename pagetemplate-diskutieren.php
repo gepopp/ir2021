@@ -19,7 +19,7 @@ $query = new WP_Query([
         [
             'key'     => 'il_datum',
             'value'   => $date,
-            'compare' => '>=',
+            'compare' => '>',
         ],
     ],
     'order'          => 'ASC',
