@@ -33,7 +33,7 @@
                 "id": ""
             },
             "display_format": "d.m.Y H:i:s",
-            "return_format": "d.m.Y H:i:s",
+            "return_format": "d.m.Y; H:i;",
             "first_day": 1
         },
         {
@@ -97,7 +97,7 @@
         },
         {
             "key": "field_6007f8b5a20f0",
-            "label": "Teilnehmer",
+            "label": "Sprecher",
             "name": "teilnehmer",
             "type": "repeater",
             "instructions": "",
@@ -132,6 +132,25 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_601ffa8aeb8b4",
+                    "label": "Kurzbeschreibung",
+                    "name": "kurzbeschreibung",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": ""
                 },
                 {
                     "key": "field_6007f8c9a20f2",
@@ -181,7 +200,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "url",
+                    "return_format": "array",
                     "preview_size": "medium",
                     "library": "all",
                     "min_width": "",
@@ -235,25 +254,7 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": "",
-            "readonly": 1
-        },
-        {
-            "key": "field_6007f944300ba",
-            "label": "Notizen",
-            "name": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "h-64",
-                "id": ""
-            },
-            "message": "<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<\r\n<",
-            "new_lines": "br",
-            "esc_html": 0
+            "maxlength": ""
         }
     ],
     "location": [
@@ -273,5 +274,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1611910927
+    "modified": 1612709828
 }

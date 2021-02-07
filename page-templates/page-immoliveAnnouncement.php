@@ -20,29 +20,46 @@ $query = new WP_Query([
 if ($query->have_posts()):
     while ($query->have_posts()):
         $query->the_post();
+        $speakers = get_field('field_6007f8b5a20f0');
         ?>
 
         <div class="px-5 xl:px-0">
-            <div class="container mx-auto mt-20 border-15 flex flex-col justify-end relative bg-no-repeat bg-top bg-white xl:bg-center bg-contain lg:bg-cover pt-25p lg:pt-20p xl:pt-15p"
-                 style="background-image: url(<?php echo get_the_post_thumbnail_url() ?>); min-height: 450px;">
-                <div class="flex flex-col lg:flex-row justify-between w-full bg-white p-5">
-                    <div>
-                        <a href="<?php echo home_url('diskutieren') ?>">
-                            <p class="bg-white text-xl  lg:text-2xl px-5 font-semibold"><?php the_title() ?></p>
-                            <p class="bg-white text-sm lg:text-xl px-5 font-semibold">
-                                <?php _e('Ein <span class="font-serif uppercase">Immo</span><span class="font-serif text-primary-100 uppercase">Live</span> am', 'ir21') ?>
-                                <?php echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i') ?> <?php _e('Uhr', 'ir21') ?>
-                            </p>
-                        </a>
+            <div class="container mx-auto mt-20 border-15 border-white bg-primary-100 px-12 py-10">
+                <h1 class="text-3xl lg:text-5xl text-white font-extrabold max-w-full overflow-hidden leading-none"><?php the_title() ?></h1>
+                <div class="flex flex-col lg:flex-row justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
+                    <p class="w-full lg:w-1/3"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
+                    <div class="font-normal mt-5 lg:mt-0">
+                        <p><?php the_field('field_5ed527e9c2279'); ?></p>
+                        <p><?php _e('Zoom Webinar', 'ir21') ?></p>
                     </div>
+                </div>
 
-                    <?php if (!empty(get_field('field_5ed52801c227a'))): ?>
-                        <div class="flex items-center mt-10 lg:mt-0 pl-5 lg:pl-0">
-                            <a href="<?php the_field('field_5ed52801c227a') ?>" class="bg-primary-100 px-5 lg:text-center text-white text-lg lg:text-2xl py-2 whitespace-no-wrap">
-                                <?php _e('Jetzt Anmelden', 'ir21') ?>
-                            </a>
+                <?php if ($speakers): ?>
+                    <?php if (count($speakers) == 1): ?>
+
+                        <?php $speaker = array_shift($speakers) ?>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
+                            <div class="relative">
+                                <img src="<?php echo $speaker['bild']['sizes']['article'] ?>" class="w-full h-auto border-8 border-white"/>
+                                <div class="absolute bottom-0 right-0 w-24 h-24 -mb-12 lg:-mr-12 bg-white rounded-full p-3">
+                                    <a href="<?php echo $speaker['unternehmenswebseite'] ?>">
+                                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mt-12 lg:mt-2">
+                                <h1 class="text-xl lg:text-3xl bg-white text-primary-100 font-bold px-3 leading-none inline"><?php echo $speaker['name'] ?></h1>
+                                <p class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></p>
+                            </div>
                         </div>
+
+
                     <?php endif; ?>
+                <?php endif; ?>
+
+                <div class="flex justify-end mt-20 mb-5">
+                    <a href="<?php echo get_field('field_601e5f56775db', 'option') ?>" class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium"><?php _e('Alle ImmoLive', 'ir21') ?></a>
                 </div>
             </div>
         </div>
