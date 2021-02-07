@@ -3,21 +3,22 @@
  * Template Name: Loginpage
  */
 
-if (isset($_GET['token'])) {
+if (!empty($_GET['token'])) {
     \immobilien_redaktion_2020\activate_user(sanitize_text_field($_GET['token']));;
 }
 
 get_header();
 
-
 global $FormSession;
-
 ?>
+<script>
+    var login_data = <?php echo json_encode($FormSession->getFormData()) ?>;
+</script>
     <div class="container mx-auto relative px-5 md:px-0 flex justify-center pt-32">
         <div class="h-auto" x-data="loginForm(login_data)">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="bg-white p-5 shadow-xl w-96">
-                    <h3 class="text-xl font-medium mb-4">Login</h3>
+                    <h3 class="text-xl font-medium text-gray-700 mb-4"><?php _e('Login', 'ir21') ?></h3>
                     <?php get_template_part('page-templates/login', 'form') ?>
                 </div>
                 <div>

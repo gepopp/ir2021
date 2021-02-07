@@ -59,7 +59,6 @@ window.loginForm = function (formdata) {
         }
     }
 }
-
 window.registerForm = (formdata) => {
     return {
         data: {

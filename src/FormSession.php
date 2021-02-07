@@ -117,7 +117,7 @@ class   FormSession
             <div class="text-warning p-5 text-white flex space-x-3 items-center">
                 <div>
                     <div class="rounded-full bg-warning bg-opacity-25 w-10 h-10 flex items-center justify-center">
-                        <svg class="h-6 w-6 text-white animate-ping" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="h-4 w-4 text-white animate-ping" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                         </svg>
                     </div>
@@ -188,21 +188,21 @@ class   FormSession
     protected function setupMessages()
     {
         $this->messages = [
-            'nonce'                 => "Wir konnten nicht verifizieren dass, das Formular von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.",
-            'agb'                   => "Bitte akzeptieren Sie die AGB.",
-            'register_error'        => "Wir konnten Ihre Daten nicht speichern, bitte versuchen Sie es später noch einmal.",
-            'register_sent_success' => 'Wir haben Ihnen ein E-Mail mit einem Link zum bestätigen Ihrer E-Mail Adresse, bitte überprüfen Sie Ihre Posteingang',
-            'not_sent'              => sprintf('Wir konnten Ihnen kein E-Mail senden, bitte versuchen Sie es später erneut oder wenden Sie sich an den <a href="%s" class="underline">Administrator</a>.', get_option('admin_email')),
-            'not_activated'         => 'Sie haben Ihre E-Mail Adresse noch nicht bestätigt, bitte überprüfen Sie Ihr E-Mail Postfach. Sollten Sie kein E-Mail erhalten haben können Sie <a href="' . get_field('field_601ed5b0226a0', 'option') . '" class="font-medium underline">hier ein neues anfordern.</a>',
-            'login_credentials'     => 'Wir konnten Sie mit dieser Kombination aus E-Mail und Passwort nicht einloggen. Bitte versuchen Sie es erneut.',
-            'user_exists'           => 'Diese E-Mail-Adresse ist bereits registriert.',
-            'password_length'       => 'Ihr Passwort muss mindestens 8 Zeichen lang sein.',
-            'profile_updated'       => 'Ihre Profildaten wurden erfolgreich aktualisiert.',
-            'token_expired'         => sprintf('Dieser Link ist nicht mehr gültig, Sie können über die <a href="%s" class="font-semibold underline ">Passwort vergessen</a> funktion ein neues E-Mail anfordern', get_field('field_601e59c9336d7', 'option')),
-            'account_acitvated'     => 'Ihr Account ist nun aktiviert, Sie können sich jetzt einloggen!',
-            'email_not_found'       => 'Wir konnten zu dieser Adresse keinen Eintrag finden, bitte versuchen Sie es noch einmal.',
-            'reset_success'         => 'Wir haben Ihnen ein E-Mail mit einem Link zum zurücksetzen Ihres Passwortes gesendet, bitte überprüfen Sie Ihre Posteingang',
-            'password_changed'      => 'Ihr neues Passwort wurde gespeichert, Sie können sich jetzt einloggen.',
+            'nonce'                 =>  __("Wir konnten nicht verifizieren dass, das Formular von einem Menschen geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.", 'ir21'),
+            'agb'                   => __("Bitte akzeptieren Sie die AGB.", 'ir21'),
+            'register_error'        => __("Wir konnten Ihre Daten nicht speichern, bitte versuchen Sie es später noch einmal.", 'ir21'),
+            'register_sent_success' => sprintf(__('Wir haben Ihnen ein E-Mail mit einem Link zum bestätigen Ihrer E-Mail Adresse, bitte überprüfen Sie Ihre Posteingang. <a href="%s" class="font-medium underline">Link nocheinmal senden</a>', 'ir21'), get_field('field_601ed5b0226a0', 'option')),
+            'not_sent'              => sprintf(__('<p>Wir konnten Ihnen kein E-Mail senden, bitte versuchen Sie es später erneut oder wenden Sie sich an den <a href="%s" class="underline">Administrator</a>.</p><p>Bitte beachten Sie, dass dieses E-Mail nur alle 5 Minuten versendet werden können.</p>', 'if21'), get_option('admin_email')),
+            'not_activated'         => sprintf(__('Sie haben Ihre E-Mail Adresse noch nicht bestätigt, bitte überprüfen Sie Ihr E-Mail Postfach. Sollten Sie kein E-Mail erhalten haben können Sie <a href="%s" class="font-medium underline">hier ein neues anfordern.</a>', 'ir21'), get_field('field_601ed5b0226a0', 'option')),
+            'login_credentials'     => __('Wir konnten Sie mit dieser Kombination aus E-Mail und Passwort nicht einloggen. Bitte versuchen Sie es erneut.', 'ir21'),
+            'user_exists'           => __('Diese E-Mail-Adresse ist bereits registriert.', 'ir21'),
+            'password_length'       => __('Ihr Passwort muss mindestens 8 Zeichen lang sein.', 'ir21'),
+            'profile_updated'       => __('Ihre Profildaten wurden erfolgreich aktualisiert.', 'ir21'),
+            'token_expired'         => sprintf(__('Dieser Link ist nicht mehr gültig, Sie können über die <a href="%s" class="font-semibold underline ">Passwort vergessen</a> funktion ein neues E-Mail anfordern', 'ir21'), get_field('field_601e59c9336d7', 'option')),
+            'account_acitvated'     => __('Ihr Account ist nun aktiviert, Sie können sich jetzt einloggen!', 'ir21'),
+            'email_not_found'       => __('Wir konnten zu dieser Adresse keinen Eintrag finden, bitte versuchen Sie es noch einmal.', 'ir21'),
+            'reset_success'         => __('Wir haben Ihnen ein E-Mail mit einem Link zum zurücksetzen Ihres Passwortes gesendet, bitte überprüfen Sie Ihre Posteingang', 'ir21'),
+            'password_changed'      => __('Ihr neues Passwort wurde gespeichert, Sie können sich jetzt einloggen.', 'ir21'),
 
         ];
 

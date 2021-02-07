@@ -4,40 +4,6 @@ namespace immobilien_redaktion_2020;
 
 use Carbon\Carbon;
 
-
-function activate_user($token)
-{
-
-    global $FormSession;
-
-    if ($token == '') return;
-
-    global $wpdb;
-
-    $email = $wpdb->get_var('SELECT email FROM wp_user_activation_token WHERE token = "' . $token . '"');
-    $wpdb->delete('wp_user_activation_token', ['token' => $token]);
-    $token_user = get_user_by('email', $email);
-
-    if (!$token_user) {
-        $FormSession->addToErrorBag('login_errror', 'token_expired');
-        return;
-    }
-
-    if (!in_array('subscriber', $token_user->roles)) {
-
-        $token_user->add_role('subscriber');
-        $token_user->remove_role('registered');
-
-        $sent = (new CampaignMonitor())->transactional('registration_activated', $token_user);
-        $updated = (new CampaignMonitor())->updateUser($token_user);
-        $FormSession->set('token_success', 'account_acitvated');
-        return;
-    }
-
-    $FormSession->addToErrorBag('login_errror', 'token_expired');
-    return;
-}
-
 add_action('wp_ajax_update_reminder_date', function () {
 
     global $wpdb;
@@ -63,10 +29,7 @@ add_action('wp_ajax_update_reminder_date', function () {
 
 });
 
-add_action('wp_ajax_set_reading_reminder', 'immobilien_redaktion_2020\set_reading_reminder');
-//add_action('wp_ajax_nopriv_set_reading_reminder', 'immobilien_redaktion_2020\set_reading_reminder');
-
-function set_reading_reminder()
+add_action('wp_ajax_set_reading_reminder', function()
 {
 
     $post = sanitize_text_field($_POST['id']);
@@ -89,12 +52,9 @@ function set_reading_reminder()
         wp_die('');
 
     }
+});
 
-}
-
-add_action('wp_ajax_set_user_bookmark', 'immobilien_redaktion_2020\set_user_bookmark');
-
-function set_user_bookmark()
+add_action('wp_ajax_set_user_bookmark', function()
 {
 
     $post = sanitize_text_field($_POST['id']);
@@ -117,7 +77,7 @@ function set_user_bookmark()
 
     }
 
-}
+});
 
 add_action('wp_ajax_remove_user_bookmark', function () {
 
@@ -135,43 +95,6 @@ add_action('wp_ajax_remove_user_bookmark', function () {
     } else {
         wp_die('', 400);
     }
-
-});
-
-add_action('admin_post_nopriv_resend_activation', function () {
-
-    global $FormSession;
-
-    $email = sanitize_email($_POST['email']);
-    $user = get_user_by('email', $email);
-
-    if(!$user){
-        $FormSession->addToErrorBag('resend_activation', 'email_not_found')->redirect();
-    }
-
-    if(in_array('subscriber', $user->roles)){
-        $FormSession->set('token_success', 'account_acitvated')->redirect(get_field('field_601bbffe28967', 'option'));
-
-    }
-
-    global $wpdb;
-    $table = 'wp_user_activation_token';
-
-    $wpdb->delete($table, ['email' => $email ]);
-
-    $token = wp_generate_uuid4();
-
-    $wpdb->insert($table, [
-        'user_id'    => $user->ID,
-        'email'      => $user->data->user_email,
-        'token'      => $token,
-        'created_at' => \Carbon\Carbon::now()->format('d.m.Y H:i:s'),
-    ],
-        ['%d', '%s', '%s', '%s']);
-
-    (new CampaignMonitor())->transactional('confirm_email_address', $user, ['link' => add_query_arg(['token' => $token], get_field('field_601bbffe28967', 'option'))]);
-
-    $FormSession->set('resend_activation', 'register_sent_success')->redirect();
 
 });
 

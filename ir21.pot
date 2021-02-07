@@ -1,0 +1,258 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Immobilien Redaktion 2020\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-07 07:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.0; wp-5.6.1\n"
+"X-Domain: ir21"
+
+#: page-templates/login-form.php:33
+msgid "( vergessen? )"
+msgstr ""
+
+#. Name of the template
+#: pagetemplate-resend-activation.php:12
+msgid "Aktivierungslink senden"
+msgstr ""
+
+#: page-templates/register-form.php:30
+msgid "Anrede"
+msgstr ""
+
+#: src/FormSession.php:192
+msgid "Bitte akzeptieren Sie die AGB."
+msgstr ""
+
+#: pagetemplate-resend-activation.php:28
+msgid ""
+"Bitte geben Sie die E-Mail Adresse ein mit der Sie sich registriert haben. "
+"Wir senden Ihnen einen neuen Link zum aktivieren Ihres Accounts."
+msgstr ""
+
+#: page-templates/register-form.php:38
+msgid "Bitte w&auml;hlen"
+msgstr ""
+
+#: src/FormSession.php:198
+msgid "Diese E-Mail-Adresse ist bereits registriert."
+msgstr ""
+
+#: src/FormSession.php:201
+#, php-format
+msgid ""
+"Dieser Link ist nicht mehr gültig, Sie können über die <a href=\"%s\" "
+"class=\"font-semibold underline \">Passwort vergessen</a> funktion ein neues "
+"E-Mail anfordern"
+msgstr ""
+
+#. Name of the template
+msgid "Diskutieren"
+msgstr ""
+
+#: pagetemplate-resend-activation.php:19 page-templates/login-form.php:16
+#: page-templates/register-form.php:75
+msgid "E-Mail Adresse"
+msgstr ""
+
+#: page-templates/login-form.php:59
+msgid "einloggen"
+msgstr ""
+
+#. Name of the template
+msgid "Facebook login"
+msgstr ""
+
+#. Name of the template
+msgid "Facebook OAuth"
+msgstr ""
+
+#: page-templates/register-form.php:39
+msgid "Frau"
+msgstr ""
+
+#: page-templates/register-form.php:40
+msgid "Herr"
+msgstr ""
+
+#: page-templates/login-form.php:86
+msgid "Hier registrieren"
+msgstr ""
+
+#. URI of the theme
+msgid "https://github.com/freeshifter/immobilien-redaktion-2020"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://poppgerhard.at"
+msgstr ""
+
+#: page-templates/register-form.php:108
+#, php-format
+msgid ""
+"Ich bin der <a href=\"%s\" target=\"_blank\" class=\"text-primary-100 "
+"underline\">Datenschutzerklärung</a> der unabhängigen Immobilien Redaktion "
+"einverstanden."
+msgstr ""
+
+#: src/FormSession.php:202
+msgid "Ihr Account ist nun aktiviert, Sie können sich jetzt einloggen!"
+msgstr ""
+
+#: src/FormSession.php:205
+msgid "Ihr neues Passwort wurde gespeichert, Sie können sich jetzt einloggen."
+msgstr ""
+
+#: src/FormSession.php:199
+msgid "Ihr Passwort muss mindestens 8 Zeichen lang sein."
+msgstr ""
+
+#: src/FormSession.php:200
+msgid "Ihre Profildaten wurden erfolgreich aktualisiert."
+msgstr ""
+
+#. Name of the theme
+msgid "Immobilien Redaktion 2020"
+msgstr ""
+
+#. Name of the template
+msgid "Lesen"
+msgstr ""
+
+#: pagetemplate-resend-activation.php:31
+msgid "Link senden"
+msgstr ""
+
+#: page-templates/login-form.php:51
+msgid "Login merken"
+msgstr ""
+
+#. Name of the template
+msgid "Login Register"
+msgstr ""
+
+#. Name of the template
+msgid "Loginpage"
+msgstr ""
+
+#: page-templates/register-form.php:99
+msgid "Mindestens 8 Zeichen."
+msgstr ""
+
+#: page-templates/register-form.php:139
+msgid ""
+"Mit <span class=\"text-warning\">*</span> gekennzeichneten Felder sind "
+"Pflichtfelder."
+msgstr ""
+
+#: page-templates/register-form.php:59
+msgid "Nachname"
+msgstr ""
+
+#: page-templates/login-form.php:85
+msgid "Noch keinen Account?"
+msgstr ""
+
+#: page-templates/login-form.php:31 page-templates/register-form.php:90
+msgid "Passwort"
+msgstr ""
+
+#. Name of the template
+msgid "Passwort reset"
+msgstr ""
+
+#. Name of the template
+msgid "Passwort vergessen"
+msgstr ""
+
+#. Author of the theme
+msgid "Popp Gerhard"
+msgstr ""
+
+#: page-templates/register-form.php:18
+msgid "Registrieren"
+msgstr ""
+
+#: page-templates/register-form.php:130
+msgid "registrieren"
+msgstr ""
+
+#. Name of the template
+msgid "resgistration page"
+msgstr ""
+
+#. Name of the template
+msgid "Sehen"
+msgstr ""
+
+#: src/FormSession.php:196
+#, php-format
+msgid ""
+"Sie haben Ihre E-Mail Adresse noch nicht bestätigt, bitte überprüfen Sie Ihr "
+"E-Mail Postfach. Sollten Sie kein E-Mail erhalten haben können Sie <a "
+"href=\"%s\" class=\"font-medium underline\">hier ein neues anfordern.</a>"
+msgstr ""
+
+#. Name of the template
+msgid "User Profil"
+msgstr ""
+
+#: page-templates/login-form.php:80
+msgid "Via Facebook einloggen"
+msgstr ""
+
+#: page-templates/register-form.php:136
+msgid "Via Facebook registrieren"
+msgstr ""
+
+#: page-templates/register-form.php:47
+msgid "Vorname"
+msgstr ""
+
+#: src/FormSession.php:194
+#, php-format
+msgid ""
+"Wir haben Ihnen ein E-Mail mit einem Link zum bestätigen Ihrer E-Mail "
+"Adresse, bitte überprüfen Sie Ihre Posteingang. <a href=\"%s\" class=\"font-"
+"medium underline\">Link nocheinmal senden</a>"
+msgstr ""
+
+#: src/FormSession.php:204
+msgid ""
+"Wir haben Ihnen ein E-Mail mit einem Link zum zurücksetzen Ihres Passwortes "
+"gesendet, bitte überprüfen Sie Ihre Posteingang"
+msgstr ""
+
+#: src/FormSession.php:193
+msgid ""
+"Wir konnten Ihre Daten nicht speichern, bitte versuchen Sie es später noch "
+"einmal."
+msgstr ""
+
+#: src/FormSession.php:191
+msgid ""
+"Wir konnten nicht verifizieren dass, das Formular von einem Menschen "
+"geschickt wurde. Bitte laden Sie die Seite neu und versuchen Sie es noch "
+"einmal."
+msgstr ""
+
+#: src/FormSession.php:197
+msgid ""
+"Wir konnten Sie mit dieser Kombination aus E-Mail und Passwort nicht "
+"einloggen. Bitte versuchen Sie es erneut."
+msgstr ""
+
+#: src/FormSession.php:203
+msgid ""
+"Wir konnten zu dieser Adresse keinen Eintrag finden, bitte versuchen Sie es "
+"noch einmal."
+msgstr ""

@@ -15,7 +15,7 @@ global $FormSession;
       x-init="init()"
       @submit.prevent="validate()"
       x-ref="form">
-    <h3 class="text-xl font-medium mb-4 text-gray-700">Registrieren</h3>
+    <h3 class="text-xl font-medium mb-4 text-gray-700"><?php _e('Registrieren', 'ir21') ?></h3>
     <?php wp_nonce_field('frontend_register', 'frontend_register') ?>
     <input type="hidden" name="action" value="frontend_register">
     <input type="hidden" name="redirect" value="<?php echo $_GET['redirect'] ?? '' ?>">
@@ -27,7 +27,7 @@ global $FormSession;
 
         <div>
             <label class="block text-gray-700 text-sm font-bold mb-2" for="register_gender">
-                Anrede <span class="text-warning">*</span>
+                <?php _e('Anrede', 'ir21') ?> <span class="text-warning">*</span>
             </label>
             <select name="register_gender"
                     id="register_gender"
@@ -35,16 +35,16 @@ global $FormSession;
                     required="required"
                     x-model="data.gender"
                     name="register_gender">
-                <option value="">Bitte w&auml;hlen</option>
-                <option value="f">Frau</option>
-                <option value="m">Herr</option>
+                <option value=""><?php _e('Bitte w&auml;hlen', 'ir21') ?></option>
+                <option value="f"><?php _e('Frau', 'ir21') ?></option>
+                <option value="m"><?php _e('Herr', 'ir21') ?></option>
             </select>
             <p x-show="regsiter_errors.gender" x-text="regsiter_errors.gender" class="text-warning text-xs"></p>
         </div>
 
 
         <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="first_name">Vorname</label>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="first_name"><?php _e('Vorname', 'ir21') ?></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                    id="first_name"
                    type="text"
@@ -56,7 +56,7 @@ global $FormSession;
 
 
         <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="last_name">Nachname
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="last_name"><?php _e('Nachname', 'ir21') ?>
                 <span class="text-warning">*</span></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                    id="last_name"
@@ -72,7 +72,7 @@ global $FormSession;
 
 
     <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="register_email">E-Mail Adresse
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="register_email"><?php _e('E-Mail Adresse', 'ir21') ?>
             <span class="text-warning">*</span></label>
         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                id="register_email"
@@ -87,7 +87,7 @@ global $FormSession;
 
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="register_password">
-            Passwort <span class="text-warning">*</span>
+            <?php _e('Passwort', 'ir21') ?> <span class="text-warning">*</span>
         </label>
         <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                id="register_password"
@@ -96,6 +96,7 @@ global $FormSession;
                x-model="data.password"
                placeholder="******************"
                autocomplete="new-password"/>
+        <p class="text-xs text-gray-600" x-show="!regsiter_errors.password"><?php _e('Mindestens 8 Zeichen.', 'ir21') ?></p>
         <p x-show="regsiter_errors.password" x-text="regsiter_errors.password" class="text-warning text-xs"></p>
     </div>
 
@@ -103,11 +104,10 @@ global $FormSession;
     <div class="md:flex md:items-center mb-4">
         <label class="block text-gray-500 font-bold">
             <input class="mr-2 leading-tight bg-primary-100" type="checkbox" name="agb" required>
-            <span class="text-sm">Ich bin der
-                 <a href="<?php echo get_field('field_601ec7cd84c47', 'option') ?>" target="_blank" class="text-primary-100 underline">
-                     Datenschutzerklärung
-                </a>
-                der unabhängigen Immobilien Redaktion einverstanden. <span class="text-warning">*</span></span>
+            <span class="text-sm">
+                <?php sprintf(_e('Ich bin der <a href="%s" target="_blank" class="text-primary-100 underline">Datenschutzerklärung</a> der unabhängigen Immobilien Redaktion einverstanden.', 'ir21'), get_field('field_601ec7cd84c47', 'option')) ?>
+                <span class="text-warning">*</span>
+            </span>
         </label>
     </div>
 
@@ -127,15 +127,15 @@ global $FormSession;
         <div class="flex items-center justify-between">
             <button class="bg-primary-100 text-white font-medium py-2 px-4 w-full text-center focus:outline-none focus:shadow-outline"
                     type="submit">
-                registrieren
+                <?php _e('registrieren', 'ir21') ?>
             </button>
         </div>
         <div class="my-5 w-full">
             <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
                class="bg-primary-100 py-2 px-3 text-white w-full text-center block font-medium"
-            >Via Facebook registrieren</a>
+            ><?php _e('Via Facebook registrieren', 'ir21') ?></a>
         </div>
     </div>
-    <p class="text-xs mt-2">Mit <span class="text-warning">*</span> gekennzeichneten Felder sind Pflichtfelder.</p>
+    <p class="text-xs mt-2"><?php _e('Mit <span class="text-warning">*</span> gekennzeichneten Felder sind Pflichtfelder.', 'ir21') ?></p>
 </form>
 

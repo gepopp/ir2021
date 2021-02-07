@@ -7,16 +7,12 @@ add_action('admin_post_nopriv_frontend_login', function () {
         $FormSession->addToErrorBag('login_errror', 'nonce')->redirect();
     }
 
-
-
     $user = get_user_by('email', sanitize_email($_POST['email']));
     if(!$user){
         $FormSession->addToErrorBag('login_errror', 'login_credentials')->redirect();
     }
 
-
     $roles = $user->roles;
-
     if (in_array('registered', $roles)) {
         $FormSession->addToErrorBag('login_errror', 'not_activated')->redirect();
     }
@@ -25,7 +21,8 @@ add_action('admin_post_nopriv_frontend_login', function () {
         'user_login'    => sanitize_email($_POST['email']),
         'user_password' => sanitize_text_field($_POST['password']),
         'remember'      => isset($_POST['remember']) ? (bool)$_POST['remember'] : false,
-    ], false);
+    ], true);
+    wp_set_current_user($user);
 
 
     if (is_wp_error($user)) {
