@@ -113,7 +113,7 @@ add_action('wp_enqueue_scripts', function () {
         );
     }
 
-    if (is_page_template('pagetemplate-diskutieren.php') || is_singular('immolive')) {
+    if (is_page_template('pagetemplate-diskutieren.php') || is_page_template('pagetemplate-live.php') || is_singular('immolive')) {
         wp_enqueue_script(
             'immobilien_redaktion_2020_js_diskutieren',
             immobilien_redaktion_2020_URL . "/dist/diskutieren{$min_ext}.js",
