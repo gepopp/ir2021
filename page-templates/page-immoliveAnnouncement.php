@@ -28,6 +28,7 @@ if ($query->have_posts()):
 
         <div class="px-5 xl:px-0">
             <div class="container mx-auto mt-20 border-15 border-white bg-primary-100 px-12 py-10">
+                <a href="<?php echo get_field('field_601e5f56775db', 'option') ?>">
                 <h1 class="text-3xl lg:text-5xl text-white font-extrabold max-w-full overflow-hidden leading-normal"><?php the_title() ?></h1>
                 <div class="flex flex-col lg:flex-row justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
                     <p class="w-full lg:w-1/3"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
@@ -36,6 +37,7 @@ if ($query->have_posts()):
                         <p><?php _e('Zoom Webinar', 'ir21') ?></p>
                     </div>
                 </div>
+                </a>
 
                 <?php if ($speakers): ?>
                     <?php if (count($speakers) == 1): ?>
@@ -62,12 +64,7 @@ if ($query->have_posts()):
                             ?>
                         </div>
                     <?php endif; ?>
-
                 <?php endif; ?>
-
-                <div class="flex justify-end mt-20 mb-5">
-                    <a href="<?php echo get_field('field_601e5f56775db', 'option') ?>" class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium"><?php _e('Alle ImmoLive', 'ir21') ?></a>
-                </div>
             </div>
         </div>
     <?php
