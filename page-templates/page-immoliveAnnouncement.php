@@ -19,6 +19,9 @@ $query = new WP_Query([
 ]);
 if ($query->have_posts()):
     while ($query->have_posts()):
+
+        get_template_part('page-templates/snippet', 'event');
+
         $query->the_post();
         $speakers = get_field('field_6007f8b5a20f0');
         ?>
