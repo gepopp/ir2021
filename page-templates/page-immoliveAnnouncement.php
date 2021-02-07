@@ -25,7 +25,7 @@ if ($query->have_posts()):
 
         <div class="px-5 xl:px-0">
             <div class="container mx-auto mt-20 border-15 border-white bg-primary-100 px-12 py-10">
-                <h1 class="text-3xl lg:text-5xl text-white font-extrabold max-w-full overflow-hidden leading-none"><?php the_title() ?></h1>
+                <h1 class="text-3xl lg:text-5xl text-white font-extrabold max-w-full overflow-hidden leading-normal"><?php the_title() ?></h1>
                 <div class="flex flex-col lg:flex-row justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
                     <p class="w-full lg:w-1/3"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
                     <div class="font-normal mt-5 lg:mt-0">
@@ -36,24 +36,30 @@ if ($query->have_posts()):
 
                 <?php if ($speakers): ?>
                     <?php if (count($speakers) == 1): ?>
+                        <?php speakerHorizontal(array_shift($speakers)); ?>
+                    <?php endif; ?>
 
-                        <?php $speaker = array_shift($speakers) ?>
-
+                    <?php if (count($speakers) == 2): ?>
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
-                            <div class="relative">
-                                <img src="<?php echo $speaker['bild']['sizes']['article'] ?>" class="w-full h-auto border-8 border-white"/>
-                                <div class="absolute bottom-0 right-0 w-24 h-24 -mb-12 lg:-mr-12 bg-white rounded-full p-3">
-                                    <a href="<?php echo $speaker['unternehmenswebseite'] ?>">
-                                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto"/>
-                                    </a>
-                                </div>
+                            <div>
+                                <?php speakerHorizontal(array_shift($speakers)); ?>
                             </div>
-                            <div class="mt-12 lg:mt-2">
-                                <h1 class="text-xl lg:text-3xl bg-white text-primary-100 font-bold px-3 leading-none inline"><?php echo $speaker['name'] ?></h1>
-                                <p class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></p>
+                            <div>
+                                <?php speakerHorizontal(array_shift($speakers)); ?>
                             </div>
                         </div>
                     <?php endif; ?>
+
+                    <?php if (count($speakers) > 2): ?>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-<?php echo min(4, count($speakers)) ?> gap-10">
+                            <?php
+                            while ($speaker = array_shift($speakers)){
+                                speakerVertical($speaker);
+                            }
+                            ?>
+                        </div>
+                    <?php endif; ?>
+
                 <?php endif; ?>
 
                 <div class="flex justify-end mt-20 mb-5">
@@ -77,23 +83,72 @@ else:
 
 
     <div class="container mx-auto mt-20 relative px-5 lg:px-0">
-
-    <div class="grid grid-cols-2 gap-10">
-        <?php if ($query->have_posts()): ?>
-            <?php while ($query->have_posts()): ?>
-                <?php $query->the_post(); ?>
-                <div class="col-span-2 md:col-span-1 relative">
+        <div class="grid grid-cols-2 gap-10">
+            <?php if ($query->have_posts()): ?>
+                <?php while ($query->have_posts()): ?>
+                    <?php $query->the_post(); ?>
                     <div class="col-span-2 md:col-span-1 relative">
-                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
-                            <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
-                            <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
-                        </a>
+                        <div class="col-span-2 md:col-span-1 relative">
+                            <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
+                                <?php the_post_thumbnail('article', ['class' => 'w-full h-auto max-w-full', 'onerror' => "this.style.display='none'"]); ?>
+                                <h1 class="absolute bottom-0 left-0 text-white font-serif p-5 text-3xl"><?php the_title() ?></h1>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            <?php endwhile; ?>
-        <?php endif; ?>
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
     </div>
     <?php wp_reset_postdata(); ?>
 <?php
 endif;
 wp_reset_postdata();
+
+function speakerVertical($speaker)
+{
+    ?>
+    <div class="flex flex-col mt-10">
+        <div class="relative h-auto">
+        <img src="<?php echo $speaker['bild']['sizes']['article-portrait'] ?>" class="w-full h-auto border-8 border-white" alt="<?php echo $speaker['name'] ?>"/>
+            <?php if ($speaker['unternehmenswebseite'] != '' && $speaker['logo']['sizes']['xs'] != ''): ?>
+                <div class="absolute top-0 right-0 w-24 h-24 -mt-6 lg:-mr-6 bg-white rounded-full p-3">
+                    <a href="<?php echo $speaker['unternehmenswebseite'] ?>">
+                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto p-2" alt="<?php echo $speaker['name'] ?>"/>
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="mt-12 lg:mt-2">
+            <div class="bg-white px-3 inline-block">
+                <h1 class="text-xl lg:text-2xl text-primary-100 font-bold leading-none inline uppercase"><?php echo $speaker['name'] ?></h1>
+            </div>
+            <p class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></p>
+        </div>
+    </div>
+    <?php
+}
+
+
+function speakerHorizontal($speaker)
+{
+    ?>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
+        <div class="relative h-auto">
+            <img src="<?php echo $speaker['bild']['sizes']['article'] ?>" class="w-full h-auto border-8 border-white" alt="<?php echo $speaker['name'] ?>"/>
+            <?php if ($speaker['unternehmenswebseite'] != '' && $speaker['logo']['sizes']['xs'] != ''): ?>
+                <div class="absolute bottom-0 right-0 w-24 h-24 -mb-12 lg:-mr-12 bg-white rounded-full p-3">
+                    <a href="<?php echo $speaker['unternehmenswebseite'] ?>">
+                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto p-2" alt="<?php echo $speaker['name'] ?>"/>
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="mt-12 lg:mt-2">
+            <div class="bg-white px-3">
+                <h1 class="text-xl lg:text-3xl text-primary-100 font-bold leading-none inline uppercase"><?php echo $speaker['name'] ?></h1>
+            </div>
+            <p class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></p>
+        </div>
+    </div>
+    <?php
+}
