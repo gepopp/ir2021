@@ -33,7 +33,7 @@
                 "id": ""
             },
             "display_format": "d.m.Y H:i:s",
-            "return_format": "d.m.Y; H:i;",
+            "return_format": "d.m.Y H:i",
             "first_day": 1
         },
         {
@@ -274,5 +274,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1612709828
+    "modified": 1612730373
 }
