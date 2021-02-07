@@ -28,6 +28,29 @@ $query = new WP_Query([
 ]);
 $count = $query->post_count;
 
+$wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
+$zoom_registrants = $wrapper->doRequest('GET', '/webinars/' . get_field('field_60127a6c90f6b', get_the_ID()) . '/registrants');
+
+$registrants = get_field('field_601451bb66bc3');
+
+$emails = [];
+foreach ($registrants as $registrant){
+    $emails[] = $registrant['email'];
+}
+
+foreach ($zoom_registrants as $zoom_registrant){
+    if(!in_array( $zoom_registrant['email'], $emails)){
+        add_row('field_601451bb66bc3', [
+            'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
+            'user_email'           => $zoom_registrant['email'],
+            'frage_ans_podium'     => $zoom_registrant['comment'],
+            'zoom_registrant_id'   => $zoom_registrant['id'],
+            'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
+        ], get_the_ID());
+    }
+}
+
+
 
 if ($query->have_posts()):
     while ($query->have_posts()):
@@ -58,10 +81,9 @@ if ($query->have_posts()):
 
                         <?php
                         $subscribed = false;
+                        $user = wp_get_current_user();
                         $registrants = get_field('field_601451bb66bc3');
 
-
-                        $user = wp_get_current_user();
                         if ($registrants) {
                             foreach ($registrants as $registrant) {
                                 if ($registrant['user_email'] == $user->user_email) {
