@@ -28,37 +28,39 @@ $query = new WP_Query([
 ]);
 $count = $query->post_count;
 
-$wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
-$zoom_registrants = $wrapper->doRequest('GET', '/webinars/' . get_field('field_60127a6c90f6b', get_the_ID()) . '/registrants');
-
-$registrants = get_field('field_601451bb66bc3');
-
-$emails = [];
-foreach ($registrants as $registrant){
-    $emails[] = $registrant['email'];
-}
-
-foreach ($zoom_registrants as $zoom_registrant){
-    if(!in_array( $zoom_registrant['email'], $emails)){
-        add_row('field_601451bb66bc3', [
-            'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
-            'user_email'           => $zoom_registrant['email'],
-            'frage_ans_podium'     => $zoom_registrant['comment'],
-            'zoom_registrant_id'   => $zoom_registrant['id'],
-            'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
-        ], get_the_ID());
-    }
-}
-
-
 
 if ($query->have_posts()):
     while ($query->have_posts()):
         $query->the_post();
-
         get_template_part('page-templates/snippet', 'event');
 
-        $speakers = get_field('field_6007f8b5a20f0');
+        if (is_user_logged_in()) {
+            $speakers = get_field('field_6007f8b5a20f0');
+
+            $wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
+            $zoom_registrants = $wrapper->doRequest('GET', '/webinars/' . get_field('field_60127a6c90f6b') . '/registrants');
+
+            $registrants = get_field('field_601451bb66bc3');
+
+            $emails = [];
+            foreach ($registrants as $registrant) {
+                $emails[] = $registrant['user_email'];
+            }
+
+            foreach ($zoom_registrants['registrants'] as $zoom_registrant) {
+
+
+                if (!in_array($zoom_registrant['email'], $emails)) {
+                    add_row('field_601451bb66bc3', [
+                        'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
+                        'user_email'           => $zoom_registrant['email'],
+                        'frage_ans_podium'     => $zoom_registrant['comments'],
+                        'zoom_registrant_id'   => $zoom_registrant['id'],
+                        'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
+                    ], get_the_ID());
+                }
+            }
+        }
         ?>
         <div class="container mx-auto border-15 border-white bg-primary-100 px-5 lg:px-12 py-10">
             <div class="flex justify-end md:justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
@@ -102,9 +104,6 @@ if ($query->have_posts()):
                                 <?php _e('Sie sind zu dieser Veranstaltung angemeldet.', 'ir21') ?>
                             </p>
                         <?php endif; ?>
-
-
-
 
 
                     </div>
@@ -238,108 +237,108 @@ $query = new \WP_Query([
             })
         ">
 
-        <!-- This example requires Tailwind CSS v2.0+ -->
-        <div class="fixed z-10 inset-0 overflow-y-auto"
-             x-show="show"
-             x-cloak>
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <!--
-                  Background overlay, show/hide based on modal state.
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="fixed z-10 inset-0 overflow-y-auto"
+         x-show="show"
+         x-cloak>
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!--
+              Background overlay, show/hide based on modal state.
 
-                  Entering: "ease-out duration-300"
-                    From: "opacity-0"
-                    To: "opacity-100"
-                  Leaving: "ease-in duration-200"
-                    From: "opacity-100"
-                    To: "opacity-0"
-                -->
-                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                </div>
+              Entering: "ease-out duration-300"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in duration-200"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
 
-                <!-- This element is to trick the browser into centering the modal contents. -->
-                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <!--
-                  Modal panel, show/hide based on modal state.
+            <!-- This element is to trick the browser into centering the modal contents. -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <!--
+              Modal panel, show/hide based on modal state.
 
-                  Entering: "ease-out duration-300"
-                    From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    To: "opacity-100 translate-y-0 sm:scale-100"
-                  Leaving: "ease-in duration-200"
-                    From: "opacity-100 translate-y-0 sm:scale-100"
-                    To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                -->
-                <div class="inline-block align-bottom bg-white border-15 border-primary-100 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-                     role="dialog" aria-modal="true"
-                     aria-labelledby="modal-headline"
-                     @click.away="show = false">
+              Entering: "ease-out duration-300"
+                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                To: "opacity-100 translate-y-0 sm:scale-100"
+              Leaving: "ease-in duration-200"
+                From: "opacity-100 translate-y-0 sm:scale-100"
+                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            -->
+            <div class="inline-block align-bottom bg-white border-15 border-primary-100 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                 role="dialog" aria-modal="true"
+                 aria-labelledby="modal-headline"
+                 @click.away="show = false">
 
 
-                    <div x-show="!user" class="p-5">
-                        <div class="flex space-x-4 items-center">
-                            <svg class="w-12 h-12 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                            </svg>
-                            <h2 class="font-semibold text-xl mb-4 font-sans text-primary-100"><?php _e('Um sich zu unseren ImmoLive Webinaren anmelden zu können müssen Sie sich einloggen.', 'ir21') ?></h2>
-                        </div>
-                        <p class="mb-4"><?php _e('Sie haben noch keinen Account bei der Immobilien Redaktion? Kein Problen, einfach, schnell und', 'ir21') ?>
-                            <a class="text-primary-100 underline"
-                               href="<?php echo add_query_arg(['redirect' => urlencode(get_permalink())], get_field('field_6013cf36d4689', 'option')) ?>">
-                                <?php _e('kostenlos registrieren', 'ir21') ?>
+                <div x-show="!user" class="p-5">
+                    <div class="flex space-x-4 items-center">
+                        <svg class="w-12 h-12 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                        <h2 class="font-semibold text-xl mb-4 font-sans text-primary-100"><?php _e('Um sich zu unseren ImmoLive Webinaren anmelden zu können müssen Sie sich einloggen.', 'ir21') ?></h2>
+                    </div>
+                    <p class="mb-4"><?php _e('Sie haben noch keinen Account bei der Immobilien Redaktion? Kein Problen, einfach, schnell und', 'ir21') ?>
+                        <a class="text-primary-100 underline"
+                           href="<?php echo add_query_arg(['redirect' => urlencode(get_permalink())], get_field('field_6013cf36d4689', 'option')) ?>">
+                            <?php _e('kostenlos registrieren', 'ir21') ?>
+                        </a>
+
+                        .</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2 xl:col-span-1">
+
+                            <?php
+                            $ref = $_GET['ref'] ?? 'none';
+                            $redirect = urlencode(add_query_arg(['ref' => $ref], get_field('field_601e5f56775db', 'option')))
+                            ?>
+                            <a href="<?php echo add_query_arg(['redirect' => $redirect], get_field('field_601bbffe28967', 'option')) ?>"
+                               class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
+                                <?php _e('E-Mail login', 'ir21') ?>
                             </a>
+                        </div>
+                        <div class="col-span-2 xl:col-span-1">
+                            <?php
+                            $config = [
+                                'facebook' => [
+                                    'client_id'     => '831950683917414',
+                                    'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+                                    'redirect'      => home_url('fb-login'),
+                                ],
+                            ];
 
-                            .</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="col-span-2 xl:col-span-1">
+                            $socialite = new SocialiteManager($config);
+                            ?>
 
-                                <?php
-                                $ref = $_GET['ref'] ?? 'none';
-                                $redirect = urlencode(add_query_arg(['ref' => $ref], get_field('field_601e5f56775db', 'option')))
-                                ?>
-                                <a href="<?php echo add_query_arg(['redirect' => $redirect], get_field('field_601bbffe28967', 'option')) ?>"
-                                   class="block bg-primary-100 text-white font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer">
-                                    <?php _e('E-Mail login', 'ir21') ?>
-                                </a>
-                            </div>
-                            <div class="col-span-2 xl:col-span-1">
-                                <?php
-                                $config = [
-                                    'facebook' => [
-                                        'client_id'     => '831950683917414',
-                                        'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                                        'redirect'      => home_url('fb-login'),
-                                    ],
-                                ];
-
-                                $socialite = new SocialiteManager($config);
-                                ?>
-
-                                <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
-                                   class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
-                                >
-                                    <?php _e('Facebook login', 'ir21') ?>
-                                </a>
-                            </div>
+                            <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
+                               class="block bg-white text-primary-100 border border-primary-100 font-semibold text-center shadow-xl py-3 my-5 text-lg focus:outline-none focus:shadow-outline w-full text-center cursor-pointer"
+                            >
+                                <?php _e('Facebook login', 'ir21') ?>
+                            </a>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="bg-primary-100 bg-opacity-5 p-5">
-                        <div x-show="user">
-                            <?php $user = wp_get_current_user(); ?>
-                            <h2 class="font-sans text-primary-100 font-semibold text-xl mb-4"><?php echo $user->first_name ?> <?php echo $user->last_name ?><?php _e(', wir freuen uns auf Ihre Teilnahme!', 'ir21') ?></h2>
-                            <form action="<?php echo admin_url('admin-post.php') ?>" method="post">
-                                <?php wp_nonce_field('subscribe_immolive', 'subscribe_immolive') ?>
-                                <input type="hidden" name="action" value="subscribe_immolive">
-                                <input type="hidden" name="immolive_id" x-model="id">
-                                <input type="hidden" name="referer" value="<?php echo isset($_GET['ref']) ? substr(sanitize_text_field($_GET['ref']), 0, 8) : '' ?>">
+                <div class="bg-primary-100 bg-opacity-5 p-5">
+                    <div x-show="user">
+                        <?php $user = wp_get_current_user(); ?>
+                        <h2 class="font-sans text-primary-100 font-semibold text-xl mb-4"><?php echo $user->first_name ?><?php echo $user->last_name ?><?php _e(', wir freuen uns auf Ihre Teilnahme!', 'ir21') ?></h2>
+                        <form action="<?php echo admin_url('admin-post.php') ?>" method="post">
+                            <?php wp_nonce_field('subscribe_immolive', 'subscribe_immolive') ?>
+                            <input type="hidden" name="action" value="subscribe_immolive">
+                            <input type="hidden" name="immolive_id" x-model="id">
+                            <input type="hidden" name="referer" value="<?php echo isset($_GET['ref']) ? substr(sanitize_text_field($_GET['ref']), 0, 8) : '' ?>">
 
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="question"><?php _e('Ihre Frage an unser Poduim', 'ir21') ?></label>
-                                <textarea rows="5" id="question" name="question" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"></textarea>
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="question"><?php _e('Ihre Frage an unser Poduim', 'ir21') ?></label>
+                            <textarea rows="5" id="question" name="question" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"></textarea>
 
-                                <label class="mb-4 block flex space-x-2" for="confirm">
-                                    <input class="mt-1" type="checkbox" name="confirm" id="confirm" required>
-                                    <span class="inline text-gray-700 text-sm font-bold mb-2">
+                            <label class="mb-4 block flex space-x-2" for="confirm">
+                                <input class="mt-1" type="checkbox" name="confirm" id="confirm" required>
+                                <span class="inline text-gray-700 text-sm font-bold mb-2">
                                            <?php _e(' Ja, ich nehme an diesem Live Webinar über Zoom teil und bin mit den', 'ir21') ?>
                                                 <a href="<?php echo get_field('field_601ec7cd84c47', 'option') ?>" target="_blank" class="text-primary-100 underline">
                                                 <?php _e('Datenschutzbestimmungen', 'ir21') ?>
@@ -354,10 +353,10 @@ $query = new \WP_Query([
                                                 </a>
                                                 <?php _e(') einverstanden.', 'ir21') ?>
                                             </span>
-                                </label>
-                                <button type="submit" class="block w-full bg-primary-100 text-white font-semibold py-3 px-3 focus:outline-none"><?php _e('jetzt anmelden', 'ir21') ?></button>
-                            </form>
-                        </div>
+                            </label>
+                            <button type="submit" class="block w-full bg-primary-100 text-white font-semibold py-3 px-3 focus:outline-none"><?php _e('jetzt anmelden', 'ir21') ?></button>
+                        </form>
+                    </div>
 
 
                     <div class="bg-gray-50 pt-5 flex">
