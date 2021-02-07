@@ -34,8 +34,10 @@ if ($query->have_posts()):
         $query->the_post();
         get_template_part('page-templates/snippet', 'event');
 
+        $speakers = get_field('field_6007f8b5a20f0');
+
         if (is_user_logged_in()) {
-            $speakers = get_field('field_6007f8b5a20f0');
+
 
             $wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
             $zoom_registrants = $wrapper->doRequest('GET', '/webinars/' . get_field('field_60127a6c90f6b') . '/registrants');
