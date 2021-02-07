@@ -78,9 +78,10 @@ $duration .= 'S';
                 </div>
                 <div id="preroll" class="w-full h-auto relative" x-show.transition.in.fade="prerolls">
                     <a href="<?php echo $preroll_link ?>" target="_blank" class="absolute w-full h-full" @click="playMain(false)"></a>
-                    <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer">Werbung überspringen</div>
-                    <div x-show="countdown > 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white">Werbung überspringen in
-                        <span x-text="countdown"></span> Sekunden
+                    <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer"><?php _e('Werbung überspringen', 'ir21') ?>
+                    </div>
+                    <div x-show="countdown > 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white"><?php _e('Werbung überspringen in', 'ir21') ?>
+                        <span x-text="countdown"></span> <?php _e('Sekunden', 'ir21') ?>
                     </div>
                 </div>
                 <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>

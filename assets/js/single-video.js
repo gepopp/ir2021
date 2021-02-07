@@ -40,10 +40,6 @@ window.prerolled = function (main_id, preroll_id, image, skip){
                 this.playMain();
             });
 
-            this.video01Player.on('play', function() {
-                console.log('Played the first video');
-            });
-
         },
         playMain(autoplay = true){
 

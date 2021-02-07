@@ -283,3 +283,29 @@ function my_acf_settings_show_admin( $show_admin ) {
 
 
 
+add_filter('manage_users_columns', function($column)
+{
+    $column['registration_date'] = 'Registriert am';
+    return $column;
+});
+
+
+add_filter('manage_users_custom_column', function($val, $column_name, $user_id)
+{
+    switch ($column_name) {
+        case 'registration_date' :
+            $udata = get_userdata($user_id);
+            return $udata->user_registered;
+        default:
+    }
+    return $val;
+}, 10, 3);
+
+
+add_filter( 'manage_users_sortable_columns', function( $columns ) {
+    return wp_parse_args( array( 'registration_date' => 'registered' ), $columns );
+});
+
+
+
+

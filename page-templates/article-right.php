@@ -23,14 +23,14 @@ if($cat):
                     <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?? '' ?></p>
                     <p class="p-5 text-white">
                         <a href="<?php echo get_category_link($cat) ?>">
-                            <span class="text-white underline"><?php echo $cat->count ?? '' ?> Artikel</span>
+                            <span class="text-white underline"><?php echo $cat->count ?? '' ?> <?php _e('Artikel', 'ir21') ?></span>
                         </a>
                     </p>
                 </div>
                 <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
                     <div class="absolute bottom-0 right-0 -ml-5 -mr-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
                         <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center">
-                            <p class="text-xs text-gray-900">powered by</p>
+                            <p class="text-xs text-gray-900"><?php _e('powered by', 'ir21') ?></p>
                             <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-24 h-auto px-5">
                         </a>
                     </div>

@@ -32,15 +32,15 @@ mt-auto
 
                 <div class="lg:w-1/4 text-center lg:text-left pr-5 lg:pr-0">
                     <div class="text-xl text-right">
-                        <h3 class="font-serif text-xl text-white">Impressum</h3>
+                        <h3 class="font-serif text-xl text-white"><?php _e('Impressum', 'ir21') ?></h3>
                         <p class="text-sm">
-                            Die unabhängige Immobilien-Redaktion<br>
+                           <?php _e(' Die unabhängige Immobilien-Redaktion<br>
                             Mag. Walter Senk<br>
                             Lindengasse 11/2/17<br>
                             <a href="mailto:office@immobilien-redaktion.at" class="underline">office@immobilien-redaktion.at</a><br>
                             1070 Wien<br>
                             UID 589 44 806<br>
-                            <a href="/datenschutz" class="underline">Datenschutzerklärung</a>
+                            <a href="/datenschutz" class="underline">Datenschutzerklärung</a>', 'ir21') ?>
                         </p>
                     </div>
                 </div>

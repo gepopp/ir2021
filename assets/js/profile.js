@@ -1,37 +1,35 @@
 const axios = require('axios');
 
 window.alterEmail = function (old) {
-    return{
+    return {
         email: '',
         pin: '',
         oldEmail: old,
         pinSent: false,
-        errors:{
+        errors: {
             email: false,
             pin: false
         },
         ValidateEmail() {
             this.errors.email = false;
-
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email)) {
-
                 var params = new URLSearchParams();
                 params.append('action', 'user_exists');
                 params.append('email', this.email);
 
                 axios.post(window.ajaxurl, params)
                     .then((rsp) => {
-                        this.errors.email = "Diese Email Adresse ist bereits in Verwendung.";
+                        this.errors.email = messages.email_exists;
                     })
                     .catch((err) => {
                         this.SendPin();
                         this.errors.email = false;
                     });
             } else {
-                this.errors.email = "Bitte eine gültige E-Mail Adresse eingeben.";
+                this.errors.email = messages.email_invalid;
             }
         },
-        SendPin(){
+        SendPin() {
             var params = new URLSearchParams();
             params.append('action', 'send_email_pin');
             params.append('email', this.email);
@@ -45,7 +43,7 @@ window.alterEmail = function (old) {
                     this.errors.email = err.response;
                 });
         },
-        ValidatePin(){
+        ValidatePin() {
 
             this.errors.pin = false;
 
@@ -65,7 +63,7 @@ window.alterEmail = function (old) {
         }
     }
 }
-window.logs = function (log, logs, all, user_id){
+window.logs = function (log, logs, all, user_id) {
     return {
         logs: logs,
         log_name: log,
@@ -74,7 +72,7 @@ window.logs = function (log, logs, all, user_id){
         modalOpen: false,
         editReminder: {},
         remindInDays: 3,
-        loadNext(){
+        loadNext() {
 
             var params = new URLSearchParams();
             params.append('action', 'load_log');
@@ -90,26 +88,26 @@ window.logs = function (log, logs, all, user_id){
 
                 });
         },
-        removeBookmark(id){
+        removeBookmark(id) {
             var params = new URLSearchParams();
             params.append('action', 'remove_user_bookmark');
             params.append('id', id);
 
             axios.post(window.ajaxurl, params)
                 .then((rsp) => {
-                    for(i = 0; i < this.logs.length; i++){
-                        if(this.logs[i].id == id){
+                    for (i = 0; i < this.logs.length; i++) {
+                        if (this.logs[i].id == id) {
                             this.logs.splice(i, 1);
                         }
                     }
                 })
 
         },
-        updateReminder(log){
+        updateReminder(log) {
             this.editReminder = log;
             this.modalOpen = true;
         },
-        setReminder(){
+        setReminder() {
             var params = new URLSearchParams();
             params.append('action', 'update_reminder_date');
             params.append('id', this.editReminder.id);
@@ -118,8 +116,8 @@ window.logs = function (log, logs, all, user_id){
             axios.post(window.ajaxurl, params)
                 .then((rsp) => {
 
-                    for( i = 0; i < this.logs.length; i++){
-                        if( this.logs[i].id == this.editReminder.id ){
+                    for (i = 0; i < this.logs.length; i++) {
+                        if (this.logs[i].id == this.editReminder.id) {
                             this.logs[i].time = rsp.data.time;
                             this.logs[i].date = rsp.data.remind_at;
                         }
@@ -127,7 +125,6 @@ window.logs = function (log, logs, all, user_id){
 
                     this.editReminder = {};
                     this.modalOpen = false;
-
                 })
         }
     }

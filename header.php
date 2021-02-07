@@ -116,7 +116,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
         <div class="pt-2 block lg:hidden">
             <ul class="flex">
                 <li class="uppercase text-white mr-3">
-                    <a href="#" class="underline" @click="showMobile = !showMobile">Menü</a></li>
+                    <a href="#" class="underline" @click="showMobile = !showMobile"><?php _e('Menü', 'ir21') ?></a></li>
             </ul>
         </div>
 
@@ -278,14 +278,14 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                             <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
                                 <ul>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php the_field('field_601bbffe28967', 'option'); ?>">Login</a>
+                                        <a href="<?php the_field('field_601bbffe28967', 'option'); ?>"><?php _e('Login', 'ir21') ?></a>
                                     </li>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php the_field('field_601bc00528968', 'option') ?>">Registrieren</a>
+                                        <a href="<?php the_field('field_601bc00528968', 'option') ?>"><?php _e('Registrieren', 'ir21') ?></a>
                                     </li>
                                     <?php if (current_user_can('edit_posts')): ?>
                                         <li class="text-lg font-semibold">
-                                            <a href="<?php echo admin_url() ?>">backend</a>
+                                            <a href="<?php echo admin_url() ?>"><?php _e('backend', 'ir21') ?></a>
                                         </li>
                                     <?php endif; ?>
                                 </ul>
@@ -301,14 +301,14 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                             <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
                                 <ul>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php the_field('field_601bc4580a4fc', 'option'); ?>">Profil</a>
+                                        <a href="<?php the_field('field_601bc4580a4fc', 'option'); ?>"><?php _e('Profil', 'ir21') ?></a>
                                     </li>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php echo wp_logout_url(home_url()) ?>">Logout</a>
+                                        <a href="<?php echo wp_logout_url(home_url()) ?>"><?php _e('Logout', 'ir21') ?></a>
                                     </li>
                                     <?php if (current_user_can('edit_posts')): ?>
                                         <li class="text-lg font-semibold">
-                                            <a href="<?php echo admin_url() ?>">backend</a>
+                                            <a href="<?php echo admin_url() ?>"><?php _e('backend', 'ir21') ?></a>
                                         </li>
                                     <?php endif; ?>
                                 </ul>
@@ -509,14 +509,14 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                             <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
                                 <ul>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php echo home_url('profil') ?>">Profil</a>
+                                        <a href="<?php echo home_url('profil') ?>"><?php _e('Profil', 'ir21') ?></a>
                                     </li>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php echo wp_logout_url(home_url()) ?>">Logout</a>
+                                        <a href="<?php echo wp_logout_url(home_url()) ?>"><?php _e('Logout', 'ir21') ?></a>
                                     </li>
                                     <?php if (current_user_can('edit_posts')): ?>
                                         <li class="text-lg font-semibold">
-                                            <a href="<?php echo admin_url() ?>">backend</a>
+                                            <a href="<?php echo admin_url() ?>"><?php _e('backend', 'ir21') ?></a>
                                         </li>
                                     <?php endif; ?>
                                 </ul>

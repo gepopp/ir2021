@@ -19,7 +19,7 @@ $query = new \WP_Query([
     <div class="container mx-auto mt-32">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
             <a href="/lesen" class="underline">
-                lesen
+                <?php _e('lesen', 'ir21') ?>
             </a>
         </h1>
     </div>
@@ -84,7 +84,7 @@ $query = new \WP_Query([
             <div class="flex items-center justify-center w-full my-32 col-span-2">
                 <div class="inline">
                     <div class="py-2 px-3 bg-primary-100 text-white text-xl font-bold cursor-pointer" @click="load(<?php echo $author->ID ?>)">
-                        weitere laden
+                        <?php _e('weitere laden', 'ir21') ?>
                     </div>
                 </div>
             </div>

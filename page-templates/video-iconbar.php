@@ -10,7 +10,7 @@
             </div>
             <div class="flex justify-between">
                 <div>
-                    <h3 class="font-serif text-lg">Lesezeichen und später Lesen</h3>
+                    <h3 class="font-serif text-lg"><?php _e('Lesezeichen und später Lesen', 'ir21') ?></h3>
 
                 </div>
                 <div>
@@ -89,9 +89,9 @@
                 </div>
             </div>
             <p class="text-sm">
-                Mit unseren neuen Funktionen können Sie Lesezeichen anlegen, um Ihre Inhalte schneller wiederzufinden, oder einen Artikel zum später Lesen vormerken – Sie erhalten dann ein Erinnerungsmail nach einigen Tagen.
+                <?php _e('Mit unseren neuen Funktionen können Sie Lesezeichen anlegen, um Ihre Inhalte schneller wiederzufinden, oder einen Artikel zum später Lesen vormerken – Sie erhalten dann ein Erinnerungsmail nach einigen Tagen.', 'ir21') ?>
             </p>
-            <p class="text-right text-primary-100 underline cursor-pointer" @click="close(true)">verstanden</p>
+            <p class="text-right text-primary-100 underline cursor-pointer" @click="close(true)"><?php _e('verstanden', 'ir21') ?></p>
             <svg class="w-10 h-10 text-white mr-2 block lg:hidden transform rotate-180" fill="currentColor" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24.54,93.44c-0.52-0.53-0.97-1.11-1.65-1.51c-0.2-0.12-0.33-0.27-0.44-0.44c-0.38-0.61-1.02-1.06-1.46-1.63
 	c-0.09-0.12-0.2-0.26-0.35-0.33c-0.73-0.36-1.17-0.95-1.69-1.47c-1.42-1.43-2.82-2.87-4.24-4.31c-0.37-0.38-0.73-0.76-1.2-1.06
@@ -174,15 +174,14 @@
             </div>
             <div class="flex justify-between">
                 <div>
-                    <h3 class="font-serif text-2xl">Lesezeichen gesetzt!</h3>
+                    <h3 class="font-serif text-2xl"><?php _e('Lesezeichen gesetzt!', 'ir21') ?></h3>
                 </div>
                 <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
                 </svg>
             </div>
             <p class="text-sm">
-                Ihre Lesezeichen finden Sie in Ihrem
-                <a href="<?php echo home_url('profil') ?>" target="_blank" class="text-primary-100 underline">Userprofil</a>.
+                <?php echo sprintf(__('Ihre Lesezeichen finden Sie in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a>.', 'ir21'), get_field('field_601bc4580a4fc', 'opition')) ?>
             </p>
         </div>
 
@@ -194,15 +193,14 @@
             </div>
             <div class="flex justify-between">
                 <div>
-                    <h3 class="font-serif text-2xl">Erinnerung gesetzt!</h3>
+                    <h3 class="font-serif text-2xl"><?php _e('Erinnerung gesetzt!', 'ir21') ?></h3>
                 </div>
                 <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
                 </svg>
             </div>
             <p class="text-sm">
-                Wir senden Ihnen in 3 Tagen ein Erinnerungsmail. Sie können den Zeitpunkt dieses Mails in Ihrem
-                <a href="<?php echo home_url('profil') ?>" target="_blank" class="text-primary-100 underline">Userprofil</a> ändern.
+                <?php echo sprintf(__('Wir senden Ihnen in 3 Tagen ein Erinnerungsmail. Sie können den Zeitpunkt dieses Mails in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a> ändern.', 'ir21'),  get_field('field_601bc4580a4fc', 'opition')) ?>
             </p>
         </div>
 
@@ -214,22 +212,20 @@
             </div>
             <div class="flex justify-between">
                 <div>
-                    <h3 class="font-serif text-2xl">Login erforderlich!</h3>
+                    <h3 class="font-serif text-2xl"><?php _e('Login erforderlich!', 'ir21') ?></h3>
                 </div>
                 <svg class="w-12 h-12 text-warning" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                 </svg>
             </div>
             <p class="text-sm">
-                Um Lesezeichen und Erinnerungen zu setzen müssen Sie eingeloggt sein.
+                <?php _e('Um Lesezeichen und Erinnerungen zu setzen müssen Sie eingeloggt sein.', 'ir21') ?>
             </p>
             <div class="flex flex-col space-y-3">
                 <div>
-                    <a href="<?php echo home_url('login') ?>" class="bg-primary-100 text-white text-center block w-full py-2" style="color:white !important;">Login</a>
+                    <a href="<?php echo get_field('field_601bbffe28967', 'option') ?>" class="bg-primary-100 text-white text-center block w-full py-2" style="color:white !important;"><?php _e('Login', 'ir21') ?></a>
                 </div>
-
             </div>
-
         </div>
 
 

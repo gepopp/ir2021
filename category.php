@@ -10,7 +10,7 @@ $term = get_queried_object();
 <div class="container mx-auto mt-20">
     <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
         <a href="/lesen" class="underline">
-            lesen
+            <?php _e('lesen', 'ir21') ?>
         </a>
     </h1>
 </div>
@@ -28,7 +28,7 @@ $term = get_queried_object();
             <?php if (get_field('field_5f9aeff4efa16', $term)): ?>
                 <div class="absolute top-0 right-0 -mr-5 -mt-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
                     <a href="<?php echo get_field('field_5f9aeff4efa16', $term) ?>" class="text-center">
-                        <p class="text-xs text-gray-900">powered by</p>
+                        <p class="text-xs text-gray-900"><?php _e('powered by', 'ir21') ?></p>
                         <img src="<?php echo get_field('field_5f9aefd116e2e', $term) ?>" class="w-24 h-auto px-5">
                     </a>
                 </div>
@@ -69,7 +69,7 @@ $term = get_queried_object();
         <div class="flex items-center justify-center w-full my-32 col-span-2">
             <div class="inline">
                 <div class="py-2 px-3 bg-primary-100 text-white text-xl font-bold cursor-pointer" @click="load(<?php echo $term->term_id ?>)">
-                    weitere laden
+                    <?php _e('weitere laden', 'ir21') ?>
                 </div>
             </div>
         </div>

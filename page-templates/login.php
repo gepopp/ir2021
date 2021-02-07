@@ -11,7 +11,7 @@ global $FormSession;
 
 
 <div class="col-span-6 lg:col-span-3" x-data="loginForm(login_data, errorbag, successMessage)">
-    <h1 class="text-2xl font-serif font-semibold mb-5">Einloggen</h1>
+    <h1 class="text-2xl font-serif font-semibold mb-5"><?php _e('Einloggen', 'ir21') ?></h1>
     <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4">
         <?php get_template_part('page-templates/login', 'form') ?>
     </div>

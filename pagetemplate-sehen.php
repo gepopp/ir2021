@@ -13,7 +13,7 @@ get_header();
 
     <div class="bg-gray-900">
         <div class="container mx-auto mt-20 relative">
-            <h1 class="font-sans text-5xl uppercase font-semibold text-white text-center">sehen</h1>
+            <h1 class="font-sans text-5xl uppercase font-semibold text-white text-center"><?php _e('sehen', 'ir21') ?></h1>
         </div>
     </div>
 
@@ -93,7 +93,7 @@ position: absolute;
                                 </svg>
                             </div>
                         </div>
-                        <span class="underline">Jetzt ansehen</span>
+                        <span class="underline"><?php _e('Jetzt ansehen', 'ir21') ?></span>
                     </div>
                 </div>
             </a>
@@ -118,7 +118,7 @@ $query = new WP_Query([
 ?>
 
     <div class="container mx-auto mt-20 px-5 lg:px-0">
-        <a href="#" class="text-xl font-bold mb-10 text-white">Meist gesehen</a>
+        <a href="#" class="text-xl font-bold mb-10 text-white"><?php _e('Meist gesehen', 'ir21') ?></a>
         <div class="grid grid-cols-6 gap-4">
             <?php
             if ($query->have_posts()):
@@ -150,7 +150,6 @@ $query = new WP_Query([
                                 <?php the_title() ?>
                             </a>
                         </p>
-
                     </div>
                     <?php
                     $runner++;
@@ -173,7 +172,7 @@ $query = new WP_Query([
 
 
     <div class="container mx-auto mt-20 px-5 lg:px-0">
-        <a href="#" class="text-xl font-bold mb-10 text-white">Neueste Videos</a>
+        <a href="#" class="text-xl font-bold mb-10 text-white"><?php _e('Neueste Videos', 'ir21') ?></a>
         <div class="grid grid-cols-6 gap-4">
             <?php
             if ($query->have_posts()):
@@ -340,7 +339,7 @@ foreach ($cats as $cat): ?>
                 <?php if (get_field('field_5f9aefd116e2e', $cat)): ?>
                     <div class="bg-gray-900 bg-opacity-75 rounded-full w-24 h-24 p-5 flex flex-col items-center justify-center shadow-lg">
                         <a href="<?php echo get_field('field_5f9aeff4efa16', $cat) ?>" class="text-center" style="pointer-events: auto">
-                            <p class="text-white" style="font-size: .5rem">powered by</p>
+                            <p class="text-white" style="font-size: .5rem"><?php _e('powered by', 'ir21') ?></p>
                             <img src="<?php echo get_field('field_5f9aefd116e2e', $cat) ?>" class="w-20 h-auto">
                         </a>
                     </div>
@@ -369,10 +368,5 @@ foreach ($cats as $cat): ?>
             </div>
         </div>
     </div>
-
-
-<?php endforeach; ?>
-
-
-<?php
+<?php endforeach;
 get_footer();

@@ -32,8 +32,7 @@ foreach ($bookmarks as $d) {
     <tr x-show="logs.length === 0" class="h-64">
         <td colspan="6" style="height: 500px">
             <div class="flex h-full w-full items-center justify-center">
-                <p>Noch keine Inhlate vorhanden.<br><a href="<?php echo home_url() ?>" class="cursor-pointer underline text-primary-100">Zur Startseite</a>
-                </p>
+                <p><?php sprintf(__('Noch keine Inhlate vorhanden.<br><a href="%s" class="cursor-pointer underline text-primary-100">Zur Startseite</a>', 'ir21'), home_url()) ?></p>
             </div>
         </td>
     </tr>
@@ -45,7 +44,7 @@ foreach ($bookmarks as $d) {
                     <div class="text-gray-500 text-sm" x-text="log.cat"></div>
                     <div class="text-gray-500 text-sm" x-text="log.author"></div>
                     <div class="text-gray-500 text-sm" x-text="log.time"></div>
-                    <div class="text-warning underline cursor-pointer text-sm" @click="removeBookmark(log.id)">löschen</div>
+                    <div class="text-warning underline cursor-pointer text-sm" @click="removeBookmark(log.id)"><?php _e('löschen', 'ir21') ?></div>
                 </div>
             </td>
         </tr>
@@ -53,7 +52,7 @@ foreach ($bookmarks as $d) {
     <tr>
         <td>
             <div x-show="logs.length > all" class="flex justify-center mt-5">
-                <div class="px-2 py-2 bg-primary-100 text-white cursor-pointer" @click="loadNext()">weitere laden</div>
+                <div class="px-2 py-2 bg-primary-100 text-white cursor-pointer" @click="loadNext()"><?php _e('weitere laden', 'ir21') ?></div>
             </div>
         </td>
     </tr>

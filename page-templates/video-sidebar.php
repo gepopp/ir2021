@@ -66,7 +66,7 @@ if (empty($cat)) {
                         <div class="absolute w-full h-full flex flex-col justify-end top-0 left-0 p-5">
                             <div class="inline ">
                                                 <span class="bg-white text-gray-900 text-sm py-2 px-3 font-bold">
-                                                    Nächster Clip
+                                                    <?php _e('Nächster Clip', 'ir21') ?>
                                                 </span>
                             </div>
                             <h1 class="font-serif text-white text-xl mt-5"><?php echo get_the_title($next_id) ?></h1>

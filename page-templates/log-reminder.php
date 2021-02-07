@@ -35,8 +35,7 @@ foreach ($reminder as $d) {
             <tr x-show="logs.length === 0" class="h-64">
                 <td colspan="6" style="height: 500px">
                     <div class="flex h-full w-full items-center justify-center">
-                        <p>Noch keine Inhlate vorhanden.<br><a href="<?php echo home_url() ?>" class="cursor-pointer underline text-primary-100">Zur Startseite</a>
-                        </p>
+                        <p><?php sprintf(__('Noch keine Inhlate vorhanden.<br><a href="%s" class="cursor-pointer underline text-primary-100">Zur Startseite</a>', 'ir21'), home_url()) ?></p>
                     </div>
                 </td>
             </tr>
@@ -46,7 +45,7 @@ foreach ($reminder as $d) {
                         <a :href="log.permalink" class="hover:underline font-semibold lg:text-lg leading-none" x-text="log.title"></a>
                         <div class="w-full flex justify-between">
                             <div class="text-gray-500 text-sm hidden md:block">
-                                Erschienen in <span x-text="log.cat"></span> <span x-text="log.author"></span>
+                                <?php _e('Erschienen in', 'ir21') ?> <span x-text="log.cat"></span> <span x-text="log.author"></span>
                             </div>
                             <div class="text-gray-500 text-sm hidden md:block">
                                 <div class="flex">
@@ -63,7 +62,7 @@ foreach ($reminder as $d) {
             <tr>
                 <td>
                     <div x-show="logs.length < all" class="flex justify-center mt-5">
-                        <div class="px-2 py-2 bg-primary-100 text-white cursor-pointer" @click="loadNext()">weitere laden</div>
+                        <div class="px-2 py-2 bg-primary-100 text-white cursor-pointer" @click="loadNext()"><?php _e('weitere laden', 'ir21') ?></div>
                     </div>
                 </td>
             </tr>
@@ -106,7 +105,7 @@ foreach ($reminder as $d) {
                                     <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline" x-text="editReminder.title"></h3>
                                     <div class="mt-2">
                                         <p class="text-sm text-gray-500">
-                                            <span>Erinnerung in </span>
+                                            <span><?php _e('Erinnerung in', 'ir21') ?> </span>
                                             <input type="number"
                                                    class="border-b inline text-primary-100 text-center font-semibold"
                                                    x-model="remindInDays"
@@ -114,7 +113,7 @@ foreach ($reminder as $d) {
                                                    max="30"
                                                    step="1"
                                             >
-                                            <span> Tagen</span>
+                                            <span> <?php _e('Tagen', 'ir21') ?></span>
                                         </p>
                                     </div>
                                 </div>
@@ -122,10 +121,10 @@ foreach ($reminder as $d) {
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <button type="button" @click="setReminder()" class="w-full inline-flex justify-center border border-transparent shadow-sm px-4 py-2 bg-primary-100 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                speichern
+                                <?php _e('speichern', 'ir21') ?>
                             </button>
                             <button type="button" @click="modalOpen = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                Abbrechen
+                                <?php _e('abbrechen', 'ir21') ?>
                             </button>
                         </div>
                     </div>

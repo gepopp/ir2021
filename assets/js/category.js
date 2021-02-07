@@ -21,7 +21,6 @@ window.loadMore = function (cat){
                     rsp.data.map((post) => {
                         this.loaded.push(post);
                     })
-
                     this.offset += 10;
                 });
 

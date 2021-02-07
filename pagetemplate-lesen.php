@@ -7,7 +7,7 @@ get_header();
 
 
     <div class="container mx-auto mt-20 relative">
-        <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">lesen</h1>
+        <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center"><?php _e('lesen', 'ir21') ?></h1>
     </div>
 
 <?php get_template_part('banner-templates/banner', 'mega') ?>
@@ -127,7 +127,7 @@ foreach ($cats as $cat):
                                 <div class="absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex justify-center items-center">
                                     <p class="font-bold text-xs">
                                         <a href="<?php echo get_category_link($cat) ?>" class="underline">
-                                            <?php echo $cat->count - 4 ?> weitere Artikel</p>
+                                            <?php echo $cat->count - 4 ?> <?php _e('weitere Artikel', 'ir21') ?></p>
                                     </a>
                                 </div>
                                 <?php if (get_field('field_5f9aeff4efa16', $cat)): ?>
@@ -161,7 +161,4 @@ foreach ($cats as $cat):
     <?php
     $catrunner++;
 endforeach;
-?>
-
-
-<?php get_footer();
+get_footer();

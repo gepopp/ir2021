@@ -83,17 +83,17 @@ window.registerForm = (formdata) => {
             this.resetErrors();
 
             if (this.data.gender == '') {
-                this.regsiter_errors.gender = 'Bitte wählen';
+                this.regsiter_errors.gender = messages.select;
             }
 
             if (this.data.lastname == '') {
-                this.regsiter_errors.lastname = 'Bitte geben Sie Ihren Nachnamen ein.';
+                this.regsiter_errors.lastname = messages.enter_last_name;
             }
 
             this.ValidateEmail();
 
             if (this.data.password.length < 8) {
-                this.regsiter_errors.password = "Bitte geben Sie mindestens 8 Zeichen ein."
+                this.regsiter_errors.password = messages.password_min;
             }
         },
         valid() {
@@ -111,8 +111,7 @@ window.registerForm = (formdata) => {
             }
         },
         ValidateEmail() {
-
-            this.regsiter_errors.email = "E-Mail wird geprüft...";
+            this.regsiter_errors.email = messages.email_proofing;
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.data.email)) {
                 var params = new URLSearchParams();
                 params.append('action', 'user_exists');
@@ -120,14 +119,14 @@ window.registerForm = (formdata) => {
 
                 axios.post(window.ajaxurl, params)
                     .then((rsp) => {
-                        this.regsiter_errors.email = "Bitte geben Sie eine E-Mail Adresse ein die noch nicht registriert ist.";
+                        this.regsiter_errors.email = messages.email_exists;
                     })
                     .catch((err) => {
                         this.regsiter_errors.email = false;
                         this.valid();
                     });
             } else {
-                this.regsiter_errors.email = "Bitte eine gültige E-Mail Adresse eingeben.";
+                this.regsiter_errors.email = messages.email_invalid;
             }
         },
     }
