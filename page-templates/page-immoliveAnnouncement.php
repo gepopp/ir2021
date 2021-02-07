@@ -53,8 +53,6 @@ if ($query->have_posts()):
                                 <p class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></p>
                             </div>
                         </div>
-
-
                     <?php endif; ?>
                 <?php endif; ?>
 
