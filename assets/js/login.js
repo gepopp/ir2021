@@ -77,7 +77,7 @@ window.registerForm = (formdata) => {
             password: false
         },
         init(){
-          console.log(formdata);
+
         },
         validate() {
 
@@ -96,12 +96,10 @@ window.registerForm = (formdata) => {
             if (this.data.password.length < 8) {
                 this.regsiter_errors.password = "Bitte geben Sie mindestens 8 Zeichen ein."
             }
-
         },
         valid() {
             for (var o in this.regsiter_errors)
                 if ( this.regsiter_errors[o] !== false ) return false;
-
             this.$refs.form.submit();
         },
         resetErrors() {
@@ -116,7 +114,6 @@ window.registerForm = (formdata) => {
         ValidateEmail() {
 
             this.regsiter_errors.email = "E-Mail wird geprüft...";
-
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.data.email)) {
                 var params = new URLSearchParams();
                 params.append('action', 'user_exists');

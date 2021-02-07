@@ -19,6 +19,8 @@ class   FormSession
     private $messages;
 
 
+
+
     public static function session()
     {
         if (null === self::$_instance) {
@@ -27,6 +29,9 @@ class   FormSession
         }
         return self::$_instance;
     }
+
+
+
 
     protected function __construct()
     {
@@ -53,15 +58,12 @@ class   FormSession
         }
 
         $this->setupMessages();
-
-
         $this->content['formdata'] = empty($_POST) ? $this->content['formdata'] : $_POST;
 
     }
 
     public function redirect($to = false, $done = false)
     {
-
         $this->save();
         if (!$to) {
             wp_safe_redirect(remove_query_arg('token', home_url($_POST['_wp_http_referer'] ?? '')));
@@ -72,9 +74,11 @@ class   FormSession
         exit;
     }
 
+
+
+
     public function set($index, $message)
     {
-
         if (array_key_exists($message, $this->messages)) {
             $this->content[$index] = $this->messages[$message];
         } else {
@@ -84,6 +88,9 @@ class   FormSession
         $this->save();
         return $this;
     }
+
+
+
 
     public function addToErrorBag($index, $message)
     {
@@ -97,6 +104,10 @@ class   FormSession
         $this->save();
         return $this;
     }
+
+
+
+
 
     public function flashErrorBag($index)
     {
@@ -125,7 +136,6 @@ class   FormSession
 
     public function flashSuccess($index)
     {
-
         if (isset($this->content[$index])):
             ?>
             <div class="text-success p-5 text-white flex space-x-3 items-center">
@@ -144,7 +154,6 @@ class   FormSession
         endif;
         unset($this->content[$index]);
         $this->save();
-
     }
 
     public function get($index)
@@ -156,16 +165,13 @@ class   FormSession
 
         $this->save();
         return $message;
-
     }
 
     public function getFormData()
     {
-
         $data = $this->content['formdata'] ?? [];
         $this->content['formdata'] = [];
         return $data;
-
     }
 
     private function save()
