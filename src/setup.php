@@ -154,7 +154,7 @@ add_action('after_setup_theme', function () {
     add_image_size('author_small', 48, 48, true);
     add_image_size('horizontal_box', 370, 265, true);
     add_image_size('article', 600, 450, true);
-    add_image_size('article-portrait', 450, 600, true);
+    add_image_size('article-portrait', 250, 333, true);
     add_image_size('portrait', 300);
     add_image_size('xs', 100, 100, true);
 
