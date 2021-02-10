@@ -94,7 +94,7 @@ use Overtrue\Socialite\SocialiteManager;
                             ?>
 
                             <div>
-                                <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+                                <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
                                    class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
                                 >
                                     <svg version="1.1" id="digital_x5F_marketing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -106,7 +106,7 @@ use Overtrue\Socialite\SocialiteManager;
                                 </a>
                             </div>
                             <div>
-                                <a href="<?php echo $socialite->create('google')->redirect(); ?>"
+                                <a href="<?php echo $socialite->create('google')->withState($redirect)->redirect(); ?>"
                                    class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
                                 >
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
