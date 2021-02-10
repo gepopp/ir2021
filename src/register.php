@@ -101,9 +101,11 @@ add_action('admin_post_nopriv_resend_activation', function () {
 
 });
 
-function activate_user($token)
+function activate_user()
 {
     global $FormSession;
+
+    $token = sanitize_text_field($_GET['token']);
 
     if ($token == '') return;
     global $wpdb;
@@ -140,13 +142,13 @@ function sentUserActivationToken(\WP_User $user){
     global $wpdb;
     $table = 'wp_user_activation_token';
 
-//    $last_token = $wpdb->get_var(sprintf('SELECT created_at FROM %s WHERE email = "%s" ORDER BY created_at DESC LIMIT 1', $table, $user->user_email));
-//
-//    if($last_token && Carbon::now()->diffInMinutes(Carbon::parse($last_token)) < 5){
-//        return false;
-//    }
+    $last_token = $wpdb->get_var(sprintf('SELECT created_at FROM %s WHERE email = "%s" ORDER BY created_at DESC LIMIT 1', $table, $user->user_email));
 
-//    $wpdb->delete($table, ['email' => $user->data->user_email]);
+    if($last_token && Carbon::now()->diffInMinutes(Carbon::parse($last_token)) < 5){
+        return false;
+    }
+
+    $wpdb->delete($table, ['email' => $user->data->user_email]);
     $token = wp_generate_uuid4();
 
     $redirect = sanitize_text_field($_POST['redirect']) ?? '';
