@@ -53,13 +53,15 @@ add_action('admin_post_nopriv_frontend_register', function () {
     global $wpdb;
     $table = 'wp_user_activation_token';
 
-    $wpdb->insert($table, [
+    $insert = $wpdb->insert($table, [
         'user_id'    => $user->ID,
         'email'      => $user->data->user_email,
         'token'      => $token,
         'redirect'   => $redirect,
     ],
         ['%d', '%s', '%s', '%s']);
+
+    wp_die(var_dump($insert));
 
     $sent = (new CampaignMonitor())->transactional(
         'confirm_email_address',
