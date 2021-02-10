@@ -95,10 +95,9 @@ class Linkedin extends Base
     protected function mapUserToObject(array $user): User
     {
 
-        wp_die(var_dump($user));
-
         $preferredLocale = ($user['firstName.preferredLocale.language'] ?? null).'_'.($user['firstName.preferredLocale.country']) ?? null;
-        $firstName = $user['firstName.localized.'.$preferredLocale] ?? null;
+        wp_die(var_dump($preferredLocale));
+        $firstName = $user['firstName']['localized'] ?? null;
         $lastName = $user['lastName.localized.'.$preferredLocale] ?? null;
         $name = $firstName.' '.$lastName;
 
