@@ -76,41 +76,41 @@ use Overtrue\Socialite\SocialiteManager;
                                 <?php _e('E-Mail login', 'ir21') ?>
                             </a>
                         </div>
-                            <?php
-                            $config = [
-                                'facebook' => [
-                                    'client_id'     => '831950683917414',
-                                    'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                                    'redirect'      => home_url('fb-login'),
-                                ],
-                                'google'   => [
-                                    'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
-                                    'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
-                                    'redirect'      => home_url('g-oauth'),
-                                ],
-                            ];
+                        <?php
+                        $config = [
+                            'facebook' => [
+                                'client_id'     => '831950683917414',
+                                'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+                                'redirect'      => home_url('fb-login'),
+                            ],
+                            'google'   => [
+                                'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
+                                'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
+                                'redirect'      => home_url('g-oauth'),
+                            ],
+                        ];
 
-                            $socialite = new SocialiteManager($config);
-                            ?>
+                        $socialite = new SocialiteManager($config);
+                        ?>
 
-                            <div>
-                                <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
-                                   class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
-                                >
-                                    <svg version="1.1" id="digital_x5F_marketing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                         viewBox="0 0 128 128" fill="currentColor" class="text-white w-4 mr-3" xml:space="preserve">
+                        <div>
+                            <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
+                               class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
+                            >
+                                <svg version="1.1" id="digital_x5F_marketing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     viewBox="0 0 128 128" fill="currentColor" class="text-white w-4 mr-3" xml:space="preserve">
                     <path id="icon:4" class="st1" d="M74,35.3v12.5h21.6v23.6H74c0,26.4,0,56.6,0,56.6H50.3c0,0,0-27.5,0-56.6H30.4V47.8h19.9V30.6
 		c0-36.2,47.3-30.3,47.3-30.3v22C97.6,22.4,74,19.5,74,35.3z"/>
 </svg>
-                                    <span><?php _e('Via Facebook einloggen', 'ir21') ?></span>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="<?php echo $socialite->create('google')->withState($redirect)->redirect(); ?>"
-                                   class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
-                                >
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                         fill="currentColor" class="text-white h-4  w-4 mr-3" viewBox="0 0 128 128" xml:space="preserve">
+                                <span><?php _e('Via Facebook einloggen', 'ir21') ?></span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="<?php echo $socialite->create('google')->withState($redirect)->redirect(); ?>"
+                               class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
+                            >
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     fill="currentColor" class="text-white h-4  w-4 mr-3" viewBox="0 0 128 128" xml:space="preserve">
     <path id="icon_5_" d="M30.418,49.137
 		c-9.242-7.272-16.109-12.661-21.237-16.601C20.161,13.095,40.993,0,64.895,0c16.572,0,31.696,6.316,43.053,16.659
 		C94.563,29.32,94.997,30.044,89.724,35.317c-6.577-5.447-13.733-9.329-24.829-9.329C49.163,25.988,36.009,35.52,30.418,49.137z
@@ -121,12 +121,11 @@ use Overtrue\Socialite\SocialiteManager;
 		 M126.345,51.339c-12.516,0-61.45,0-61.45,0v25.322c0,0,24.569-0.029,34.593-0.029c-2.665,7.996-5.997,14.255-11.183,18.513
 		c8.894,7.533,15.326,13.009,19.962,17.065C124.926,96.072,129.04,70.664,126.345,51.339z"/>
 </svg>
-                                    <span><?php _e('Via Google einloggen', 'ir21') ?></span>
-                                </a>
-                            </div>
+                                <span><?php _e('Via Google einloggen', 'ir21') ?></span>
+                            </a>
                         </div>
                     </div>
-
+                </div>
 
 
                 <div class="bg-primary-100 bg-opacity-5 p-5">
@@ -176,5 +175,5 @@ use Overtrue\Socialite\SocialiteManager;
             </div>
         </div>
     </div>
-
+</div>
 
