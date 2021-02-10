@@ -61,7 +61,6 @@ add_action('admin_post_nopriv_frontend_register', function () {
     ],
         ['%d', '%s', '%s', '%s']);
 
-    wp_die($wpdb->last_error);
 
     $sent = (new CampaignMonitor())->transactional(
         'confirm_email_address',
@@ -116,7 +115,6 @@ function activate_user()
 
     $email = $wpdb->get_var('SELECT email FROM ' . $table . ' WHERE token = "' . $token . '"');
 
-    echo wp_die( var_dump($email) );
 
     $token_user = get_user_by('email', $email);
 
