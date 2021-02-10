@@ -84,7 +84,7 @@ class Linkedin extends Base
         ]);
 
         $mail = json_decode($response->getBody(), true) ?? [];
-        return [$mail['elements'][0]['handle~']['emailAddress']];
+        return ['email' => $mail['elements'][0]['handle~']['emailAddress']];
     }
 
     /**
