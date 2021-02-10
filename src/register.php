@@ -90,6 +90,9 @@ function activate_user($token)
     $table = 'wp_user_activation_token';
 
     $email = $wpdb->get_var('SELECT email FROM ' . $table . ' WHERE token = "' . $token . '"');
+
+    echo wp_die( var_dump($email) );
+
     $token_user = get_user_by('email', $email);
 
     if (!$token_user) {
@@ -116,13 +119,13 @@ function sentUserActivationToken(\WP_User $user){
     global $wpdb;
     $table = 'wp_user_activation_token';
 
-    $last_token = $wpdb->get_var(sprintf('SELECT created_at FROM %s WHERE email = "%s" ORDER BY created_at DESC LIMIT 1', $table, $user->user_email));
+//    $last_token = $wpdb->get_var(sprintf('SELECT created_at FROM %s WHERE email = "%s" ORDER BY created_at DESC LIMIT 1', $table, $user->user_email));
+//
+//    if($last_token && Carbon::now()->diffInMinutes(Carbon::parse($last_token)) < 5){
+//        return false;
+//    }
 
-    if($last_token && Carbon::now()->diffInMinutes(Carbon::parse($last_token)) < 5){
-        return false;
-    }
-
-    $wpdb->delete($table, ['email' => $user->data->user_email]);
+//    $wpdb->delete($table, ['email' => $user->data->user_email]);
     $token = wp_generate_uuid4();
 
     $redirect = sanitize_text_field($_POST['redirect']) ?? '';
