@@ -17,7 +17,12 @@ $config = [
         'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
         'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
         'redirect'      => home_url('l-oauth'),
-    ]
+    ],
+    'linkedin'   => [
+        'client_id'     => '78q1kul4q95hsh',
+        'client_secret' => 'mO7jlH6rG9bahUrX',
+        'redirect'      => home_url('l-oauth'),
+    ],
 ];
 
 $socialite = new SocialiteManager($config);
