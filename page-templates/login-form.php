@@ -67,7 +67,14 @@ $config = [
         'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
         'redirect'      => home_url('fb-login'),
     ],
+    'google' => [
+        'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
+        'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
+        'redirect'      => home_url('g-login'),
+    ]
 ];
+// 194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com
+// O_JXIOXqatwxOMYq45ggJ1tj
 
 $socialite = new SocialiteManager($config);
 ?>
@@ -78,6 +85,13 @@ $socialite = new SocialiteManager($config);
            class="bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
         >
             <?php _e('Via Facebook einloggen', 'ir21') ?>
+        </a>
+    </div>
+    <div class="my-5 w-full">
+        <a href="<?php echo $socialite->create('google')->redirect(); ?>"
+           class="bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
+        >
+            <?php _e('Via Google einloggen', 'ir21') ?>
         </a>
     </div>
 </div>
