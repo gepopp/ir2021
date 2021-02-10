@@ -85,9 +85,9 @@ class Linkedin extends Base
             ],
         ]);
 
-        $mail = \json_decode($response->getBody(), true)['elements.0.handle~'] ?? [];
-        echo '<pre>' . print_r(json_decode($response->getBody(), true)) . '</pre>';
-        exit();
+        $mail = json_decode($response->getBody(), true) ?? [];
+        $mail = $mail['elements'][0];
+            wp_die(var_dump($mail));
     }
 
     /**
