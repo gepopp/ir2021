@@ -98,7 +98,7 @@ use Overtrue\Socialite\SocialiteManager;
                         $socialite = new SocialiteManager($config);
                         ?>
 <div class="col-span-2">
-    <h3 class="w-full text-lg text-center text-gray-700 font-medium"><?php _e('Mit einem Klick anmelden', 'ir21') ?></h3>
+    <h3 class="w-full text-lg text-center text-gray-700 font-medium"><?php _e('Mit einem Klick einloggen', 'ir21') ?></h3>
 </div>
                         <div>
                             <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
