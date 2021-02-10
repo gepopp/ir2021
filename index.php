@@ -90,4 +90,7 @@ $query = new \WP_Query([
 
 
     <?php
+get_template_part('page-templates/modal', 'immolive');
+
+
 get_footer();

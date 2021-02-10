@@ -29,15 +29,38 @@ if ($query->have_posts()):
         <div class="px-5 xl:px-0">
             <div class="container mx-auto mt-20 border-15 border-white bg-primary-100 px-12 py-10">
                 <a href="<?php echo get_field('field_601e5f56775db', 'option') ?>">
-                <h1 class="text-3xl lg:text-5xl text-white font-extrabold max-w-full overflow-hidden leading-normal"><?php the_title() ?></h1>
-                <div class="flex flex-col lg:flex-row justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
-                    <p class="w-full lg:w-1/3"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
-                    <div class="font-normal mt-5 lg:mt-0">
-                        <p><?php the_field('field_5ed527e9c2279'); ?></p>
-                        <p><?php _e('Zoom Webinar', 'ir21') ?></p>
+                    <h1 class="text-3xl lg:text-5xl text-white font-extrabold max-w-full overflow-hidden leading-normal"><?php the_title() ?></h1>
+                    <div class="flex flex-col lg:flex-row justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
+                        <p class="w-full lg:w-1/3"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
+                        <div class="font-normal mt-5 lg:mt-0">
+                            <p><?php the_field('field_5ed527e9c2279'); ?></p>
+                            <p><?php _e('Zoom Webinar', 'ir21') ?></p>
+                        </div>
                     </div>
-                </div>
                 </a>
+
+                <div class="flex justify-center" x-data>
+                    <?php
+                    $subscribed = false;
+                    $user = wp_get_current_user();
+                    $registrants = get_field('field_601451bb66bc3');
+
+                    if ($registrants) {
+                        foreach ($registrants as $registrant) {
+                            if ($registrant['user_email'] == $user->user_email) {
+                                $subscribed = true;
+                            }
+                        }
+                    }
+                    if (!$subscribed || !is_user_logged_in()):
+                        ?>
+                        <a class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium cursor-pointer"
+                           @click="$dispatch('register-immolive', { id: <?php the_ID(); ?>, user: <?php echo is_user_logged_in() ? 'true' : 'false' ?> })">
+                            <?php _e('Jetzt anmelden', 'ir21') ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
 
                 <?php if ($speakers): ?>
                     <?php if (count($speakers) == 1): ?>
@@ -58,7 +81,7 @@ if ($query->have_posts()):
                     <?php if (count($speakers) > 2): ?>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-<?php echo min(4, count($speakers)) ?> gap-10">
                             <?php
-                            while ($speaker = array_shift($speakers)){
+                            while ($speaker = array_shift($speakers)) {
                                 speakerVertical($speaker);
                             }
                             ?>
