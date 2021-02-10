@@ -30,13 +30,14 @@ $socialite = new SocialiteManager($config);
 
 $code = $_GET['code'];
 
-$user = $socialite->create('linkedin')->userFromCode($code)->getAttribute('email');
+$user = $socialite->create('linkedin')->userFromCode($code);
 
 
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
 
 wp_die(var_dump($email . $name));
+
 
 $name = explode(' ', $name);
 $firstname = '';
