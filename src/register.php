@@ -61,7 +61,7 @@ add_action('admin_post_nopriv_frontend_register', function () {
     ],
         ['%d', '%s', '%s', '%s']);
 
-    wp_die(var_dump($insert));
+    wp_die($wpdb->last_error);
 
     $sent = (new CampaignMonitor())->transactional(
         'confirm_email_address',
