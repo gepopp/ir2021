@@ -27,11 +27,10 @@ $config = [
 
 $socialite = new SocialiteManager($config);
 
-wp_die(var_dump($_GET));
 
 $code = $_GET['code'];
 
-$user = $socialite->create('linkedin')->userFromCode($code);
+$user = $socialite->create('linkedin')->userFromCode($code)->getAttribute('email');
 
 
 $name = $user->getName();      // "安正超"
