@@ -70,7 +70,7 @@ $config = [
     'google' => [
         'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
         'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
-        'redirect'      => home_url('g-login'),
+        'redirect'      => home_url('g-auth'),
     ]
 ];
 // 194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com
