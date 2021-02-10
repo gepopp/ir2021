@@ -10,9 +10,9 @@ $gender = get_field('field_5fb6bc5f82e62', 'user_' . get_current_user_id());
 
 
 <div class="col-span-3 lg:col-span-1">
-    <h1 class="text-2xl font-serif font-semibold"><?php _e('Userdaten', 'ir21') ?></h1>
-    <form class="bg-white shadow-md px-8 pt-6 pb-8 mb-4 h-full" method="post" action="<?php echo admin_url('admin-post.php') ?>">
 
+    <form class="bg-white shadow-md px-8 pt-6 pb-8 mb-4 h-full" method="post" action="<?php echo admin_url('admin-post.php') ?>">
+        <h1 class="text-xl font-sans font-semibold text-gray-700 mb-4"><?php _e('Ihre Userdaten', 'ir21') ?></h1>
         <?php $FormSession->flashErrorBag('profile_error'); ?>
         <?php $FormSession->flashSuccess('profile_updated'); ?>
 

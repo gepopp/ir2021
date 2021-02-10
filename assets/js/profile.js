@@ -20,6 +20,7 @@ window.alterEmail = function (old) {
                 axios.post(window.ajaxurl, params)
                     .then((rsp) => {
                         this.errors.email = messages.email_exists;
+                        console.log(this.errors);
                     })
                     .catch((err) => {
                         this.SendPin();
@@ -40,7 +41,7 @@ window.alterEmail = function (old) {
                     this.pinSent = true;
                 })
                 .catch((err) => {
-                    this.errors.email = err.response;
+                    this.errors.email = err.response.data;
                 });
         },
         ValidatePin() {
