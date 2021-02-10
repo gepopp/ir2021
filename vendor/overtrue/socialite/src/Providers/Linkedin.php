@@ -77,6 +77,7 @@ class Linkedin extends Base
     {
         $url = 'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))';
         $url = 'https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))';
+        $url = 'https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))';
         $response = $this->getHttpClient()->get($url, [
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
@@ -85,7 +86,7 @@ class Linkedin extends Base
         ]);
 
         $mail = \json_decode($response->getBody(), true)['elements.0.handle~'] ?? [];
-        wp_die(var_dump($response));
+        wp_die(var_dump($response->getBody()));
     }
 
     /**
