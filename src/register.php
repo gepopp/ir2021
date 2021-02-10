@@ -46,7 +46,28 @@ add_action('admin_post_nopriv_frontend_register', function () {
     $user->add_role('registered');
     $user->remove_role('subscriber');
 
-    if (sentUserActivationToken($user)) {
+    $token = wp_generate_uuid4();
+
+    $redirect = sanitize_text_field($_POST['redirect']) ?? '';
+
+    global $wpdb;
+    $table = 'wp_user_activation_token';
+
+    $wpdb->insert($table, [
+        'user_id'    => $user->ID,
+        'email'      => $user->data->user_email,
+        'token'      => $token,
+        'redirect'   => $redirect,
+    ],
+        ['%d', '%s', '%s', '%s']);
+
+    $sent = (new CampaignMonitor())->transactional(
+        'confirm_email_address',
+        $user,
+        ['link' => add_query_arg(['token' => $token, 'redirect' => $redirect], get_field('field_601bbffe28967', 'option'))]
+    );
+
+    if ($sent) {
         $FormSession->set('register_sent_success', 'register_sent_success')->redirect();
     } else {
         $FormSession->addToErrorBag('register_error', 'not_sent')->redirect();
