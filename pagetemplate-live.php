@@ -122,7 +122,7 @@ if ($query->have_posts()):
                 <?php endif; ?>
 
                 <?php if (count($speakers) == 2): ?>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
                         <div>
                             <?php speakerHorizontal(array_shift($speakers)); ?>
                         </div>
