@@ -126,7 +126,7 @@ use Overtrue\Socialite\SocialiteManager;
                             </div>
                         </div>
                     </div>
-                </div>
+
 
 
                 <div class="bg-primary-100 bg-opacity-5 p-5">
