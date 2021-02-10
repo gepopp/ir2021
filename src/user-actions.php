@@ -120,3 +120,7 @@ add_action('admin_post_update_profile', function () {
     $FormSession->set('profile_updated', 'profile_updated')->redirect();
 });
 
+add_action('admin_post_frontent_logout', function (){
+   wp_logout();
+   wp_safe_redirect(home_url());
+});

@@ -304,7 +304,10 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                                         <a href="<?php the_field('field_601bc4580a4fc', 'option'); ?>"><?php _e('Profil', 'ir21') ?></a>
                                     </li>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php echo wp_logout_url(home_url()) ?>"><?php _e('Logout', 'ir21') ?></a>
+                                        <form method="post" action="<?php echo admin_url('admin-post.php') ?>">
+                                            <input type="hidden" name="action" value="frontent_logout">
+                                            <button class="font-semibold" type="submit"><?php _e('logout', 'ir21') ?></button>
+                                        </form>
                                     </li>
                                     <?php if (current_user_can('edit_posts')): ?>
                                         <li class="text-lg font-semibold">
@@ -512,7 +515,10 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                                         <a href="<?php echo home_url('profil') ?>"><?php _e('Profil', 'ir21') ?></a>
                                     </li>
                                     <li class="text-lg font-semibold">
-                                        <a href="<?php echo wp_logout_url(home_url()) ?>"><?php _e('Logout', 'ir21') ?></a>
+                                        <form method="post" action="<?php echo admin_url('admin-post.php') ?>">
+                                            <input type="hidden" name="action" value="frontent_logout">
+                                            <button class="font-semibold" type="submit"><?php _e('logout', 'ir21') ?></button>
+                                        </form>
                                     </li>
                                     <?php if (current_user_can('edit_posts')): ?>
                                         <li class="text-lg font-semibold">
