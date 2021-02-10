@@ -49,17 +49,20 @@ if ($query->have_posts()):
                 $emails[] = $registrant['user_email'];
             }
 
-            foreach ($zoom_registrants['registrants'] as $zoom_registrant) {
+            if (!empty($zoom_registrant)) {
+
+                foreach ($zoom_registrants['registrants'] as $zoom_registrant) {
 
 
-                if (!in_array($zoom_registrant['email'], $emails)) {
-                    add_row('field_601451bb66bc3', [
-                        'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
-                        'user_email'           => $zoom_registrant['email'],
-                        'frage_ans_podium'     => $zoom_registrant['comments'],
-                        'zoom_registrant_id'   => $zoom_registrant['id'],
-                        'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
-                    ], get_the_ID());
+                    if (!in_array($zoom_registrant['email'], $emails)) {
+                        add_row('field_601451bb66bc3', [
+                            'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
+                            'user_email'           => $zoom_registrant['email'],
+                            'frage_ans_podium'     => $zoom_registrant['comments'],
+                            'zoom_registrant_id'   => $zoom_registrant['id'],
+                            'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
+                        ], get_the_ID());
+                    }
                 }
             }
         }
@@ -232,8 +235,6 @@ $query = new \WP_Query([
 
 <?php
 get_template_part('page-templates/modal', 'immolive');
-
-
 
 
 wp_reset_postdata();
