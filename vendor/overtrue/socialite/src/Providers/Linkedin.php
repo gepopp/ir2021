@@ -75,8 +75,6 @@ class Linkedin extends Base
      */
     protected function getEmailAddress(string $token)
     {
-        $url = 'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))';
-        $url = 'https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))';
         $url = 'https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))';
         $response = $this->getHttpClient()->get($url, [
             'headers' => [
@@ -86,7 +84,7 @@ class Linkedin extends Base
         ]);
 
         $mail = json_decode($response->getBody(), true) ?? [];
-        return $mail['elements'][0]['handle~']['emailAddress'];
+        return [$mail['elements'][0]['handle~']['emailAddress']];
     }
 
     /**
