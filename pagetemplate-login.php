@@ -17,7 +17,7 @@ global $FormSession;
     <div class="container mx-auto relative px-5 md:px-0 flex justify-center pt-32">
         <div class="h-auto" x-data="loginForm(login_data)">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="bg-white p-5 shadow-xl w-96">
+                <div class="bg-white p-5 shadow-xl lg:w-96">
                     <h3 class="text-xl font-medium text-gray-700 mb-4"><?php _e('Login', 'ir21') ?></h3>
                     <?php get_template_part('page-templates/login', 'form') ?>
                 </div>
