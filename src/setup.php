@@ -307,6 +307,27 @@ add_filter( 'manage_users_sortable_columns', function( $columns ) {
     return wp_parse_args( array( 'registration_date' => 'registered' ), $columns );
 });
 
+add_action('restrict_manage_users', function () {
 
+    ob_start();
+    ?>
+    <div id="export" style="display: inline-block">
+        <span class="button" style="margin-left: 10px" id="export-users">Exportieren</span>
+    </div>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#export-users').on('click', function () {
+                $('#export-users').text('lade...');
+                $.post(ajaxurl, {action: "export-users"}, function (rsp) {
+                    var elem = $('#export').html('<a href="' + rsp + '" target="_blank">Download</a>');
+                }).fail(function () {
+                    $('#export-users').text('fehlgeschlagen');
+                });
+            });
+        })
 
+    </script>
+    <?php
+    echo ob_get_clean();
 
+});
