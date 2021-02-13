@@ -100,7 +100,7 @@ use Overtrue\Socialite\SocialiteManager;
 <div class="col-span-2">
     <h3 class="w-full text-lg text-center text-gray-700 font-medium"><?php _e('Mit einem Klick einloggen', 'ir21') ?></h3>
 </div>
-                        <div>
+                        <div class="col-span-2 lg:col-span-1">
                             <a href="<?php echo $socialite->create('facebook')->withState($redirect)->redirect(); ?>"
                                class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
                             >
@@ -112,7 +112,9 @@ use Overtrue\Socialite\SocialiteManager;
                                 <span><?php _e('Via Facebook einloggen', 'ir21') ?></span>
                             </a>
                         </div>
-                        <div>
+
+
+                        <div class="col-span-2 lg:col-span-1">
                             <a href="<?php echo $socialite->create('google')->withState($redirect)->redirect(); ?>"
                                class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
                             >
