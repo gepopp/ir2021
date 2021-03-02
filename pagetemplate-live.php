@@ -28,13 +28,14 @@ $query = new WP_Query([
 ]);
 $count = $query->post_count;
 
+$runner = 1;
 
 if ($query->have_posts()):
     while ($query->have_posts()):
         $query->the_post();
 
         date_default_timezone_set('Europe/Vienna');
-        if ((int)date('hi') > 1601 && $runner == 1) {
+        if ((int)date('Gi') > 1601 && $runner == 1) {
             $runner++;
             continue;
         }
@@ -52,8 +53,10 @@ if ($query->have_posts()):
             $registrants = get_field('field_601451bb66bc3');
 
             $emails = [];
-            foreach ($registrants as $registrant) {
-                $emails[] = $registrant['user_email'];
+            if($registrants){
+                foreach ($registrants as $registrant) {
+                    $emails[] = $registrant['user_email'];
+                }
             }
 
             if (!empty($zoom_registrant)) {
