@@ -16,15 +16,19 @@ $query = new WP_Query([
     'meta_key'       => 'il_datum',
     'orderby'        => 'meta_value_num',
 ]);
+
+$runner = 1;
 if ($query->have_posts()):
     while ($query->have_posts()):
+        $query->the_post();
 
-        if(date('Hi') > 1601) continue;
-
-
+        date_default_timezone_set('Europe/Vienna');
+        if ((int)date('hi') > 1601 && $runner == 1) {
+            $runner++;
+            continue;
+        }
         get_template_part('page-templates/snippet', 'event');
 
-        $query->the_post();
         $speakers = get_field('field_6007f8b5a20f0');
         ?>
 
@@ -92,8 +96,8 @@ if ($query->have_posts()):
                 <?php endif; ?>
             </div>
         </div>
-    <?php
-    break;
+        <?php
+        break;
     endwhile;
 else:
     $query = new \WP_Query([

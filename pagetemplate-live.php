@@ -13,13 +13,13 @@ $date = date('Ymd');
 $query = new WP_Query([
     'post_type'      => 'immolive',
     'post_status'    => 'publish',
-    'posts_per_page' => 1,
+    'posts_per_page' => 2,
     'meta_query'     => [
         'relation' => 'AND',
         [
             'key'     => 'il_datum',
             'value'   => $date,
-            'compare' => '>',
+            'compare' => '>=',
         ],
     ],
     'order'          => 'ASC',
@@ -32,6 +32,13 @@ $count = $query->post_count;
 if ($query->have_posts()):
     while ($query->have_posts()):
         $query->the_post();
+
+        date_default_timezone_set('Europe/Vienna');
+        if ((int)date('hi') > 1601 && $runner == 1) {
+            $runner++;
+            continue;
+        }
+
         get_template_part('page-templates/snippet', 'event');
 
         $speakers = get_field('field_6007f8b5a20f0');
@@ -144,6 +151,7 @@ if ($query->have_posts()):
             <?php endif; ?>
         </div>
     <?php
+    break;
     endwhile;
 endif;
 ?>
