@@ -3,7 +3,7 @@ $date = date('Ymd');
 $query = new WP_Query([
     'post_type'      => 'immolive',
     'post_status'    => 'publish',
-    'posts_per_page' => 1,
+    'posts_per_page' => 2,
     'meta_query'     => [
         'relation' => 'AND',
         [
@@ -18,6 +18,9 @@ $query = new WP_Query([
 ]);
 if ($query->have_posts()):
     while ($query->have_posts()):
+
+        if(date('Hi') > 1601) continue;
+
 
         get_template_part('page-templates/snippet', 'event');
 
@@ -90,6 +93,7 @@ if ($query->have_posts()):
             </div>
         </div>
     <?php
+    break;
     endwhile;
 else:
     $query = new \WP_Query([
