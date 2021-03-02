@@ -10,7 +10,7 @@ $query = new WP_Query([
             'key'     => 'il_datum',
             'value'   => $date,
             'compare' => '>=',
-            'type'    => 'DATETIME',
+            'type'    => 'DATE',
         ],
     ],
     'order'          => 'ASC',
