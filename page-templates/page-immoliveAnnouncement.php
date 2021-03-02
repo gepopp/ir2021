@@ -1,5 +1,5 @@
 <?php
-$date = date('Y-m-d H:i:s');
+$date = date('Ymd');
 $query = new WP_Query([
     'post_type'      => 'immolive',
     'post_status'    => 'publish',
@@ -10,7 +10,6 @@ $query = new WP_Query([
             'key'     => 'il_datum',
             'value'   => $date,
             'compare' => '>=',
-            'type'    => 'DATE',
         ],
     ],
     'order'          => 'ASC',
