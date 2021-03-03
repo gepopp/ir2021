@@ -34,7 +34,7 @@ function get_zoom_webinars()
     if ($webinars) {
         foreach ($webinars['webinars'] as $webinar) {
 
-            if (stripos($webinar['topic'], 'test') !== false) continue;
+            if (stripos($webinar['topic'], 'immolive') === false ) continue;
 
             $post = get_posts(['post_type' => 'ImmoLive', 'meta_name' => 'zoom_webinar_id', 'meta_value' => $webinar['id'], 'post_status' => 'any']);
             if (!count($post)) {
