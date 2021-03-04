@@ -23,7 +23,7 @@ if ($query->have_posts()):
         $query->the_post();
 
         date_default_timezone_set('Europe/Vienna');
-        if ((int)date('Gi') > 1601 && $runner == 1) {
+        if ((int)date('Gi') > 1601 && date('Ymd') == get_field('field_5ed527e9c2279', get_the_ID(), false ) && $runner == 1) {
             $runner++;
             continue;
         }
