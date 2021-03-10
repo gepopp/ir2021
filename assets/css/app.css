@@ -153,3 +153,7 @@ ol{
         @apply py-2;
     }
 }
+
+.content p{
+    @apply mb-2;
+}

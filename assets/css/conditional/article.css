@@ -27,6 +27,10 @@
 		text-transform: uppercase;
 	}
 
+	p{
+		@apply m-2;
+	}
+
 	@screen lg {
 		p,
 		ul,
