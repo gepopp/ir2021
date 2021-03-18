@@ -36,13 +36,7 @@ global $FormSession;
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="<?php the_title() ?>"/>
     <meta property="og:description" content="<?php echo get_the_excerpt(); ?>"/>
-    <?php if (get_post_format() == 'video'): ?>
-        <?php if (get_field('field_5f96fa1673bac')): ?>
-            <meta property="og:image" content="<?php echo 'https://img.youtube.com/vi/' . get_field('field_5f96fa1673bac') . '/hqdefault.jpg' ?>"/>
-        <?php endif; ?>
-    <?php else: ?>
-        <meta property="og:image" content="<?php the_post_thumbnail_url('article'); ?>"/>
-    <?php endif; ?>
+    <meta property="og:image" content="<?php the_post_thumbnail_url('article'); ?>"/>
     <meta property="fb:app_id" content="831950683917414">
     <meta property="og:image:width" content="600"/>
     <meta property="og:image:height" content="450"/>
