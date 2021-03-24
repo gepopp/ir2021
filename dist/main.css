@@ -11443,6 +11443,12 @@ ol{
   margin-bottom: 0.5rem;
 }
 
+.wp-block-columns{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

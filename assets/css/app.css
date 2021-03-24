@@ -157,3 +157,7 @@ ol{
 .content p{
     @apply mb-2;
 }
+
+.wp-block-columns{
+    @apply flex;
+}
