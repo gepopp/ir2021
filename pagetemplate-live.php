@@ -1,7 +1,6 @@
 <?php
 
 use function immobilien_redaktion_2020\load_vimeo_image;
-use Overtrue\Socialite\SocialiteManager;
 
 /**
  * Template Name: Landing Live
@@ -35,7 +34,7 @@ if ($query->have_posts()):
         $query->the_post();
 
         date_default_timezone_set('Europe/Vienna');
-        if ((int)date('Gi') > 1601 && date('Ymd') == get_field('field_5ed527e9c2279', get_the_ID(), false ) && $runner == 1) {
+        if ((int)date('Gi') > 1601 && date('Ymd') == get_field('field_5ed527e9c2279', get_the_ID(), false) && $runner == 1) {
             $runner++;
             continue;
         }
@@ -53,7 +52,7 @@ if ($query->have_posts()):
             $registrants = get_field('field_601451bb66bc3');
 
             $emails = [];
-            if($registrants){
+            if ($registrants) {
                 foreach ($registrants as $registrant) {
                     $emails[] = $registrant['user_email'];
                 }
@@ -155,11 +154,12 @@ if ($query->have_posts()):
                 <?php endif; ?>
             <?php endif; ?>
         </div>
-    <?php
-    break;
+        <?php
+        break;
     endwhile;
 endif;
 ?>
+
 
 <?php
 $query = new \WP_Query([
