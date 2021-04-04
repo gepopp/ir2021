@@ -16,6 +16,7 @@ window.prerolled = function (main_id, preroll_id, image, skip){
             var preroll = {
                 id: this.prerollId,
                 width: "1280",
+                responsive: true,
                 controls: false,
                 quality: "1080p"
             };
@@ -48,6 +49,7 @@ window.prerolled = function (main_id, preroll_id, image, skip){
             var main = {
                 id: this.mainId,
                 width: "1280",
+                responsive: true,
                 controls: true
             };
             var video01Player = new Vimeo.Player('clip', main);

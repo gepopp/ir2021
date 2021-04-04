@@ -65,7 +65,9 @@ $duration .= 'S';
         <div class="container mx-auto">
             <div x-data="prerolled('<?php echo get_field('field_5fe2884da38a5') ?>', '<?php echo $preroll ?>', '<?php echo $body['pictures']['sizes'][6]['link'] ?>', <?php echo $skip ?>)">
                 <div x-show="!played" class="relative">
+
                     <img :src="image" @click="play()" class="cursor-pointer w-full h-auto">
+
                     <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center" @click="play()">
                         <div class="rounded-full bg-white w-32 h-32 m-5 flex items-center justify-center">
                             <div class="w-16 h-16 bg-white rounded-full" :class="{ 'animate-ping' : loading }">
@@ -76,6 +78,7 @@ $duration .= 'S';
                         </div>
                     </div>
                 </div>
+
                 <div id="preroll" class="w-full h-auto relative" x-show.transition.in.fade="prerolls">
                     <a href="<?php echo $preroll_link ?>" target="_blank" class="absolute w-full h-full" @click="playMain(false)"></a>
                     <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer"><?php _e('Werbung überspringen', 'ir21') ?>
@@ -84,6 +87,7 @@ $duration .= 'S';
                         <span x-text="countdown"></span> <?php _e('Sekunden', 'ir21') ?>
                     </div>
                 </div>
+
                 <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>
             </div>
         </div>
