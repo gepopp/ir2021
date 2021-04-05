@@ -132,9 +132,11 @@ window.logs = function (log, logs, all, user_id) {
 }
 
 
-window.profileImage = function (){
+window.profileImage = function (existing){
     return {
         imageUrl: '',
+        existingImage: existing,
+        isLoading: false,
         chooseImage(){
 
         },
