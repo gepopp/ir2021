@@ -132,4 +132,24 @@ window.logs = function (log, logs, all, user_id) {
 }
 
 
+window.profileImage = function (){
+    return {
+        imageUrl: '',
+        chooseImage(){
 
+        },
+        fileChosen(event) {
+            this.fileToDataUrl(event, src => this.imageUrl = src)
+        },
+
+        fileToDataUrl(event, callback) {
+            if (! event.target.files.length) return
+
+            let file = event.target.files[0],
+                reader = new FileReader()
+
+            reader.readAsDataURL(file)
+            reader.onload = e => callback(e.target.result)
+        },
+    }
+}

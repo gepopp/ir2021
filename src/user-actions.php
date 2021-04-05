@@ -4,6 +4,62 @@ namespace immobilien_redaktion_2020;
 
 use Carbon\Carbon;
 
+
+add_action('admin_post_update_profile_image', function (){
+
+    // WordPress environment
+    require( dirname(__FILE__) . '/../../../../wp-load.php' );
+
+    $wordpress_upload_dir = wp_upload_dir();
+    $i=1;
+
+    $profilepicture = $_FILES['profile_picture'];
+    $new_file_path = $wordpress_upload_dir['path'] . '/' . $profilepicture['name'];
+    $new_file_mime = mime_content_type( $profilepicture['tmp_name'] );
+
+    if( empty( $profilepicture ) )
+        die( 'File is not selected.' );
+
+    if( $profilepicture['error'] )
+        die( $profilepicture['error'] );
+
+    if( $profilepicture['size'] > wp_max_upload_size() )
+        die( 'It is too large than expected.' );
+
+    if( !in_array( $new_file_mime, get_allowed_mime_types() ) )
+        die( 'WordPress doesn\'t allow this type of uploads.' );
+
+    while( file_exists( $new_file_path ) ) {
+        $i++;
+        $new_file_path = $wordpress_upload_dir['path'] . '/' . $i . '_' . $profilepicture['name'];
+    }
+
+// looks like everything is OK
+    if( move_uploaded_file( $profilepicture['tmp_name'], $new_file_path ) ) {
+
+
+        $upload_id = wp_insert_attachment( array(
+            'guid'           => $new_file_path,
+            'post_mime_type' => $new_file_mime,
+            'post_title'     => preg_replace( '/\.[^.]+$/', '', $profilepicture['name'] ),
+            'post_content'   => '',
+            'post_status'    => 'inherit'
+        ), $new_file_path );
+
+        // wp_generate_attachment_metadata() won't work if you do not include this file
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+        // Generate and save the attachment metas into the database
+        wp_update_attachment_metadata( $upload_id, wp_generate_attachment_metadata( $upload_id, $new_file_path ) );
+
+       update_field('field_5ded37c474589', $upload_id, 'user_' . get_current_user_id());
+
+       wp_safe_redirect(wp_get_referer());
+
+    }
+});
+
+
 add_action('wp_ajax_update_reminder_date', function () {
 
     global $wpdb;
