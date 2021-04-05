@@ -17,14 +17,14 @@ $image = get_field('field_5ded37c474589', 'user_' . get_current_user_id());
         <?php $FormSession->flashSuccess('profile_updated'); ?>
         <?php wp_nonce_field('profile_image', 'profile_image') ?>
         <input type="hidden" name="action" value="update_profile_image"/>
-
+        <input class="hidden" type="file" accept="image/*" @change="fileChosen" name="profile_picture" x-ref="upload">
         <div class="flex flex-col items-center justify-center my-10">
             <?php if ($image): ?>
                 <div>
                     <img src="<?php echo $image['sizes']['thumbnail'] ?>" class="rounded-full w-full h-auto">
                 </div>
             <?php else: ?>
-                <input class="hidden" type="file" accept="image/*" @change="fileChosen" name="profile_picture" x-ref="upload">
+
                 <div class="w-48 h-48 border border-dashed rounded-full flex items-center justify-center">
                     <template x-if="imageUrl">
                         <img :src="imageUrl"
