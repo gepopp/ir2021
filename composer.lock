@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c39f11ee870ebab2fa9c9d49c65c553",
+    "content-hash": "ad3cc70db48eb8c55eacc3e90b60c66d",
     "packages": [
         {
             "name": "a7/autoload",
@@ -987,16 +987,16 @@
         },
         {
             "name": "overtrue/socialite",
-            "version": "3.0.6",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "765941f858facdeff611d3f8652c8f8bfba3e0af"
+                "reference": "4246be157b4c54f2d6960d7e837eeda9afc0b64a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/765941f858facdeff611d3f8652c8f8bfba3e0af",
-                "reference": "765941f858facdeff611d3f8652c8f8bfba3e0af",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/4246be157b4c54f2d6960d7e837eeda9afc0b64a",
+                "reference": "4246be157b4c54f2d6960d7e837eeda9afc0b64a",
                 "shasum": ""
             },
             "require": {
@@ -1006,9 +1006,6 @@
                 "php": ">=7.4",
                 "symfony/http-foundation": "^5.0",
                 "symfony/psr-http-message-bridge": "^2.0"
-            },
-            "conflict": {
-                "socialiteproviders/weixin": "*"
             },
             "require-dev": {
                 "mockery/mockery": "~1.2",
@@ -1041,13 +1038,17 @@
                 "wechat",
                 "weibo"
             ],
+            "support": {
+                "issues": "https://github.com/overtrue/socialite/issues",
+                "source": "https://github.com/overtrue/socialite/tree/3.2.1"
+            },
             "funding": [
                 {
                     "url": "https://www.patreon.com/overtrue",
                     "type": "patreon"
                 }
             ],
-            "time": "2020-11-02T02:51:54+00:00"
+            "time": "2021-03-16T03:29:17+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -2244,5 +2245,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

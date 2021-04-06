@@ -75,7 +75,8 @@ class Linkedin extends Base
      */
     protected function getEmailAddress(string $token)
     {
-        $url = 'https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))';
+        $url = 'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))';
+
         $response = $this->getHttpClient()->get($url, [
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
@@ -83,8 +84,7 @@ class Linkedin extends Base
             ],
         ]);
 
-        $mail = json_decode($response->getBody(), true) ?? [];
-        return ['emailAddress' => $mail['elements'][0]['handle~']['emailAddress']];
+        return \json_decode($response->getBody(), true)['elements.0.handle~'] ?? [];
     }
 
     /**
@@ -94,10 +94,9 @@ class Linkedin extends Base
      */
     protected function mapUserToObject(array $user): User
     {
-
-        $preferredLocale = ($user['firstName']['preferredLocale']['language'] ?? null).'_'.($user['firstName']['preferredLocale']['country']) ?? null;
-        $firstName = $user['firstName']['localized'][$preferredLocale] ?? null;
-        $lastName = $user['lastName']['localized'][$preferredLocale] ?? null;
+        $preferredLocale = ($user['firstName.preferredLocale.language'] ?? null).'_'.($user['firstName.preferredLocale.country']) ?? null;
+        $firstName = $user['firstName.localized.'.$preferredLocale] ?? null;
+        $lastName = $user['lastName.localized.'.$preferredLocale] ?? null;
         $name = $firstName.' '.$lastName;
 
         $images = $user['profilePicture.displayImage~.elements'] ?? [];

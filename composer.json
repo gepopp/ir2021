@@ -3,7 +3,7 @@
         "a7/autoload": "^2.1",
         "nesbot/carbon": "^2.41",
         "google/apiclient": "^2.8",
-        "overtrue/socialite": "^3.0",
+        "overtrue/socialite": "^3.2",
         "predis/predis": "^1.1",
         "vimeo/vimeo-api": "2.0",
         "phpoffice/phpspreadsheet": "^1.16"
