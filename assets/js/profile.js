@@ -132,23 +132,43 @@ window.logs = function (log, logs, all, user_id) {
 }
 
 
-window.profileImage = function (existing){
+window.profileImage = function (existing) {
     return {
         imageUrl: '',
         existingImage: existing,
         isLoading: false,
-        chooseImage(){
-
+        fileError: false,
+        submit() {
+            this.isLoading = true;
+            this.$refs.form.submit();
         },
         fileChosen(event) {
             this.fileToDataUrl(event, src => this.imageUrl = src)
         },
 
         fileToDataUrl(event, callback) {
-            if (! event.target.files.length) return
 
-            let file = event.target.files[0],
-                reader = new FileReader()
+            this.fileError = false;
+
+            if (!event.target.files.length) return
+
+            if (event.target.files[0].type != 'image/jpeg' && event.target.files[0].type != 'image/jpg' && event.target.files[0].type != 'image/png') {
+                this.fileError = "Hier sind nur JPEG oder PNG Dateien erlaubt.";
+                this.$refs.upload.value = '';
+                return;
+            }
+
+
+            if( event.target.files[0].size > 2097152 ){
+                this.fileError = "Hier sind maximal 2MB erlaubt.";
+                this.$refs.upload.value = '';
+                return;
+            }
+
+
+
+            let file = event.target.files[0], reader = new FileReader();
+
 
             reader.readAsDataURL(file)
             reader.onload = e => callback(e.target.result)

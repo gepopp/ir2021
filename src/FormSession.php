@@ -203,7 +203,9 @@ class   FormSession
             'email_not_found'       => __('Wir konnten zu dieser Adresse keinen Eintrag finden, bitte versuchen Sie es noch einmal.', 'ir21'),
             'reset_success'         => __('Wir haben Ihnen ein E-Mail mit einem Link zum zurücksetzen Ihres Passwortes gesendet, bitte überprüfen Sie Ihre Posteingang', 'ir21'),
             'password_changed'      => __('Ihr neues Passwort wurde gespeichert, Sie können sich jetzt einloggen.', 'ir21'),
-
+            'profile_image_saved'   => __('Ihr neues Profilbild wurde gespeichert'),
+            'profile_image_size'    => __('Hier sind maximal 2 MB erlaubt.'),
+            'profile_image_mime'    => __('Hier sind nur jpg und png Dateien erlaubt.')
         ];
 
     }

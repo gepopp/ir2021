@@ -14,20 +14,24 @@ add_action('admin_post_update_profile_image', function (){
     $i=1;
 
     $profilepicture = $_FILES['profile_picture'];
+
+
     $new_file_path = $wordpress_upload_dir['path'] . '/' . $profilepicture['name'];
     $new_file_mime = mime_content_type( $profilepicture['tmp_name'] );
 
+    global $FormSession;
+
     if( empty( $profilepicture ) )
-        die( 'File is not selected.' );
+        $FormSession->set('profile_image_error', 'profile_image_mime')->redirect();
 
     if( $profilepicture['error'] )
-        die( $profilepicture['error'] );
+        $FormSession->set('profile_image_error', 'profile_image_mime')->redirect();
 
-    if( $profilepicture['size'] > wp_max_upload_size() )
-        die( 'It is too large than expected.' );
+    if( $profilepicture['size'] > 2097152 )
+        $FormSession->set('profile_image_error', 'profile_image_size')->redirect();
 
-    if( !in_array( $new_file_mime, get_allowed_mime_types() ) )
-        die( 'WordPress doesn\'t allow this type of uploads.' );
+    if( !in_array( $new_file_mime, ['image/jpeg', 'image/jpg', 'image/png'] ) )
+        $FormSession->set('profile_image_error', 'profile_image_mime')->redirect();
 
     while( file_exists( $new_file_path ) ) {
         $i++;
@@ -54,7 +58,7 @@ add_action('admin_post_update_profile_image', function (){
 
        update_field('field_5ded37c474589', $upload_id, 'user_' . get_current_user_id());
 
-       wp_safe_redirect(wp_get_referer());
+        $FormSession->set('profile_image_updated', 'profile_image_saved')->redirect();
 
     }
 });
