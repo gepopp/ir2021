@@ -27,7 +27,7 @@ $config = [
 
 $socialite = new SocialiteManager($config);
 
-wp_die(var_dump($socialite));
+
 
 $code = $_GET['code'];
 
@@ -39,6 +39,8 @@ $email = $user->getEmail();     // "anzhengchao@gmail.com"
 
 $name = explode(' ', $name);
 $firstname = '';
+
+wp_die(var_dump($email));
 
 if (count($name) > 1) {
     $firstname = array_shift($name);
