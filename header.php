@@ -69,7 +69,7 @@ global $FormSession;
 </head>
 
 <?php
-if (is_page_template('pagetemplate-sehen.php') || (is_single() && has_category('video'))) {
+if (is_page_template('pagetemplate-sehen.php') || is_singular('live_event') || (is_single() && has_category('video'))) {
     $bg = 'bg-gray-900 min-h-screen';
 } else {
     $bg = 'bg-primary-100 bg-opacity-5';

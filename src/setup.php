@@ -181,7 +181,7 @@ add_action( 'init', function (){
 
     global $wp_query;
 
-    $allowed = ['update_profile', 'subscribe_immolive', 'resend_activation', 'frontent_logout'];
+    $allowed = ['update_profile', 'subscribe_immolive', 'resend_activation', 'frontent_logout', 'update_profile_image'];
     $action = $_REQUEST['action'] ?? '';
 
     if(is_admin() && !wp_doing_ajax() && !in_array($action, $allowed)){

@@ -40,6 +40,17 @@ if ($query->have_posts()):
                         <p class="w-full lg:w-1/3"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
                         <div class="font-normal mt-5 lg:mt-0">
                             <p><?php
+
+                                $appointment = get_field('field_5ed527e9c2279', get_the_ID(), true);
+                                echo var_dump($appointment);
+
+                                $wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
+                                $result = $wrapper->doRequest('GET', '/users/' . get_field('field_6012782af436e', 'option'));
+                                $zoom_user_id = $result['id'];
+                                $webinars = $wrapper->doRequest('GET',  '/webinars/84057496193');
+
+                                echo var_dump($webinars);
+
                                 echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'), 'Europe/Vienna')->addHour()->format('d.m.Y H:i');
                                 ?>
                             </p>

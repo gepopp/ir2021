@@ -155,7 +155,7 @@ if (process.env.SERVER) {
 	config.plugins.push(
 		new BrowserSyncPlugin(
 			{
-				proxy: 'http://ir.test',
+				proxy: 'https://ir.test',
 				files: [
 					'**/*.php',
 					'**/*.scss'

@@ -2,6 +2,14 @@
 get_header();
 
 the_post();
+
+$event_start = get_field('field_5ed527e9c2279', get_the_ID(), true);
+$parsed = \Carbon\Carbon::parse($event_start);
+echo $parsed->format('H:i');
+
+echo '<div class=mt-48></div>';
+
+echo var_dump($event_start);
 ?>
 
     <div class="container mx-auto mt-20">
@@ -9,6 +17,8 @@ the_post();
             <?php the_post_thumbnail('full'); ?>
         </div>
     </div>
+
+
 
 
     <div class="container mx-auto mt-32">
