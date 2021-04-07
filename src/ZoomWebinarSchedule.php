@@ -62,6 +62,7 @@ function get_zoom_webinars()
 
             //datum
             update_field('field_601048b4330d8', $webinar_start->format('Ymd'), $immolive);
+            update_field('field_5ed527e9c2279', $webinar_start->format('d.m.Y H:i:s'), $immolive);
             update_field('field_60127a6c90f6b', $webinar['id'], $immolive);
             update_field('field_6012878b61fb0', $webinar['join_url'], $immolive);
 
