@@ -34,7 +34,7 @@ $event_id = get_field('field_6069e92463992');
                     <textarea
                             type="text"
                             class="bg-gray-100 text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500"
-                            placeholder="Schreiben Sie einen Kommentar ..."></textarea>
+                            placeholder="Schreiben Sie einen neuen Kommentar ..."></textarea>
                     <div class="">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
