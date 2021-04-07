@@ -239,6 +239,7 @@ function register_post_types()
         'menu_icon'            => 'dashicons-video-alt3',
     ];
     register_post_type('live_event', $args);
+    add_post_type_support('live_event', 'comments');
 
     $labels = [
         'name'                  => _x('Live Event Sprecher', 'Post Type General Name', 'text_domain'),
