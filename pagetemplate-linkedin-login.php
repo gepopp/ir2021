@@ -40,7 +40,7 @@ $email = $user->getEmail();     // "anzhengchao@gmail.com"
 $name = explode(' ', $name);
 $firstname = '';
 
-wp_die(var_dump($name));
+wp_die(var_dump($email));
 
 if (count($name) > 1) {
     $firstname = array_shift($name);

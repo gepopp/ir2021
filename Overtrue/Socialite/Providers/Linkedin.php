@@ -86,9 +86,9 @@ class Linkedin extends Base
 
         $data = \json_decode($response->getBody(), true);
 
-        wp_die(var_dump($data['elements'][0]['handle~']));
+        return $data['elements'][0]['handle~'];
 
-        return \json_decode($response->getBody(), true)['elements.0.handle~'] ?? [];
+        //return \json_decode($response->getBody(), true)['elements.0.handle~'] ?? [];
     }
 
     /**
