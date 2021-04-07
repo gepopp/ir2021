@@ -31,12 +31,7 @@ $event_id = get_field('field_6069e92463992');
                         <?php if ($image): ?>
                             <img src="<?php echo $image['sizes']['author_small'] ?>" class="rounded-full w-16 h-16 p-1 border border-white">
                         <?php else: ?>
-                            <div class="w-12 h-12 bg-white p-1 border border-white rounded-full flex-none">
-                                <div class="flex w-full h-full justify-center items-center">
-                                <span class="text-3xl font-medium"><?php $meta = wp_get_current_user();
-                                    echo $meta->data->display_name[0] ?? '' ?></span>
-                                </div>
-                            </div>
+                        <?php echo  get_avatar($user, 48, null, null, ['class' => 'rounded-full w-12 h-12 p-1 border border-white' ]) ?>
                         <?php endif; ?>
                         <div class="flex-grow relative">
                         <textarea
