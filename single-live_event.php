@@ -14,7 +14,7 @@ $event_id = get_field('field_6069e92463992');
     </div>
 
     <div class="container mx-auto my-10">
-        <div class="grid grid-cols-2 gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
                 <h1 class="text-white text-xl lg:text-3xl font-serif"><?php the_title() ?></h1>
                 <div class="text-white">
@@ -22,12 +22,9 @@ $event_id = get_field('field_6069e92463992');
                 </div>
             </div>
             <div>
-
                 <?php
-
                 $user = wp_get_current_user();
                 $image = get_field('field_5ded37c474589', 'user_' . $user->ID);
-
                 ?>
                 <div x-data="addComment(<?php echo $user->ID ?>, <?php the_ID(); ?>)" x-init="init()">
                     <div class="flex space-x-3 items-end pb-5 mb-5">
@@ -47,7 +44,7 @@ $event_id = get_field('field_6069e92463992');
                                 type="text"
                                 class="bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
                                 placeholder="Schreiben Sie einen neuen Kommentar ..." @keydown.enter="validate()"></textarea>
-                                <p class="text-xs text-aktuelles-100 absolute" x-text="commentError" x-show="commentError"></p>
+                            <p class="text-xs text-aktuelles-100 absolute" x-text="commentError" x-show="commentError"></p>
                         </div>
 
                         <div class="" @click="validate()">
@@ -63,21 +60,50 @@ $event_id = get_field('field_6069e92463992');
                             <div>
                                 <img :src="c.author_avatar_urls[48]" class="rounded-full p-1 border border-white w-10 h-10">
                             </div>
-                            <div class="w-full">
+                            <div class="flex-1">
                                 <p x-text="formatDate(c.date)" class="text-xs m-0 text-white -mb-1"></p>
                                 <div class="text-white text-lg" x-html="c.content.rendered"></div>
-                                <p class="text-white uppercase font-medium text-xs cursor-pointer" @click="addAnswer = c.id" x-show="c.id != addAnswer">
-                                  <span x-text="c.child_count + ' - '" x-show="c.child_count > 0"></span>Antworten
+                                <p class="text-white uppercase font-medium text-xs cursor-pointer" @click="openAnswer(c)" x-show="c.id != addAnswer">
+                                    <span x-text="c.child_count + ' - '" x-show="c.child_count > 0"></span>Antworten
                                 </p>
 
-
-                                <textarea
-                                        x-model="answer"
-                                        x-show="addAnswer == c.id"
-                                        type="text"
-                                        class="bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
-                                        placeholder="Antworten Sie hier ..." @keydown.enter="validate(c.id)"></textarea>
-
+                                <div x-show="addAnswer == c.id" @click.away="addAnswer = false">
+                                    <template x-for="child in children">
+                                        <div>
+                                            <div class="shadow rounded-md p-4 w-full mx-auto" x-show="!child.id">
+                                                <div class="animate-pulse flex space-x-4 items-center">
+                                                    <div class="rounded-full bg-gray-100 h-10 w-10"></div>
+                                                    <div class="flex-1 space-y-4 py-1">
+                                                        <div class="space-y-2">
+                                                            <div class="h-4 bg-gray-100 rounded"></div>
+                                                            <div class="h-4 bg-gray-100 rounded w-5/6"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div x-show.transition.fade.in="child.id" class="flex space-x-4 items-center px-4 py-2">
+                                                <div>
+                                                    <img :src="child.author_avatar_urls[48]" class="rounded-full p-1 border border-white w-10 h-10 flex-none">
+                                                </div>
+                                                <div class="flex-1">
+                                                    <p x-text="formatDate(child.date)" class="text-xs m-0 text-white -mb-1"></p>
+                                                    <div class="text-white text-lg" x-html="child.content.rendered"></div>
+                                                </div>
+                                            </div>
+                                    </template>
+                                    <div class="flex items-end space-x-4">
+                                        <textarea
+                                                x-model="answer"
+                                                type="text"
+                                                class="bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
+                                                placeholder="Antworten Sie hier ..." @keydown.enter="validate(c.id)"></textarea>
+                                        <div class="" @click="validate(c.id)">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </template>

@@ -10,21 +10,39 @@ const Api = Axios.create({
 });
 
 
-
-window.addComment = function (user, post){
+window.addComment = function (user, post) {
     return {
         comment: '',
         commentError: false,
         addAnswer: false,
         answer: '',
         comments: [],
+        children: [],
         user: user,
         post: post,
-        validate(parent = null){
+        openAnswer(comment) {
+
+            for (var i = 1; i <= comment.child_count; i++) {
+                this.children.push({
+                    id: false,
+                    author_avatar_urls: {48: ''},
+                    date: '',
+                    content: {
+                        rendered: ''
+                    }
+                });
+            }
+
+            this.addAnswer = comment.id;
+            Api.get('/wp/v2/comments?order=asc&post=' + this.post + '&parent=' + comment.id).then((rsp) => this.children = rsp.data);
+
+
+        },
+        validate(parent = null) {
 
             this.commentError = false;
 
-            if(this.comment == '' && this.answer == '') return;
+            if (this.comment == '' && this.answer == '') return;
 
 
             Api.post('/wp/v2/comments', {
@@ -33,13 +51,16 @@ window.addComment = function (user, post){
                 post: this.post,
                 parent: parent,
                 status: "approved"
-            }).then( (response) => {
-                this.loadComments()
+            }).then((response) => {
+                this.loadComments();
+                if(parent !== null){
+                    Api.get('/wp/v2/comments?order=asc&post=' + this.post + '&parent=' + parent).then((rsp) => this.children = rsp.data);
+                }
             }).catch((err) => {
                 this.commentError = err.response.data.message;
-            }).then(()=> this.comment = this.answer = '', this.addAnswer = false);
+            }).then(() => this.comment = this.answer = '');
         },
-        init(){
+        init() {
 
             this.loadComments();
 
@@ -47,10 +68,10 @@ window.addComment = function (user, post){
             //     this.loadComments();
             // }, 3000)
         },
-        loadComments(){
+        loadComments() {
             Api.get('/wp/v2/comments?post=' + this.post + '&parent=0').then((rsp) => this.comments = rsp.data);
         },
-        formatDate(date){
+        formatDate(date) {
             return new moment(date).format('DD.MM.YY HH:MM');
         }
     }
