@@ -105,7 +105,9 @@ class Linkedin extends Base
         $name = $firstName.' '.$lastName;
 
 
-        $images = $user['profilePicture.displayImage~.elements'] ?? [];
+        $images = $user['profilePicture']['displayImage~']['elements'] ?? [];
+
+        wp_die(var_dump($images));
 
 
         $avatars = array_filter($images, function ($image) {
