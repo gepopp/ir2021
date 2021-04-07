@@ -109,7 +109,9 @@ class Linkedin extends Base
         $avatars = array_filter($images, function ($image) {
             return ($image['data']['com.linkedin.digitalmedia.mediaartifact.StillImage']['storageSize']['width'] ?? 0) === 100;
         });
+
         $avatar = array_shift($avatars);
+
         $originalAvatars = array_filter($images, function ($image) {
             return ($image['data']['com.linkedin.digitalmedia.mediaartifact.StillImage']['storageSize']['width'] ?? 0) === 800;
         });
@@ -120,8 +122,8 @@ class Linkedin extends Base
             'nickname' => $name,
             'name' => $name,
             'email' => $user['emailAddress'] ?? null,
-            'avatar' => $avatar['identifiers.0.identifier'] ?? null,
-            'avatar_original' => $originalAvatar['identifiers.0.identifier'] ?? null,
+            'avatar' => $avatar['identifiers'][0]['identifier'] ?? null,
+            'avatar_original' => $originalAvatar['identifiers'][0]['identifier'] ?? null,
         ]);
     }
 }
