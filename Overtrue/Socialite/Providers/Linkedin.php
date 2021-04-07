@@ -104,11 +104,7 @@ class Linkedin extends Base
         $lastName = $user['lastName']['localized'][$preferredLocale] ?? null;
         $name = $firstName.' '.$lastName;
 
-
         $images = $user['profilePicture']['displayImage~']['elements'] ?? [];
-
-        wp_die(var_dump($images));
-
 
         $avatars = array_filter($images, function ($image) {
             return ($image['data']['com.linkedin.digitalmedia.mediaartifact.StillImage']['storageSize']['width'] ?? 0) === 100;
