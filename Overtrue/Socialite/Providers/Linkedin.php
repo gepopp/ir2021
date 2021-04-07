@@ -84,6 +84,8 @@ class Linkedin extends Base
             ],
         ]);
 
+        wp_die(var_dump(\json_decode($response->getBody(), true)));
+
         return \json_decode($response->getBody(), true)['elements.0.handle~'] ?? [];
     }
 
@@ -100,11 +102,10 @@ class Linkedin extends Base
         $lastName = $user['lastName']['localized'][$preferredLocale] ?? null;
         $name = $firstName.' '.$lastName;
 
-        wp_die(var_dump($name));
-
-
 
         $images = $user['profilePicture.displayImage~.elements'] ?? [];
+
+
         $avatars = array_filter($images, function ($image) {
             return ($image['data']['com.linkedin.digitalmedia.mediaartifact.StillImage']['storageSize']['width'] ?? 0) === 100;
         });
