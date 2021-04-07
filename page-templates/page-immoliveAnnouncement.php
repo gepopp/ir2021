@@ -41,7 +41,7 @@ if ($query->have_posts()):
                         <div class="font-normal mt-5 lg:mt-0">
                             <p><?php
 
-                                echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'), 'Europe/Vienna')->addHour()->format('d.m.Y H:i');
+                                echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'))->format('d.m.Y H:i');
                                 ?>
                             </p>
                             <p><?php _e('Zoom Webinar', 'ir21') ?></p>
