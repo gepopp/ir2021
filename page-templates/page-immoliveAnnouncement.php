@@ -22,7 +22,6 @@ if ($query->have_posts()):
     while ($query->have_posts()):
         $query->the_post();
 
-        date_default_timezone_set('Europe/Vienna');
         if ((int)date('Gi') > 1601 && date('Ymd') == get_field('field_5ed527e9c2279', get_the_ID(), false ) && $runner == 1) {
             $runner++;
             continue;
@@ -39,8 +38,7 @@ if ($query->have_posts()):
                     <div class="flex flex-col lg:flex-row justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
                         <p class="w-full lg:w-1/3"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
                         <div class="font-normal mt-5 lg:mt-0">
-                            <p><?php echo get_field('field_5ed527e9c2279') ?>
-                            </p>
+                            <p><?php echo get_field('field_5ed527e9c2279') ?></p>
                             <p><?php _e('Zoom Webinar', 'ir21') ?></p>
                         </div>
                     </div>
