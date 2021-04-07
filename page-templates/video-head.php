@@ -80,16 +80,18 @@ $duration .= 'S';
                     </div>
                 </div>
 
-                <div id="preroll" class="w-full h-auto relative" x-show.transition.in.fade="prerolls">
+                <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>
+
+
+                <div id="preroll" class="w-full h-auto relative z-40" x-show.transition.in.fade="prerolls">
                     <a href="<?php echo $preroll_link ?>" target="_blank" class="absolute w-full h-full" @click="playMain(false)"></a>
-                    <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer"><?php _e('Werbung überspringen', 'ir21') ?>
+                    <div @click="playMain()" x-show="countdown <= 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer z-50"><?php _e('Werbung überspringen', 'ir21') ?>
                     </div>
-                    <div x-show="countdown > 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white"><?php _e('Werbung überspringen in', 'ir21') ?>
+                    <div x-show="countdown > 0" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white z-50 cursor-pointer"><?php _e('Werbung überspringen in', 'ir21') ?>
                         <span x-text="countdown"></span> <?php _e('Sekunden', 'ir21') ?>
                     </div>
                 </div>
 
-                <div id="clip" class="w-full h-auto relative" x-show.transition.in.fade="main"></div>
             </div>
         </div>
     <?php endif; ?>
