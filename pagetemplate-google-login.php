@@ -6,6 +6,7 @@
 use Overtrue\Socialite\SocialiteManager;
 use immobilien_redaktion_2020\CampaignMonitor;
 
+wp_die(var_dump($_GET));
 
 $config = [
     'facebook' => [
