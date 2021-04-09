@@ -72,7 +72,7 @@ $config = [
     'google'   => [
         'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
         'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
-        'redirect'      => trailingslashit(home_url('g-oauth')) . '?h=something',
+        'redirect'      => trailingslashit(home_url('g-oauth')),
     ],
     'linkedin'   => [
         'client_id'     => '78q1kul4q95hsh',
