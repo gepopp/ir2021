@@ -68,6 +68,8 @@ class Google extends Base
             ],
         ]);
 
+        wp_die(var_dump($response->getBody()));
+
         return \json_decode($response->getBody(), true) ?? [];
     }
 
