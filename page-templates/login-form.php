@@ -72,7 +72,7 @@ $config = [
     'google'   => [
         'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
         'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
-        'redirect'      => home_url('g-oauth'),
+        'redirect'      => trailingslashit(home_url('g-oauth')) . '?h=something',
     ],
     'linkedin'   => [
         'client_id'     => '78q1kul4q95hsh',
@@ -100,7 +100,7 @@ $socialite = new SocialiteManager($config);
         </a>
     </div>
     <div class="my-5 w-full">
-        <a href="<?php echo $socialite->create('google')->with(['rdi' => urlencode($_GET['redirect'] ?? '')])->redirect(); ?>"
+        <a href="<?php echo $socialite->create('google')->redirect(); ?>"
            class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
         >
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
