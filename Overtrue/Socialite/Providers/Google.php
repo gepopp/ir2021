@@ -18,7 +18,7 @@ class Google extends Base
 
     protected function getAuthUrl(): string
     {
-        return $this->buildAuthUrlFromBase('https://accounts.google.com/o/oauth2/v2/auth');
+        return $this->buildAuthUrlFromBase('https://accounts.google.com/o/oauth2/v2/auth?state=habs');
     }
 
     protected function getTokenUrl(): string

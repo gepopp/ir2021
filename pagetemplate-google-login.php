@@ -6,7 +6,6 @@
 use Overtrue\Socialite\SocialiteManager;
 use immobilien_redaktion_2020\CampaignMonitor;
 
-wp_die(var_dump($_GET));
 
 $config = [
     'facebook' => [
@@ -27,7 +26,7 @@ $socialite = new SocialiteManager($config);
 $code = $_GET['code'];
 
 $user = $socialite->create('google')->userFromCode($code);
-
+e
 
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
