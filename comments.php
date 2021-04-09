@@ -20,7 +20,7 @@ if (post_password_required()) {
 }
 
 $gray = 'gray-800';
-if(get_post_format() == 'video'){
+if (get_post_format() == 'video') {
     $gray = 'white';
 }
 
@@ -41,39 +41,35 @@ if(get_post_format() == 'video'){
                     <?php echo get_avatar($user, 48, null, null, ['class' => 'rounded-full w-12 h-12 p-1 border border-' . $gray]) ?>
                 <?php endif; ?>
 
-                <?php if(is_user_logged_in()): ?>
-                <div class="flex-grow relative">
+                <?php if (is_user_logged_in()): ?>
+                    <div class="flex-grow relative">
                         <textarea
                                 x-model="comment"
                                 type="text"
                                 class="rounded-l shadow-xl bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
                                 placeholder="Schreiben Sie einen neuen Kommentar ..." @keydown.enter="validate()"></textarea>
-                    <p class="text-xs text-aktuelles-100 absolute" x-text="commentError" x-show="commentError"></p>
-                </div>
+                        <p class="text-xs text-aktuelles-100 absolute" x-text="commentError" x-show="commentError"></p>
+                    </div>
+                    <div class="" @click="validate()">
+                        <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </div>
                 <?php else: ?>
-                    <p>Zum Antworten bitte</p>
-                    <div class="flex space-x-5 w-full">
-                        <div class="flex-1">
-                            <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
-                        </div>
-                        <div class="flex-1">
-                            <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
+                    <div class="w-full">
+                        <p>Zum kommentieren bitte</p>
+                        <div class="flex space-x-5 w-full">
+                            <div class="flex-1">
+                                <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
+                            </div>
+                            <div class="flex-1">
+                                <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
+                            </div>
                         </div>
                     </div>
                 <?php endif; ?>
-
-
-                <div class="" @click="validate()">
-                    <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                </div>
             </div>
             <hr>
-
-
-
-
 
 
             <template x-for="c in comments" x-key="comment.id">
@@ -115,21 +111,21 @@ if(get_post_format() == 'video'){
                             </template>
 
 
-                            <?php if(is_user_logged_in()): ?>
-                            <div class="flex items-end space-x-4">
+                            <?php if (is_user_logged_in()): ?>
+                                <div class="flex items-end space-x-4">
                                         <textarea
                                                 x-model="answer"
                                                 type="text"
                                                 class="rounded-l shadow-xl mt-3 bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
                                                 placeholder="Antworten Sie hier ..." @keydown.enter="validate(c.id)"></textarea>
-                                <div class="" @click="validate(c.id)">
-                                    <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
+                                    <div class="" @click="validate(c.id)">
+                                        <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                        </svg>
+                                    </div>
                                 </div>
-                            </div>
                             <?php else: ?>
-                                <p>Zum Antworten bitte</p>
+                                <p>Zum antworten bitte</p>
                                 <div class="flex space-x-5 w-full">
                                     <div class="flex-1">
                                         <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
