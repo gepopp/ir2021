@@ -22,8 +22,8 @@ $config = [
 
 $socialite = new SocialiteManager($config);
 
-
-wp_die(var_dump($_GET));
+$state = request()->query('state');
+wp_die(var_dump($state));
 
 
 $code = $_GET['code'];
