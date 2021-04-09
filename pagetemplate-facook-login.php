@@ -56,7 +56,7 @@ wp_set_auth_cookie($user->ID);
 
 
 if(!empty($_GET['state'])){
-    wp_redirect(($_GET['state']));
+    wp_redirect(urldecode($_GET['state']));
     exit();
 }
 

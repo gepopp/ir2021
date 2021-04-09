@@ -27,7 +27,7 @@ if (get_post_format() == 'video') {
 
 ?>
 
-<div id="comments" class="comments-area">
+<div id="_=_" class="comments-area">
     <div>
         <?php
         $user = wp_get_current_user();
