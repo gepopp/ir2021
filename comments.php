@@ -128,7 +128,8 @@ if (get_post_format() == 'video') {
                                 <p>Zum antworten bitte</p>
                                 <div class="flex space-x-5 w-full">
                                     <div class="flex-1">
-                                        <a href="<?php echo add_query_arg(['redirect' => get_the_permalink() . '#comments'], get_field('field_601bbffe28967', 'option') ); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
+                                        <?php $link = get_the_permalink() . '#comments' ?>
+                                        <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bbffe28967', 'option') ); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
                                     </div>
                                     <div class="flex-1">
                                         <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
