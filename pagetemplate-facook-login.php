@@ -19,6 +19,8 @@ $socialite = new SocialiteManager($config);
 
 $code = $_GET['code'];
 
+wp_die(var_dump($_GET));
+
 $user = $socialite->create('facebook')->userFromCode($code);
 
 

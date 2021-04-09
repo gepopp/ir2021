@@ -67,7 +67,7 @@ $config = [
         'client_id'     => '831950683917414',
         'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
         'redirect'      => home_url('fb-login'),
-        'state'         => $_GET['redirect'] ?? ''
+
     ],
     'google'   => [
         'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
@@ -88,7 +88,7 @@ $socialite = new SocialiteManager($config);
 <div class="bg-white">
     <hr class="my-4">
     <div class="my-5 w-full">
-        <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+        <a href="<?php echo $socialite->create('facebook')->withState(urlencode($_GET['redirect'] ?? ''))->redirect(); ?>"
            class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
         >
             <svg version="1.1" id="digital_x5F_marketing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
