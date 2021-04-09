@@ -22,7 +22,7 @@ $config = [
 
 $socialite = new SocialiteManager($config);
 
-wp_die(var_dump($_GET));
+wp_die(var_dump($_REQUEST));
 
 
 $code = $_GET['code'];
