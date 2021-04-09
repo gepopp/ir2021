@@ -16,7 +16,7 @@ $config = [
     'google' => [
         'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
         'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
-        'redirect'      => home_url('l-oauth'),
+        'redirect'      => trailingslashit(home_url('g-oauth')) . '?h=something',
     ],
     'linkedin'   => [
         'client_id'     => '78q1kul4q95hsh',
