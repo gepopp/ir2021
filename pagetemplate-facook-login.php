@@ -19,8 +19,6 @@ $socialite = new SocialiteManager($config);
 
 $code = $_GET['code'];
 
-wp_die(var_dump($_GET));
-
 $user = $socialite->create('facebook')->userFromCode($code);
 
 
@@ -58,7 +56,7 @@ wp_set_auth_cookie($user->ID);
 
 
 if(!empty($_GET['state'])){
-    wp_redirect(urldecode_deep($_GET['state']));
+    wp_redirect(urldecode($_GET['state']));
     exit();
 }
 
