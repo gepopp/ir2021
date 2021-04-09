@@ -40,6 +40,8 @@ if(get_post_format() == 'video'){
                 <?php else: ?>
                     <?php echo get_avatar($user, 48, null, null, ['class' => 'rounded-full w-12 h-12 p-1 border border-' . $gray]) ?>
                 <?php endif; ?>
+
+                <?php if(is_user_logged_in()): ?>
                 <div class="flex-grow relative">
                         <textarea
                                 x-model="comment"
@@ -48,6 +50,18 @@ if(get_post_format() == 'video'){
                                 placeholder="Schreiben Sie einen neuen Kommentar ..." @keydown.enter="validate()"></textarea>
                     <p class="text-xs text-aktuelles-100 absolute" x-text="commentError" x-show="commentError"></p>
                 </div>
+                <?php else: ?>
+                    <p>Zum Antworten bitte</p>
+                    <div class="flex space-x-5 w-full">
+                        <div class="flex-1">
+                            <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
+                        </div>
+                        <div class="flex-1">
+                            <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
 
                 <div class="" @click="validate()">
                     <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
