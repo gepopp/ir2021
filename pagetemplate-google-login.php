@@ -22,6 +22,10 @@ $config = [
 
 $socialite = new SocialiteManager($config);
 
+
+wp_die(var_dump($_GET));
+
+
 $code = $_GET['code'];
 
 $user = $socialite->create('google')->userFromCode($code);

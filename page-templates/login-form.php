@@ -100,7 +100,7 @@ $socialite = new SocialiteManager($config);
         </a>
     </div>
     <div class="my-5 w-full">
-        <a href="<?php echo $socialite->create('google')->redirect(); ?>"
+        <a href="<?php echo $socialite->create('google')->withState(urlencode($_GET['redirect'] ?? ''))->redirect(); ?>"
            class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
         >
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -119,7 +119,7 @@ $socialite = new SocialiteManager($config);
         </a>
     </div>
     <div class="my-5 w-full">
-        <a href="<?php echo $socialite->create('linkedin')->redirect(); ?>"
+        <a href="<?php echo $socialite->create('linkedin')->withState(urlencode($_GET['redirect'] ?? ''))->redirect(); ?>"
            class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
         >
             <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
