@@ -61,7 +61,10 @@ class Google extends Base
      */
     protected function getUserByToken(string $token, ?array $query = []): array
     {
-        $response = $this->getHttpClient()->get('https://www.googleapis.com/userinfo/v2/me', [
+        $url = 'https://www.googleapis.com/userinfo/v2/me' . '&fields=' .
+            implode(',', $this->fields);
+
+        $response = $this->getHttpClient()->get($url, [
             'headers' => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$token,
