@@ -63,7 +63,7 @@ const config = {
 		sehen: './assets/js/sehen.js',
 		singlevideo: './assets/js/single-video.js',
 		diskutieren:  './assets/js/diskutieren.js',
-		liveevent: './assets/js/live_events.js',
+		comments: './assets/js/live_events.js',
 	},
 	optimization: {
 		minimizer: [

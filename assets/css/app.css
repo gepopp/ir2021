@@ -166,6 +166,13 @@ ol{
     }
 }
 
-.content p{
+.content p {
     @apply mb-2;
+}
+
+.content .comments-area p{
+    @apply mb-0;
+}
+.content .comments-area .comment p {
+    @apply leading-none;
 }

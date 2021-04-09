@@ -77,6 +77,19 @@ add_action('wp_enqueue_scripts', function () {
             );
         }
 
+        wp_enqueue_script(
+            'immobilien_redaktion_2020_js_live_events',
+            immobilien_redaktion_2020_URL . "/dist/liveevent{$min_ext}.js",
+            [],
+            immobilien_redaktion_2020_VERSION,
+            true
+        );
+
+        wp_localize_script('immobilien_redaktion_2020_js_live_events', 'mynamespace', array(
+            'rootapiurl' => esc_url_raw(rest_url()),
+            'nonce' => wp_create_nonce('wp_rest')
+        ));
+
     }
 
     if (is_category()) {
@@ -132,21 +145,4 @@ add_action('wp_enqueue_scripts', function () {
         immobilien_redaktion_2020_VERSION,
         ''
     );
-
-
-    if(is_singular('live_event')){
-        wp_enqueue_script(
-            'immobilien_redaktion_2020_js_live_events',
-            immobilien_redaktion_2020_URL . "/dist/liveevent{$min_ext}.js",
-            [],
-            immobilien_redaktion_2020_VERSION,
-            true
-        );
-
-        wp_localize_script('immobilien_redaktion_2020_js_live_events', 'mynamespace', array(
-            'rootapiurl' => esc_url_raw(rest_url()),
-            'nonce' => wp_create_nonce('wp_rest')
-        ));
-    }
-
 });

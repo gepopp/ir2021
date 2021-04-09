@@ -11464,8 +11464,16 @@ ol{
     padding-bottom: 0.5rem;
   }
 
-.content p{
+.content p {
   margin-bottom: 0.5rem;
+}
+
+.content .comments-area p{
+  margin-bottom: 0;
+}
+
+.content .comments-area .comment p {
+  line-height: 1;
 }
 
 @media (min-width: 640px) {
