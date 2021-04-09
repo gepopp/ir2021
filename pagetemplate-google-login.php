@@ -26,7 +26,7 @@ $socialite = new SocialiteManager($config);
 $code = $_GET['code'];
 
 $user = $socialite->create('google')->userFromCode($code);
-e
+
 
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
