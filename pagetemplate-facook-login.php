@@ -56,7 +56,13 @@ wp_set_auth_cookie($user->ID);
 
 
 if(!empty($_GET['state'])){
-    wp_redirect(base64_decode(urldecode($_GET['state'])));
+
+    $decoded = base64_decode($_GET['state']);
+    if(!$decoded){
+        $decoded = sanitize_text_field($_GET['state']);
+    }
+
+    wp_redirect(base64_decode(urldecode_deep($decoded));
     exit();
 }
 
