@@ -3,7 +3,9 @@ get_header();
 the_post();
 
 ?>
+<div class="mt-64">
 
+</div>
 <a href="#comments" class="mt-64">kommentieren</a>
 
 
