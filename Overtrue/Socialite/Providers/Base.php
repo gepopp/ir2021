@@ -269,7 +269,11 @@ abstract class Base implements ProviderInterface
     {
         $query = $this->getCodeFields() + ($this->state ? ['state' => $this->state] : []);
 
-        return $url . '?' . \http_build_query($query, '', '&', $this->encodingType);
+        $authurl = $url . '?' . \http_build_query($query, '', '&', $this->encodingType);
+
+        wp_die(var_dump($authurl));
+
+        return $authurl;
     }
 
     protected function getCodeFields(): array
