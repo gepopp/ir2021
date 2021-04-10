@@ -51,28 +51,31 @@ window.addComment = function (user, post) {
                 content: !this.addAnswer ? this.comment : this.answer,
                 post: this.post,
                 parent: parent,
+                status: 'approved',
             }).then((response) => {
+                console.log('hier');
+                this.comment = '';
+                this.answer = '';
                 this.loadComments();
-                if(parent !== null){
+                if (parent !== null) {
                     Api.get('/wp/v2/comments?order=asc&post=' + this.post + '&parent=' + parent).then((rsp) => this.children = rsp.data);
                 }
             }).catch((err) => {
                 this.commentError = err.response.data.message;
-            }).then(() => this.comment = this.answer = '');
+            });
         },
         init() {
 
             this.loadComments();
-
-            setInterval(()=> {
+            setInterval(() => {
                 this.loadComments();
-            }, 3000)
+            }, 5000)
         },
         loadComments() {
             Api.get('/wp/v2/comments?post=' + this.post + '&parent=0')
                 .then((rsp) => this.comments = rsp.data)
                 .catch()
-                .then(() => setTimeout(() => this.isLoading = false, 2000));
+                .then(() => this.isLoading = false);
         },
         formatDate(date) {
             return new moment(date).format('DD.MM.YY HH:MM');
