@@ -62,12 +62,12 @@ if (get_post_format() == 'video') {
                             <div class="flex-1">
                                 <?php $link = get_the_permalink();
                                 $link .= '#comments';
-
+                                $link = base64_encode($link);
                                 ?>
-                                <a href="<?php echo base64_encode( add_query_arg(['redirect' => $link], get_field('field_601bbffe28967', 'option')) ); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
+                                <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
                             </div>
                             <div class="flex-1">
-                                <a href="<?php echo base64_encode( add_query_arg(['redirect' => $link], get_field('field_601bc00528968', 'option')) ); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
+                                <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
                             </div>
                         </div>
                     </div>
