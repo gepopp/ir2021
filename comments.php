@@ -27,7 +27,7 @@ if (get_post_format() == 'video') {
 
 ?>
 
-<div id="_=_" class="comments-area">
+<div id="comments" class="comments-area">
     <div>
         <?php
         $user = wp_get_current_user();
@@ -67,7 +67,7 @@ if (get_post_format() == 'video') {
                                 <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
                             </div>
                             <div class="flex-1">
-                                <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
+                                <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
                             </div>
                         </div>
                     </div>
