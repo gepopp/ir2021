@@ -68,7 +68,7 @@ global $FormSession;
     </script>
 
     <?php if (is_single()): ?>
-        <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
         <script>
             var scroll = new SmoothScroll();
         </script>
