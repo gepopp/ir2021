@@ -4,7 +4,7 @@ the_post();
 
 ?>
 
-<a href="#comments">kommentieren</a>
+<a href="#comments" class="mt-64">kommentieren</a>
 
 
 <?php
