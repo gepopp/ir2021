@@ -67,12 +67,10 @@ global $FormSession;
         gtag('config', 'G-DX5BK23RTW');
     </script>
 
-    <?php if (is_single()): ?>
         <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
         <script>
             var scroll = new SmoothScroll('a[href*="#"]');
         </script>
-    <?php endif; ?>
 </head>
 
 <?php
