@@ -271,8 +271,6 @@ abstract class Base implements ProviderInterface
 
         $authurl = $url . '?' . \http_build_query($query, '', '&', $this->encodingType);
 
-        wp_die(var_dump($authurl));
-
         return $authurl;
     }
 
