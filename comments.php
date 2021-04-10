@@ -23,25 +23,27 @@ $gray = 'gray-800';
 if (get_post_format() == 'video') {
     $gray = 'white';
 }
-
-
+$link = get_the_permalink();
+$link .= '#comments';
+$link = base64_encode($link);
 ?>
 
 <div id="comments" class="comments-area">
     <div>
+        <h1 class="font-serif text-2xl font-medium text-primary-100">Diskutieren Sie mit:</h1>
         <?php
         $user = wp_get_current_user();
         $image = get_field('field_5ded37c474589', 'user_' . $user->ID);
         ?>
         <div x-data="addComment(<?php echo $user->ID ?>, <?php the_ID(); ?>)" x-init="init()">
             <div class="flex space-x-3 items-end pb-5 mb-5">
-                <?php if ($image): ?>
-                    <img src="<?php echo $image['sizes']['author_small'] ?>" class="rounded-full w-16 h-16 p-1 border border-<?php echo $gray ?>">
-                <?php else: ?>
-                    <?php echo get_avatar($user, 48, null, null, ['class' => 'rounded-full w-12 h-12 p-1 border border-' . $gray]) ?>
-                <?php endif; ?>
 
                 <?php if (is_user_logged_in()): ?>
+                    <?php if ($image): ?>
+                        <img src="<?php echo $image['sizes']['author_small'] ?>" class="rounded-full w-16 h-16 p-1 border border-<?php echo $gray ?>">
+                    <?php else: ?>
+                        <?php echo get_avatar($user, 48, null, null, ['class' => 'rounded-full w-12 h-12 p-1 border border-' . $gray]) ?>
+                    <?php endif; ?>
                     <div class="flex-grow relative">
                         <textarea
                                 x-model="comment"
@@ -57,27 +59,39 @@ if (get_post_format() == 'video') {
                     </div>
                 <?php else: ?>
                     <div class="w-full">
-                        <p>Zum kommentieren bitte</p>
+                        <p class="font-semibold">Zum kommentieren bitte</p>
                         <div class="flex space-x-5 w-full">
                             <div class="flex-1">
-                                <?php $link = get_the_permalink();
-                                $link .= '#comments';
-                                $link = base64_encode($link);
-                                ?>
+
                                 <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
                             </div>
-                            <div class="flex-1">
-                                <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
-                            </div>
                         </div>
+                        <p>Wenn Sie noch keinen Account haben können Sie sich hier
+                            <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bc00528968', 'option')); ?>">registrieren</a>
+                        </p>
                     </div>
                 <?php endif; ?>
             </div>
             <hr>
 
+            <div x-show="isLoading" x-cloak>
+                <div class="w-full h-64 flex items-center justify-center">
+                    <svg class="animate-spin -ml-1 mr-3 h-10 w-10 text-<?php echo $gray ?>" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
+            </div>
+
+
+
+            <div x-show="comments.length == 0 && !isLoading" x-cloak>
+                <div class="w-full h-64 flex items-center justify-center bg-<?php echo $gray ?>">
+                    <p class="text-primary-100 text-xl font-semibold">Schreiben Sie den ersten Kommentar!</p>
+                </div>
+            </div>
 
             <template x-for="c in comments" x-key="comment.id">
-
                 <div class="flex space-x-2 py-3">
                     <div>
                         <img :src="c.author_avatar_urls[48]" class="rounded-full p-1 border border-white w-10 h-10">
@@ -126,16 +140,6 @@ if (get_post_format() == 'video') {
                                         <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                         </svg>
-                                    </div>
-                                </div>
-                            <?php else: ?>
-                                <p>Zum antworten bitte</p>
-                                <div class="flex space-x-5 w-full">
-                                    <div class="flex-1">
-                                        <a href="<?php echo add_query_arg(['redirect' => $link], get_field('field_601bbffe28967', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">einloggen</a>
-                                    </div>
-                                    <div class="flex-1">
-                                        <a href="<?php echo add_query_arg(['redirect' => get_the_permalink()], get_field('field_601bc00528968', 'option')); ?>" class="block w-full py-3 border border-primary-100 text-white font-medium text-center">registrieren</a>
                                     </div>
                                 </div>
                             <?php endif; ?>

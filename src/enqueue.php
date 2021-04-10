@@ -79,7 +79,7 @@ add_action('wp_enqueue_scripts', function () {
 
         wp_enqueue_script(
             'immobilien_redaktion_2020_js_live_events',
-            immobilien_redaktion_2020_URL . "/dist/liveevent{$min_ext}.js",
+            immobilien_redaktion_2020_URL . "/dist/comments{$min_ext}.js",
             [],
             immobilien_redaktion_2020_VERSION,
             true

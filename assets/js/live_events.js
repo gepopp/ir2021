@@ -12,6 +12,7 @@ const Api = Axios.create({
 
 window.addComment = function (user, post) {
     return {
+        isLoading: true,
         comment: '',
         commentError: false,
         addAnswer: false,
@@ -50,7 +51,6 @@ window.addComment = function (user, post) {
                 content: !this.addAnswer ? this.comment : this.answer,
                 post: this.post,
                 parent: parent,
-                status: "approved"
             }).then((response) => {
                 this.loadComments();
                 if(parent !== null){
@@ -64,12 +64,15 @@ window.addComment = function (user, post) {
 
             this.loadComments();
 
-            // setInterval(()=> {
-            //     this.loadComments();
-            // }, 3000)
+            setInterval(()=> {
+                this.loadComments();
+            }, 3000)
         },
         loadComments() {
-            Api.get('/wp/v2/comments?post=' + this.post + '&parent=0').then((rsp) => this.comments = rsp.data);
+            Api.get('/wp/v2/comments?post=' + this.post + '&parent=0')
+                .then((rsp) => this.comments = rsp.data)
+                .catch()
+                .then(() => setTimeout(() => this.isLoading = false, 2000));
         },
         formatDate(date) {
             return new moment(date).format('DD.MM.YY HH:MM');
