@@ -176,3 +176,7 @@ ol{
 .content .comments-area .comment p {
     @apply leading-none;
 }
+
+html{
+    scroll-behavior: smooth;
+}
