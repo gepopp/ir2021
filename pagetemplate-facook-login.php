@@ -62,7 +62,7 @@ if(!empty($_GET['state'])){
         $decoded = sanitize_text_field($_GET['state']);
     }
 
-    wp_redirect(base64_decode(urldecode_deep($decoded));
+    wp_redirect(urldecode_deep($decoded));
     exit();
 }
 
