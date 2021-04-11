@@ -12,6 +12,7 @@ const Api = Axios.create({
 
 window.addComment = function (user, post) {
     return {
+        showAll: false,
         isLoading: true,
         comment: '',
         commentError: false,

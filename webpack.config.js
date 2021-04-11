@@ -106,9 +106,11 @@ const config = {
 					{
 						loader: 'postcss-loader',
 						options: {
-							ident: 'postcss',
-							sourceMap: isProduction || 'inline',
-							plugins: post_css_plugins,
+							postcssOptions: {
+								plugins: post_css_plugins,
+								sourceMap: true,
+								ident: 'postcss',
+							},
 						},
 					}
 				],
@@ -208,7 +210,9 @@ function getCSSWhitelistPatterns() {
 		/^figcaption(-.*)?$/,
 		/^ol(-.*)?$/,
 		/^xl(:.*)?$/,
-		/^lg(:.*)?$/,
+		/^bg-gradient(:.*)?$/,
+		/^from-(:.*)?$/,
+		/^to-(:.*)?$/,
 	];
 }
 

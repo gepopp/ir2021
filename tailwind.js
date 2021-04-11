@@ -12,6 +12,9 @@ module.exports = {
 				'min-resolution': '192dpi'
 			}
 		},
+		backgroundImage: {
+
+		},
 		colors: {
 			transparent: 'transparent',
 
@@ -215,7 +218,8 @@ module.exports = {
 			...theme('spacing'),
 			full: '100%',
 			screen: '100vh',
-			'screen-75': '75vh'
+			'screen-75': '75vh',
+			200 : '200px'
 		}),
 		inset: {
 			'0': '0',
@@ -250,6 +254,8 @@ module.exports = {
 		maxHeight: {
 			full: '100%',
 			screen: '100vh',
+			300: '300px',
+			200: '200px'
 		},
 		maxWidth: {
 			xs: '20rem',
@@ -356,6 +362,9 @@ module.exports = {
 			'40': '40',
 			'50': '50',
 		},
+		transitionProperty: {
+			'height': 'height',
+		}
 	},
 	variants: {
 		alignContent: ['responsive'],
@@ -364,6 +373,7 @@ module.exports = {
 		appearance: ['responsive'],
 		backgroundAttachment: ['responsive'],
 		backgroundColor: ['responsive', 'hover', 'focus'],
+		backgroundImage: ['hover', 'focus'],
 		backgroundPosition: ['responsive'],
 		backgroundRepeat: ['responsive'],
 		backgroundSize: ['responsive'],
@@ -425,6 +435,8 @@ module.exports = {
 	},
 	corePlugins: {
 		animation: true,
+		gradientColorStops: true,
+		backgroundImage: true,
 	},
 	plugins: [],
 }
