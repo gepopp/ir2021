@@ -30,7 +30,6 @@ $link = base64_encode($link);
 
 <div id="comments" class="comments-area">
     <div>
-        <h1 class="font-serif text-2xl font-medium text-primary-100">Diskutieren Sie mit:</h1>
         <?php
         $user = wp_get_current_user();
         $image = get_field('field_5ded37c474589', 'user_' . $user->ID);

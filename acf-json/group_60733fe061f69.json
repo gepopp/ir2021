@@ -1,0 +1,46 @@
+{
+    "key": "group_60733fe061f69",
+    "title": "Live Kategorien",
+    "fields": [
+        {
+            "key": "field_60733fe611fac",
+            "label": "Kategorien für Live Template",
+            "name": "kategorien_fur_live_template",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "category",
+            "field_type": "checkbox",
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "multiple": 0,
+            "allow_null": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-general-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1618165784
+}
