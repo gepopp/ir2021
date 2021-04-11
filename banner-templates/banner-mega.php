@@ -85,7 +85,7 @@ $query_banner = new WP_Query($banner_args);
 <?php else: ?>
     <div class="container mx-auto">
         <p class="text-xs text-gray-300"><?php _e('Werbung', 'ir21') ?></p>
-        <div class="flex flex-col lg:flex-row p-5 border">
+        <div class="flex flex-col lg:flex-row p-5 border-2 border-primary-100">
             <?php if ($query_banner->have_posts()): ?>
                 <?php while ($query_banner->have_posts()): ?>
                     <?php $query_banner->the_post(); ?>
