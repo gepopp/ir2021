@@ -36,7 +36,6 @@ $link = base64_encode($link);
         ?>
         <div x-data="addComment(<?php echo $user->ID ?>, <?php the_ID(); ?>)" x-init="init()">
             <div class="flex space-x-3 items-end pb-5 mb-5">
-
                 <?php if (is_user_logged_in()): ?>
                     <?php if ($image): ?>
                         <img src="<?php echo $image['sizes']['author_small'] ?>" class="rounded-full w-16 h-16 p-1 border border-<?php echo $gray ?>">
@@ -88,7 +87,7 @@ $link = base64_encode($link);
                     <p class="text-primary-100 text-xl font-semibold">Schreiben Sie den ersten Kommentar!</p>
                 </div>
             </div>
-            <div class="overflow-hidden relative transition-transform ease-in-out duration-200" :class="{ 'h-200': !showAll  }">
+            <div class="overflow-hidden relative transition-transform ease-in-out duration-200" :class="{ 'max-h-200': !showAll  }">
                 <template x-for="c in comments" x-key="comment.id">
                     <div class="flex space-x-2 py-3">
                         <div>
