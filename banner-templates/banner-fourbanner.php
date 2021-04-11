@@ -40,7 +40,7 @@ $query = new WP_Query($banner_args);
 <div class="px-5 xl:px-0">
     <div class="container mx-auto mt-20">
         <p class="text-xs text-gray-300"><?php _e('Werbung', 'ir21') ?></p>
-        <div class="grid grid-cols-4 gap-5 p-5 border">
+        <div class="grid grid-cols-4 gap-5 p-5 border-2  border-primary-100">
             <?php if ($query->have_posts()): ?>
                 <?php while ($query->have_posts()): ?>
                     <?php $query->the_post(); ?>

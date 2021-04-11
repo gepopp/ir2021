@@ -39,7 +39,7 @@ $query_banner = new WP_Query($banner_args);
 <?php if (!is_single() || (is_single() && get_post_format() == 'video')): ?>
     <div class="container mx-auto mt-12 mb-12 px-5 lg:px-0">
         <p class="text-xs text-gray-300"><?php _e('Werbung', 'ir21') ?></p>
-        <div class="flex flex-col lg:flex-row p-5 border">
+        <div class="flex flex-col lg:flex-row p-5 border-2 border-primary-100">
             <?php if ($query_banner->have_posts()): ?>
                 <?php while ($query_banner->have_posts()): ?>
                     <?php $query_banner->the_post(); ?>

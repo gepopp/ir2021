@@ -19,7 +19,7 @@
     <div class="grid grid-cols-5 gap-4">
         <div class="hidden lg:block"></div>
         <div class="col-span-5 lg:col-span-3">
-<?php get_template_part('banner-templates/banner', 'mega') ?>
+            <?php get_template_part('banner-templates/banner', 'mega') ?>
         </div>
     </div>
 </div>

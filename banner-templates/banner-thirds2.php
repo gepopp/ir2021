@@ -75,7 +75,7 @@ $banner_large = get_posts([
 <div class="px-5 lg:px-0">
     <div class="container mx-auto mt-20">
         <p class="text-xs text-gray-300"><?php _e('Werbung', 'ir21') ?></p>
-        <div class="hidden lg:flex flex-col lg:flex-row p-5 border">
+        <div class="hidden lg:flex flex-col lg:flex-row p-5 border-2 border-primary-100">
             <?php if (!empty($banner_large)): ?>
                 <div class="w-full lg:w-2/3 lg:pr-5 pb-5 lg:pb-0 hidden lg:block">
                     <a href="<?php the_field('field_5c6325e38e0aa', $banner_large[0]->ID) ?>">
