@@ -1,4 +1,5 @@
 <?php
+
 $today = date('Ymd');
 $banner_args = [
     'post_type'      => 'ir_ad',
