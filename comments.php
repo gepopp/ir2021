@@ -57,7 +57,7 @@ $link = base64_encode($link);
                     </div>
                 <?php else: ?>
                     <div class="w-full">
-                        <p class="font-semibold">Zum kommentieren bitte</p>
+                        <p class="font-semibold text-primary-100">Zum kommentieren bitte</p>
                         <div class="flex space-x-5 w-full">
                             <div class="flex-1">
 
