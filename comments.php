@@ -87,7 +87,7 @@ $link = base64_encode($link);
                     <p class="text-primary-100 text-xl font-semibold">Schreiben Sie den ersten Kommentar!</p>
                 </div>
             </div>
-            <div class="overflow-hidden relative transition-transform ease-in-out duration-200" :class="{ 'max-h-200': !showAll  }">
+            <div class="overflow-hidden relative transition-all max-h-64 duration-700" x-ref="container" x-bind:style="showAll == true ? 'max-height: ' + $refs.container.scrollHeight + 'px' : ''"">
                 <template x-for="c in comments" x-key="comment.id">
                     <div class="flex space-x-2 py-3">
                         <div>

@@ -90,6 +90,12 @@ module.exports = {
 				200 : '200px'
 			}),
 		},
+		transitionProperty: {
+			'height': 'height'
+		},
+		maxHeight: {
+			64 : '16rem'
+		}
 	},
 	variants: {
 		alignContent: ['responsive'],
