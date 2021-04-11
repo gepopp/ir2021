@@ -209,10 +209,6 @@ function getCSSWhitelistPatterns() {
 		/^figure(-.*)?$/,
 		/^figcaption(-.*)?$/,
 		/^ol(-.*)?$/,
-		/^xl(:.*)?$/,
-		/^bg-gradient(:.*)?$/,
-		/^from-(:.*)?$/,
-		/^to-(:.*)?$/,
 	];
 }
 

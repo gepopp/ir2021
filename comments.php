@@ -144,7 +144,7 @@ $link = base64_encode($link);
                         </div>
                     </div>
                 </template>
-                <div class="bottom-0 left-0 w-full text-center" :class="{'absolute': !showAll}">
+                <div class="bottom-0 left-0 w-full text-center bg-gradient-to-b from-transparent via-primary-5 to-primary-5 shadow-lg py-10" :class="{'absolute': !showAll}">
                     <div class="flex flex-col justify-center items-center cursor-pointer" @click="showAll = true" x-show="!showAll && comments.length > 2" x-cloak>
                         <p class="inline-block text-primary-100 font-medium">alle anzeigen</p>
                         <svg class="w-4 h-4 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

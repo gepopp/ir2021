@@ -72,7 +72,7 @@ global $FormSession;
 if (is_page_template('pagetemplate-sehen.php') || is_singular('live_event') || (is_single() && has_category('video'))) {
     $bg = 'bg-gray-900 min-h-screen';
 } else {
-    $bg = 'bg-primary-100 bg-opacity-5';
+    $bg = 'bg-primary-5';
 }
 if (is_page_template('pagetemplate-passwort-vergessen.php')
     || is_page_template('pagetemplate-login-register.php')
