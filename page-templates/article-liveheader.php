@@ -24,13 +24,15 @@
     </div>
 </div>
 
+<?php $iframe = get_field('field_60734337a834d'); ?>
 
 <div class="container mx-auto">
     <div class="grid grid-cols-5 gap-4">
         <div class="hidden lg:block"></div>
         <div class="col-span-5 lg:col-span-3  py-5">
             <div class="relative">
-                <?php the_field('field_60734337a834d'); ?>
+                <?php if(!empty($iframe)): ?>
+                <?php echo $iframe ?>
                 <div class="mt-10">
                     <?php
                     if (comments_open() || get_comments_number()) :
@@ -38,6 +40,12 @@
                     endif;
                     ?>
                 </div>
+                <?php else: ?>
+                    <?php the_post_thumbnail('custom-thumbnail', ['class' => 'mt-5 w-full h-auto']); ?>
+                    <?php if (get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID()))): ?>
+                        <p class="absolute bottom-0 right-0 transform rotate-90 text-white mr-2" style=" transform-origin: right;">&copy <?php echo get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID())) ?></p>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
         <div class="hidden lg:block"></div>
