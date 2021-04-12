@@ -33,13 +33,6 @@
             <div class="relative">
                 <?php if(!empty($iframe)): ?>
                 <?php echo $iframe ?>
-                <div class="mt-10">
-                    <?php
-                    if (comments_open() || get_comments_number()) :
-                        comments_template();
-                    endif;
-                    ?>
-                </div>
                 <?php else: ?>
                     <?php the_post_thumbnail('custom-thumbnail', ['class' => 'mt-5 w-full h-auto']); ?>
                     <?php if (get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID()))): ?>

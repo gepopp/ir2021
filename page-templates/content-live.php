@@ -18,8 +18,18 @@ $post = get_the_ID();
                 <?php get_template_part('page-templates/article', 'left') ?>
             </div>
             <div class="content col-span-5 lg:col-span-3" id="article-content">
-                <?php the_content(); ?>
+                <?php if (!empty(get_field('field_60734337a834d'))): ?>
+                    <div class="mt-10">
+                        <?php
+                        if (comments_open() || get_comments_number()) :
+                            comments_template();
+                        endif;
+                        ?>
+                    </div>
+                <?php endif; ?>
 
+
+                <?php the_content(); ?>
                 <?php if (empty(get_field('field_60734337a834d'))): ?>
                     <div class="mt-10">
                         <?php
