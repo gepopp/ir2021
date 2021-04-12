@@ -12,63 +12,29 @@ $post = get_the_ID();
 >
     <?php get_template_part('page-templates/article', 'liveheader') ?>
 
-    <div class="container mx-auto">
-        <div class="grid grid-cols-5 gap-4">
-            <div>
-                <?php get_template_part('page-templates/article', 'left') ?>
-            </div>
-            <div class="content col-span-5 lg:col-span-3" id="article-content">
-                <?php if (!empty(get_field('field_60734337a834d'))): ?>
-                    <div class="mt-10">
-                        <?php
-                        if (comments_open() || get_comments_number()) :
-                            comments_template();
-                        endif;
-                        ?>
-                    </div>
-                <?php endif; ?>
-
-
+    <div class="container mx-auto mt-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="content hidden lg:block" id="article-content">
+                <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
+                    <?php the_title() ?>
+                </h1>
+                <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
                 <?php the_content(); ?>
-                <?php if (empty(get_field('field_60734337a834d'))): ?>
-                    <div class="mt-10">
-                        <?php
-                        if (comments_open() || get_comments_number()) :
-                            comments_template();
-                        endif;
-                        ?>
-                    </div>
-                <?php endif; ?>
-
             </div>
             <div>
-                <?php get_template_part('page-templates/article', 'right') ?>
+                <?php
+                if (comments_open() || get_comments_number()) :
+                    comments_template();
+                endif;
+                ?>
+            </div>
+            <div class="content block lg:hidden" id="article-content">
+                <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
+                    <?php the_title() ?>
+                </h1>
+                <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
+                <?php the_content(); ?>
             </div>
         </div>
     </div>
-</div>
-
-<?php get_template_part('page-templates/article', 'readmore') ?>
-
-<div class="lg:hidden sticky bottom-0"
-     x-data="{ scroll: 0, max : 0 }"
-     x-init="
-        contentContainer = document.getElementById('article-content');
-        max = contentContainer.offsetTop + contentContainer.offsetHeight - 200;
-        maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        window.addEventListener('resize', () => {
-            maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        });
-        window.addEventListener('scroll', function (event) {
-
-            contentContainer = document.getElementById('article-content');
-            max = contentContainer.offsetTop + contentContainer.offsetHeight - 200;
-            scroll = this.scrollY;
-
-        });
-
-     ">
-    <div x-show.transition.fade.500ms="scroll > 200 && scroll < max">
-        <?php get_template_part('page-templates/article', 'iconbar') ?>
-    </div>
-</div>
+    <?php get_template_part('page-templates/article', 'readmore') ?>
