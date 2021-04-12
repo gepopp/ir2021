@@ -432,11 +432,9 @@ foreach ($cats as $cat):
             </div>
         </div>
     </div>
-<?php endforeach;
-
+<?php
+endforeach;
 wp_reset_postdata();
-
-
 get_footer();
 
 
