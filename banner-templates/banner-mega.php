@@ -36,8 +36,21 @@ $banner_args = [
     'order'          => 'ASC',
 ];
 $query_banner = new WP_Query($banner_args);
+
+$cats = wp_get_post_categories(get_the_ID());
+
+$live = !empty(array_filter($cats, function ($cat){
+    $filter = get_field('field_60733fe611fac', 'option');
+    $filter = is_array($filter) ? $filter : [];
+
+    if(in_array($cat, $filter )){
+        return $cat;
+    }
+}));
+
+
 ?>
-<?php if (!is_single() || (is_single() && get_post_format() == 'video')): ?>
+<?php if (!is_single() || (is_single() && get_post_format() == 'video') || $live): ?>
     <div class="container mx-auto mt-12 mb-12 px-5 lg:px-0">
         <p class="text-xs text-gray-300"><?php _e('Werbung', 'ir21') ?></p>
         <div class="flex flex-col lg:flex-row p-5 border-2 border-primary-100">
