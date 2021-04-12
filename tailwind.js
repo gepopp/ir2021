@@ -4,9 +4,11 @@ module.exports = {
 	separator: ':',
 	theme: {
 		extend: {
+			borderWidth: {
+				15 : '15px'
+			},
 			colors: {
 				transparent: 'transparent',
-
 				black: '#000',
 				white: '#fff',
 				warning: '#F53F39',
