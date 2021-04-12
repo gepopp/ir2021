@@ -1,6 +1,9 @@
 <?php
 $user = wp_get_current_user();
 $post = get_the_ID();
+
+$cat = get_the_category();
+$cat = array_shift($cat);
 ?>
 
 <div class="px-5 lg:px-5"
@@ -13,15 +16,20 @@ $post = get_the_ID();
     <?php get_template_part('page-templates/article', 'liveheader') ?>
 
     <div class="container mx-auto mt-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div class="content hidden lg:block" id="article-content">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+            <div class="content hidden lg:block col-span-3" id="article-content">
                 <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
                     <?php the_title() ?>
                 </h1>
                 <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
-                <?php the_content(); ?>
+                <div>
+                    <div class="h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
+                        <?php echo $cat->name ?>
+                    </div>
+                    <?php the_content(); ?>
+                </div>
             </div>
-            <div>
+            <div class="lg:col-span-2">
                 <?php
                 if (comments_open() || get_comments_number()) :
                     comments_template();
@@ -33,7 +41,12 @@ $post = get_the_ID();
                     <?php the_title() ?>
                 </h1>
                 <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
-                <?php the_content(); ?>
+                <div>
+                    <div class="h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
+                        <?php echo $cat->name ?>
+                    </div>
+                    <?php the_content(); ?>
+                </div>
             </div>
         </div>
     </div>
