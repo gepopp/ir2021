@@ -1,4 +1,10 @@
 <?php
+$defaults = [
+  'posts' => 3,
+];
+
+
+
 
 $search = in_category(159) ? get_the_title() : false;
 

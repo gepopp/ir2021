@@ -37,4 +37,3 @@ $post = get_the_ID();
             </div>
         </div>
     </div>
-    <?php get_template_part('page-templates/article', 'readmore') ?>
