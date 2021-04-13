@@ -33,7 +33,6 @@ if ($query->have_posts()):
     while ($query->have_posts()):
         $query->the_post();
 
-        date_default_timezone_set('Europe/Vienna');
         if ((int)date('Gi') > 1601 && date('Ymd') == get_field('field_5ed527e9c2279', get_the_ID(), false) && $runner == 1) {
             $runner++;
             continue;
@@ -247,7 +246,7 @@ endif;
             </div>
             <div class="flex items-center justify-between flex-1 absolute top-0 w-full h-full" style="pointer-events: none">
                 <button class="outline-none focus:outline-none rounded-full mx-4 text-white w-8"
-                        :class="{'cursor-not-allowed' : loading || active <= 0  }"
+                        :class="{'cursor-not-allowed' : loading || active <= pages - 1  }"
                         style="pointer-events: auto"
                         x-on:click="prev($refs);">
                     <div class="relative w-10 h-10 flex items-center justify-center">
@@ -256,7 +255,7 @@ endif;
                             <svg x-show="active > 0 && !loading" class="z-50 w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
                             </svg>
-                            <svg x-show="active <= 0 && !loading" class="z-50 w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <svg x-show="active <= pages - 1 && !loading" class="z-50 w-6 h-6 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                             <svg x-show="loading" class="z-50 w-6 h-6 text-warning inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -287,7 +286,7 @@ endif;
                                 <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                 <path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <svg x-show="active >= pages && !loading" class="w-8 h-8 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <svg x-show="active >= pages - 1 && !loading" class="w-8 h-8 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                             <svg x-show="loading" class="w-8 h-8 text-warning inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -410,7 +409,7 @@ foreach ($cats as $cat):
                 <?php endif; ?>
 
                 <button class="outline-none focus:outline-none rounded-full mx-4 text-white w-8"
-                        :class="{'cursor-not-allowed' : loading || active >= pages }"
+                        :class="{'cursor-not-allowed' : loading || active >= pages - 1 }"
                         style="pointer-events: auto"
                         x-on:click="next($refs);">
                     <div class="relative w-10 h-10 flex items-center justify-center">
@@ -420,7 +419,7 @@ foreach ($cats as $cat):
                                 <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                 <path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <svg x-show="active >= pages && !loading" class="w-8 h-8 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <svg x-show="active >= pages - 1 && !loading" class="w-8 h-8 text-white inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                             <svg x-show="loading" class="w-8 h-8 text-warning inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
