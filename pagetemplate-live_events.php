@@ -80,7 +80,7 @@ if ($query->have_posts()):
                 <p class="w-full lg:w-1/3 hidden md:block"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
                 <div class="font-normal text-right flex-shrink-0">
                     <p><?php
-                        echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'), 'Europe/Vienna')->addHour()->format('d.m.Y H:i');
+                        echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'), 'Europe/Vienna')->format('d.m.Y H:i');
                         ?></p>
                     <p><?php _e('Zoom Webinar', 'ir21') ?></p>
                 </div>
