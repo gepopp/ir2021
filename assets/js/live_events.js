@@ -53,7 +53,6 @@ window.addComment = function (user, post) {
                 content: !this.addAnswer ? this.comment : this.answer,
                 post: this.post,
                 parent: parent,
-                status: 'approved',
             }).then((response) => {
                 console.log('hier');
                 this.comment = '';
