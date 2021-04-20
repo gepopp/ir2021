@@ -86,7 +86,7 @@ $link = base64_encode($link);
 
             <div class="overflow-hidden relative transition-all duration-700">
                 <template x-for="c in comments" x-key="comment.id">
-                    <div class="flex space-x-2 py-3">
+                    <div class="flex space-x-2 py-3 pr-3">
                         <div>
                             <img :src="c.author_avatar_urls[48]" class="rounded-full p-1 border border-white w-10 h-10">
                         </div>
