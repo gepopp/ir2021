@@ -22,6 +22,7 @@ window.addComment = function (user, post) {
         children: [],
         user: user,
         post: post,
+        maxHeight: 'none',
         openAnswer(comment) {
 
             for (var i = 1; i <= comment.child_count; i++) {
@@ -66,6 +67,18 @@ window.addComment = function (user, post) {
             });
         },
         init() {
+
+            var video = document.getElementById('video-holder');
+            if(video !== null){
+                this.maxHeight = video.offsetHeight + 'px';
+            }
+            window.addEventListener('resize', () => {
+                var video = document.getElementById('video-holder');
+                if(video !== null){
+                    this.maxHeight = video.offsetHeight + 'px';
+                }
+            });
+
 
             this.loadComments();
             setInterval(() => {

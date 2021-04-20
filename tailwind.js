@@ -166,5 +166,7 @@ module.exports = {
 		wordBreak: ['responsive'],
 		zIndex: ['responsive'],
 	},
-	plugins: [],
+	plugins: [
+		require('tailwind-scrollbar'),
+	],
 }

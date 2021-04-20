@@ -34,8 +34,8 @@ $link = base64_encode($link);
         $user = wp_get_current_user();
         $image = get_field('field_5ded37c474589', 'user_' . $user->ID);
         ?>
-        <div x-data="addComment(<?php echo $user->ID ?>, <?php the_ID(); ?>)" x-init="init()">
-            <div class="flex space-x-3 items-end pb-5 mb-5">
+        <div x-data="addComment(<?php echo $user->ID ?>, <?php the_ID(); ?>)" x-init="init()" :style="`max-height: ${maxHeight};`" class="overflow-hidden scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+            <div class="flex space-x-3 pb-5 mb-5 pr-5">
                 <?php if (is_user_logged_in()): ?>
                     <?php if ($image): ?>
                         <img src="<?php echo $image['sizes']['author_small'] ?>" class="rounded-full w-16 h-16 p-1 border border-<?php echo $gray ?>">
@@ -46,14 +46,10 @@ $link = base64_encode($link);
                         <textarea
                                 x-model="comment"
                                 type="text"
-                                class="rounded-l shadow-xl bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
+                                class="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 resize-none rounded-l shadow-xl bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
                                 placeholder="Schreiben Sie einen neuen Kommentar ..." @keydown.enter="validate()"></textarea>
                         <p class="text-xs text-aktuelles-100 absolute" x-text="commentError" x-show="commentError"></p>
-                    </div>
-                    <div class="" @click="validate()">
-                        <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                        </svg>
+                        <p class="text-right font-medium text-sm cursor-pointer" @click="validate()">SENDEN</p>
                     </div>
                 <?php else: ?>
                     <div class="w-full">
@@ -86,7 +82,9 @@ $link = base64_encode($link);
                     <p class="text-primary-100 text-xl font-semibold">Schreiben Sie den ersten Kommentar!</p>
                 </div>
             </div>
-            <div class="overflow-hidden relative transition-all max-h-64 duration-700" x-ref="container" x-bind:style="showAll == true ? 'max-height: ' + $refs.container.scrollHeight + 'px' : ''"">
+
+
+            <div class="overflow-hidden relative transition-all duration-700">
                 <template x-for="c in comments" x-key="comment.id">
                     <div class="flex space-x-2 py-3">
                         <div>
@@ -126,42 +124,36 @@ $link = base64_encode($link);
 
 
                                 <?php if (is_user_logged_in()): ?>
-                                    <div class="flex items-end space-x-4">
+                                    <div class="flex items-end space-x-4 pr-5">
                                         <textarea
                                                 x-model="answer"
                                                 type="text"
-                                                class="rounded-l shadow-xl mt-3 bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
+                                                class="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 resize-none rounded-l shadow-xl mt-3 bg-gray-100 w-full  text-gray-800 border-b border-white block w-full py-2 px-2 leading-tight appearance-none focus:outline-none placeholder-gray-500 h-12"
                                                 placeholder="Antworten Sie hier ..." @keydown.enter="validate(c.id)"></textarea>
-                                        <div class="" @click="validate(c.id)">
-                                            <svg class="w-8 h-8 text-<?php echo $gray ?> font-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                            </svg>
-                                        </div>
                                     </div>
                                 <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </template>
-                <div class="bottom-0 left-0 w-full text-center bg-gradient-to-b from-transparent <?php echo get_post_format() == 'video' ? 'via-gray-800 to-gray-800' : 'via-primary-5 to-primary-5' ?> shadow-lg py-10 pointer-events-none"
-                     :class="{'absolute': !showAll}"
-                     x-show="comments.length > 2"
-                >
-                    <div class="flex flex-col justify-center items-center cursor-pointer" @click="showAll = true" x-show="!showAll" x-cloak>
-                        <p class="inline-block text-primary-100 font-medium pointer-events-auto">alle anzeigen</p>
-                        <svg class="w-4 h-4 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div class="flex flex-col justify-center items-center cursor-pointer pointer-events-auto" @click="showAll = false" x-show="showAll" x-cloak>
-                        <svg class="w-4 h-4 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path>
-                        </svg>
-                        <p class="cursor-pointer inline-block text-primary-100 font-medium">weniger anzeigen</p>
-                    </div>
-                </div>
+<!--                <div class="bottom-0 left-0 w-full text-center bg-gradient-to-b from-transparent --><?php //echo get_post_format() == 'video' ? 'via-gray-800 to-gray-800' : 'via-primary-5 to-primary-5' ?><!-- shadow-lg py-10 pointer-events-none"-->
+<!--                     :class="{'absolute': !showAll}"-->
+<!--                     x-show="comments.length > 2"-->
+<!--                >-->
+<!--                    <div class="flex flex-col justify-center items-center cursor-pointer" @click="showAll = true" x-show="!showAll" x-cloak>-->
+<!--                        <p class="inline-block text-primary-100 font-medium pointer-events-auto">alle anzeigen</p>-->
+<!--                        <svg class="w-4 h-4 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path>-->
+<!--                        </svg>-->
+<!--                    </div>-->
+<!--                    <div class="flex flex-col justify-center items-center cursor-pointer pointer-events-auto" @click="showAll = false" x-show="showAll" x-cloak>-->
+<!--                        <svg class="w-4 h-4 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path>-->
+<!--                        </svg>-->
+<!--                        <p class="cursor-pointer inline-block text-primary-100 font-medium">weniger anzeigen</p>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
-
 </div>
