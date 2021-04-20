@@ -34286,6 +34286,13 @@ html{
   scroll-behavior: smooth;
 }
 
+.comment p{
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  line-height: 1;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

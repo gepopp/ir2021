@@ -92,7 +92,7 @@ window.addComment = function (user, post) {
                 .then(() => this.isLoading = false);
         },
         formatDate(date) {
-            return new moment(date).format('DD.MM.YY HH:MM');
+            return new moment(date).locale('de').fromNow();
         }
     }
 }

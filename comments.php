@@ -91,9 +91,9 @@ $link = base64_encode($link);
                             <img :src="c.author_avatar_urls[48]" class="rounded-full p-1 border border-white w-10 h-10">
                         </div>
                         <div class="flex-1">
-                            <p><span class="text-xs font-medium text-<?php echo $gray ?>" x-text="c.author_name"></span> - <span x-text="formatDate(c.date)" class="text-xs m-0 text-<?php echo $gray ?>"></span></p>
+                            <p><span class="text-xs font-medium text-<?php echo $gray ?> text-opacity-60" x-text="c.author_name"></span> - <span x-text="formatDate(c.date)" class="text-opacity-60 text-xs m-0 text-<?php echo $gray ?>"></span></p>
                             <div class="text-<?php echo $gray ?> text-lg comment" x-html="c.content.rendered"></div>
-                            <p class="text-<?php echo $gray ?> uppercase font-medium text-xs cursor-pointer m-0" @click="openAnswer(c)" x-show="c.id != addAnswer">
+                            <p class="text-<?php echo $gray ?> uppercase font-medium text-xs cursor-pointer m-0 text-opacity-60 hover:text-opacity-100 transition duration-150 ease-in-out" @click="openAnswer(c)" x-show="c.id != addAnswer">
                                 <span x-text="c.child_count + ' - '" x-show="c.child_count > 0" class="text-<?php echo $gray ?>"></span>Antworten
                             </p>
 
