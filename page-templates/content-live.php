@@ -31,7 +31,6 @@ $cat = array_shift($cat);
             </div>
             <div class="lg:col-span-2">
                 <div class="text-aktuelles-100">
-                    Was kommt hier hin? <br> Zur Person? <br> Anmeldeformular für das nächste Immolive?
                 </div>
             </div>
             <div class="content block lg:hidden" id="article-content">
