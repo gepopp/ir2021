@@ -143,7 +143,7 @@ if ($query->have_posts()):
                 <?php endif; ?>
 
                 <?php if (count($speakers) > 2): ?>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-<?php echo min(4, count($speakers)) ?> gap-10">
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-<?php echo min(4, count($speakers)) ?> gap-10">
                         <?php
                         while ($speaker = array_shift($speakers)) {
                             speakerVertical($speaker);

@@ -29,9 +29,89 @@ $cat = array_shift($cat);
                     <?php the_content(); ?>
                 </div>
             </div>
-            <div class="lg:col-span-2">
-                <div class="text-aktuelles-100">
-                </div>
+            <div class="lg:col-span-2 border-15 border-white bg-primary-100 px-5">
+
+                <?php
+                $query = new WP_Query([
+                    'post_type'      => 'immolive',
+                    'post_status'    => 'publish',
+                    'posts_per_page' => 2,
+                    'meta_query'     => [
+                        'relation' => 'AND',
+                        [
+                            'key'     => 'il_datum',
+                            'value'   => date('Ymd'),
+                            'compare' => '>=',
+                        ],
+                    ],
+                    'order'          => 'ASC',
+                    'meta_key'       => 'il_datum',
+                    'orderby'        => 'meta_value_num',
+                ]);
+                $count = $query->post_count;
+
+                $runner = 1;
+
+                if ($query->have_posts()):
+                    while ($query->have_posts()):
+                        $query->the_post();
+                        if ((int)date('Gi') > 1601 && date('Ymd') == get_field('field_5ed527e9c2279', get_the_ID(), false) && $runner == 1) {
+                            $runner++;
+                            continue;
+                        }
+                        get_template_part('page-templates/snippet', 'event');
+                        ?>
+                        <div class="flex justify-end md:justify-between w-full py-5 text-xl text-white font-light leading-none">
+                            <p class="w-full lg:w-1/3 hidden md:block"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
+                            <div class="font-normal text-right flex-shrink-0">
+                                <p><?php
+                                    echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'), 'Europe/Vienna')->format('d.m.Y H:i');
+                                    ?></p>
+                                <p><?php _e('Zoom Webinar', 'ir21') ?></p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <h1 class="text-3xl text-white text-center font-extrabold max-w-full overflow-hidden leading-normal break-words"><?php the_title() ?></h1>
+                            <div class="text-white mb-10 text-center"><?php the_content(); ?></div>
+                        </div>
+                        <div class="flex justify-center">
+                            <div>
+                                <a class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl font-medium cursor-pointer" href="<?php the_field('field_601e5f56775db', 'option'); ?>">
+                                    <?php _e('Zur Anmeldung', 'ir21') ?>
+                                </a>
+                            </div>
+                        </div>
+                        <?php
+                        $speakers = get_field('field_6007f8b5a20f0');
+
+                        if ($speakers): ?>
+                            <?php if (count($speakers) == 1): ?>
+                                <?php speakerHorizontal(array_shift($speakers)); ?>
+                            <?php endif; ?>
+
+                            <?php if (count($speakers) == 2): ?>
+                                <div class="grid grid-cols-2 gap-5">
+                                    <div>
+                                        <?php speakerHorizontal(array_shift($speakers)); ?>
+                                    </div>
+                                    <div>
+                                        <?php speakerHorizontal(array_shift($speakers)); ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (count($speakers) > 2): ?>
+                                <div class="grid grid-cols-2 gap-5">
+                                    <?php
+                                    while ($speaker = array_shift($speakers)) {
+                                        speakerVertical($speaker);
+                                    }
+                                    ?>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php break; endwhile; ?>
+                <?php endif; ?>
             </div>
             <div class="content block lg:hidden" id="article-content">
                 <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
