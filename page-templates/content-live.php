@@ -76,7 +76,7 @@ $cat = array_shift($cat);
                         </div>
                         <div class="flex justify-center">
                             <div>
-                                <a class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl font-medium cursor-pointer" href="<?php the_field('field_601e5f56775db', 'option'); ?>">
+                                <a class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-lg lg:text-xl font-medium cursor-pointer" href="<?php the_field('field_601e5f56775db', 'option'); ?>">
                                     <?php _e('Zur Anmeldung', 'ir21') ?>
                                 </a>
                             </div>
@@ -90,7 +90,7 @@ $cat = array_shift($cat);
                             <?php endif; ?>
 
                             <?php if (count($speakers) == 2): ?>
-                                <div class="grid grid-cols-2 gap-5">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                                     <div>
                                         <?php speakerHorizontal(array_shift($speakers)); ?>
                                     </div>
@@ -101,7 +101,7 @@ $cat = array_shift($cat);
                             <?php endif; ?>
 
                             <?php if (count($speakers) > 2): ?>
-                                <div class="grid grid-cols-2 gap-5">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                                     <?php
                                     while ($speaker = array_shift($speakers)) {
                                         speakerVertical($speaker);
