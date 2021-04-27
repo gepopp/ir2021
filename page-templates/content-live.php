@@ -17,19 +17,21 @@ $cat = array_shift($cat);
 
     <div class="container mx-auto mt-10">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
-            <div class="content hidden lg:block col-span-3" id="article-content">
-                <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
+            <div class="content col-span-5 lg:col-span-3" id="article-content">
+                <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900 mb-5">
                     <?php the_title() ?>
                 </h1>
-                <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
+                <div class="hidden sm:block">
+	                <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
+                </div>
                 <div>
-                    <div class="h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
+                    <div class="max-w-1/3 h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
                         <?php echo $cat->name ?>
                     </div>
                     <?php the_content(); ?>
                 </div>
             </div>
-            <div class="lg:col-span-2 border-15 border-white bg-primary-100 px-5">
+            <div class="col-span-5 lg:col-span-2 border-15 border-white bg-primary-100 px-5">
 
                 <?php
                 $query = new WP_Query([
@@ -112,18 +114,6 @@ $cat = array_shift($cat);
                         <?php endif; ?>
                         <?php break; endwhile; ?>
                 <?php endif; ?>
-            </div>
-            <div class="content block lg:hidden" id="article-content">
-                <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
-                    <?php the_title() ?>
-                </h1>
-                <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
-                <div>
-                    <div class="h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
-                        <?php echo $cat->name ?>
-                    </div>
-                    <?php the_content(); ?>
-                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="container mx-auto mt-48">
     <div class="hidden lg:block"></div>
-    <div class="col-span-5 lg:col-span-3">
+    <div class="col-span-5 lg:col-span-3 -mx-5">
         <?php get_template_part('banner-templates/banner', 'mega') ?>
     </div>
 </div>

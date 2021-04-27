@@ -6,9 +6,9 @@ function speakerVertical($speaker)
         <div class="relative h-auto">
             <img src="<?php echo $speaker['bild']['sizes']['article-portrait'] ?>" class="w-full h-auto border-8 border-white" alt="<?php echo $speaker['name'] ?>"/>
             <?php if ($speaker['unternehmenswebseite'] != '' && $speaker['logo']['sizes']['xs'] != ''): ?>
-                <div class="absolute top-0 right-0 w-24 h-24 -mt-6 lg:-mr-6 bg-white rounded-full p-3">
+                <div class="absolute top-0 right-0 lg:w-24 lg:h-24 w-12 h-12 -mt-6 lg:-mr-6 bg-white rounded-full p-3">
                     <a href="<?php echo $speaker['unternehmenswebseite'] ?>" target="_blank">
-                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto p-2" alt="<?php echo $speaker['name'] ?>"/>
+                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto lg:p-2" alt="<?php echo $speaker['name'] ?>"/>
                     </a>
                 </div>
             <?php endif; ?>
@@ -31,9 +31,9 @@ function speakerHorizontal($speaker)
         <div class="relative h-auto">
             <img src="<?php echo $speaker['bild']['sizes']['article'] ?>" class="w-full h-auto border-8 border-white" alt="<?php echo $speaker['name'] ?>"/>
             <?php if ($speaker['unternehmenswebseite'] != '' && $speaker['logo']['sizes']['xs'] != ''): ?>
-                <div class="absolute bottom-0 right-0 w-24 h-24 -mb-12 lg:-mr-12 bg-white rounded-full p-3">
+                <div class="absolute bottom-0 right-0 lg:w-24 lg:h-24 w-12 h-12 -mb-12 lg:-mr-12 bg-white rounded-full p-3">
                     <a href="<?php echo $speaker['unternehmenswebseite'] ?>" target="_blank">
-                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto p-2" alt="<?php echo $speaker['name'] ?>"/>
+                        <img src="<?php echo $speaker['logo']['sizes']['xs'] ?>" class="w-full h-auto lg:p-2" alt="<?php echo $speaker['name'] ?>"/>
                     </a>
                 </div>
             <?php endif; ?>
