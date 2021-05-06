@@ -92,7 +92,7 @@ $socialite = new SocialiteManager( $config );
 
 		$permissions = [ 'email' ]; // Optional permissions
         if(isset($_GET['rediredt'])){
-            $url = trailingslashit(add_query_arg('redirect', $_GET['redirect'], home_url( 'fb-login' )));
+            $url = trailingslashit(add_query_arg('state', $_GET['redirect'], home_url( 'fb-login' )));
         }else{
             $url = trailingslashit(home_url( 'fb-login' ));
         }
