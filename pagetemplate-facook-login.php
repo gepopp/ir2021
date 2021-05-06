@@ -3,6 +3,8 @@
  * Template Name: Facebook login
  */
 
+session_start();
+
 $fb = new Facebook\Facebook([
 	'app_id'                => '831950683917414',
 	'app_secret'            => 'd6d52d59ce1f1efdbf997b980dffe229',
@@ -10,10 +12,10 @@ $fb = new Facebook\Facebook([
 ]);
 
 $helper = $fb->getRedirectLoginHelper();
-//
-//if (isset($_GET['state'])) {
-//	$helper->getPersistentDataHandler()->set('state', $_GET['state']);
-//}
+
+if (isset($_GET['state'])) {
+	$helper->getPersistentDataHandler()->set('state', $_GET['state']);
+}
 
 try {
 	$accessToken = $helper->getAccessToken();
