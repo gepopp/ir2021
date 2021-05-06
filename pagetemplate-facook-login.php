@@ -3,6 +3,8 @@
  * Template Name: Facebook login
  */
 
+session_start();
+
 $fb = new Facebook\Facebook([
 	'app_id'                => '831950683917414',
 	'app_secret'            => 'd6d52d59ce1f1efdbf997b980dffe229',
@@ -75,22 +77,22 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 //header('Location: https://example.com/members.php');
 
 
-wp_clear_auth_cookie();
-wp_set_current_user($user->ID);
-wp_set_auth_cookie($user->ID);
-
-
-if(!empty($_GET['state'])){
-
-    $decoded = base64_decode($_GET['state']);
-    if(!$decoded){
-        $decoded = sanitize_text_field($_GET['state']);
-    }
-
-    wp_redirect(urldecode_deep($decoded));
-    exit();
-}
-
-wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
-exit();
+//wp_clear_auth_cookie();
+//wp_set_current_user($user->ID);
+//wp_set_auth_cookie($user->ID);
+//
+//
+//if(!empty($_GET['state'])){
+//
+//    $decoded = base64_decode($_GET['state']);
+//    if(!$decoded){
+//        $decoded = sanitize_text_field($_GET['state']);
+//    }
+//
+//    wp_redirect(urldecode_deep($decoded));
+//    exit();
+//}
+//
+//wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
+//exit();
 
