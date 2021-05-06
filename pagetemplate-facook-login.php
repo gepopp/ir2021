@@ -5,8 +5,6 @@
 
 session_start();
 
-echo var_dump(base64_decode($_GET['state']));
-wp_die(var_dump($_GET));
 
 $fb = new Facebook\Facebook([
 	'app_id'                => '831950683917414',
