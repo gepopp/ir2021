@@ -91,7 +91,7 @@ $socialite = new SocialiteManager( $config );
 		$helper = $fb->getRedirectLoginHelper();
 
 		$permissions = [ 'email' ]; // Optional permissions
-		$loginUrl    = $helper->getLoginUrl( home_url( 'fb-login' ), $permissions );
+		$loginUrl    = $helper->getLoginUrl( trailingslashit(home_url( 'fb-login' )), $permissions );
 		?>
 
         <a href="<?php echo $loginUrl ?>"
