@@ -44,19 +44,11 @@ if ( ! isset( $accessToken ) ) {
 	exit;
 }
 
-// Logged in
-echo '<h3>Access Token</h3>';
-var_dump( $accessToken->getValue() );
-
-// The OAuth 2.0 client handler helps us manage access tokens
 $oAuth2Client = $fb->getOAuth2Client();
 
 // Get the access token metadata from /debug_token
 $tokenMetadata = $oAuth2Client->debugToken( $accessToken );
-echo '<h3>Metadata</h3>';
-var_dump( $tokenMetadata );
 
-// Validation (these will throw FacebookSDKException's when they fail)
 $tokenMetadata->validateAppId( '831950683917414' );
 // If you know the user ID this access token belongs to, you can validate it here
 //$tokenMetadata->validateUserId('123');
@@ -70,9 +62,6 @@ if ( ! $accessToken->isLongLived() ) {
 		echo "<p>Error getting long-lived access token: " . $e->getMessage() . "</p>\n\n";
 		exit;
 	}
-
-	echo '<h3>Long-lived</h3>';
-	var_dump( $accessToken->getValue() );
 }
 
 try {
@@ -87,9 +76,7 @@ try {
 }
 
 $fbuser = $response->getGraphUser();
-
 $user = get_user_by( 'email', $fbuser['email'] );
-
 if ( ! $user ) {
 
 	$wp_user = wp_create_user( $fbuser['name'] . ' ' . uniqid(), uniqid(), $fbuser['email'] );
@@ -103,7 +90,6 @@ if ( ! $user ) {
 
 	$user = get_user_by( 'ID', $wp_user );
 
-
 }
 
 wp_clear_auth_cookie();
@@ -115,7 +101,7 @@ if ( ! empty( $_GET['state'] ) ) {
 
 	$decoded = base64_decode( $_GET['state'] );
 
-	wp_die(var_dump($decoded));
+	wp_die(var_dump(basename( untrailingslashit( $decoded))));
 
 	if ( get_page_by_path( basename( untrailingslashit( $decoded ) ), OBJECT ))
 	{
