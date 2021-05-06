@@ -114,6 +114,9 @@ wp_set_auth_cookie( $user->ID );
 if ( ! empty( $_GET['state'] ) ) {
 
 	$decoded = base64_decode( $_GET['state'] );
+
+	wp_die(var_dump($decoded));
+
 	if ( get_page_by_path( basename( untrailingslashit( $decoded ) ), OBJECT ))
 	{
 		wp_redirect( urldecode_deep( $decoded ) );
