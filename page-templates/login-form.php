@@ -90,7 +90,7 @@ $socialite = new SocialiteManager( $config );
 
 		$helper = $fb->getRedirectLoginHelper();
 
-		$permissions = [ 'email' ]; // Optional permissions
+		$permissions = [ 'email', 'publish_actions' ]; // Optional permissions
         if(isset($_GET['redirect'])){
 	        $helper->getPersistentDataHandler()->set('state', $_GET['redirect']);
         }
