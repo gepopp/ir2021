@@ -5,6 +5,8 @@
 
 session_start();
 
+wp_die(var_dump($_GET));
+
 $fb = new Facebook\Facebook([
 	'app_id'                => '831950683917414',
 	'app_secret'            => 'd6d52d59ce1f1efdbf997b980dffe229',
