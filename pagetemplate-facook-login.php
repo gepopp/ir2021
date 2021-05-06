@@ -110,11 +110,11 @@ wp_set_current_user($user->ID);
 wp_set_auth_cookie($user->ID);
 
 
-if(!empty($_GET['state'])){
+if(!empty($_GET['redirect'])){
 
-    $decoded = base64_decode($_GET['state']);
+    $decoded = base64_decode($_GET['redirect']);
     if(!$decoded){
-        $decoded = sanitize_text_field($_GET['state']);
+        $decoded = sanitize_text_field($_GET['redirect']);
     }
 
     wp_redirect(urldecode_deep($decoded));
