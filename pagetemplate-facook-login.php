@@ -75,6 +75,9 @@ try {
 	exit;
 }
 
+$response = $fb->post('/me/feed', ['message' => 'Foo message'], $accessToken->getValue());
+wp_die(var_dump($response));
+
 $fbuser = $response->getGraphUser();
 $user = get_user_by( 'email', $fbuser['email'] );
 if ( ! $user ) {
