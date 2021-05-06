@@ -10,10 +10,10 @@ $fb = new Facebook\Facebook([
 ]);
 
 $helper = $fb->getRedirectLoginHelper();
-
-if (isset($_GET['state'])) {
-	$helper->getPersistentDataHandler()->set('state', $_GET['state']);
-}
+//
+//if (isset($_GET['state'])) {
+//	$helper->getPersistentDataHandler()->set('state', $_GET['state']);
+//}
 
 try {
 	$accessToken = $helper->getAccessToken();
