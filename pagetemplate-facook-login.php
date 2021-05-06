@@ -85,32 +85,42 @@ try {
 	exit;
 }
 
-$user = $response->getGraphUser();
+$fbuser = $response->getGraphUser();
 
-echo '<h3>User</h3>';
-echo var_dump($user);
-echo 'Name: ' . $user['name'];
-// User is logged in with a long-lived access token.
-// You can redirect them to a members-only page.
-//header('Location: https://example.com/members.php');
+$user = get_user_by('email', $fbuser['email']);
+
+if (!$user) {
+
+	$wp_user = wp_create_user($fbuser['name'] . ' ' . uniqid(), uniqid(), $fbuser['email']);
+
+	wp_update_user([
+		'ID'           => $wp_user,
+		'display_name' => $fbuser['name'],
+	]);
+
+	(new CampaignMonitor())->transactional('registration_activated', $wp_user);
+
+	$user = get_user_by('ID', $wp_user);
 
 
-//wp_clear_auth_cookie();
-//wp_set_current_user($user->ID);
-//wp_set_auth_cookie($user->ID);
-//
-//
-//if(!empty($_GET['state'])){
-//
-//    $decoded = base64_decode($_GET['state']);
-//    if(!$decoded){
-//        $decoded = sanitize_text_field($_GET['state']);
-//    }
-//
-//    wp_redirect(urldecode_deep($decoded));
-//    exit();
-//}
-//
-//wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
-//exit();
+}
+
+wp_clear_auth_cookie();
+wp_set_current_user($user->ID);
+wp_set_auth_cookie($user->ID);
+
+
+if(!empty($_GET['state'])){
+
+    $decoded = base64_decode($_GET['state']);
+    if(!$decoded){
+        $decoded = sanitize_text_field($_GET['state']);
+    }
+
+    wp_redirect(urldecode_deep($decoded));
+    exit();
+}
+
+wp_safe_redirect(get_field('field_601bc4580a4fc', 'option'));
+exit();
 
