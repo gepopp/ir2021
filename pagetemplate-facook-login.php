@@ -101,9 +101,7 @@ if ( ! empty( $_GET['state'] ) ) {
 
 	$decoded = base64_decode( $_GET['state'] );
 
-	wp_die(var_dump(basename( untrailingslashit( $decoded))));
-
-	if ( get_page_by_path( basename( untrailingslashit( $decoded ) ), OBJECT ))
+	if ( str_contains($decoded, 'http'))
 	{
 		wp_redirect( urldecode_deep( $decoded ) );
 		exit();
