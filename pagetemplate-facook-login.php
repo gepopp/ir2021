@@ -75,23 +75,6 @@ try {
 	exit;
 }
 
-try {
-	// message must come from the user-end
-	$data = ['message' => 'testing...'];
-	$request = $fb->post('/me/feed', $data);
-	$response = $request->getGraphEdge()->asArray;
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
-	// When Graph returns an error
-	echo 'Graph returned an error: ' . $e->getMessage();
-	exit;
-} catch(Facebook\Exceptions\FacebookSDKException $e) {
-	// When validation fails or other local issues
-	echo 'Facebook SDK returned an error: ' . $e->getMessage();
-	exit;
-}
-
-echo $response['id'];
-
 $fbuser = $response->getGraphUser();
 $user = get_user_by( 'email', $fbuser['email'] );
 if ( ! $user ) {
