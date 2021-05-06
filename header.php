@@ -66,6 +66,7 @@ global $FormSession;
 
         gtag('config', 'G-DX5BK23RTW');
     </script>
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/114395846.js"></script>
 </head>
 
 <?php
