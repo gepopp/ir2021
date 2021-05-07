@@ -85,10 +85,8 @@ if ( ! $user ) {
 		'ID'           => $wp_user,
 		'display_name' => $fbuser['name'],
 	] );
-
-	( new \immobilien_redaktion_2020\CampaignMonitor() )->transactional( 'registration_activated', $wp_user );
-
 	$user = get_user_by( 'ID', $wp_user );
+	( new \immobilien_redaktion_2020\CampaignMonitor() )->transactional( 'registration_activated', $user );
 
 }
 
