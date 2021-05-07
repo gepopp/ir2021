@@ -23,13 +23,16 @@ ob_start();
 ?>
 <pre>
 	<code>
-		<?php echo print_r($user->getRaw()['firstName']['localized']['de_DE']) ?>
+		<?php echo print_r($user) ?>
 	</code>
 </pre>
 
 <?php
 
 wp_die(ob_get_clean());
+
+$firstname = $user->getRaw()['firstName']['localized']['de_DE'];
+$lastname = $user->getRaw()['lastName']['localized']['de_DE'];
 
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
