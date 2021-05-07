@@ -30,13 +30,12 @@ $user = $socialite->create('linkedin')->userFromCode($code);
 <?php
 //
 //wp_die(ob_get_clean());
-
-$firstname = $user->getRaw()['firstName']['localized']['de_DE'];
-$lastname = $user->getRaw()['lastName']['localized']['de_DE'];
+//
+//$firstname = $user->getRaw()['firstName']['localized']['de_DE'];
+//$lastname = $user->getRaw()['lastName']['localized']['de_DE'];
 
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
-
-wp_die(var_dump($email));
+$name = $user->getName();
 
 $name = explode(' ', $name);
 $firstname = '';
