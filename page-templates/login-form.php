@@ -80,7 +80,7 @@ $socialite = new SocialiteManager( $config );
 <div class="bg-white">
     <hr class="my-4">
     <div class="my-5 w-full">
-        <?php get_template_part('page-templates/loginutton', 'facebook') ?>
+        <?php get_template_part('page-templates/loginbutton', 'facebook') ?>
     </div>
     <div class="my-5 w-full">
         <a href="<?php echo $socialite->create( 'google' )->redirect(); ?>"
