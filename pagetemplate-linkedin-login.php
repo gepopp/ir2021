@@ -18,22 +18,6 @@ $socialite = new SocialiteManager($config);
 
 $code = $_GET['code'];
 $user = $socialite->create('linkedin')->userFromCode($code);
-
-//ob_start();
-//?>
-<!--<pre>-->
-<!--	<code>-->
-<!--		--><?php //echo print_r($user) ?>
-<!--	</code>-->
-<!--</pre>-->
-<!---->
-<?php
-//
-//wp_die(ob_get_clean());
-//
-//$firstname = $user->getRaw()['firstName']['localized']['de_DE'];
-//$lastname = $user->getRaw()['lastName']['localized']['de_DE'];
-
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
 $name = $user->getName();
 
