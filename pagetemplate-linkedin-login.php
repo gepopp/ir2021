@@ -19,7 +19,16 @@ $socialite = new SocialiteManager($config);
 $code = $_GET['code'];
 $user = $socialite->create('linkedin')->userFromCode($code);
 
-wp_die(var_dump($user));
+ob_start();
+?>
+<pre>
+	<code>
+		<?php echo print_r($user) ?>
+	</code>
+</pre>
+<?php
+
+wp_die(ob_get_clean());
 
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
