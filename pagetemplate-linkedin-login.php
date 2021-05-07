@@ -23,7 +23,7 @@ ob_start();
 ?>
 <pre>
 	<code>
-		<?php echo print_r($user->getRaw()) ?>
+		<?php echo print_r($user->getRaw()['firstName']['localized']['de_DE']) ?>
 	</code>
 </pre>
 
