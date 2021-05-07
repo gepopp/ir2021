@@ -6,18 +6,7 @@
 use Overtrue\Socialite\SocialiteManager;
 use immobilien_redaktion_2020\CampaignMonitor;
 
-
 $config = [
-    'facebook' => [
-        'client_id'     => '831950683917414',
-        'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-        'redirect'      => home_url('fb-login'),
-    ],
-    'google' => [
-        'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
-        'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
-        'redirect'      => trailingslashit(home_url('g-oauth')) . '?h=something',
-    ],
     'linkedin'   => [
         'client_id'     => '78q1kul4q95hsh',
         'client_secret' => 'mO7jlH6rG9bahUrX',
@@ -26,8 +15,6 @@ $config = [
 ];
 
 $socialite = new SocialiteManager($config);
-
-
 
 $code = $_GET['code'];
 
@@ -60,6 +47,7 @@ if (!$user) {
 
 }
 
+wp_die(var_dump($user));
 
 wp_clear_auth_cookie();
 wp_set_current_user($user->ID);
