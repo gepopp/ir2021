@@ -17,8 +17,9 @@ $config = [
 $socialite = new SocialiteManager($config);
 
 $code = $_GET['code'];
-
 $user = $socialite->create('linkedin')->userFromCode($code);
+
+wp_die(var_dump($user));
 
 $name = $user->getName();      // "安正超"
 $email = $user->getEmail();     // "anzhengchao@gmail.com"
@@ -47,7 +48,7 @@ if (!$user) {
 
 }
 
-wp_die(var_dump($user));
+
 
 wp_clear_auth_cookie();
 wp_set_current_user($user->ID);
