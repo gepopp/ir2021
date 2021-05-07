@@ -23,9 +23,10 @@ ob_start();
 ?>
 <pre>
 	<code>
-		<?php echo print_r($user) ?>
+		<?php echo print_r($user->getRaw()) ?>
 	</code>
 </pre>
+
 <?php
 
 wp_die(ob_get_clean());
