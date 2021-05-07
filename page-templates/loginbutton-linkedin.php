@@ -12,6 +12,12 @@ $config = [
 // O_JXIOXqatwxOMYq45ggJ1tj
 
 $socialite = new SocialiteManager( $config );
+
+
+$link = $socialite->create( 'linkedin' )->redirect();
+if(isset($_GET['redirect'])) {
+	$link = $socialite->create( 'linkedin' )->withState( $_GET['redirect'] )->redirect();
+}
 ?>
 
 <a href="<?php echo $socialite->create( 'linkedin' )->withState( urlencode( $_GET['redirect'] ?? '' ) )->redirect(); ?>"
