@@ -45,10 +45,8 @@ if ( ! isset( $accessToken ) ) {
 }
 
 $oAuth2Client = $fb->getOAuth2Client();
-
 // Get the access token metadata from /debug_token
 $tokenMetadata = $oAuth2Client->debugToken( $accessToken );
-
 $tokenMetadata->validateAppId( '831950683917414' );
 // If you know the user ID this access token belongs to, you can validate it here
 //$tokenMetadata->validateUserId('123');
