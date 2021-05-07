@@ -8,8 +8,13 @@ $config = [
 	],
 ];
 $socialite = new SocialiteManager( $config );
+
+$link = $socialite->create( 'google' )->redirect();
+if(isset($_GET['redirect'])){
+	$link = $socialite->create( 'google' )->withState($_GET['redirect'])->redirect();
+}
 ?>
-<a href="<?php echo $socialite->create( 'google' )->redirect(); ?>"
+<a href="<?php echo $link ?>"
    class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
 >
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
