@@ -87,6 +87,9 @@ abstract class Base implements ProviderInterface
     public function userFromCode(string $code): User
     {
         $tokenResponse = $this->tokenFromCode($code);
+
+        wp_die(var_dump($tokenResponse));
+
         $user = $this->userFromToken($tokenResponse[$this->accessTokenKey]);
 
         return $user->setRefreshToken($tokenResponse[$this->refreshTokenKey] ?? null)

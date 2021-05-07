@@ -19,7 +19,7 @@ $config = [
 $socialite = new SocialiteManager($config);
 $code = $_GET['code'];
 
-$user = $socialite->create('google'); //->userFromCode($code);
+$user = $socialite->create('google')->userFromCode($code);
 
 wp_die(var_dump($user));
 
