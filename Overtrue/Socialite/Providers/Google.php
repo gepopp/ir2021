@@ -61,8 +61,7 @@ class Google extends Base
      */
     protected function getUserByToken(string $token, ?array $query = []): array
     {
-        $url = 'https://www.googleapis.com/userinfo/v2/me' . '&state=' . $this->state;
-//            implode(',', $this->fields);
+        $url = 'https://www.googleapis.com/userinfo/v2/me';
 
         $response = $this->getHttpClient()->get($url, [
             'headers' => [

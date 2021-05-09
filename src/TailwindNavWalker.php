@@ -24,7 +24,7 @@ class TailwindNavWalker extends \Walker_Nav_Menu
         $type = $item->type;
         $title = $item->title;
         $description = $item->description;
-        $permalink = $item->url;
+        $permalink = $item->url ?? '';
 
         if ($depth == 0) {
             $class = 'text-white uppercase';
@@ -34,7 +34,7 @@ class TailwindNavWalker extends \Walker_Nav_Menu
 
 
         $output .= '<li class=""';
-        if ($args->walker->has_children) {
+        if ($args->walker->has_children ?? false) {
             $output .= ' @mouseenter="open = ' . $item->ID . '"';
         }
         $output .= '>';
