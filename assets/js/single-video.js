@@ -19,7 +19,6 @@ window.prerolled = function (main_id, preroll, skip) {
                 autoplay: false
             };
             this.mainPlayer = new Vimeo('mainplayer', main);
-            this.mainPlayer.on('playing', () => this.isPlaying = true);
             this.mainPlayer.on('loaded', () => this.isLoaded = true);
 
             this.mainPlayer.on('loaded', (e) => {
@@ -40,6 +39,7 @@ window.prerolled = function (main_id, preroll, skip) {
                     }else{
                         this.isPreroll = false;
                         this.isPlaying = true;
+                        this.mainPlayer.on('playing', () => this.isPlaying = true);
                     }
                 });
             });
