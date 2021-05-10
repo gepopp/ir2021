@@ -17,7 +17,7 @@ if (  $prerolls ) {
 
         <img src="<?php the_post_thumbnail_url('featured'); ?>" x-show="!isLoaded" class="w-full h-auto">
 
-        <a :href="preroll.link" target="_blank" class="absolute w-full h-full" @click="playMain(false)"></a>
+        <a :href="preroll.link" target="_blank" class="absolute w-full h-full z-40" @click="playMain(false)" x-show="isPreroll"></a>
         <div id="prerollplayer" class="w-full h-auto" x-show="isPreroll"></div>
         <div id="mainplayer" class="w-full h-auto" x-show="!isPreroll"></div>
         <div @click="playMain()" x-show="countdown <= 0 && isPreroll" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer z-50">
@@ -27,7 +27,7 @@ if (  $prerolls ) {
             <span x-text="countdown"></span> <?php _e( 'Sekunden', 'ir21' ) ?>
         </div>
 
-        <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center" x-show="!isPlaying">
+        <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-50 cursor-pointer" x-show="!isPlaying">
             <div @click="play()">
                 <div class="w-12 h-12 animate-ping bg-white rounded-full">
                     <svg class="w-12 h-12 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
