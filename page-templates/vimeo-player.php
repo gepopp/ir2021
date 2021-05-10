@@ -1,6 +1,6 @@
 <?php
 $prerolls = get_field( 'field_6097ef63e4e76', 'option' );
-if ( count( $prerolls ) ) {
+if (  $prerolls ) {
 	shuffle( $prerolls );
 	$preroll = array_shift( $prerolls );
 } else {
