@@ -11,26 +11,14 @@
     <div class="hidden lg:block"></div>
     <div class="col-span-5 lg:col-span-3  py-5">
         <div class="grid grid-cols-4 gap-5" x-data="{ maxHeight: '' }" x-init="
-
-             maxHeight = $refs.videoContainer.offsetHeight;
-             window.addEventListener('resize', () => {
-                maxHeight = $refs.videoContainer.offsetHeight;
-            });
-
-            ">
-            <div class="relative col-span-4 lg:col-span-3" x-ref="videoContainer">
-                <div id="video-holder">
-                    <?php if (!empty($iframe)): ?>
-                        <?php echo $iframe ?>
-                    <?php else: ?>
-                        <?php the_post_thumbnail('custom-thumbnail', ['class' => 'mt-5 w-full h-auto']); ?>
-                        <?php if (get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID()))): ?>
-                            <p class="absolute bottom-0 right-0 transform rotate-90 text-white mr-2" style=" transform-origin: right;">&copy <?php echo get_field('field_5c6cfbd7106c1', get_post_thumbnail_id(get_the_ID())) ?></p>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </div>
+             maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
+             new ResizeObserver(() => {
+                maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
+             }).observe(document.getElementById('videoContainer')); ">
+            <div class="relative col-span-4 lg:col-span-3" id="videoContainer">
+                <?php get_template_part('page-templates/vimeo', 'player') ?>
             </div>
-            <div class="col-span-4 lg:col-span-1 overflow-hidden scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+            <div class="col-span-4 lg:col-span-1 overflow-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
                  :style="`max-height: ${maxHeight};`">
                 <?php
                 if (comments_open() || get_comments_number()) :

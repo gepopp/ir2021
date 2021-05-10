@@ -122,6 +122,18 @@
                 "operator": "==",
                 "value": "video"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            },
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:immofruehstueck"
+            }
         ]
     ],
     "menu_order": 0,
@@ -132,5 +144,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1608975765
+    "modified": 1620631615
 }

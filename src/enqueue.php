@@ -67,7 +67,7 @@ add_action('wp_enqueue_scripts', function () {
             true
         );
 
-        if (get_post_format() == 'video') {
+       if (!is_page()) {
             wp_enqueue_script(
                 'immobilien_redaktion_2020_js_single_video',
                 immobilien_redaktion_2020_URL . "/dist/singlevideo{$min_ext}.js",

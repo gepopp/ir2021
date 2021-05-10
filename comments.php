@@ -33,7 +33,7 @@ $link = base64_encode( $link );
 	$user  = wp_get_current_user();
 	$image = get_field( 'field_5ded37c474589', 'user_' . $user->ID );
 	?>
-    <div x-data="addComment(<?php echo $user->ID ?>, <?php the_ID(); ?>)" x-init="init()" class="h-full">
+    <div x-data="addComment(<?php echo $user->ID ?>, <?php the_ID(); ?>)" x-init="init()" class="h-full flex flex-col">
         <div class="flex space-x-3 pb-5 mb-5 pr-5">
 			<?php if ( is_user_logged_in() ): ?>
 				<?php if ( $image ): ?>
@@ -58,7 +58,7 @@ $link = base64_encode( $link );
                             <a href="<?php echo add_query_arg( [ 'redirect' => $link ], get_field( 'field_601bbffe28967', 'option' ) ); ?>" class="block w-full py-3 border border-primary-100 text-primary-100 font-medium text-center">einloggen</a>
                         </div>
                     </div>
-                    <p>Wenn Sie noch keinen Account haben können Sie sich hier
+                    <p class="text-<?php echo $gray ?>">Wenn Sie noch keinen Account haben können Sie sich hier
                         <a href="<?php echo add_query_arg( [ 'redirect' => $link ], get_field( 'field_601bc00528968', 'option' ) ); ?>">registrieren</a>
                     </p>
                 </div>
@@ -81,7 +81,7 @@ $link = base64_encode( $link );
         </div>
 
 
-        <div class="overflow-hidden relative transition-all duration-700">
+        <div class="relative transition-all duration-700">
             <template x-for="c in comments" x-key="comment.id">
                 <div class="flex space-x-2 py-3 pr-3">
                     <div>
