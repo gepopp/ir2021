@@ -28,7 +28,6 @@ window.prerolled = function (main_id, preroll, skip) {
                             id: this.preroll.preroll_id,
                             width: "1280",
                             responsive: true,
-                            quality: "1080p",
                             controls: false,
                             autoplay: true
                         });
