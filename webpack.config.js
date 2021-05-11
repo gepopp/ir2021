@@ -209,6 +209,7 @@ function getCSSWhitelistPatterns() {
 		/^figure(-.*)?$/,
 		/^figcaption(-.*)?$/,
 		/^ol(-.*)?$/,
+		/^lg:(-.*)?$/,
 	];
 }
 
