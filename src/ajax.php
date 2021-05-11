@@ -24,7 +24,7 @@ function load_vimeo_image($post_id = false, $ajax = true)
 
             preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $file, $matches );
             if ( ! $matches ) {
-                return new WP_Error( 'image_sideload_failed', __( 'Invalid image URL' ) );
+                return new \WP_Error( 'image_sideload_failed', __( 'Invalid image URL' ) );
             }
 
             $file_array = array();
