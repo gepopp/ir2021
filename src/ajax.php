@@ -19,6 +19,9 @@ function load_vimeo_image($post_id = false, $ajax = true)
         $response = $lib->request('/videos/' . get_field('field_5fe2884da38a5', $post_id), [], 'GET');
         $body = $response['body'];
 
+        wp_die(var_dump($body));
+
+
         if(isset($body['pictures'])){
             $file = $body['pictures']['sizes'][3]['link'];
 
