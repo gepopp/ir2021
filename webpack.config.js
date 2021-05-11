@@ -210,6 +210,7 @@ function getCSSWhitelistPatterns() {
 		/^figcaption(-.*)?$/,
 		/^ol(-.*)?$/,
 		/^lg:(-.*)?$/,
+		/^lg:grid-cols-4?$/,
 	];
 }
 
