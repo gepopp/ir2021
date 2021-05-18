@@ -211,6 +211,7 @@ function getCSSWhitelistPatterns() {
 		/^ol(-.*)?$/,
 		/^lg:(-.*)?$/,
 		/^lg:grid-cols-4?$/,
+		/^border-(-.*)?$/,
 	];
 }
 
