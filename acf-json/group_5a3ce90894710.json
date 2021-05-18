@@ -104,35 +104,6 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "post"
-            },
-            {
-                "param": "post_format",
-                "operator": "==",
-                "value": "video"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "talk"
-            },
-            {
-                "param": "post_format",
-                "operator": "==",
-                "value": "video"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "post"
-            },
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:immofruehstueck"
             }
         ]
     ],
@@ -144,5 +115,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1620631615
+    "modified": 1621362452
 }
