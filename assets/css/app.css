@@ -23,10 +23,9 @@ iframe{
     background-repeat: no-repeat;
     background-color: #1a202c;
     padding-top: 75%;
-
-    img{
-        margin-top: -75%;
-    }
+}
+.image-holder img{
+    margin-top: -75%;
 }
 
 .animate-ping {
@@ -183,4 +182,8 @@ html{
 
 .comment p{
     @apply leading-none font-medium text-sm;
+}
+.vp-live-viewer-count{
+    display: none !important;
+    visibility: hidden !important;
 }
