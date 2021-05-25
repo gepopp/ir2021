@@ -6,7 +6,7 @@ global $FormSession;
 ?>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
-    var register_data = <?php echo json_encode($FormSession->getFormData()) ?>;
+    var register_data = <?php echo json_encode( $FormSession->getFormData() ) ?>;
 </script>
 <script>
     function onSubmit(token) {
@@ -16,25 +16,25 @@ global $FormSession;
 <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4">
 
     <form
-          method="post" action="<?php echo admin_url('admin-post.php') ?>"
-          id="register-form"
-          x-data="registerForm( register_data )"
-          x-init="init()"
-          @submit.prevent="validate()"
-          x-ref="form">
-        <h3 class="text-xl font-medium mb-4 text-gray-700"><?php _e('Registrieren', 'ir21') ?></h3>
-        <?php wp_nonce_field('frontend_register', 'frontend_register') ?>
+            method="post" action="<?php echo admin_url( 'admin-post.php' ) ?>"
+            id="register-form"
+            x-data="registerForm( register_data )"
+            x-init="init()"
+            @submit.prevent="validate()"
+            x-ref="form">
+        <h3 class="text-xl font-medium mb-4 text-gray-700"><?php _e( 'Registrieren', 'ir21' ) ?></h3>
+		<?php wp_nonce_field( 'frontend_register', 'frontend_register' ) ?>
         <input type="hidden" name="action" value="frontend_register">
         <input type="hidden" name="redirect" value="<?php echo $_GET['redirect'] ?? '' ?>">
 
-        <?php $FormSession->flashErrorBag('register_error'); ?>
-        <?php $FormSession->flashSuccess('register_sent_success'); ?>
+		<?php $FormSession->flashErrorBag( 'register_error' ); ?>
+		<?php $FormSession->flashSuccess( 'register_sent_success' ); ?>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
 
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="register_gender">
-                    <?php _e('Anrede', 'ir21') ?> <span class="text-warning">*</span>
+					<?php _e( 'Anrede', 'ir21' ) ?> <span class="text-warning">*</span>
                 </label>
                 <select name="register_gender"
                         id="register_gender"
@@ -42,16 +42,16 @@ global $FormSession;
                         required="required"
                         x-model="data.gender"
                         name="register_gender">
-                    <option value=""><?php _e('Bitte w&auml;hlen', 'ir21') ?></option>
-                    <option value="f"><?php _e('Frau', 'ir21') ?></option>
-                    <option value="m"><?php _e('Herr', 'ir21') ?></option>
+                    <option value=""><?php _e( 'Bitte w&auml;hlen', 'ir21' ) ?></option>
+                    <option value="f"><?php _e( 'Frau', 'ir21' ) ?></option>
+                    <option value="m"><?php _e( 'Herr', 'ir21' ) ?></option>
                 </select>
                 <p x-show="regsiter_errors.gender" x-text="regsiter_errors.gender" class="text-warning text-xs"></p>
             </div>
 
 
             <div>
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="first_name"><?php _e('Vorname', 'ir21') ?></label>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="first_name"><?php _e( 'Vorname', 'ir21' ) ?></label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        id="first_name"
                        type="text"
@@ -63,7 +63,7 @@ global $FormSession;
 
 
             <div>
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="last_name"><?php _e('Nachname', 'ir21') ?>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="last_name"><?php _e( 'Nachname', 'ir21' ) ?>
                     <span class="text-warning">*</span></label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        id="last_name"
@@ -79,7 +79,7 @@ global $FormSession;
 
 
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="register_email"><?php _e('E-Mail Adresse', 'ir21') ?>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="register_email"><?php _e( 'E-Mail Adresse', 'ir21' ) ?>
                 <span class="text-warning">*</span></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                    id="register_email"
@@ -94,7 +94,7 @@ global $FormSession;
 
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="register_password">
-                <?php _e('Passwort', 'ir21') ?> <span class="text-warning">*</span>
+				<?php _e( 'Passwort', 'ir21' ) ?> <span class="text-warning">*</span>
             </label>
             <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                    id="register_password"
@@ -103,7 +103,7 @@ global $FormSession;
                    x-model="data.password"
                    placeholder="******************"
                    autocomplete="new-password"/>
-            <p class="text-xs text-gray-600" x-show="!regsiter_errors.password"><?php _e('Mindestens 8 Zeichen.', 'ir21') ?></p>
+            <p class="text-xs text-gray-600" x-show="!regsiter_errors.password"><?php _e( 'Mindestens 8 Zeichen.', 'ir21' ) ?></p>
             <p x-show="regsiter_errors.password" x-text="regsiter_errors.password" class="text-warning text-xs"></p>
         </div>
 
@@ -112,70 +112,63 @@ global $FormSession;
             <label class="block text-gray-500 font-bold">
                 <input class="mr-2 leading-tight bg-primary-100" type="checkbox" name="agb" required>
                 <span class="text-sm">
-                <?php sprintf(_e('Ich bin der <a href="%s" target="_blank" class="text-primary-100 underline">Datenschutzerklärung</a> der unabhängigen Immobilien Redaktion einverstanden.', 'ir21'), get_field('field_601ec7cd84c47', 'option')) ?>
+                <?php sprintf( _e( 'Ich bin der <a href="%s" target="_blank" class="text-primary-100 underline">Datenschutzerklärung</a> der unabhängigen Immobilien Redaktion einverstanden.', 'ir21' ), get_field( 'field_601ec7cd84c47', 'option' ) ) ?>
                 <span class="text-warning">*</span>
             </span>
             </label>
         </div>
 
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <?php
-            $config = [
-                'facebook' => [
-                    'client_id'     => '831950683917414',
-                    'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-                    'redirect'      => home_url('fb-login'),
-                ],
-            ];
+		<?php
+		$config = [
+			'facebook' => [
+				'client_id'     => '831950683917414',
+				'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+				'redirect'      => home_url( 'fb-login' ),
+			],
+		];
 
-            $socialite = new SocialiteManager($config);
-            ?>
-            <div class="flex items-center justify-between">
-                <button
-                        data-sitekey="6Ldhsu4aAAAAAGj0UZRfizcHjtqKqPrPrxF_hsE0"
-                        data-callback='onSubmit'
-                        data-action='submit'
-                        class="g-recaptcha bg-primary-100 text-white font-medium py-2 px-4 w-full text-center focus:outline-none focus:shadow-outline"
-                        type="submit">
-                    <?php _e('registrieren', 'ir21') ?>
-                </button>
-            </div>
-            <div class="my-5 w-full">
-                <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
-                   class="bg-primary-100 py-2 px-3 text-white w-full text-center block font-medium"
-                ><?php _e('Via Facebook registrieren', 'ir21') ?></a>
-            </div>
+		$socialite = new SocialiteManager( $config );
+		?>
+        <div class="flex items-center justify-between">
+            <button
+                    data-sitekey="6Ldhsu4aAAAAAGj0UZRfizcHjtqKqPrPrxF_hsE0"
+                    data-callback='onSubmit'
+                    data-action='submit'
+                    class="g-recaptcha bg-primary-100 text-white font-medium py-2 px-4 w-full text-center focus:outline-none focus:shadow-outline"
+                    type="submit">
+				<?php _e( 'registrieren', 'ir21' ) ?>
+            </button>
         </div>
-        <p class="text-xs mt-2"><?php _e('Mit <span class="text-warning">*</span> gekennzeichneten Felder sind Pflichtfelder.', 'ir21') ?></p>
+        <p class="text-xs mt-2"><?php _e( 'Mit <span class="text-warning">*</span> gekennzeichneten Felder sind Pflichtfelder.', 'ir21' ) ?></p>
     </form>
-    <?php
-    $config = [
-        'facebook' => [
-            'client_id'     => '831950683917414',
-            'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
-            'redirect'      => home_url('fb-login'),
-        ],
-        'google'   => [
-            'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
-            'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
-            'redirect'      => home_url('g-oauth'),
-        ],
-        'linkedin' => [
-            'client_id'     => '78q1kul4q95hsh',
-            'client_secret' => 'mO7jlH6rG9bahUrX',
-            'redirect'      => home_url('l-oauth'),
-        ],
-    ];
-    // 194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com
-    // O_JXIOXqatwxOMYq45ggJ1tj
+	<?php
+	$config = [
+		'facebook' => [
+			'client_id'     => '831950683917414',
+			'client_secret' => 'd6d52d59ce1f1efdbf997b980dffe229',
+			'redirect'      => home_url( 'fb-login' ),
+		],
+		'google'   => [
+			'client_id'     => '194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com',
+			'client_secret' => 'O_JXIOXqatwxOMYq45ggJ1tj',
+			'redirect'      => home_url( 'g-oauth' ),
+		],
+		'linkedin' => [
+			'client_id'     => '78q1kul4q95hsh',
+			'client_secret' => 'mO7jlH6rG9bahUrX',
+			'redirect'      => home_url( 'l-oauth' ),
+		],
+	];
+	// 194317471061-jdtvke2dpcensj3p9ckfq20cbsre23dl.apps.googleusercontent.com
+	// O_JXIOXqatwxOMYq45ggJ1tj
 
-    $socialite = new SocialiteManager($config);
-    ?>
+	$socialite = new SocialiteManager( $config );
+	?>
     <div class="bg-white">
         <hr class="my-4">
         <div class="my-5 w-full">
-            <a href="<?php echo $socialite->create('facebook')->redirect(); ?>"
+            <a href="<?php echo $socialite->create( 'facebook' )->redirect(); ?>"
                class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
             >
                 <svg version="1.1" id="digital_x5F_marketing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -183,11 +176,11 @@ global $FormSession;
                     <path id="icon:4" class="st1" d="M74,35.3v12.5h21.6v23.6H74c0,26.4,0,56.6,0,56.6H50.3c0,0,0-27.5,0-56.6H30.4V47.8h19.9V30.6
 		c0-36.2,47.3-30.3,47.3-30.3v22C97.6,22.4,74,19.5,74,35.3z"/>
 </svg>
-                <span><?php _e('Via Facebook registrieren', 'ir21') ?></span>
+                <span><?php _e( 'Via Facebook registrieren', 'ir21' ) ?></span>
             </a>
         </div>
         <div class="my-5 w-full">
-            <a href="<?php echo $socialite->create('google')->redirect(); ?>"
+            <a href="<?php echo $socialite->create( 'google' )->redirect(); ?>"
                class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
             >
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -202,11 +195,11 @@ global $FormSession;
 		 M126.345,51.339c-12.516,0-61.45,0-61.45,0v25.322c0,0,24.569-0.029,34.593-0.029c-2.665,7.996-5.997,14.255-11.183,18.513
 		c8.894,7.533,15.326,13.009,19.962,17.065C124.926,96.072,129.04,70.664,126.345,51.339z"/>
 </svg>
-                <span><?php _e('Via Google registrieren', 'ir21') ?></span>
+                <span><?php _e( 'Via Google registrieren', 'ir21' ) ?></span>
             </a>
         </div>
         <div class="my-5 w-full">
-            <a href="<?php echo $socialite->create('linkedin')->redirect(); ?>"
+            <a href="<?php echo $socialite->create( 'linkedin' )->redirect(); ?>"
                class="flex justify-center items-center bg-primary-100 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full text-center block"
             >
                 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -216,7 +209,7 @@ global $FormSession;
 	c0,0,0-117.6,0-162.1c0-44.4-16.9-69.3-52-69.3c-38.3,0-58.2,25.8-58.2,69.3c0,47.6,0,162.1,0,162.1h-91.7V172.8h91.7v41.6
 	c0,0,27.6-51,93.1-51c65.5,0,112.4,40,112.4,122.7C481.5,368.8,481.5,481.6,481.5,481.6z"/>
 </svg>
-                <span><?php _e('Via LinkedIn registrieren', 'ir21') ?></span>
+                <span><?php _e( 'Via LinkedIn registrieren', 'ir21' ) ?></span>
             </a>
         </div>
     </div>
