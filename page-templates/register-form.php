@@ -4,14 +4,20 @@ use Overtrue\Socialite\SocialiteManager;
 
 global $FormSession;
 ?>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
     var register_data = <?php echo json_encode($FormSession->getFormData()) ?>;
 </script>
-
+<script>
+    function onSubmit(token) {
+        document.getElementById("register-form").submit();
+    }
+</script>
 <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4">
 
     <form
           method="post" action="<?php echo admin_url('admin-post.php') ?>"
+          id="register-form"
           x-data="registerForm( register_data )"
           x-init="init()"
           @submit.prevent="validate()"
@@ -126,7 +132,11 @@ global $FormSession;
             $socialite = new SocialiteManager($config);
             ?>
             <div class="flex items-center justify-between">
-                <button class="bg-primary-100 text-white font-medium py-2 px-4 w-full text-center focus:outline-none focus:shadow-outline"
+                <button
+                        data-sitekey="6Ldhsu4aAAAAAGj0UZRfizcHjtqKqPrPrxF_hsE0"
+                        data-callback='onSubmit'
+                        data-action='submit'
+                        class="g-recaptcha bg-primary-100 text-white font-medium py-2 px-4 w-full text-center focus:outline-none focus:shadow-outline"
                         type="submit">
                     <?php _e('registrieren', 'ir21') ?>
                 </button>

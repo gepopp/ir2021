@@ -1,169 +1,201 @@
 <?php
+
 namespace immobilien_redaktion_2020;
 
 use Carbon\Carbon;
 
-add_action('admin_post_nopriv_frontend_register', function () {
+add_action( 'admin_post_nopriv_frontend_register', function () {
 
-    global $FormSession;
+	global $FormSession;
 
-    $gender = sanitize_text_field($_POST['register_gender']);
-    $firstname = sanitize_text_field($_POST['first_name']);
-    $lastname = sanitize_text_field($_POST['last_name']);
-    $email = sanitize_email($_POST['register_email']);
-    $password = sanitize_text_field($_POST['password']);
+	$gender    = sanitize_text_field( $_POST['register_gender'] );
+	$firstname = sanitize_text_field( $_POST['first_name'] );
+	$lastname  = sanitize_text_field( $_POST['last_name'] );
+	$email     = sanitize_email( $_POST['register_email'] );
+	$password  = sanitize_text_field( $_POST['password'] );
 
-    if (!wp_verify_nonce($_POST['frontend_register'], 'frontend_register')) {
-        $FormSession->addToErrorBag('register_error', 'nonce')->redirect();
-    }
+	$response = wp_remote_post( sprintf( 'https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s',
+		'6Ldhsu4aAAAAAEJUCrECbziRYSf_iw_XkuSpWPma',
+		sanitize_text_field( $_POST['g-recaptcha-response'] )
+	) );
 
-    if (get_user_by('email', $email)) {
-        $FormSession->addToErrorBag('register_error', 'user_exists')->redirect();
-    }
-
-    if (sanitize_text_field($_POST['agb']) != 'on') {
-        $FormSession->addToErrorBag('register_error', 'agb')->redirect();
-    }
-
-    if (strlen($password) < 8) {
-        $FormSession->addToErrorBag('register_error', 'password_length')->redirect();
-    }
-
-    $user_id = wp_create_user(trim($firstname . ' ' . $lastname . ' ' . uniqid()), $password, $email);
-    if (is_wp_error($user_id)) {
-        $FormSession->addToErrorBag('register_error', 'register_error')->redirect();
-    }
-
-    wp_update_user([
-        'ID'           => $user_id,
-        'display_name' => trim($firstname . ' ' . $lastname),
-        'first_name'   => $firstname,
-        'last_name'    => $lastname,
-    ]);
-    update_field('field_5fb6bc5f82e62', $gender, 'user_' . $user_id);
-
-    $user = get_user_by('ID', $user_id);
-    $user->add_role('registered');
-    $user->remove_role('subscriber');
-
-    $token = wp_generate_uuid4();
-
-    $redirect = sanitize_text_field($_POST['redirect']) ?? '';
-
-    global $wpdb;
-    $table = 'wp_user_activation_token';
-
-    $insert = $wpdb->insert($table, [
-        'user_id'    => $user->ID,
-        'email'      => $user->data->user_email,
-        'token'      => $token,
-        'redirect'   => $redirect,
-    ],
-        ['%d', '%s', '%s', '%s']);
+	if( !json_decode(wp_remote_retrieve_body( $response ) ) ) {
+		$FormSession->addToErrorBag( 'register_error', 'nonce' )->redirect();
+	}
 
 
-    $sent = (new CampaignMonitor())->transactional(
-        'confirm_email_address',
-        $user,
-        ['link' => add_query_arg(['token' => $token, 'redirect' => $redirect], get_field('field_601bbffe28967', 'option'))]
-    );
+	if ( ! wp_verify_nonce( $_POST['frontend_register'], 'frontend_register' ) ) {
+		$FormSession->addToErrorBag( 'register_error', 'nonce' )->redirect();
+	}
 
-    if ($sent) {
-        $FormSession->set('register_sent_success', 'register_sent_success')->redirect();
-    } else {
-        $FormSession->addToErrorBag('register_error', 'not_sent')->redirect();
-    }
-});
+	$captcha_key = '6Ldhsu4aAAAAAEJUCrECbziRYSf_iw_XkuSpWPma';
 
-add_action('admin_post_nopriv_resend_activation', function () {
+	if ( sanitize_email( $email ) == '' ) {
+		$FormSession->addToErrorBag( 'register_error', 'email_not_valid' )->redirect();
+	}
 
-    global $FormSession;
+	if ( get_user_by( 'email', $email ) ) {
+		$FormSession->addToErrorBag( 'register_error', 'user_exists' )->redirect();
+	}
 
-    $email = sanitize_email($_POST['email']);
-    $user = get_user_by('email', $email);
+	if ( sanitize_text_field( $_POST['agb'] ) != 'on' ) {
+		$FormSession->addToErrorBag( 'register_error', 'agb' )->redirect();
+	}
 
-    if(!wp_verify_nonce($_POST['resend_activation'], 'resend_activation')){
-        $FormSession->addToErrorBag('resend_activation', 'nonce')->redirect();
-    }
+	if ( strlen( $password ) < 8 ) {
+		$FormSession->addToErrorBag( 'register_error', 'password_length' )->redirect();
+	}
 
-    if(!$user){
-        $FormSession->addToErrorBag('resend_activation', 'email_not_found')->redirect();
-    }
+	$user_id = wp_create_user( trim( $firstname . ' ' . $lastname . ' ' . uniqid() ), $password, $email );
+	if ( is_wp_error( $user_id ) ) {
+		$FormSession->addToErrorBag( 'register_error', 'register_error' )->redirect();
+	}
 
-    if(in_array('subscriber', $user->roles)){
-        $FormSession->set('token_success', 'account_acitvated')->redirect(get_field('field_601bbffe28967', 'option'));
-    }
+	wp_update_user( [
+		'ID'           => $user_id,
+		'display_name' => trim( $firstname . ' ' . $lastname ),
+		'first_name'   => $firstname,
+		'last_name'    => $lastname,
+	] );
 
-    if(sentUserActivationToken($user)){
-        $FormSession->set('resend_activation', 'register_sent_success')->redirect();
-    }else{
-        $FormSession->addToErrorBag('resend_activation', 'not_sent')->redirect();
-    }
+	update_field( 'field_5fb6bc5f82e62', $gender, 'user_' . $user_id );
 
-});
+	$user = get_user_by( 'ID', $user_id );
+	$user->add_role( 'registered' );
+	$user->remove_role( 'subscriber' );
 
-function activate_user()
-{
-    global $FormSession;
+	$token = wp_generate_uuid4();
 
-    $token = sanitize_text_field($_GET['token']);
+	$redirect = sanitize_text_field( $_POST['redirect'] ) ?? '';
 
-    if ($token == '') return;
-    global $wpdb;
+	global $wpdb;
+	$table = 'wp_user_activation_token';
 
-    $table = 'wp_user_activation_token';
+	$insert = $wpdb->insert( $table, [
+		'user_id'  => $user->ID,
+		'email'    => $user->data->user_email,
+		'token'    => $token,
+		'redirect' => $redirect,
+	],
+		[ '%d', '%s', '%s', '%s' ] );
 
-    $email = $wpdb->get_var('SELECT email FROM ' . $table . ' WHERE token = "' . $token . '"');
+
+	$sent = ( new CampaignMonitor() )->transactional(
+		'confirm_email_address',
+		$user,
+		[
+			'link' => add_query_arg( [
+				'token'    => $token,
+				'redirect' => $redirect,
+			], get_field( 'field_601bbffe28967', 'option' ) ),
+		]
+	);
+
+	if ( $sent ) {
+		$FormSession->set( 'register_sent_success', 'register_sent_success' )->redirect();
+	} else {
+		$FormSession->addToErrorBag( 'register_error', 'not_sent' )->redirect();
+	}
+} );
+
+add_action( 'admin_post_nopriv_resend_activation', function () {
+
+	global $FormSession;
+
+	$email = sanitize_email( $_POST['email'] );
+	$user  = get_user_by( 'email', $email );
+
+	if ( ! wp_verify_nonce( $_POST['resend_activation'], 'resend_activation' ) ) {
+		$FormSession->addToErrorBag( 'resend_activation', 'nonce' )->redirect();
+	}
+
+	if ( ! $user ) {
+		$FormSession->addToErrorBag( 'resend_activation', 'email_not_found' )->redirect();
+	}
+
+	if ( in_array( 'subscriber', $user->roles ) ) {
+		$FormSession->set( 'token_success', 'account_acitvated' )->redirect( get_field( 'field_601bbffe28967', 'option' ) );
+	}
+
+	if ( sentUserActivationToken( $user ) ) {
+		$FormSession->set( 'resend_activation', 'register_sent_success' )->redirect();
+	} else {
+		$FormSession->addToErrorBag( 'resend_activation', 'not_sent' )->redirect();
+	}
+
+} );
+
+function activate_user() {
+	global $FormSession;
+
+	$token = sanitize_text_field( $_GET['token'] );
+
+	if ( $token == '' ) {
+		return;
+	}
+	global $wpdb;
+
+	$table = 'wp_user_activation_token';
+
+	$email = $wpdb->get_var( 'SELECT email FROM ' . $table . ' WHERE token = "' . $token . '"' );
 
 
-    $token_user = get_user_by('email', $email);
+	$token_user = get_user_by( 'email', $email );
 
-    if (!$token_user) {
-        $FormSession->addToErrorBag('login_errror', 'token_expired');
-        return;
-    }
+	if ( ! $token_user ) {
+		$FormSession->addToErrorBag( 'login_errror', 'token_expired' );
 
-    if (!in_array('subscriber', $token_user->roles)) {
+		return;
+	}
 
-        $token_user->add_role('subscriber');
-        $token_user->remove_role('registered');
+	if ( ! in_array( 'subscriber', $token_user->roles ) ) {
 
-        $cm = new CampaignMonitor();
-        $cm->transactional('registration_activated', $token_user);
-        $cm->updateUser($token_user);
-        $FormSession->set('token_success', 'account_acitvated');
-        return;
-    }
-    $FormSession->addToErrorBag('login_errror', 'token_expired');
-    return;
+		$token_user->add_role( 'subscriber' );
+		$token_user->remove_role( 'registered' );
+
+		$cm = new CampaignMonitor();
+		$cm->transactional( 'registration_activated', $token_user );
+		$cm->updateUser( $token_user );
+		$FormSession->set( 'token_success', 'account_acitvated' );
+
+		return;
+	}
+	$FormSession->addToErrorBag( 'login_errror', 'token_expired' );
+
+	return;
 }
 
-function sentUserActivationToken(\WP_User $user){
-    global $wpdb;
-    $table = 'wp_user_activation_token';
+function sentUserActivationToken( \WP_User $user ) {
+	global $wpdb;
+	$table = 'wp_user_activation_token';
 
-    $last_token = $wpdb->get_var(sprintf('SELECT created_at FROM %s WHERE email = "%s" ORDER BY created_at DESC LIMIT 1', $table, $user->user_email));
+	$last_token = $wpdb->get_var( sprintf( 'SELECT created_at FROM %s WHERE email = "%s" ORDER BY created_at DESC LIMIT 1', $table, $user->user_email ) );
 
-    if($last_token && Carbon::now()->diffInMinutes(Carbon::parse($last_token)) < 5){
-        return false;
-    }
+	if ( $last_token && Carbon::now()->diffInMinutes( Carbon::parse( $last_token ) ) < 5 ) {
+		return false;
+	}
 
-    $wpdb->delete($table, ['email' => $user->data->user_email]);
-    $token = wp_generate_uuid4();
+	$wpdb->delete( $table, [ 'email' => $user->data->user_email ] );
+	$token = wp_generate_uuid4();
 
-    $redirect = sanitize_text_field($_POST['redirect']) ?? '';
+	$redirect = sanitize_text_field( $_POST['redirect'] ) ?? '';
 
-    $wpdb->insert($table, [
-        'user_id'    => $user->ID,
-        'email'      => $user->data->user_email,
-        'token'      => $token,
-        'redirect'   => $redirect,
-        ],
-        ['%d', '%s', '%s', '%s']);
+	$wpdb->insert( $table, [
+		'user_id'  => $user->ID,
+		'email'    => $user->data->user_email,
+		'token'    => $token,
+		'redirect' => $redirect,
+	],
+		[ '%d', '%s', '%s', '%s' ] );
 
-    return (new CampaignMonitor())->transactional(
-        'confirm_email_address',
-        $user,
-        ['link' => add_query_arg(['token' => $token, 'redirect' => $redirect], get_field('field_601bbffe28967', 'option'))]
-    );
+	return ( new CampaignMonitor() )->transactional(
+		'confirm_email_address',
+		$user,
+		[
+			'link' => add_query_arg( [
+				'token'    => $token,
+				'redirect' => $redirect,
+			], get_field( 'field_601bbffe28967', 'option' ) ),
+		]
+	);
 }

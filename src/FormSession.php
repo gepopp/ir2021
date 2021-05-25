@@ -200,6 +200,7 @@ class   FormSession
             'profile_updated'       => __('Ihre Profildaten wurden erfolgreich aktualisiert.', 'ir21'),
             'token_expired'         => sprintf(__('Dieser Link ist nicht mehr gültig, Sie können über die <a href="%s" class="font-semibold underline ">Passwort vergessen</a> funktion ein neues E-Mail anfordern', 'ir21'), get_field('field_601e59c9336d7', 'option')),
             'account_acitvated'     => __('Ihr Account ist nun aktiviert, Sie können sich jetzt einloggen!', 'ir21'),
+            'email_not_valid'       => __('Bitte geben Sie eine Valide Email Adresse ein.', 'ir21'),
             'email_not_found'       => __('Wir konnten zu dieser Adresse keinen Eintrag finden, bitte versuchen Sie es noch einmal.', 'ir21'),
             'reset_success'         => __('Wir haben Ihnen ein E-Mail mit einem Link zum zurücksetzen Ihres Passwortes gesendet, bitte überprüfen Sie Ihre Posteingang', 'ir21'),
             'password_changed'      => __('Ihr neues Passwort wurde gespeichert, Sie können sich jetzt einloggen.', 'ir21'),
