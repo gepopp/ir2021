@@ -4,6 +4,21 @@ namespace immobilien_redaktion_2020;
 
 use Carbon\Carbon;
 
+if(str_contains(home_url(), 'test')){
+	add_action( 'admin_menu', function () {
+		add_menu_page( 'zoom api test', 'zoom api test', 'manage_options', 'zoomtest', function () {
+
+			?>
+			<div class="wrap">
+				<?php get_zoom_webinars(); ?>
+			</div>
+
+			<?php
+
+		} );
+	} );
+}
+
 
 
 function svd_deactivate() {
