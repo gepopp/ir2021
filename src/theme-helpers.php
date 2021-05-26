@@ -17,7 +17,7 @@ function speakerVertical($speaker)
             <div class="bg-white px-3 inline-block">
                 <h1 class="text-xl lg:text-2xl text-primary-100 font-bold leading-none inline uppercase"><?php echo $speaker['name'] ?></h1>
             </div>
-            <p class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></p>
+            <div class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></div>
         </div>
     </div>
     <?php
@@ -42,7 +42,7 @@ function speakerHorizontal($speaker)
             <div class="bg-white px-3">
                 <h1 class="text-xl lg:text-3xl text-primary-100 font-bold leading-none inline uppercase"><?php echo $speaker['name'] ?></h1>
             </div>
-            <p class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></p>
+            <div class="text-base leading-tight text-white py-5"><?php echo $speaker['kurzbeschreibung'] ?></div>
         </div>
     </div>
     <?php
