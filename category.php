@@ -26,7 +26,7 @@ $term = get_queried_object();
         <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-5 pr-16 relative">
             <?php echo $term->description ?>
             <?php if (get_field('field_5f9aeff4efa16', $term)): ?>
-                <div class="absolute top-0 right-0 -mr-5 -mt-5 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
+                <div class="absolute top-0 lg:left-0 left-1/2 -ml-11 -mt-12 lg:-mt-14 lg:-ml-14 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
                     <a href="<?php echo get_field('field_5f9aeff4efa16', $term) ?>" class="text-center">
                         <p class="text-xs text-gray-900"><?php _e('powered by', 'ir21') ?></p>
                         <img src="<?php echo get_field('field_5f9aefd116e2e', $term) ?>" class="w-24 h-auto px-5">

@@ -35,15 +35,6 @@
 <div class="container mx-auto mt-20">
     <div class="grid grid-cols-5 gap-4">
         <div class="hidden lg:block"></div>
-        <div class="col-span-5 lg:col-span-3  py-5">
-            <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
-                <?php the_title() ?>
-                <?php if (current_user_can('administrator') && is_single()): ?>
-                    <p class="text-xs"> ( <?php echo edit_post_link() ?> ) </p>
-                <?php endif; ?>
-            </h1>
-            <p class="my-5 font-semibold"><?php echo get_the_excerpt(); ?></p>
-        </div>
     </div>
 </div>
 
