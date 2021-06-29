@@ -49,8 +49,6 @@ $banner_large = get_posts( [
 	],
 ] );
 ?>
-
-
     </div>
 
 
@@ -65,8 +63,6 @@ $query = new \WP_Query( [
 ] );
 ?>
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
-
-
         <div class="grid grid-cols-2 gap-10">
 			<?php if ( $query->have_posts() ): ?>
 				<?php while ( $query->have_posts() ): ?>
@@ -116,7 +112,7 @@ foreach ( $cats as $cat ):
 
 						<?php if ( $runner == 2 && get_field( 'field_60da235237ec4', $cat ) ): ?>
                             <div>
-                                <img src="<?php the_field('field_60da235237ec4', $cat); ?>" class="w-full h-auto">
+                                <img src="<?php the_field( 'field_60da235237ec4', $cat ); ?>" class="w-full h-auto">
                                 <p class="mt-1 text-gray-300 font-semibold text-xs pb-5">Werbung</p>
                             </div>
 						<?php else: ?>
@@ -128,7 +124,7 @@ foreach ( $cats as $cat ):
                                     <div class="absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex justify-center items-center">
                                         <p class="font-bold text-xs">
                                             <a href="<?php echo get_category_link( $cat ) ?>" class="underline">
-												<?php echo $cat->count - 4 ?> <?php _e( 'weitere Artikel', 'ir21' ) ?>
+												<?php echo $cat->count - 4 ?><?php _e( 'weitere Artikel', 'ir21' ) ?>
                                         </p>
                                         </a>
                                     </div>

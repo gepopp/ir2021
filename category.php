@@ -18,23 +18,22 @@ $term = get_queried_object();
 <?php get_template_part('banner-templates/banner', 'mega') ?>
 
 
-<div class="container mx-auto mt-20 px-5 lg:px-0 relative">
+<div class="container mx-auto mt-20 px-5 lg:px-0 relative" x-data="{show:0}" x-init="inter = setInterval( () => { if(show < 3) { show++; } else { clearInterval(inter); } }, 500 ) ">
     <div class="flex flex-col lg:flex-row items-end">
-        <div class="w-full lg:w-1/2" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>">
+        <div class="w-full lg:w-1/2 relative" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $term); ?>" x-show.transition.fade="show > 0">
             <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
+
+            <div class="absolute top-100 -mt-20 right-0 z-50 max-w-xs shadow-2xl" x-show.transition.fade="show > 2">
+                <p class="text-white">powered by</p>
+                <img src="<?php the_field('field_60da235237ec4', $term) ?>" class="w-full h-auto">
+            </div>
+
         </div>
-        <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-5 pr-16 relative">
+        <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-8 pr-16 relative" x-show.transition.fade="show > 1">
             <?php echo $term->description ?>
-            <?php if (get_field('field_5f9aeff4efa16', $term)): ?>
-                <div class="absolute top-0 lg:left-0 left-1/2 -ml-11 -mt-12 lg:-mt-14 lg:-ml-14 bg-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-lg">
-                    <a href="<?php echo get_field('field_5f9aeff4efa16', $term) ?>" class="text-center">
-                        <p class="text-xs text-gray-900"><?php _e('powered by', 'ir21') ?></p>
-                        <img src="<?php echo get_field('field_5f9aefd116e2e', $term) ?>" class="w-24 h-auto px-5">
-                    </a>
-                </div>
-            <?php endif; ?>
         </div>
     </div>
+
 </div>
 
 <div class="container mx-auto mt-20 px-5 md:px-5">
