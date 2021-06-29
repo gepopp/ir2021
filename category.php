@@ -27,10 +27,14 @@ $term = get_queried_object();
                  x-cloak>
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
 
-                <div class="block lg:absolute top-100 -mt-20 right-0 z-50 max-w-xs shadow-2xl" x-show.transition.fade="show >= 3" x-cloak>
-                    <p class="text-white">powered by</p>
-                    <img src="<?php the_field( 'field_60da235237ec4', $term ) ?>" class="w-full h-auto">
-                </div>
+				<?php if ( get_field( 'field_60da235237ec4', $term ) ): ?>
+                    <div class="flex flex-col lg:absolute lg:top-100 lg:-mt-20 right-0 z-50 lg:max-w-xs shadow-2xl" x-show.transition.fade="show >= 3" x-cloak>
+                        <p class="text-white">powered by</p>
+                        <div class="bg-white flex justify-center w-full">
+                            <img src="<?php the_field( 'field_60da235237ec4', $term ) ?>" class="w-auto h-auto">
+                        </div>
+                    </div>
+				<?php endif; ?>
 
             </div>
             <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-8 pr-16 relative" x-show.transition.fade="show >= 2" x-cloak>
@@ -47,9 +51,10 @@ $term = get_queried_object();
 					<?php the_post(); ?>
                     <div class="col-span-2 md:col-span-1 relative">
                         <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full" style="padding-top: 56%">
-							<?php the_post_thumbnail( 'article', [ 'class'   => 'w-full h-auto max-w-full',
-							                                       'onerror' => "this.style.display='none'",
-							                                       'style'   => "margin-top:-56%",
+							<?php the_post_thumbnail( 'article', [
+								'class'   => 'w-full h-auto max-w-full',
+								'onerror' => "this.style.display='none'",
+								'style'   => "margin-top:-56%",
 							] ); ?>
 							<?php get_template_part( 'page-templates/snippet', 'heading' ) ?>
                         </a>
