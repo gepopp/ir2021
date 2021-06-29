@@ -18,7 +18,7 @@ $term = get_queried_object();
 <?php get_template_part( 'banner-templates/banner', 'mega' ) ?>
 
 
-    <div class="container mx-auto mt-20 px-5 lg:px-0 relative" x-data="{show:0}" x-init="inter = setInterval( () => { if(show < 3) { show++; } else { clearInterval(inter); } }, 500 ) ">
+    <div class="container mx-auto mt-20 px-5 lg:px-0 relative" x-data="{show:0}" x-init="window.onload = () => show = 1; inter = setInterval( () => { if(show < 3) { show++; } else { clearInterval(inter); } }, 500 ) ">
         <div class="flex flex-col lg:flex-row items-end">
             <div class="w-full lg:w-1/2 relative" style="background-color: <?php the_field( 'field_5c63ff4b7a5fb', $term ); ?>"
                  x-show="show > 0"
@@ -27,13 +27,13 @@ $term = get_queried_object();
                  x-cloak>
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
 
-                <div class="absolute top-100 -mt-20 right-0 z-50 max-w-xs shadow-2xl" x-show.transition.fade="show > 2">
+                <div class="absolute top-100 -mt-20 right-0 z-50 max-w-xs shadow-2xl" x-show.transition.fade="show >= 3" x-cloak>
                     <p class="text-white">powered by</p>
                     <img src="<?php the_field( 'field_60da235237ec4', $term ) ?>" class="w-full h-auto">
                 </div>
 
             </div>
-            <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-8 pr-16 relative" x-show.transition.fade="show > 1">
+            <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-8 pr-16 relative" x-show.transition.fade="show >= 2" x-cloak>
 				<?php echo $term->description ?>
             </div>
         </div>
