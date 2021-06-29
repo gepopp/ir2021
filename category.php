@@ -27,7 +27,7 @@ $term = get_queried_object();
                  x-cloak>
                 <p class="text-white font-serif text-5xl py-24 px-5 text-center"><?php echo $term->name ?></p>
 
-                <div class="absolute top-100 -mt-20 right-0 z-50 max-w-xs shadow-2xl" x-show.transition.fade="show >= 3" x-cloak>
+                <div class="block lg:absolute top-100 -mt-20 right-0 z-50 max-w-xs shadow-2xl" x-show.transition.fade="show >= 3" x-cloak>
                     <p class="text-white">powered by</p>
                     <img src="<?php the_field( 'field_60da235237ec4', $term ) ?>" class="w-full h-auto">
                 </div>
