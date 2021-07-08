@@ -35,7 +35,7 @@ $term = get_queried_object();
 				<?php endif; ?>
 
             </div>
-            <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 pt-12 lg:pt-5 p-8 pr-16 relative" x-show.transition.fade="show >= 2" x-cloak>
+            <div class="w-full lg:w-1/2 bg-gray-900 text-white -ml-5 -mb-5 p-5 relative" x-show.transition.fade="show >= 2" x-cloak>
 				<?php echo $term->description ?>
             </div>
         </div>
