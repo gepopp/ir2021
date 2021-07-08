@@ -29,7 +29,9 @@ $term = get_queried_object();
                     <div class="flex flex-col lg:absolute lg:top-100 lg:-mt-20 right-0 z-50 lg:max-w-xs shadow-2xl" x-show.transition.fade="show >= 3" x-cloak>
                         <p class="text-white">powered by</p>
                         <div class="bg-white flex justify-center w-full">
-                            <img src="<?php the_field( 'field_60da235237ec4', $term ) ?>" class="w-auto h-auto">
+                            <a href="<?php echo get_field('field_5f9aeff4efa16', $term) ?>">
+                                <img src="<?php the_field( 'field_60da235237ec4', $term ) ?>" class="w-auto h-auto">
+                            </a>
                         </div>
                     </div>
 				<?php endif; ?>

@@ -112,8 +112,10 @@ foreach ( $cats as $cat ):
 
 						<?php if ( $runner == 2 && get_field( 'field_60da235237ec4', $cat ) ): ?>
                             <div>
-                                <img src="<?php the_field( 'field_60da235237ec4', $cat ); ?>" class="w-full h-auto">
-                                <p class="mt-1 text-gray-300 font-semibold text-xs pb-5">Werbung</p>
+                                <a href="<?php echo get_field( 'field_5f9aeff4efa16', $cat ) ?>">
+                                    <img src="<?php the_field( 'field_60da235237ec4', $cat ); ?>" class="w-full h-auto">
+                                    <p class="mt-1 text-gray-300 font-semibold text-xs pb-5">Werbung</p>
+                                </a>
                             </div>
 						<?php else: ?>
                             <div class="relative">
