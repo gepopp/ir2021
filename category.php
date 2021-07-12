@@ -9,7 +9,7 @@ $term = get_queried_object();
 
     <div class="container mx-auto mt-20">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
-            <a href="/lesen" class="underline">
+            <a href="/lesen-2" class="underline">
 				<?php _e( 'lesen', 'ir21' ) ?>
             </a>
         </h1>

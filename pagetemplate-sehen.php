@@ -129,30 +129,29 @@ $query = new WP_Query( [
                     <div class="col-span-3 lg:col-span-1">
 
 
-                            <div class="relative">
-                                <a href="<?php the_permalink(); ?>">
-									<?php if ( get_field( 'field_5f96fa1673bac' ) ): ?>
-                                        <img src="https://img.youtube.com/vi/<?php echo get_field( 'field_5f96fa1673bac' ) ?>/mqdefault.jpg"/>
-									<?php elseif ( get_field( 'field_5fe2884da38a5' ) ): ?>
-                                        <div x-data="loadVimeoImage()" x-init="loadUrl(<?php echo get_the_ID() ?>)" class="bg-primary-100" style="padding-top: 56%">
-                                            <img :src="imgUrl" class="w-full h-auto" style="margin-top: -56%">
-                                        </div>
-									<?php endif; ?>
-                                    <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                                        <div class="w-4 h-4 bg-white rounded-full">
-                                            <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                            </svg>
-                                        </div>
+                        <div class="relative">
+                            <a href="<?php the_permalink(); ?>">
+								<?php if ( get_field( 'field_5f96fa1673bac' ) ): ?>
+                                    <img src="https://img.youtube.com/vi/<?php echo get_field( 'field_5f96fa1673bac' ) ?>/mqdefault.jpg"/>
+								<?php elseif ( get_field( 'field_5fe2884da38a5' ) ): ?>
+                                    <div x-data="loadVimeoImage()" x-init="loadUrl(<?php echo get_the_ID() ?>)" class="bg-primary-100" style="padding-top: 56%">
+                                        <img :src="imgUrl" class="w-full h-auto" style="margin-top: -56%">
                                     </div>
-                                </a>
-                            </div>
-                            <p class="mt-5 font-semibold text-xs pb-5 text-white">
-                                <a href="<?php the_permalink(); ?>">
-									<?php the_title() ?>
-                                </a>
-                            </p>
-						<?php endif; ?>
+								<?php endif; ?>
+                                <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
+                                    <div class="w-4 h-4 bg-white rounded-full">
+                                        <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <p class="mt-5 font-semibold text-xs pb-5 text-white">
+                            <a href="<?php the_permalink(); ?>">
+								<?php the_title() ?>
+                            </a>
+                        </p>
                     </div>
 					<?php
 					$runner ++;
