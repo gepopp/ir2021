@@ -277,15 +277,15 @@ function my_acf_settings_url( $url ) {
     return MY_ACF_URL;
 }
 
-// (Optional) Hide the ACF admin menu item.
-add_filter('acf/settings/show_admin', 'immobilien_redaktion_2020\my_acf_settings_show_admin');
-function my_acf_settings_show_admin( $show_admin ) {
-
-    if(defined('SCRIPT_DEBUG') && SCRIPT_DEBUG){
-        return true;
-    }
-    return false;
-}
+//// (Optional) Hide the ACF admin menu item.
+//add_filter('acf/settings/show_admin', 'immobilien_redaktion_2020\my_acf_settings_show_admin');
+//function my_acf_settings_show_admin( $show_admin ) {
+//
+//    if(defined('SCRIPT_DEBUG') && SCRIPT_DEBUG){
+//        return true;
+//    }
+//    return false;
+//}
 
 
 
