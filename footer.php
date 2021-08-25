@@ -28,7 +28,9 @@ mt-auto
                 <div class="lg:w-1/4 text-center lg:text-left">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo_white.svg">
                 </div>
-
+                <div class="lg:w-1/4 text-center lg:text-left flex flex-col justify-end text-xs">
+                    Betreut durch <a href="https://poppgerhard.at" target="_blank" class="underline">Popp Gerhard</a>
+                </div>
 
                 <div class="lg:w-1/4 text-center lg:text-left pr-5 lg:pr-0">
                     <div class="text-xl text-right">
