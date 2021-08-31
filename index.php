@@ -43,7 +43,7 @@ $query = new \WP_Query([
 
     <?php get_template_part('banner-templates/banner', 'mega') ?>
 
-    <?php //get_template_part('page-templates/page', 'immoliveAnnouncement') ?>
+    <?php get_template_part('page-templates/page', 'immoliveAnnouncement') ?>
 
     <?php get_template_part('banner-templates/banner', 'fourbanner') ?>
 

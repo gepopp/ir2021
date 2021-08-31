@@ -38,11 +38,7 @@ function get_zoom_webinars() {
 
 	$wrapper = new \ZoomAPIWrapper( get_field( 'field_60126f14b73d4', 'option' ), get_field( 'field_60126f20b73d5', 'option' ) );
 	$result  = $wrapper->doRequest( 'GET', '/users/' . get_field( 'field_6012782af436e', 'option' ) );
-
-
-
-
-
+	
 	if ( $result ) {
 		$zoom_user_id = $result['id'];
 	}
