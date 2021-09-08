@@ -14,7 +14,7 @@ add_action('wp_enqueue_scripts', function () {
 //    wp_dequeue_script('jquery');
 
 
-    $min_ext = ''; //= (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
+    $min_ext = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
 
     // JS
     wp_enqueue_script(
