@@ -192,7 +192,7 @@ function load_more_immolive()
                 'ID'        => get_the_ID(),
                 'title'     => get_the_title(),
                 'permalink' => get_the_permalink(),
-                'img_url'   => $img,
+                'img_url'   => get_the_post_thumbnail_url(get_the_ID()),
                 'author'    => get_the_author(),
                 'date'      => get_the_time('d.m.Y'),
             ];
