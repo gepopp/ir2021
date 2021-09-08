@@ -70,7 +70,6 @@ $query = new \WP_Query( [
 
 
     <div class="container mx-auto mt-20 relative px-5 lg:px-0">
-
         <div class="grid grid-cols-2 gap-10">
 			<?php if ( $query->have_posts() ): ?>
 				<?php while ( $query->have_posts() ): ?>
@@ -92,10 +91,6 @@ $query = new \WP_Query( [
 
 
     </div>
-
-
 	<?php
-get_template_part( 'page-templates/modal', 'immolive' );
-
-
-get_footer();
+    get_template_part( 'page-templates/modal', 'immolive' );
+    get_footer();
