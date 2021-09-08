@@ -8,9 +8,6 @@
  *
  * @package Freeshifter
  */
-
-namespace immobilien_redaktion_2020;
-
 ?>
 </main>
 <footer class="footer bg-gray-900 text-white mt-32 pt-8 pb-16 lg:mx-0 md:px-5 mt-auto">
