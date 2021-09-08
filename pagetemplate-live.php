@@ -246,7 +246,6 @@ $query = new \WP_Query([
 
 
 <?php
-get_template_part('page-templates/modal', 'immolive');
 
 
 wp_reset_postdata();
@@ -256,6 +255,7 @@ get_footer();
 
 
 
+get_template_part('page-templates/modal', 'immolive');
 
 
 
