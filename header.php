@@ -89,7 +89,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
 
 ?>
 
-<body <?php body_class($bg); ?> itemscope itemtype="https://schema.org/WebPage">
+<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 
 <header class="header bg-primary-100 w-full h-10 relative md:px-5" x-data="{ showMobile : false }">
     <div class="container mx-auto flex justify-between ">
