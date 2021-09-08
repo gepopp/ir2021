@@ -59,15 +59,15 @@ global $FormSession;
 </form>
 <div class="bg-white">
     <hr class="my-4">
-    <div class="my-5 w-full">
-        <?php get_template_part('page-templates/loginbutton', 'facebook') ?>
-    </div>
-    <div class="my-5 w-full">
-	    <?php get_template_part('page-templates/loginbutton', 'google') ?>
-    </div>
-    <div class="my-5 w-full">
-	    <?php get_template_part('page-templates/loginbutton', 'linkedin') ?>
-    </div>
+<!--    <div class="my-5 w-full">-->
+<!--        --><?php //get_template_part('page-templates/loginbutton', 'facebook') ?>
+<!--    </div>-->
+<!--    <div class="my-5 w-full">-->
+<!--	    --><?php //get_template_part('page-templates/loginbutton', 'google') ?>
+<!--    </div>-->
+<!--    <div class="my-5 w-full">-->
+<!--	    --><?php //get_template_part('page-templates/loginbutton', 'linkedin') ?>
+<!--    </div>-->
 </div>
 <div class="py-2">
     <p class="font-medium"><?php _e( 'Noch keinen Account?', 'ir21' ) ?></p>
