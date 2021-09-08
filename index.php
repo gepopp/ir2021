@@ -45,7 +45,7 @@ $query = new \WP_Query([
 
 
 <!--announcement-->
-    <?php get_template_part('page-templates/page', 'immoliveAnnouncement') ?>
+<!--    --><?php //get_template_part('page-templates/page', 'immoliveAnnouncement') ?>
 
     <?php get_template_part('banner-templates/banner', 'fourbanner') ?>
 
