@@ -68,7 +68,7 @@ global $FormSession;
     </script>
 
 
-<!--    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/114395846.js"></script>-->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/114395846.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.3.2/dist/cdn.min.js"></script>
 </head>
 
