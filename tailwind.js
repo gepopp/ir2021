@@ -1,4 +1,9 @@
 module.exports = {
+	mode: 'jit',
+	purge: [
+		'./**/*/*.php',
+		'./dist/**/*.js',
+	],
 	prefix: '',
 	important: false,
 	separator: ':',

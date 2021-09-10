@@ -1,5 +1,5 @@
 // Build CSS
-import '../css/app.css'
+import '../css/app.scss'
 
 // Import JS Modules
 import menu_init from './modules/menu'
