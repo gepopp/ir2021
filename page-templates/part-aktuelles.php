@@ -1,8 +1,8 @@
 <?php
 $query = new \WP_Query( [
 	'post_status'    => 'publish',
+	'post_type' => 'aktuelle_presse',
 	'posts_per_page' => 4,
-	'category__in'   => [ 696 ],
 ] );
 
 if ( $query->have_posts() ):
