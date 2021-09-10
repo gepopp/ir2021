@@ -189,7 +189,7 @@ function register_post_types()
 		'show_in_rest'        => true,
 		'menu_icon'            => 'dashicons-admin-post',
 	];
-	register_post_type('aktuelles', $args);
+	register_post_type('aktuelle_presse', $args);
 
 	$labels = [
 		'name'                  => _x('Immobilien Projekt', 'Post Type General Name', 'text_domain'),
