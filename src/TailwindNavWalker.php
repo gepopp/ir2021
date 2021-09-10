@@ -41,10 +41,10 @@ class TailwindNavWalker extends \Walker_Nav_Menu
 
         if ($permalink && $permalink != '#') {
             $output .= '<a href="' . $permalink . '" class="' . $class . '"';
-            if ($item->object == 'category') {
-                $color = get_field('field_5c63ff4b7a5fb', get_category($item->object_id));
-                $output .= ' style="background: linear-gradient(0deg, ' . $color . ' 0%, ' . $color . ' 50%, transparent 50%, transparent 100%);"';
-            }
+//            if ($item->object == 'category') {
+//                $color = get_field('field_5c63ff4b7a5fb', get_category($item->object_id));
+//                $output .= ' style="background: linear-gradient(0deg, ' . $color . ' 0%, ' . $color . ' 50%, transparent 50%, transparent 100%);"';
+//            }
             $output .= '>';
         } else {
             $output .= '<span>';

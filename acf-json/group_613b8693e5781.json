@@ -1,11 +1,11 @@
 {
-    "key": "group_613b5983a2698",
-    "title": "Aktuelles Sektion",
+    "key": "group_613b8693e5781",
+    "title": "Immobilien Projekte Sektion",
     "fields": [
         {
-            "key": "field_613b5990f3543",
+            "key": "field_613b8693e9b81",
             "label": "Sektionsfarbe",
-            "name": "aktuelle_presse_sektionsfarbe",
+            "name": "immobilien_presse_sektionsfarbe",
             "type": "color_picker",
             "instructions": "",
             "required": 0,
@@ -20,9 +20,9 @@
             "return_format": "string"
         },
         {
-            "key": "field_613b59a0f3544",
+            "key": "field_613b8693e9b94",
             "label": "Sektionsbeschreibung",
-            "name": "aktuelle_presse_sektionsbeschreibung",
+            "name": "immobilien_presse_sektionsbeschreibung",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -39,9 +39,9 @@
             "new_lines": ""
         },
         {
-            "key": "field_613b59adf3545",
+            "key": "field_613b8693e9ba5",
             "label": "Sektions Banner",
-            "name": "aktuelle_presse_sektions_banner",
+            "name": "immobilien_presse_sektions_banner",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -63,9 +63,9 @@
             "mime_types": ""
         },
         {
-            "key": "field_613b5a844db76",
+            "key": "field_613b8693e9bb6",
             "label": "Banner Link",
-            "name": "banner_link",
+            "name": "immobilien_banner_link",
             "type": "link",
             "instructions": "",
             "required": 0,
@@ -95,5 +95,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1631290875
+    "modified": 1631291085
 }
