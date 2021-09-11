@@ -71,8 +71,8 @@ add_shortcode( 'koepfe', function ( $atts = [] ) {
 
                         <div class="h-full text-primary-100 w-full  lg:w-2/3 <?php echo $layout == 'right' || ( $layout == 'alternate' && $runner % 2 == 0 ) ? 'lg:pr-10' : 'lg:pl-10' ?> pt-10 lg:pt-0">
                             <div class="flex flex-col">
-                                <h3 class="text-3xl mb-0"><?php the_field( 'field_613b8ca49b06b' ) ?></h3>
-                                <p class="text-sm italic mb-5"><?php the_field( 'field_613b8caa9b06c' ); ?></p>
+                                <h3 class="text-3xl mb-0"><?php the_field( 'field_613c53f33d6b8' ) ?> <?php the_field( 'field_613b8ca49b06b' ) ?></h3>
+                                <p class="text-sm italic mb-5"><?php the_field( 'field_613c54063d6b9' );  ?> bei <?php the_field( 'field_613b8caa9b06c' ); ?></p>
                                 <p class="line-clamp-3 flex-1 text-gray-900"><?php echo get_the_excerpt(); ?></p>
                             </div>
                         </div>
