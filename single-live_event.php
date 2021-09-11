@@ -7,7 +7,7 @@ $event_id = get_field('field_6069e92463992');
 ?>
 
     <div class="container mx-auto my-20">
-        <?php get_template_part('page-templates/video', 'head') ?>
+        <?php get_template_part('video', 'head') ?>
         <div style="padding:56.25% 0 0 0;position:relative;">
             <iframe src="https://vimeo.com/event/<?php echo $event_id ?>/embed" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
         </div>

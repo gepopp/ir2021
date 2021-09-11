@@ -31,10 +31,10 @@
             </nav>
         </div>
         <div class="col-span-5 lg:col-span-4 p-10 bg-white shadow-lg" style="min-height: 500px">
-           <?php get_template_part('page-templates/log', 'reminder') ?>
-           <?php get_template_part('page-templates/log', 'bookmarks') ?>
-           <?php get_template_part('page-templates/log', 'read') ?>
-           <?php get_template_part('page-templates/log', 'readon') ?>
+           <?php get_template_part('log', 'reminder') ?>
+           <?php get_template_part('log', 'bookmarks') ?>
+           <?php get_template_part('log', 'read') ?>
+           <?php get_template_part('log', 'readon') ?>
         </div>
     </div>
 </div>

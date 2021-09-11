@@ -26,7 +26,7 @@ if ($query->have_posts()):
             $runner++;
             continue;
         }
-        get_template_part('page-templates/snippet', 'event');
+        get_template_part('snippet', 'event');
 
         $speakers = get_field('field_6007f8b5a20f0');
         ?>

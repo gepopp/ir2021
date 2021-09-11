@@ -15,12 +15,12 @@ $cat = get_category( $cat );
      @resize.window="getmeasurements()"
      ref="watched"
 >
-	<?php get_template_part( 'page-templates/article', 'header' ) ?>
+	<?php get_template_part( 'article', 'header' ) ?>
 
     <div class="container mx-auto">
         <div class="grid grid-cols-5 gap-4">
             <div>
-				<?php get_template_part( 'page-templates/article', 'left' ) ?>
+				<?php get_template_part( 'article', 'left' ) ?>
             </div>
             <div class="content col-span-5 lg:col-span-3" id="article-content">
 
@@ -91,13 +91,13 @@ $cat = get_category( $cat );
 
             </div>
             <div>
-				<?php get_template_part( 'page-templates/article', 'right' ) ?>
+				<?php get_template_part( 'article', 'right' ) ?>
             </div>
         </div>
     </div>
 </div>
 
-<?php get_template_part( 'page-templates/article', 'readmore' ) ?>
+<?php get_template_part( 'article', 'readmore' ) ?>
 
 <div class="lg:hidden sticky bottom-0"
      x-data="{ scroll: 0, max : 0 }"
@@ -118,6 +118,6 @@ $cat = get_category( $cat );
 
      ">
     <div x-show.transition.fade.500ms="scroll > 200 && scroll < max">
-		<?php get_template_part( 'page-templates/article', 'iconbar' ) ?>
+		<?php get_template_part( 'article', 'iconbar' ) ?>
     </div>
 </div>

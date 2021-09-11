@@ -7,19 +7,14 @@ the_post();
 
 global $wpdb;
 ?>
-
-
-
     <div class="container mx-auto mt-48 relative px-5 lg:px-0">
         <div class="grid grid-cols-3 gap-10">
-            <?php get_template_part('page-templates/profile', 'form') ?>
-            <?php get_template_part('page-templates/useremail', 'form') ?>
-            <?php get_template_part('page-templates/profile', 'image') ?>
+            <?php get_template_part('profile', 'form') ?>
+            <?php get_template_part('profile', 'useremail') ?>
+            <?php get_template_part('profile', 'image') ?>
         </div>
     </div>
 
-    <?php get_template_part('page-templates/reading', 'log') ?>
-
-
+    <?php get_template_part('log', 'reading' ) ?>
 <?php
 get_footer();

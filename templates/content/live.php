@@ -13,7 +13,7 @@ $cat = array_shift($cat);
      @resize.window="getmeasurements()"
      ref="watched"
 >
-    <?php get_template_part('page-templates/article', 'liveheader') ?>
+    <?php get_template_part('article', 'liveheader') ?>
 
     <div class="container mx-auto mt-10">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
@@ -22,7 +22,7 @@ $cat = array_shift($cat);
                     <?php the_title() ?>
                 </h1>
                 <div class="hidden sm:block">
-	                <?php get_template_part('page-templates/video', 'meta', ['mode' => 'light']) ?>
+	                <?php get_template_part('video', 'meta', ['mode' => 'light']) ?>
                 </div>
                 <div>
                     <div class="max-w-1/3 h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field('field_5c63ff4b7a5fb', $cat); ?>">
@@ -61,7 +61,7 @@ $cat = array_shift($cat);
                             $runner++;
                             continue;
                         }
-                        get_template_part('page-templates/snippet', 'event');
+                        get_template_part('snippet', 'event');
                         ?>
                         <div class="flex justify-end md:justify-between w-full py-5 text-xl text-white font-light leading-none">
                             <p class="w-full lg:w-1/3 hidden md:block"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>

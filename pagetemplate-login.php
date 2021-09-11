@@ -19,7 +19,7 @@ global $FormSession;
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="bg-white p-5 shadow-xl lg:w-96">
                     <h3 class="text-xl font-medium text-gray-700 mb-4"><?php _e('Login', 'ir21') ?></h3>
-                    <?php get_template_part('page-templates/login', 'form') ?>
+                    <?php get_template_part('login', 'form') ?>
                 </div>
                 <div>
                     <h1 class="text-2xl font-serif mb-5"><?php the_title() ?></h1>

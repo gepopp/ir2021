@@ -30,7 +30,7 @@ echo var_dump($event_start);
             <aside class="lg:col-span-2 px-5 xl:px-0" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
                 <div class="bg-white p-5 xl:p-10 shadow-xl">
                     <div class="w-full">
-                        <?php get_template_part('page-templates/immolive', 'counter') ?>
+                        <?php get_template_part('immolive', 'counter') ?>
                     </div>
 
                     <?php

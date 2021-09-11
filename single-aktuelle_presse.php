@@ -12,11 +12,11 @@ if(!empty(array_filter($cats, function ($cat){
         return $cat;
     }
 })) && get_post_format() !== 'video'){
-    get_template_part('page-templates/content', 'live');
+    get_template_part('content', 'live');
 }elseif (!get_post_format()) {
-    get_template_part('page-templates/content', 'article');
+    get_template_part('content', 'article');
 } elseif (get_post_format() == 'video') {
-    get_template_part('page-templates/content', 'video');
+    get_template_part('content', 'video');
 }
 
 get_footer();

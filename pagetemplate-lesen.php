@@ -10,7 +10,7 @@ get_header();
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center"><?php _e( 'lesen', 'ir21' ) ?></h1>
     </div>
 
-<?php get_template_part( 'banner-templates/banner', 'mega' ) ?>
+<?php get_template_part( 'banner', 'mega' ) ?>
 
 
 <?php
@@ -73,7 +73,7 @@ $query = new \WP_Query( [
 								'class'   => 'w-full h-auto max-w-full',
 								'onerror' => "this.style.display='none'",
 							] ); ?>
-							<?php get_template_part( 'page-templates/snippet', 'heading' ) ?>
+							<?php get_template_part( 'snippet', 'heading' ) ?>
                         </a>
                     </div>
 				<?php endwhile; ?>

@@ -21,7 +21,7 @@
         </h1>
     </div>
 
-<?php get_template_part( 'banner-templates/banner', 'mega' ) ?>
+<?php get_template_part( 'banner', 'mega' ) ?>
 
 
     <div class="container mx-auto mt-20 px-5 lg:px-0 relative" x-data="{show:0}" x-init="window.onload = () => show = 1; inter = setInterval( () => { if(show < 3) { show++; } else { clearInterval(inter); } }, 500 ) ">
@@ -62,7 +62,7 @@
 								'onerror' => "this.style.display='none'",
 								'style'   => "margin-top:-56%",
 							] ); ?>
-							<?php get_template_part( 'page-templates/snippet', 'heading' ) ?>
+							<?php get_template_part( 'snippet', 'heading' ) ?>
                         </a>
                     </div>
 				<?php endwhile; ?>

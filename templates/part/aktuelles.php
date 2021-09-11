@@ -18,7 +18,7 @@ if ( $query->have_posts() ):
 						<?php the_post_thumbnail( 'article', [ 'class'   => 'w-full h-auto max-w-full',
 						                                       'onerror' => "this.style.display='none'",
 						] ); ?>
-						<?php get_template_part('page-templates/snippet', 'heading', ['size' => 'small']) ?>
+						<?php get_template_part('snippet', 'heading', ['size' => 'small']) ?>
                     </a>
                 </div>
 

@@ -1,7 +1,7 @@
 <div class="container mx-auto mt-48">
     <div class="hidden lg:block"></div>
     <div class="col-span-5 lg:col-span-3 -mx-5">
-        <?php get_template_part('banner-templates/banner', 'mega') ?>
+        <?php get_template_part('banner', 'mega') ?>
     </div>
 </div>
 
@@ -16,7 +16,7 @@
                 maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
              }).observe(document.getElementById('videoContainer')); ">
             <div class="relative col-span-4 lg:col-span-3" id="videoContainer">
-                <?php get_template_part('page-templates/vimeo', 'player') ?>
+                <?php get_template_part('video', 'player') ?>
             </div>
             <div class="col-span-4 lg:col-span-1 overflow-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
                  :style="`max-height: ${maxHeight};`">

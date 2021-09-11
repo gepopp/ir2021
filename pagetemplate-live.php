@@ -38,7 +38,7 @@ if ($query->have_posts()):
             continue;
         }
 
-        get_template_part('page-templates/snippet', 'event');
+        get_template_part('snippet', 'event');
 
         $speakers = get_field('field_6007f8b5a20f0');
 
@@ -93,7 +93,7 @@ if ($query->have_posts()):
 
             <div>
                 <div class="" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
-                    <?php get_template_part('page-templates/immolive', 'counter-v2') ?>
+                    <?php get_template_part('immolive', 'counter-v2') ?>
                     <div class="flex justify-center my-20">
 
                         <?php
@@ -170,7 +170,7 @@ $query = new \WP_Query([
 ]);
 ?>
 
-<?php get_template_part('banner-templates/banner', 'mega') ?>
+<?php get_template_part('banner', 'mega') ?>
 
     <div class="container mx-auto mt-20 px-5 relative">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -186,7 +186,7 @@ $query = new \WP_Query([
                             <?php endif; ?>
                             <div class="absolute top-0 left-0 w-full h-full"></div>
                             <div class="absolute bottom-0 left-0 hidden lg:block w-full">
-                                <?php get_template_part('page-templates/snippet', 'heading') ?>
+                                <?php get_template_part('snippet', 'heading') ?>
                             </div>
                             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                                 <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">
@@ -255,7 +255,7 @@ get_footer();
 
 
 
-get_template_part('page-templates/modal', 'immolive');
+get_template_part('modal', 'immolive');
 
 
 

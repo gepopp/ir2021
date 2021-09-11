@@ -43,7 +43,7 @@ $duration .= 'S';
 </script>
 
 
-<?php get_template_part( 'banner-templates/banner', 'mega' ) ?>
+<?php get_template_part( 'banner', 'mega' ) ?>
 
 <div class="container mx-auto mt-20 relative px-5 lg:px-0">
     <div class="grid grid-cols-4 gap-5" x-data="{ maxHeight: '' }" x-init="
@@ -60,7 +60,7 @@ $duration .= 'S';
                 </div>
 			<?php elseif ( get_field( 'field_5fe2884da38a5' ) ): ?>
                 <div id="videoContainer">
-					<?php get_template_part( 'page-templates/vimeo', 'player' ); ?>
+					<?php get_template_part( 'video', 'player' ); ?>
                 </div>
 			<?php endif; ?>
         </div>

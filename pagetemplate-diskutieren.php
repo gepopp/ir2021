@@ -41,14 +41,14 @@ if ($query->have_posts()):
         }
 
 
-        get_template_part('page-templates/snippet', 'event');
+        get_template_part('snippet', 'event');
 
         ?>
         <div class="lg:h-screen-75 flex lg:-mx-5">
             <div class="lg:w-1/2 bg-white h-full relative flex justify-center items-center">
                 <div class="lg:w-3/4 xl:w-1/2">
                     <div class="mt-20 mb-10 lg:hidden" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
-                        <?php get_template_part('page-templates/immolive', 'counter') ?>
+                        <?php get_template_part('immolive', 'counter') ?>
                     </div>
                     <p class="font-semibold hidden lg:block px-5 lg:px-0">Diese Livestream startet am <?php echo get_field('field_5ed527e9c2279') ?> Uhr.</p>
                     <h1 class="text-3xl font-semibold font-serif leading-tight px-5 lg:px-0 pb-5"><?php the_title() ?></h1>
@@ -233,7 +233,7 @@ $query = new \WP_Query([
 ]);
 ?>
 
-<?php get_template_part('banner-templates/banner', 'mega') ?>
+<?php get_template_part('banner', 'mega') ?>
 
     <div class="container mx-auto mt-20 px-5 relative">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -249,7 +249,7 @@ $query = new \WP_Query([
                             <?php endif; ?>
                             <div class="absolute top-0 left-0 w-full h-full"></div>
                             <div class="absolute bottom-0 left-0 hidden lg:block w-full">
-                                <?php get_template_part('page-templates/snippet', 'heading') ?>
+                                <?php get_template_part('snippet', 'heading') ?>
                             </div>
                             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                                 <div class="rounded-full bg-white w-24 h-24 m-5 flex items-center justify-center">

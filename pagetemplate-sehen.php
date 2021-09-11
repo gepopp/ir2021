@@ -18,7 +18,7 @@ get_header();
     </div>
 
 
-<?php get_template_part( 'banner-templates/banner', 'mega' ) ?>
+<?php get_template_part( 'banner', 'mega' ) ?>
 
 
 <?php

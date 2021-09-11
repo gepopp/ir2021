@@ -32,7 +32,7 @@ $query = new \WP_Query( [
 								<?php the_post_thumbnail( 'article', [ 'class'   => 'w-full h-auto max-w-full',
 								                                       'onerror' => "this.style.display='none'",
 								] ); ?>
-								<?php get_template_part( 'page-templates/snippet', 'heading' ) ?>
+								<?php get_template_part( 'snippet', 'heading' ) ?>
                             </a>
                         </div>
                     </div>
@@ -43,18 +43,18 @@ $query = new \WP_Query( [
     </div>
 
 
-	<?php get_template_part( 'banner-templates/banner', 'mega' ) ?>
+	<?php get_template_part( 'banner', 'mega' ) ?>
 
 
     <!--announcement-->
-    <!--    --><?php //get_template_part('page-templates/page', 'immoliveAnnouncement')
+    <!--    --><?php //get_template_part('part', 'immoliveAnnouncement')
 ?>
 
-	<?php get_template_part( 'banner-templates/banner', 'fourbanner' ) ?>
+	<?php get_template_part( 'banner', 'fourbanner' ) ?>
 
-	<?php get_template_part( 'page-templates/part', 'aktuelles' ) ?>
+<!--	--><?php //get_template_part( 'page', 'aktuelles' ) ?>
 
-	<?php get_template_part( 'banner-templates/banner', 'thirds2' ) ?>
+	<?php get_template_part( 'banner', 'thirds2' ) ?>
 
 	<?php
 
@@ -80,7 +80,7 @@ $query = new \WP_Query( [
 								<?php the_post_thumbnail( 'article', [ 'class'   => 'w-full h-auto max-w-full',
 								                                       'onerror' => "this.style.display='none'",
 								] ); ?>
-								<?php get_template_part( 'page-templates/snippet', 'heading' ) ?>
+								<?php get_template_part( 'snippet', 'heading' ) ?>
                             </a>
                         </div>
                     </div>
@@ -94,4 +94,4 @@ $query = new \WP_Query( [
 
     <?php get_footer(); ?>
 	<?php
-    get_template_part( 'page-templates/modal', 'immolive' );
+    get_template_part( 'modal', 'immolive' );

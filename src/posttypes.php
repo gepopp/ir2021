@@ -292,10 +292,20 @@ function register_post_types()
 		'menu_icon'            => 'dashicons-admin-post',
 	];
 	register_post_type('zur_person', $args);
-
-
-
-
 }
 
 add_action('init', 'register_post_types');
+
+
+add_action( 'pre_get_posts',  'set_posts_per_page'  );
+function set_posts_per_page( $query ) {
+
+	global $wp_the_query;
+
+	if ( $query->is_post_type_archive('zur_person') ) {
+		$query->set( 'posts_per_page', 12 );
+	}
+	// Etc..
+
+	return $query;
+}

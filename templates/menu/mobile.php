@@ -41,17 +41,17 @@
         <ul class="flex justify-between px-3">
             <li class="uppercase text-white mr-3 w-10 h-10">
                 <a href="https://www.facebook.com/ImmoRedaktion" target="_blank">
-                    <?php get_template_part('page-templates/icons/facebook') ?>
+                    <?php get_template_part('icons', 'facebook') ?>
                 </a>
             </li>
             <li class="uppercase text-white mr-3 w-10 h-10">
                 <a href="https://twitter.com/ImmoRedaktion" target="_blank">
-                    <?php get_template_part('page-templates/icons/twitter') ?>
+                    <?php get_template_part('icons', 'twitter') ?>
                 </a>
             </li>
             <li class="uppercase text-white mr-3 w-10 h-10">
                 <a href="https://www.linkedin.com/company/die-unabhaengige-immobilien-redaktion/" target="_blank">
-                    <?php get_template_part('page-templates/icons/linkedin') ?>
+                    <?php get_template_part('icons', 'linkedin') ?>
                 </a>
             </li>
         </ul>

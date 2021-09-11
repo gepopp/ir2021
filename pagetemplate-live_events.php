@@ -38,7 +38,7 @@ if ($query->have_posts()):
             continue;
         }
 
-        get_template_part('page-templates/snippet', 'event');
+        get_template_part('snippet', 'event');
 
         $speakers = get_field('field_6007f8b5a20f0');
 
@@ -93,7 +93,7 @@ if ($query->have_posts()):
 
             <div>
                 <div class="" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
-                    <?php get_template_part('page-templates/immolive', 'counter-v2') ?>
+                    <?php get_template_part('immolive', 'counter-v2') ?>
                     <div class="flex justify-center my-20">
 
                         <?php
@@ -160,7 +160,7 @@ endif;
 ?>
 
 
-<?php get_template_part('banner-templates/banner', 'mega') ?>
+<?php get_template_part('banner', 'mega') ?>
 
 
 <?php

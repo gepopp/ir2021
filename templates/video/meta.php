@@ -11,7 +11,7 @@ extract(array_merge($default, $args));
 
 <div class="text-white flex justify-between w-full mt-5">
     <div>
-        <?php get_template_part('page-templates/video', 'iconbar', ['mode' => $mode]) ?>
+        <?php get_template_part('video', 'iconbar', ['mode' => $mode]) ?>
     </div>
     <div class="flex mt-2">
         <div class="flex" x-data="readTime('<?php echo preg_replace("/[^ A-Za-z0-9?!]/", '', str_replace('"', '', wp_strip_all_tags(get_the_content()))); ?>')">

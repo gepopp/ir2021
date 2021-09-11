@@ -120,17 +120,17 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
             <ul class="flex">
                 <li class="uppercase text-white mr-3 w-6 h-6">
                     <a href="https://www.facebook.com/ImmoRedaktion">
-                       <?php get_template_part('page-templates/icons/facebook', null, ['color' => 'white']) ?>
+                       <?php get_template_part('icons', 'facebook',  ['color' => 'white']) ?>
                     </a>
                 </li>
                 <li class="uppercase text-white mr-3 w-6 h-6">
                     <a href="https://twitter.com/ImmoRedaktion">
-                      <?php get_template_part('page-templates/icons/twitter', null, ['color' => 'white']) ?>
+                      <?php get_template_part('icons','twitter',  ['color' => 'white']) ?>
                     </a>
                 </li>
                 <li class="uppercase text-white mr-3 h-6 w-6">
                     <a href="https://www.linkedin.com/company/die-unabhaengige-immobilien-redaktion/">
-                       <?php get_template_part('page-templates/icons/linkedin', null, ['color' => 'white']) ?>
+                       <?php get_template_part('icons','linkedin',  ['color' => 'white']) ?>
                     </a>
                 </li>
                 <li class="relative inline-flex rounded-md shadow-sm">
@@ -198,7 +198,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
     </div>
 
 
-    <?php get_template_part('page-templates/menu', 'mobile') ?>
+    <?php get_template_part('menu', 'mobile') ?>
 
 
 </header>

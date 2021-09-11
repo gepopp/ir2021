@@ -4,17 +4,17 @@ $post_id = get_the_ID();
 ?>
 
 <div class="text-white">
-    <?php get_template_part('page-templates/article', 'author') ?>
+    <?php get_template_part('article', 'author') ?>
 </div>
 
-<?php get_template_part('page-templates/video', 'head') ?>
+<?php get_template_part('video', 'head') ?>
 
 
 <div class="container mx-auto mt-32 ">
     <div class="grid grid-cols-5 gap-4 px-5 lg:px-0">
         <div class="col-span-5 lg:col-span-3 mb-5">
             <h1 class="text-3xl lg:text-5xl font-serif leading-none text-white"><?php the_title() ?></h1>
-            <?php get_template_part('page-templates/video', 'meta') ?>
+            <?php get_template_part('video', 'meta') ?>
         </div>
     </div>
 
@@ -30,7 +30,7 @@ $post_id = get_the_ID();
                 <p class="mb-5 text-white"><?php echo get_the_excerpt(); ?></p>
                 <?php the_content(); ?>
             </div>
-            <?php get_template_part('page-templates/video', 'sidebar') ?>
+            <?php get_template_part('video', 'sidebar') ?>
         </div>
         <div class="lg:hidden sticky bottom-0"
              x-data="{ scroll: 0, max : 0 }"
@@ -51,7 +51,7 @@ $post_id = get_the_ID();
 
      ">
             <div x-show.transition.fade.500ms="scroll > 200 && scroll < max">
-            <?php get_template_part('page-templates/article', 'iconbar') ?>
+            <?php get_template_part('article', 'iconbar') ?>
         </div>
         </div>
     </div>
