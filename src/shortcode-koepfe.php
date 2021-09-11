@@ -38,7 +38,7 @@ add_shortcode( 'koepfe', function ( $atts = [] ) {
 	$runner = 1;
 	if ( $query->have_posts() ):
 		?>
-        <div class="container spaced">
+        <div class="container spaced border-t-2 border-primary-100">
 			<?php
 			while ( $query->have_posts() ):
 				$query->the_post();
