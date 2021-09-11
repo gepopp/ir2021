@@ -50,7 +50,7 @@ position: absolute;
 "></iframe>
                 </div>
 			<?php elseif ( get_field( 'field_5fe2884da38a5', $headvideo[0]->ID ) ): ?>
-				<?php echo get_the_post_thumbnail(get_the_ID()) ?>
+				<?php the_post_thumbnail('large') ?>
 			<?php endif; ?>
 
 
