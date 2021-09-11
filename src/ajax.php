@@ -80,7 +80,7 @@ function load_videos()
                 'ID'        => get_the_ID(),
                 'permalink' => get_the_permalink(),
                 'title'     => get_the_title(),
-                'img'       => '',
+                'img'       => get_the_post_thumbnail_url(get_the_ID(), 'featured_small'),
             ];
             $runner++;
         endwhile;

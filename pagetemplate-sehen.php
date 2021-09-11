@@ -50,7 +50,7 @@ position: absolute;
 "></iframe>
                 </div>
 			<?php elseif ( get_field( 'field_5fe2884da38a5', $headvideo[0]->ID ) ): ?>
-				<?php the_post_thumbnail('large') ?>
+				<?php echo get_the_post_thumbnail( $headvideo[0]->ID, 'full', [ 'class' => 'w-full h-auto' ] ) ?>
 			<?php endif; ?>
 
 
@@ -119,17 +119,11 @@ $query = new WP_Query( [
 					$query->the_post();
 					?>
                     <div class="col-span-3 lg:col-span-1">
-
-
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
-								<?php if ( get_field( 'field_5f96fa1673bac' ) ): ?>
-                                    <img src="https://img.youtube.com/vi/<?php echo get_field( 'field_5f96fa1673bac' ) ?>/mqdefault.jpg"/>
-								<?php elseif ( get_field( 'field_5fe2884da38a5' ) ): ?>
-                                    <div x-data="loadVimeoImage()" x-init="loadUrl(<?php echo get_the_ID() ?>)" class="bg-primary-100" style="padding-top: 56%">
-                                        <img :src="imgUrl" class="w-full h-auto" style="margin-top: -56%">
-                                    </div>
-								<?php endif; ?>
+                                <div class="bg-primary-100" style="padding-top: 56%">
+									<?php the_post_thumbnail( 'featured_small', [ 'class' => 'absolute top-0 left-0' ] ); ?>
+                                </div>
                                 <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                                     <div class="w-4 h-4 bg-white rounded-full">
                                         <svg class="w-4 h-4 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -178,14 +172,9 @@ $query = new WP_Query( [
 
                         <div class="relative">
                             <a href="<?php the_permalink(); ?>">
-
-								<?php if ( get_field( 'field_5f96fa1673bac' ) ): ?>
-                                    <img src="https://img.youtube.com/vi/<?php echo get_field( 'field_5f96fa1673bac' ) ?>/mqdefault.jpg"/>
-								<?php elseif ( get_field( 'field_5fe2884da38a5' ) ): ?>
-                                    <div x-data="loadVimeoImage()" x-init="loadUrl(<?php echo get_the_ID() ?>)" class="bg-primay-100" style="padding-top: 56%">
-                                        <img :src="imgUrl" class="w-full h-auto" style="margin-top: -56%">
-                                    </div>
-								<?php endif; ?>
+                                <div class="bg-primary-100" style="padding-top: 56%">
+									<?php the_post_thumbnail( 'featured_small', [ 'class' => 'absolute top-0 left-0' ] ); ?>
+                                </div>
                                 <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
                                     <a href="<?php the_permalink(); ?>">
                                         <div class="w-4 h-4 bg-white rounded-full">
@@ -239,15 +228,7 @@ foreach ( $cats as $cat ): ?>
 		$runner = 1;
 		while ( $query->have_posts() ):
 			$query->the_post();
-
-			if ( get_field( 'field_5f96fa1673bac' ) ):
-				$url = "https://img.youtube.com/vi/" . get_field( 'field_5f96fa1673bac' ) . "/mqdefault.jpg";
-            elseif ( get_field( 'field_5fe2884da38a5' ) ):
-
-				$url = load_vimeo_image( get_the_ID() );
-			else:
-				$url = false;
-			endif;
+			$url = get_the_post_thumbnail_url( get_the_ID(), 'featured_small' );
 
 			$posts[] = [
 				'ID'        => get_the_ID(),

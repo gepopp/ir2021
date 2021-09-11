@@ -31,25 +31,6 @@ window.slider = function (start, cat, pages) {
             if (!this.loading)
                 $refs.slider.scrollLeft = $refs.slider.scrollLeft - ($refs.slider.scrollWidth / this.rows.length)
         },
-        loadImage() {
-
-            this.rows.map((row => {
-                row.map(post => {
-                    if (post.img == '') {
-
-                        var params = new URLSearchParams();
-                        params.append('action', 'load_vimeo_thumbnail');
-                        params.append('post_id', post.ID);
-                        axios.post(window.ajaxurl, params)
-                            .then((rsp) => {
-                                post.img = rsp.data;
-                            });
-                    }
-                })
-            }))
-
-
-        },
         load() {
 
             if (this.rows.length <= pages) {
@@ -64,7 +45,6 @@ window.slider = function (start, cat, pages) {
                 axios.post(window.ajaxurl, params)
                     .then((rsp) => {
                         this.rows.push(rsp.data);
-                        this.loadImage();
                         setTimeout(() => this.loading = false, 1500);
                     });
 
@@ -75,12 +55,6 @@ window.slider = function (start, cat, pages) {
             var id = 'img' + post.id;
             setTimeout(() => this.$el.querySelector('#img-' + post.ID).style.backgroundImage = "url('" + post.img + "')", 15);
 
-        },
-        $watch() {
-            active: (value) => {
-                console.log(value);
-            }
         }
-
     }
 }
