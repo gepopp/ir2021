@@ -58,7 +58,7 @@ add_shortcode( 'koepfe', function ( $atts = [] ) {
                         <div class="lg:flex-shrink-0 w-full lg:w-1/3 <?php echo $order ?>">
                             <figure>
 								<?php
-								echo get_the_post_thumbnail( get_the_ID(), '430x258true', [ 'class' => 'w-full h-auto' ] );
+								echo get_the_post_thumbnail( get_the_ID(), 'thumbnail', [ 'class' => 'w-full h-auto rounded-full' ] );
 								$caption = wp_get_attachment_caption( get_post_thumbnail_id( get_the_ID() ) );
 								if ( ! empty( $caption ) ):
 									?>
