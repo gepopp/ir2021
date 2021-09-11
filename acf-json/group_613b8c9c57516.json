@@ -3,9 +3,28 @@
     "title": "Zur Person Daten",
     "fields": [
         {
+            "key": "field_613c53f33d6b8",
+            "label": "Vorname",
+            "name": "zur_person_vorname",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_613b8ca49b06b",
             "label": "Name",
-            "name": "name",
+            "name": "zur_person_name",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -23,8 +42,27 @@
         },
         {
             "key": "field_613b8caa9b06c",
-            "label": "Unternehmen  und Position",
-            "name": "unternehmen__und_position",
+            "label": "Unternehmen",
+            "name": "zur_person_unternehmen",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_613c54063d6b9",
+            "label": "Position",
+            "name": "zur_person_position",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -58,5 +96,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1631292607
+    "modified": 1631343685
 }
