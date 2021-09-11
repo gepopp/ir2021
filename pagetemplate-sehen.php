@@ -50,15 +50,7 @@ position: absolute;
 "></iframe>
                 </div>
 			<?php elseif ( get_field( 'field_5fe2884da38a5', $headvideo[0]->ID ) ): ?>
-				<?php if ( get_field( 'field_5fe7058a647cb', $headvideo[0]->ID ) == '' ) {
-					$lib      = new \Vimeo\Vimeo( 'f1663d720a1da170d55271713cc579a3e15d5d2f', 'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9' );
-					$response = $lib->request( '/videos/' . get_field( 'field_5fe2884da38a5', $headvideo[0]->ID ), [], 'GET' );
-					$body     = $response['body'];
-					$img_url  = $body['pictures']['sizes'][2]['link'];
-				} else {
-					$img_url = get_field( 'field_5fe7058a647cb', $headvideo[0]->ID );
-				} ?>
-                <img src="<?php echo $img_url ?>" class="w-full h-auto">
+				<?php echo get_the_post_thumbnail(get_the_ID()) ?>
 			<?php endif; ?>
 
 
