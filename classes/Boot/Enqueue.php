@@ -1,0 +1,67 @@
+<?php
+
+
+namespace irclasses\Boot;
+
+
+class Enqueue {
+
+
+
+
+
+	public function __construct() {
+
+		add_action( 'wp_enqueue_scripts', [ $this, 'ir_enqueue_scripts_and_styles' ] );
+
+	}
+
+
+	public function ir_enqueue_scripts_and_styles() {
+
+		$this->ir_dequeue_scripts();
+
+		$min_ext = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
+
+		// CSS
+    wp_enqueue_style(
+        'immobilien_redaktion_2020_css',
+        immobilien_redaktion_2020_URL . "/dist/main{$min_ext}.css",
+        [],
+        immobilien_redaktion_2020_VERSION,
+        ''
+    );
+
+
+
+
+		wp_enqueue_script(
+			'immobilien_redaktion_2020_js',
+			immobilien_redaktion_2020_URL . "/dist/main{$min_ext}.js",
+			[],
+			immobilien_redaktion_2020_VERSION,
+			true
+		);
+
+		wp_localize_script('immobilien_redaktion_2020_js', 'messages', [
+            'select'          => __('Bitte wählen', 'ir21'),
+            'enter_last_name' => __('Bitte geben Sie Ihren Nachnamen ein.', 'ir21'),
+            'password_min'    => __("Bitte geben Sie mindestens 8 Zeichen ein.", 'ir21'),
+            'email_proofing'  => __("E-Mail wird geprüft...", 'ir21'),
+            'email_exists'    => __("Bitte geben Sie eine E-Mail Adresse ein die noch nicht registriert ist.", 'ir21'),
+            'email_invalid'   => __("Bitte eine gültige E-Mail Adresse eingeben.", 'ir21'),
+            'rootapiurl' => esc_url_raw(rest_url()),
+            'nonce' => wp_create_nonce('wp_rest')
+        ]);
+
+
+	}
+
+
+	public function ir_dequeue_scripts() {
+		wp_dequeue_style( 'wp-block-library' );
+		wp_dequeue_style( 'wp-block-library-theme' );
+		wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
+		wp_dequeue_script( 'jquery' );
+	}
+}

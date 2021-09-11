@@ -1,9 +1,5 @@
-<?php get_header(); ?>
-
-<?php
+<?php get_header();
 $term = get_queried_object();
-
-
 ?>
 
 
@@ -65,26 +61,8 @@ $term = get_queried_object();
     </div>
 
 
-    <div class="container mx-auto mt-10 px-5 md:px-5" x-data="loadMore(<?php echo $term->term_id ?>)">
-        <div class="grid grid-cols-2 gap-10">
-            <template x-for="post in loaded">
-
-                <div class="col-span-2 md:col-span-1 relative">
-                    <a :href="post.permalink" class="relative block bg-primary-100 h-full" style="padding-top: 56%">
-                        <img :src="post.img_url" class="w-full h-auto max-w-full" onerror="this.style.display='none';" style="margin-top: -56%;">
-                        <h1 class="md:absolute bottom-0 left-0 text-white font-serif p-5 text-xl w-full md:text-2xl leading-tight  bg-gray-800 bg-opacity-50" x-text="post.title"></h1>
-                    </a>
-                </div>
-            </template>
-
-            <div class="flex items-center justify-center w-full my-32 col-span-2">
-                <div class="inline">
-                    <div class="py-2 px-3 bg-primary-100 text-white text-xl font-bold cursor-pointer" @click="load(<?php echo $term->term_id ?>)">
-						<?php _e( 'weitere laden', 'ir21' ) ?>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="mt-48">
+		<?php \irclasses\Pagination::paginate();?>
     </div>
 
 

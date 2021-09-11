@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 window.alterEmail = function (old) {
     return {
         email: '',

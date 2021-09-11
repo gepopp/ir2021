@@ -80,29 +80,3 @@ class TailwindNavWalker extends \Walker_Nav_Menu
     }
 
 }
-
-/**
- * <li class="uppercase text-white mr-3" @click.away="lesen = false">
- * <a href="/lesen" class="cursor-pointer" @mouseenter="lesen = !lesen">LESEN</a>
- * <div class="absolute mt-2 p-5 z-50 shadow-lg bg-white w-64 text-black" x-show="lesen" @mouseleave="lesen = false" x-cloak>
- * <?php $cats = get_categories(['exclude' => [1, 17], 'parent' => 0]) ?>
- * <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
- * <ul>
- * <?php foreach ($cats as $cat): ?>
- * <li class="flex justify-between">
- * <?php $color = get_field('field_5c63ff4b7a5fb', $cat) ?>
- * <a href="<?php echo get_category_link($cat) ?>" class="text-lg font-bold flex items-center space-x-3 hover:underline" style="background: linear-gradient(0deg, <?php echo $color ?> 0%, <?php echo $color ?> 50%, transparent 50%, transparent 100%);">
- * <?php echo $cat->name ?>
- * </a>
- * </li>
- * <?php endforeach; ?>
- * </ul>
- * </nav>
- * </div>
- * </li>
- * <li class="uppercase text-white mr-3">
- * <a href="/sehen">SEHEN</a>
- * </li>
- * <li class="uppercase text-white mr-3"><a href="/diskutieren">LIVE</a></li>
- * </ul>
- */

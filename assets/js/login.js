@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 window.loginForm = function (formdata) {
     return {
         email: formdata.email !== undefined ? formdata.email : '',

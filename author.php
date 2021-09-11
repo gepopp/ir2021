@@ -59,36 +59,8 @@ $query = new \WP_Query([
             </div>
         <?php endif; ?>
     </div>
-
-
-    <div class="container mx-auto mt-10" x-data="loadMore(<?php echo $author->ID ?>)">
-        <div class="grid grid-cols-2 gap-10">
-            <template x-for="post in loaded">
-                <div class="col-span-2 md:col-span-1 relative">
-                    <a :href="post.permalink" class="relative block bg-primary bg-gray-900 h-full">
-
-                        <div class="bg-primary-100 w-full h-full pt-75p flex items-center justify-center" x-show="!post.img_url"></div>
-                        <img :src="post.img_url" class="w-full h-auto">
-
-                        <div class="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-25 flex justify-center items-center">
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/icon.svg" class="w-1/3 h-auto" x-show="!post.img_url">
-                        </div>
-                        <div class="absolute bottom-0 left-0">
-                            <h1 class="font-serif text-white text-2xl p-5 bg-gray-800 bg-opacity-50 w-full" x-text="post.title"></h1>
-                        </div>
-                    </a>
-                </div>
-            </template>
-
-
-            <div class="flex items-center justify-center w-full my-32 col-span-2">
-                <div class="inline">
-                    <div class="py-2 px-3 bg-primary-100 text-white text-xl font-bold cursor-pointer" @click="load(<?php echo $author->ID ?>)">
-                        <?php _e('weitere laden', 'ir21') ?>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="mt-48">
+		<?php \irclasses\Pagination::paginate();?>
     </div>
 
 <?php get_footer();

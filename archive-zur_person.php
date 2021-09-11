@@ -87,9 +87,9 @@ function break_title($title){
 		<?php endif; ?>
     </div>
 
-<div class="mt-48">
-	<?php \immobilien_redaktion_2020\pagination(); ?>
-</div>
+    <div class="mt-48">
+		<?php \irclasses\Pagination::paginate();?>
+    </div>
 
 
 

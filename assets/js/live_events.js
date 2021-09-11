@@ -1,11 +1,9 @@
-import Axios from "axios";
-import moment from "moment";
 
-const Api = Axios.create({
-    baseURL: mynamespace.rootapiurl,
+const Api = axios.create({
+    baseURL: messages.rootapiurl,
     headers: {
         'content-type': 'application/json',
-        'X-WP-Nonce': mynamespace.nonce
+        'X-WP-Nonce': messages.nonce
     }
 });
 

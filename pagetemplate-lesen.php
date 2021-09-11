@@ -12,78 +12,7 @@ get_header();
 
 <?php get_template_part( 'banner', 'mega' ) ?>
 
-
-<?php
-$today        = date( 'Ymd' );
-$banner_large = get_posts( [
-	'post_type'      => 'ir_ad',
-	'posts_per_page' => 1,
-	'tax_query'      => [
-		'relation' => 'and',
-		[
-			'taxonomy'         => 'position',
-			'terms'            => 'startseite-horizontal',
-			'field'            => 'slug',
-			'meta_query'       => [
-				'relation' => 'AND',
-				[
-					'key'     => 'start',
-					'compare' => '<=',
-					'value'   => $today,
-				],
-				[
-					'key'     => 'ende',
-					'compare' => '>=',
-					'value'   => $today,
-				],
-				[
-					'key'   => 'banner_status', // name of custom field
-					'value' => [ 3, 5 ],
-				],
-			],
-			'include_children' => false,
-			'operator'         => 'IN',
-		],
-		'orderby'  => 'menu_order',
-		'order'    => 'ASC',
-	],
-] );
-?>
-    </div>
-
-
-<?php
-$query = new \WP_Query( [
-	'post_type'           => 'post',
-	'post_status'         => 'publish',
-	'ignore_sticky_posts' => true,
-	'posts_per_page'      => 2,
-	'category__not_in'    => [ 17, 696, 159, 996 ],
-	'tag__not_in'         => 989,
-] );
-?>
-    <div class="container mx-auto mt-20 px-5 lg:px-0 relative">
-        <div class="grid grid-cols-2 gap-10">
-			<?php if ( $query->have_posts() ): ?>
-				<?php while ( $query->have_posts() ): ?>
-					<?php $query->the_post(); ?>
-                    <div class="col-span-2 md:col-span-1 relative">
-                        <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
-							<?php the_post_thumbnail( 'article', [
-								'class'   => 'w-full h-auto max-w-full',
-								'onerror' => "this.style.display='none'",
-							] ); ?>
-							<?php get_template_part( 'snippet', 'heading' ) ?>
-                        </a>
-                    </div>
-				<?php endwhile; ?>
-			<?php endif; ?>
-        </div>
-		<?php wp_reset_postdata(); ?>
-    </div>
-
-
-<?php $cats = get_categories( [ 'exclude' => [ 1, 17, 996 ], 'parent' => 0 ] ) ?>
+<?php $cats = get_categories( [ 'exclude' => [ 1, 17, 996 ], 'parent' => 0, 'hide_empty' => true ] ) ?>
 
 <?php
 $catrunner = 1;

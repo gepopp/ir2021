@@ -71,7 +71,7 @@
     </div>
 
 <div class="mt-48">
-	<?php \immobilien_redaktion_2020\pagination(); ?>
+	<?php \irclasses\Pagination::paginate();?>
 </div>
 
 

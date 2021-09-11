@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isProduction = 'production' === process.env.NODE_ENV;
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 // Set the build prefix.
 let prefix = isProduction ? '.min' : '';
@@ -10,15 +11,6 @@ let prefix = isProduction ? '.min' : '';
 const config = {
     entry: {
         main: './assets/js/main.js',
-        single: './assets/js/single.js',
-        category: './assets/js/category.js',
-        author: './assets/js/author.js',
-        login: './assets/js/login.js',
-        profile: './assets/js/profile.js',
-        sehen: './assets/js/sehen.js',
-        singlevideo: './assets/js/single-video.js',
-        diskutieren: './assets/js/diskutieren.js',
-        comments: './assets/js/live_events.js',
     },
     output: {
         filename: `[name]${prefix}.js`,
@@ -62,7 +54,12 @@ const config = {
             }
         ]
     },
-    plugins: [new MiniCssExtractPlugin()]
+    plugins: [
+        new MiniCssExtractPlugin(),
+        new MomentLocalesPlugin({
+            localesToKeep: ['de-de'],
+        }),
+    ]
 }
 
 // Fire up a local server if requested

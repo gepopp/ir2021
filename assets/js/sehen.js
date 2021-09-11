@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 window.loadVimeoImage = function () {
     return {
         imgUrl: false,

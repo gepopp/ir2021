@@ -8,6 +8,8 @@
 
 namespace immobilien_redaktion_2020;
 
+use irclasses\Pagination;
+
 get_header(); ?>
 	<div class="container mx-auto relative z-10 mb-16 lg:mb-32 flex items-start">
 		<h1><?= get_the_archive_title(); ?></h1>
@@ -21,5 +23,8 @@ get_header(); ?>
 			} ?>
 		</div>
 	</div>
+    <div class="mt-48">
+		<?php Pagination::paginate(); ?>
+    </div>
 	<?php
 get_footer();

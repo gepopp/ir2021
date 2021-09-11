@@ -1,7 +1,3 @@
-const readingTime = require('reading-time');
-const axios = require('axios');
-const cookie = require('js-cookie');
-
 window.readingFunctions = function (user_id) {
     return {
         user_id: user_id,
