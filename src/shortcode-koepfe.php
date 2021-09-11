@@ -44,7 +44,7 @@ add_shortcode( 'koepfe', function ( $atts = [] ) {
 				$query->the_post();
 				?>
                 <div class="py-10 px-5 border-b-2 border-primary-100">
-                    <div class="flex flex-wrap">
+                    <div class="flex flex-wrap lg:flex-nowrap">
 						<?php
 						$order = '';
 						if ( $layout == 'right' ) {
@@ -55,29 +55,22 @@ add_shortcode( 'koepfe', function ( $atts = [] ) {
 						}
 
 						?>
-                        <div class="lg:flex-shrink-0 w-full lg:w-1/3 <?php echo $order ?>">
+                        <div class="lg:flex-shrink-0 w-full lg:w-1/4 <?php echo $order ?>">
                             <figure>
 								<?php
-								echo get_the_post_thumbnail( get_the_ID(), 'thumbnail', [ 'class' => 'w-full h-auto rounded-full' ] );
-								$caption = wp_get_attachment_caption( get_post_thumbnail_id( get_the_ID() ) );
-								if ( ! empty( $caption ) ):
-									?>
-                                    <figcaption>
-										<?php echo $caption ?>
-                                    </figcaption>
-								<?php endif; ?>
+								echo get_the_post_thumbnail( get_the_ID(), 'thumbnail', [ 'class' => 'max-w-full w-full h-auto rounded-full border-2 border-primary-100 p-5' ] );
+								?>
                             </figure>
                         </div>
-                        <div class="lg:pr-10 lg:pl-10 justify-end justify-start"></div>
-                        <div class="h-full text-primary-100 w-full  lg:w-2/3 <?php echo $layout == 'right' || ( $layout == 'alternate' && $runner % 2 == 0 ) ? 'lg:pr-10' : 'lg:pl-10' ?> pt-10 lg:pt-0">
+                        <div class="h-full text-primary-100 w-full  lg:w-3/4 <?php echo $layout == 'right' || ( $layout == 'alternate' && $runner % 2 == 0 ) ? ' lg:pr-10' : ' lg:pl-10' ?> pt-10 lg:pt-0">
                             <div class="flex flex-col">
                                 <h3 class="text-3xl mb-0"><?php the_field( 'field_613c53f33d6b8' ) ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ) ?></h3>
-                                <p class="text-sm italic mb-5"><?php the_field( 'field_613c54063d6b9' ); ?>&nbsp;bei&nbsp;<?php the_field( 'field_613b8caa9b06c' ); ?></p>
+                                <p class="text-sm italic mb-5"><?php the_field( 'field_613c54063d6b9' ); ?>&nbsp;-&nbsp;<?php the_field( 'field_613b8caa9b06c' ); ?></p>
                                 <p class="line-clamp-3 flex-1 text-gray-900"><?php echo get_the_excerpt(); ?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="flex <?php echo $layout == 'right' || ( $layout == 'alternate' && $runner % 2 == 0 ) ? 'justify-start' : 'justify-end' ?> w-full mt-auto">
+                    <div class="flex <?php echo $layout == 'right' || ( $layout == 'alternate' && $runner % 2 == 0 ) ? ' justify-start' : ' justify-end' ?> w-full mt-auto">
                         <a href="<?php the_permalink(); ?>" class="py-3 px-10 bg-primary-100 text-white font-semibold text-center">
                             <span class="text-white">Weitere Details</span>
                         </a>
@@ -88,6 +81,8 @@ add_shortcode( 'koepfe', function ( $atts = [] ) {
 			endwhile;
 			?>
         </div>
+        <div class="lg:pr-10 lg:pl-10 justify-end justify-start"></div>
+
 	<?php
 	endif;
 

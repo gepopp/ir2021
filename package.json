@@ -44,6 +44,7 @@
 		"webpack-dev-server": "^4.1.0"
 	},
 	"dependencies": {
+		"@tailwindcss/line-clamp": "^0.2.1",
 		"@vimeo/player": "^2.15.0",
 		"axios": "^0.21.0",
 		"flatpickr": "^4.6.6",
