@@ -22,66 +22,9 @@
             "maxlength": ""
         },
         {
-            "key": "field_5c65130772844",
-            "label": "JW Player ID",
-            "name": "video_url",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f96fa1673bac",
-            "label": "Youtube ID",
-            "name": "youtube_id",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_5fe2884da38a5",
             "label": "Vimeo ID",
             "name": "vimeo_id",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5fe7058a647cb",
-            "label": "Vimeo Thumbnail Url",
-            "name": "vimeo_thumbnail_url",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -104,6 +47,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "post"
+            },
+            {
+                "param": "post_format",
+                "operator": "==",
+                "value": "video"
             }
         ]
     ],
@@ -115,5 +63,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1621366411
+    "modified": 1631391002
 }
