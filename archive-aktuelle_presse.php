@@ -13,14 +13,6 @@
     AND t.name = 'Aktuelles'
     AND tax.taxonomy = 'category'
 -->
-    <div class="container mx-auto mt-20">
-        <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
-            <a href="/lesen-2" class="underline">
-				<?php _e( 'lesen', 'ir21' ) ?>
-            </a>
-        </h1>
-    </div>
-
 <?php get_template_part( 'banner', 'mega' ) ?>
 
 
