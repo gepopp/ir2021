@@ -1,9 +1,14 @@
 module.exports = {
 	mode: 'jit',
-	purge: [
-		'./**/*.php',
-		'./dist/**/*.js',
-	],
+	purge:{
+		content: [
+			'./**/*.php',
+			'./dist/**/*.js',
+		],
+		safelist: [
+			'line-clamp-3'
+		]
+	},
 	prefix: '',
 	important: false,
 	separator: ':',
