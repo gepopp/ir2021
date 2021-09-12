@@ -41,13 +41,30 @@ class TailwindNavWalker extends \Walker_Nav_Menu
 
         if ($permalink && $permalink != '#') {
             $output .= '<a href="' . $permalink . '" class="' . $class . '"';
-//            if ($item->object == 'category') {
-//                $color = get_field('field_5c63ff4b7a5fb', get_category($item->object_id));
-//                $output .= ' style="background: linear-gradient(0deg, ' . $color . ' 0%, ' . $color . ' 50%, transparent 50%, transparent 100%);"';
-//            }
+
+			$color = '';
+            if ($item->object == 'category') {
+                $color = get_field('field_5c63ff4b7a5fb', get_category($item->object_id));
+            }
+
+            if($item->object == 'aktuelle_presse'){
+            	$color = get_field('field_613b5990f3543', 'option');
+            }
+
+	        if($item->object == 'zur_person'){
+		        $color = get_field('field_613b878f77b81', 'option');
+	        }
+
+	        if($item->object == 'immobilien_projekt'){
+		        $color = get_field('field_613b8693e9b81', 'option');
+	        }
+
+	        $output .= ' style="background: linear-gradient(0deg, ' . $color . ' 0%, ' . $color . ' 50%, transparent 50%, transparent 100%);"';
+
+
             $output .= '>';
         } else {
-            $output .= '<span>';
+            $output .= '<span class="' . $class . '">';
         }
 
         $output .= $title;
@@ -68,9 +85,6 @@ class TailwindNavWalker extends \Walker_Nav_Menu
 
     function start_lvl(&$output, $depth = 0, $args = null)
     {
-
-
-
         $output .= '<div class="absolute mt-2 p-5 z-50 shadow-lg bg-white w-64 text-black" x-show="open == ' . $this->curItem->ID . '" @mouseleave="open = false" x-cloak><ul>';
     }
 

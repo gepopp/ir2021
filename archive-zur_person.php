@@ -67,10 +67,15 @@ function break_title($title){
                     <div class="col-span-1 relative">
                         <a href="<?php the_permalink(); ?>" class="relative block h-full" style="padding-top: 56%">
                             <div class="w-48 mx-auto">
-							<?php the_post_thumbnail( 'thumbnail', [
+							<?php
+                            the_post_thumbnail( 'thumbnail', [
 								'class'   => 'w-full h-auto rounded-full p-5 border-2 border-primary-100',
 								'onerror' => "this.style.display='none'",
-							] ); ?>
+							] );
+
+                            if(!has_post_thumbnail()):?>
+                            <div class="w-48 h-48 rounded-full p-5 border-2 border-primary-100"></div>
+                            <?php endif; ?>
                             </div>
                             <div class="flex flex-col text-center mt-10">
                                 <?php $name = !empty(get_field( 'field_613b8ca49b06b' )) ? get_field( 'field_613c53f33d6b8' ) . '<br>' . get_field( 'field_613b8ca49b06b' ) : break_title(get_the_title()) ?>

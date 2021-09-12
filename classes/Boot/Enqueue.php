@@ -23,7 +23,7 @@ class Enqueue {
 		// CSS
     wp_enqueue_style(
         'immobilien_redaktion_2020_css',
-        immobilien_redaktion_2020_URL . "/dist/main{$min_ext}.css",
+        immobilien_redaktion_2020_URL . "/dist/main.css",
         [],
         immobilien_redaktion_2020_VERSION,
         ''

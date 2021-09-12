@@ -45,7 +45,7 @@ if ( $query->have_posts() ):
 		if ( is_user_logged_in() ) {
 
 
-			$wrapper          = new \irclasses\ZoomAPIWrapper( get_field( 'field_60126f14b73d4', 'option' ), get_field( 'field_60126f20b73d5', 'option' ) );
+			$wrapper          = new \irclasses\ZoomAPIWrapper();
 			$zoom_registrants = $wrapper->doRequest( 'GET', '/webinars/' . get_field( 'field_60127a6c90f6b' ) . '/registrants' );
 
 			$registrants = get_field( 'field_601451bb66bc3' );

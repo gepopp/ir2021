@@ -1,4 +1,5 @@
 <?php
+
 namespace irclasses;
 /*
 ==============================================================================
@@ -48,131 +49,153 @@ if ($response === false) {
 }
 
 */
+
 class ZoomAPIWrapper {
 
-    private $errors;
-    private $apiKey;
-    private $apiSecret;
-    private $baseUrl;
-    private $timeout;
+	private $errors;
 
-    public function __construct( $apiKey, $apiSecret, $options=array() ) {
-        $this->apiKey = $apiKey;
+	private $apiKey;
 
-        $this->apiSecret = $apiSecret;
+	private $apiSecret;
 
-        $this->baseUrl = 'https://api.zoom.us/v2';
-        $this->timeout = 30;
+	private $baseUrl = 'https://api.zoom.us/v2';
 
-        // Store any options if they map to valid properties
-        foreach ($options as $key=>$value) {
-            if (property_exists($this, $key)) $this->$key = $value;
-        }
-    }
+	private $timeout = 30;
 
-    static function urlsafeB64Encode( $string ) {
-        return str_replace('=', '', strtr(base64_encode($string), '+/', '-_'));
-    }
+	public function __construct( $apiSecret, $options = [] ) {
 
-    private function generateJWT() {
-        $token = array(
-            'iss' => $this->apiKey,
-            'exp' => time() + 60,
-        );
-        $header = array(
-            'typ' => 'JWT',
-            'alg' => 'HS256',
-        );
+		$this->load_keys();
+		// Store any options if they map to valid properties
+		foreach ( $options as $key => $value ) {
+			if ( property_exists( $this, $key ) ) {
+				$this->$key = $value;
+			}
+		}
+	}
 
-        $toSign =
-            self::urlsafeB64Encode(json_encode($header))
-            .'.'.
-            self::urlsafeB64Encode(json_encode($token))
-        ;
 
-        $signature = hash_hmac('SHA256', $toSign, $this->apiSecret, true);
+	private function load_keys() {
+		$this->apiKey    = get_field( 'field_60126f14b73d4', 'option' );
+		$this->apiSecret = get_field( 'field_60126f20b73d5', 'option' );
+	}
 
-        return $toSign . '.' . self::urlsafeB64Encode($signature);
-    }
 
-    private function headers() {
-        return array(
-            'Authorization: Bearer ' . $this->generateJWT(),
-            'Content-Type: application/json',
-            'Accept: application/json',
-        );
-    }
+	static function urlsafeB64Encode( $string ) {
+		return str_replace( '=', '', strtr( base64_encode( $string ), '+/', '-_' ) );
+	}
 
-    private function pathReplace( $path, $requestParams ){
-        $errors = array();
-        $path = preg_replace_callback( '/\\{(.*?)\\}/',function( $matches ) use( $requestParams,$errors ) {
-            if (!isset($requestParams[$matches[1]])) {
-                $this->errors[] = 'Required path parameter was not specified: '.$matches[1];
-                return '';
-            }
-            return rawurlencode($requestParams[$matches[1]]);
-        }, $path);
 
-        if (count($errors)) $this->errors = array_merge( $this->errors, $errors );
-        return $path;
-    }
+	private function generateJWT() {
+		$token     = [
+			'iss' => $this->apiKey,
+			'exp' => time() + 60,
+		];
+		$header    = [
+			'typ' => 'JWT',
+			'alg' => 'HS256',
+		];
+		$toSign    =
+			self::urlsafeB64Encode( json_encode( $header ) )
+			. '.' .
+			self::urlsafeB64Encode( json_encode( $token ) );
+		$signature = hash_hmac( 'SHA256', $toSign, $this->apiSecret, true );
 
-    public function doRequest($method, $path, $queryParams=array(), $pathParams=array(), $body='') {
+		return $toSign . '.' . self::urlsafeB64Encode( $signature );
+	}
 
-        if (is_array($body)) {
-            // Treat an empty array in the body data as if no body data was set
-            if (!count($body)) $body = '';
-            else $body = json_encode( $body );
-        }
 
-        $this->errors = array();
-        $this->responseCode = 0;
+	private function headers() {
+		return [
+			'Authorization: Bearer ' . $this->generateJWT(),
+			'Content-Type: application/json',
+			'Accept: application/json',
+		];
+	}
 
-        $path = $this->pathReplace( $path, $pathParams );
 
-        if (count($this->errors)) return false;
+	private function pathReplace( $path, $requestParams ) {
+		$errors = [];
+		$path   = preg_replace_callback( '/\\{(.*?)\\}/', function ( $matches ) use ( $requestParams, $errors ) {
+			if ( ! isset( $requestParams[ $matches[1] ] ) ) {
+				$this->errors[] = 'Required path parameter was not specified: ' . $matches[1];
 
-        $method = strtoupper($method);
-        $url = $this->baseUrl.$path;
+				return '';
+			}
 
-        // Add on any query parameters
-        if (count($queryParams)) $url .= '?'.http_build_query($queryParams);
+			return rawurlencode( $requestParams[ $matches[1] ] );
+		}, $path );
 
-        $ch = curl_init();
+		if ( count( $errors ) ) {
+			$this->errors = array_merge( $this->errors, $errors );
+		}
 
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_HTTPHEADER,$this->headers());
-        curl_setopt($ch,CURLOPT_TIMEOUT,$this->timeout);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+		return $path;
+	}
 
-        if (in_array($method,array('DELETE','PATCH','POST','PUT'))) {
 
-            // All except DELETE can have a payload in the body
-            if ($method!='DELETE' && strlen($body)) {
-                curl_setopt($ch, CURLOPT_POST, true );
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $body );
-            }
+	public function doRequest( $method, $path, $queryParams = [], $pathParams = [], $body = '' ) {
 
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        }
+		if ( is_array( $body ) ) {
+			// Treat an empty array in the body data as if no body data was set
+			if ( ! count( $body ) ) {
+				$body = '';
+			} else {
+				$body = json_encode( $body );
+			}
+		}
 
-        $result = curl_exec($ch);
+		$this->errors       = [];
+		$this->responseCode = 0;
 
-        $contentType = curl_getinfo($ch,CURLINFO_CONTENT_TYPE);
-        $this->responseCode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+		$path = $this->pathReplace( $path, $pathParams );
 
-        curl_close($ch);
+		if ( count( $this->errors ) ) {
+			return false;
+		}
 
-        return json_decode($result,true);
-    }
+		$method = strtoupper( $method );
+		$url    = $this->baseUrl . $path;
 
-    // Returns the errors responseCode returned from the last call to doRequest
-    function requestErrors() {
-        return $this->errors;
-    }
+		// Add on any query parameters
+		if ( count( $queryParams ) ) {
+			$url .= '?' . http_build_query( $queryParams );
+		}
 
-    // Returns the responseCode returned from the last call to doRequest
-    function responseCode() {
-        return $this->responseCode;
-    }
+		$ch = curl_init();
+
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, $this->headers() );
+		curl_setopt( $ch, CURLOPT_TIMEOUT, $this->timeout );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+
+		if ( in_array( $method, [ 'DELETE', 'PATCH', 'POST', 'PUT' ] ) ) {
+
+			// All except DELETE can have a payload in the body
+			if ( $method != 'DELETE' && strlen( $body ) ) {
+				curl_setopt( $ch, CURLOPT_POST, true );
+				curl_setopt( $ch, CURLOPT_POSTFIELDS, $body );
+			}
+
+			curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $method );
+		}
+
+		$result = curl_exec( $ch );
+
+		$contentType        = curl_getinfo( $ch, CURLINFO_CONTENT_TYPE );
+		$this->responseCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+
+		curl_close( $ch );
+
+		return json_decode( $result, true );
+	}
+
+	// Returns the errors responseCode returned from the last call to doRequest
+	function requestErrors() {
+		return $this->errors;
+	}
+
+	// Returns the responseCode returned from the last call to doRequest
+	function responseCode() {
+		return $this->responseCode;
+	}
 }

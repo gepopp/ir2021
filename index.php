@@ -15,83 +15,35 @@ $query = new \WP_Query( [
 	'post_type'           => 'post',
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => true,
-	'posts_per_page'      => 2,
-	'category__not_in'    => [ 696, 996, 159 ],
+	'posts_per_page'      => 3,
 ] );
-?>
+get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
 
-
-    <div class="container mx-auto mt-20 relative px-5 lg:px-0">
-        <div class="grid grid-cols-2 gap-10">
-			<?php if ( $query->have_posts() ): ?>
-				<?php while ( $query->have_posts() ): ?>
-					<?php $query->the_post(); ?>
-                    <div class="col-span-2 md:col-span-1 relative">
-                        <div class="col-span-2 md:col-span-1 relative">
-                            <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
-								<?php the_post_thumbnail( 'article', [ 'class'   => 'w-full h-auto max-w-full',
-								                                       'onerror' => "this.style.display='none'",
-								] ); ?>
-								<?php get_template_part( 'snippet', 'heading' ) ?>
-                            </a>
-                        </div>
-                    </div>
-				<?php endwhile; ?>
-			<?php endif; ?>
-        </div>
-		<?php wp_reset_postdata(); ?>
-    </div>
-
-
-	<?php get_template_part( 'banner', 'mega' ) ?>
-
-
-    <!--announcement-->
-    <!--    --><?php //get_template_part('part', 'immoliveAnnouncement')
-?>
-
-	<?php get_template_part( 'banner', 'fourbanner' ) ?>
-
-	<?php get_template_part( 'part  ', 'aktuelles' ) ?>
-
-	<?php get_template_part( 'banner', 'thirds2' ) ?>
-
-	<?php
+get_template_part( 'banner', 'mega' );
 
 $query = new \WP_Query( [
 	'post_type'           => 'post',
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => true,
-	'posts_per_page'      => 2,
-	'offset'              => 2,
-	'category__not_in'    => [ 696, 996, 159 ],
+	'posts_per_page'      => 3,
+	'offset'              => 3,
 ] );
+get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
+
+
+get_template_part( 'banner', 'fourbanner' );
+
+
+get_template_part( 'part', 'aktuellesrow' );
+
+
+get_template_part( 'banner', 'thirds2' );
+
+
+get_template_part( 'part', 'projekterow' );
+
 ?>
+</div>
 
-
-    <div class="container mx-auto mt-20 relative px-5 lg:px-0 line-clamp-3">
-        <div class="grid grid-cols-2 gap-10">
-			<?php if ( $query->have_posts() ): ?>
-				<?php while ( $query->have_posts() ): ?>
-					<?php $query->the_post(); ?>
-                    <div class="col-span-2 md:col-span-1 relative">
-                        <div class="col-span-2 md:col-span-1 relative">
-                            <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full image-holder">
-								<?php the_post_thumbnail( 'article', [ 'class'   => 'w-full h-auto max-w-full',
-								                                       'onerror' => "this.style.display='none'",
-								] ); ?>
-								<?php get_template_part( 'snippet', 'heading' ) ?>
-                            </a>
-                        </div>
-                    </div>
-				<?php endwhile; ?>
-			<?php endif; ?>
-        </div>
-		<?php wp_reset_postdata(); ?>
-
-
-    </div>
-
-    <?php get_footer(); ?>
-	<?php
-    get_template_part( 'modal', 'immolive' );
+<?php
+get_footer();
