@@ -77,7 +77,7 @@ function break_title($title){
                                 <?php $position = !empty(get_field( 'field_613c54063d6b9' )) ? get_field( 'field_613c54063d6b9' ) . ' - ' . get_field( 'field_613b8caa9b06c' ) : '&nbsp;'  ?>
                                 <h3 class="text-primary-100 text-3xl mb-0 font-serif font-semibold"><?php echo $name ?></h3>
                                 <p class="text-primary-100 text-sm italic mb-5"><?php echo $position ?></p>
-                                <p class="line-clamp-3 flex-1 text-gray-900"><?php echo get_the_excerpt(); ?></p>
+                                <p class="a-line-clamp-3 flex-1 text-gray-900"><?php echo get_the_excerpt(); ?></p>
                             </div>
                         </a>
 
