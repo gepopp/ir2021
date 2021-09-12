@@ -173,7 +173,9 @@ module.exports = {
 		zIndex: ['responsive'],
 	},
 	plugins: [
+
 		require('tailwind-scrollbar'),
 		require('@tailwindcss/line-clamp'),
+
 	],
 }
