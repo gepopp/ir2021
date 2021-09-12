@@ -4,8 +4,8 @@
 	"description": "Immobilien Redaktion 2020",
 	"main": "./assets/js/main.js",
 	"sideEffects": [
-		"*.css",
-		"*.scss"
+		".css",
+		".scss"
 	],
 	"scripts": {
 		"start": "cross-env NODE_ENV=development SERVER=true webpack --watch",
