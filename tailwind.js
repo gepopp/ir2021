@@ -6,7 +6,8 @@ module.exports = {
 			'./dist/**/*.js',
 		],
 		safelist: [
-			'line-clamp-3'
+			'line-clamp-3',
+			'three-lines'
 		]
 	},
 	prefix: '',
