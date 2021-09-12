@@ -87,7 +87,7 @@ function break_title($title){
 		<?php endif; ?>
     </div>
 
-    <div class="mt-48">
+    <div class="mt-48 line-clamp-3">
 		<?php \irclasses\Pagination::paginate();?>
     </div>
 
