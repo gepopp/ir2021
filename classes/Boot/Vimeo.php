@@ -16,14 +16,12 @@ class Vimeo {
 	public function __construct() {
 
 		add_action( 'post_updated', [ $this, 'get_vimeo_thumbnail' ], 10, 3 );
-		add_filter('acf/update_value/key=field_5a3ce915590ae', [$this, 'update_duration'], 10, 4);
 
 	}
 
 	public function get_video_data($post_id) {
 		$lib      = new \Vimeo\Vimeo( self::CLIENT_ID, self::CLIENT_SECRET, self::ACCESS_TOKEN );
 		$response = $lib->request( '/videos/' . get_field( 'field_5fe2884da38a5', $post_id ), [], 'GET' );
-
 		return $response['body'];
 	}
 
@@ -68,13 +66,6 @@ class Vimeo {
 			return $id;
 		}
 		set_post_thumbnail( $post_id, $id );
-	}
-
-	public function update_duration($value, $post_id, $field, $original){
-
-		$data = $this->get_video_data($post_id);
-		return CarbonInterval::seconds($data['duration'])->cascade()->format('%H:%I:%S');
-
 	}
 
 }

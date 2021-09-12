@@ -8,81 +8,81 @@ use function immobilien_redaktion_2020\load_vimeo_image;
 get_header();
 the_post();
 
-$date = date('Ymd');
-$query = new WP_Query([
-    'post_type'      => 'immolive',
-    'post_status'    => 'publish',
-    'posts_per_page' => 2,
-    'meta_query'     => [
-        'relation' => 'AND',
-        [
-            'key'     => 'il_datum',
-            'value'   => $date,
-            'compare' => '>=',
-        ],
-    ],
-    'order'          => 'ASC',
-    'meta_key'       => 'il_datum',
-    'orderby'        => 'meta_value_num',
-]);
+$date  = date( 'Ymd' );
+$query = new WP_Query( [
+	'post_type'      => 'immolive',
+	'post_status'    => 'publish',
+	'posts_per_page' => 2,
+	'meta_query'     => [
+		'relation' => 'AND',
+		[
+			'key'     => 'il_datum',
+			'value'   => $date,
+			'compare' => '>=',
+		],
+	],
+	'order'          => 'ASC',
+	'meta_key'       => 'il_datum',
+	'orderby'        => 'meta_value_num',
+] );
 $count = $query->post_count;
 
 $runner = 1;
 
-if ($query->have_posts()):
-    while ($query->have_posts()):
-        $query->the_post();
+if ( $query->have_posts() ):
+	while ( $query->have_posts() ):
+		$query->the_post();
 
-        if ((int)date('Gi') > 1601 && date('Ymd') == get_field('field_5ed527e9c2279', get_the_ID(), false) && $runner == 1) {
-            $runner++;
-            continue;
-        }
+		if ( (int) date( 'Gi' ) > 1601 && date( 'Ymd' ) == get_field( 'field_5ed527e9c2279', get_the_ID(), false ) && $runner == 1 ) {
+			$runner ++;
+			continue;
+		}
 
-        get_template_part('snippet', 'event');
+		get_template_part( 'snippet', 'event' );
 
-        $speakers = get_field('field_6007f8b5a20f0');
+		$speakers = get_field( 'field_6007f8b5a20f0' );
 
-        if (is_user_logged_in()) {
-
-
-            $wrapper = new \ZoomAPIWrapper(get_field('field_60126f14b73d4', 'option'), get_field('field_60126f20b73d5', 'option'));
-            $zoom_registrants = $wrapper->doRequest('GET', '/webinars/' . get_field('field_60127a6c90f6b') . '/registrants');
-
-            $registrants = get_field('field_601451bb66bc3');
-
-            $emails = [];
-            if ($registrants) {
-                foreach ($registrants as $registrant) {
-                    $emails[] = $registrant['user_email'];
-                }
-            }
-
-            if (!empty($zoom_registrant)) {
-
-                foreach ($zoom_registrants['registrants'] as $zoom_registrant) {
+		if ( is_user_logged_in() ) {
 
 
-                    if (!in_array($zoom_registrant['email'], $emails)) {
-                        add_row('field_601451bb66bc3', [
-                            'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
-                            'user_email'           => $zoom_registrant['email'],
-                            'frage_ans_podium'     => $zoom_registrant['comments'],
-                            'zoom_registrant_id'   => $zoom_registrant['id'],
-                            'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
-                        ], get_the_ID());
-                    }
-                }
-            }
-        }
-        ?>
+			$wrapper          = new \irclasses\ZoomAPIWrapper( get_field( 'field_60126f14b73d4', 'option' ), get_field( 'field_60126f20b73d5', 'option' ) );
+			$zoom_registrants = $wrapper->doRequest( 'GET', '/webinars/' . get_field( 'field_60127a6c90f6b' ) . '/registrants' );
+
+			$registrants = get_field( 'field_601451bb66bc3' );
+
+			$emails = [];
+			if ( $registrants ) {
+				foreach ( $registrants as $registrant ) {
+					$emails[] = $registrant['user_email'];
+				}
+			}
+
+			if ( ! empty( $zoom_registrant ) ) {
+
+				foreach ( $zoom_registrants['registrants'] as $zoom_registrant ) {
+
+
+					if ( ! in_array( $zoom_registrant['email'], $emails ) ) {
+						add_row( 'field_601451bb66bc3', [
+							'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
+							'user_email'           => $zoom_registrant['email'],
+							'frage_ans_podium'     => $zoom_registrant['comments'],
+							'zoom_registrant_id'   => $zoom_registrant['id'],
+							'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
+						], get_the_ID() );
+					}
+				}
+			}
+		}
+		?>
         <div class="container mx-auto border-15 border-white bg-primary-100 px-5 lg:px-12 py-10">
             <div class="flex justify-end md:justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
-                <p class="w-full lg:w-1/3 hidden md:block"><?php _e('Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21') ?></p>
+                <p class="w-full lg:w-1/3 hidden md:block"><?php _e( 'Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21' ) ?></p>
                 <div class="font-normal text-right flex-shrink-0">
                     <p><?php
-                        echo \Carbon\Carbon::parse(get_field('field_5ed527e9c2279'), 'Europe/Vienna')->format('d.m.Y H:i');
-                        ?></p>
-                    <p><?php _e('Zoom Webinar', 'ir21') ?></p>
+						echo \Carbon\Carbon::parse( get_field( 'field_5ed527e9c2279' ), 'Europe/Vienna' )->format( 'd.m.Y H:i' );
+						?></p>
+                    <p><?php _e( 'Zoom Webinar', 'ir21' ) ?></p>
                 </div>
             </div>
 
@@ -92,33 +92,33 @@ if ($query->have_posts()):
             </div>
 
             <div>
-                <div class="" x-data="counter('<?php the_field('field_5ed527e9c2279') ?>')" x-init="count()">
-                    <?php get_template_part('immolive', 'counter-v2') ?>
+                <div class="" x-data="counter('<?php the_field( 'field_5ed527e9c2279' ) ?>')" x-init="count()">
+					<?php get_template_part( 'immolive', 'counter-v2' ) ?>
                     <div class="flex justify-center my-20">
 
-                        <?php
-                        $subscribed = false;
-                        $user = wp_get_current_user();
-                        $registrants = get_field('field_601451bb66bc3');
+						<?php
+						$subscribed  = false;
+						$user        = wp_get_current_user();
+						$registrants = get_field( 'field_601451bb66bc3' );
 
-                        if ($registrants) {
-                            foreach ($registrants as $registrant) {
-                                if ($registrant['user_email'] == $user->user_email) {
-                                    $subscribed = true;
-                                }
-                            }
-                        }
-                        if (!$subscribed || !is_user_logged_in()):
-                            ?>
+						if ( $registrants ) {
+							foreach ( $registrants as $registrant ) {
+								if ( $registrant['user_email'] == $user->user_email ) {
+									$subscribed = true;
+								}
+							}
+						}
+						if ( ! $subscribed || ! is_user_logged_in() ):
+							?>
                             <a class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium cursor-pointer"
                                @click="$dispatch('register-immolive', { id: <?php the_ID(); ?>, user: <?php echo is_user_logged_in() ? 'true' : 'false' ?> })">
-                                <?php _e('Jetzt anmelden', 'ir21') ?>
+								<?php _e( 'Jetzt anmelden', 'ir21' ) ?>
                             </a>
-                        <?php else: ?>
+						<?php else: ?>
                             <p class="py-2 px-10 text-white border border-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium cursor-pointer">
-                                <?php _e('Sie sind zu dieser Veranstaltung angemeldet.', 'ir21') ?>
+								<?php _e( 'Sie sind zu dieser Veranstaltung angemeldet.', 'ir21' ) ?>
                             </p>
-                        <?php endif; ?>
+						<?php endif; ?>
 
 
                     </div>
@@ -126,84 +126,87 @@ if ($query->have_posts()):
             </div>
 
 
-            <?php if ($speakers): ?>
-                <?php if (count($speakers) == 1): ?>
-                    <?php speakerHorizontal(array_shift($speakers)); ?>
-                <?php endif; ?>
+			<?php if ( $speakers ): ?>
+				<?php if ( count( $speakers ) == 1 ): ?>
+					<?php get_template_part( 'snippet', 'horizontalspeaker', [ 'speaker' => array_shift( $speakers ) ] ); ?>
 
-                <?php if (count($speakers) == 2): ?>
+				<?php endif; ?>
+
+				<?php if ( count( $speakers ) == 2 ): ?>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
                         <div>
-                            <?php speakerHorizontal(array_shift($speakers)); ?>
+							<?php get_template_part( 'snippet', 'horizontalspeaker', [ 'speaker' => array_shift( $speakers ) ] ); ?>
+
                         </div>
                         <div>
-                            <?php speakerHorizontal(array_shift($speakers)); ?>
+							<?php get_template_part( 'snippet', 'horizontalspeaker', [ 'speaker' => array_shift( $speakers ) ] ); ?>
+
                         </div>
                     </div>
-                <?php endif; ?>
+				<?php endif; ?>
 
-                <?php if (count($speakers) > 2): ?>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-<?php echo min(4, count($speakers)) ?> gap-10">
-                        <?php
-                        while ($speaker = array_shift($speakers)) {
-                            speakerVertical($speaker);
-                        }
-                        ?>
+				<?php if ( count( $speakers ) > 2 ): ?>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-<?php echo min( 4, count( $speakers ) ) ?> gap-10">
+						<?php
+						while ( $speaker = array_shift( $speakers ) ) {
+							get_template_part( 'snippet', 'verticalspeaker', [ 'speaker' => $speaker ] );
+						}
+						?>
                     </div>
-                <?php endif; ?>
-            <?php endif; ?>
+				<?php endif; ?>
+			<?php endif; ?>
         </div>
-        <?php
-        break;
-    endwhile;
+		<?php
+		break;
+	endwhile;
 endif;
 ?>
 
 
-<?php get_template_part('banner', 'mega') ?>
+<?php get_template_part( 'banner', 'mega' ) ?>
 
 
 <?php
-$query = new \WP_Query([
-    'post_type'           => 'post',
-    'post_status'         => 'publish',
-    'ignore_sticky_posts' => true,
-    'posts_per_page'      => 6,
-    'cat'                 => 991,
-]);
-$pages = (int)$query->max_num_pages;
+$query = new \WP_Query( [
+	'post_type'           => 'post',
+	'post_status'         => 'publish',
+	'ignore_sticky_posts' => true,
+	'posts_per_page'      => 6,
+	'cat'                 => 991,
+] );
+$pages = (int) $query->max_num_pages;
 
 
 $posts = [];
 
-if ($query->have_posts()):
-    $runner = 1;
-    while ($query->have_posts()):
-        $query->the_post();
+if ( $query->have_posts() ):
+	$runner = 1;
+	while ( $query->have_posts() ):
+		$query->the_post();
 
-        if (get_field('field_5f96fa1673bac')):
-            $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
-        elseif (get_field('field_5fe2884da38a5')):
+		if ( get_field( 'field_5f96fa1673bac' ) ):
+			$url = "https://img.youtube.com/vi/" . get_field( 'field_5f96fa1673bac' ) . "/mqdefault.jpg";
+        elseif ( get_field( 'field_5fe2884da38a5' ) ):
 
-            $url = get_the_post_thumbnail_url();
-        else:
-            $url = false;
-        endif;
+			$url = get_the_post_thumbnail_url();
+		else:
+			$url = false;
+		endif;
 
-        $posts[] = [
-            'ID'        => get_the_ID(),
-            'permalink' => get_the_permalink(),
-            'title'     => get_the_title(),
-            'img'       => $url,
-        ];
-        $runner++;
-    endwhile;
+		$posts[] = [
+			'ID'        => get_the_ID(),
+			'permalink' => get_the_permalink(),
+			'title'     => get_the_title(),
+			'img'       => $url,
+		];
+		$runner ++;
+	endwhile;
 endif;
 ?>
 <?php wp_reset_postdata(); ?>
     <div class="container mx-auto mt-20 px-5 lg:px-0">
         <a href="#" class="text-xl font-bold">ImmoLive Diskussionen</a>
-        <div x-data="slider(<?php echo str_replace('"', "'", json_encode($posts)) ?>, 991, <?php echo $query->max_num_pages ?> )"
+        <div x-data="slider(<?php echo str_replace( '"', "'", json_encode( $posts ) ) ?>, 991, <?php echo $query->max_num_pages ?> )"
              x-init="
                 load();
                 $watch('active', (value) => {
@@ -266,14 +269,14 @@ endif;
 
                 </button>
 
-                <?php if (get_field('field_5f9aefd116e2e', 991)): ?>
+				<?php if ( get_field( 'field_5f9aefd116e2e', 991 ) ): ?>
                     <div class="bg-gray-900 bg-opacity-75 rounded-full w-24 h-24 p-5 flex flex-col items-center justify-center shadow-lg">
-                        <a href="<?php echo get_field('field_5f9aeff4efa16', 991) ?>" class="text-center" style="pointer-events: auto">
-                            <p class="text-white" style="font-size: .5rem"><?php _e('powered by', 'ir21') ?></p>
-                            <img src="<?php echo get_field('field_5f9aefd116e2e', 991) ?>" class="w-20 h-auto">
+                        <a href="<?php echo get_field( 'field_5f9aeff4efa16', 991 ) ?>" class="text-center" style="pointer-events: auto">
+                            <p class="text-white" style="font-size: .5rem"><?php _e( 'powered by', 'ir21' ) ?></p>
+                            <img src="<?php echo get_field( 'field_5f9aefd116e2e', 991 ) ?>" class="w-20 h-auto">
                         </a>
                     </div>
-                <?php endif; ?>
+				<?php endif; ?>
 
                 <button class="outline-none focus:outline-none rounded-full mx-4 text-white w-8"
                         :class="{'cursor-not-allowed' : loading || active >= pages }"
@@ -299,54 +302,54 @@ endif;
         </div>
     </div>
 <?php
-$cats = get_field('field_60733fe611fac', 'option');
+$cats      = get_field( 'field_60733fe611fac', 'option' );
 
-foreach ($cats as $cat):
+foreach ( $cats as $cat ):
 
-    $cat = get_category($cat);
-    $query = new WP_Query([
-        'post_type'           => 'post',
-        'post_status'         => 'publish',
-        'ignore_sticky_posts' => true,
-        'posts_per_page'      => 6,
-        'category__in'        => [$cat->term_id],
-    ]);
-    ?>
-    <?php
+	$cat = get_category( $cat );
+	$query = new WP_Query( [
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'ignore_sticky_posts' => true,
+		'posts_per_page'      => 6,
+		'category__in'        => [ $cat->term_id ],
+	] );
+	?>
+	<?php
 
-    $pages = (int)$query->max_num_pages;
-    $posts = [];
+	$pages = (int) $query->max_num_pages;
+	$posts = [];
 
-    if ($query->have_posts()):
-        $runner = 1;
-        while ($query->have_posts()):
-            $query->the_post();
+	if ( $query->have_posts() ):
+		$runner = 1;
+		while ( $query->have_posts() ):
+			$query->the_post();
 
-            if (get_field('field_5f96fa1673bac')):
-                $url = "https://img.youtube.com/vi/" . get_field('field_5f96fa1673bac') . "/mqdefault.jpg";
-            elseif (get_field('field_5fe2884da38a5')):
+			if ( get_field( 'field_5f96fa1673bac' ) ):
+				$url = "https://img.youtube.com/vi/" . get_field( 'field_5f96fa1673bac' ) . "/mqdefault.jpg";
+            elseif ( get_field( 'field_5fe2884da38a5' ) ):
 
-                $url = load_vimeo_image(get_the_ID());
-            else:
-                $url = false;
-            endif;
+				$url = load_vimeo_image( get_the_ID() );
+			else:
+				$url = false;
+			endif;
 
-            $posts[] = [
-                'ID'        => get_the_ID(),
-                'permalink' => get_the_permalink(),
-                'title'     => get_the_title(),
-                'img'       => $url,
-            ];
-            $runner++;
-        endwhile;
-    endif;
-    ?>
-    <?php wp_reset_postdata(); ?>
+			$posts[] = [
+				'ID'        => get_the_ID(),
+				'permalink' => get_the_permalink(),
+				'title'     => get_the_title(),
+				'img'       => $url,
+			];
+			$runner ++;
+		endwhile;
+	endif;
+	?>
+	<?php wp_reset_postdata(); ?>
 
 
     <div class="container mx-auto mt-20 px-5 lg:px-0">
         <a href="#" class="text-xl font-bold"><?php echo $cat->name ?></a>
-        <div x-data="slider(<?php echo str_replace('"', "'", json_encode($posts)) ?>, <?php echo $cat->term_id ?>, <?php echo $query->max_num_pages ?> )"
+        <div x-data="slider(<?php echo str_replace( '"', "'", json_encode( $posts ) ) ?>, <?php echo $cat->term_id ?>, <?php echo $query->max_num_pages ?> )"
              x-init="
                 load();
                 $watch('active', (value) => {
@@ -399,14 +402,14 @@ foreach ($cats as $cat):
                     </div>
                 </button>
 
-                <?php if (get_field('field_5f9aefd116e2e', 991)): ?>
+				<?php if ( get_field( 'field_5f9aefd116e2e', 991 ) ): ?>
                     <div class="bg-gray-900 bg-opacity-75 rounded-full w-24 h-24 p-5 flex flex-col items-center justify-center shadow-lg">
-                        <a href="<?php echo get_field('field_5f9aeff4efa16', 991) ?>" class="text-center" style="pointer-events: auto">
-                            <p class="text-white" style="font-size: .5rem"><?php _e('powered by', 'ir21') ?></p>
-                            <img src="<?php echo get_field('field_5f9aefd116e2e', 991) ?>" class="w-20 h-auto">
+                        <a href="<?php echo get_field( 'field_5f9aeff4efa16', 991 ) ?>" class="text-center" style="pointer-events: auto">
+                            <p class="text-white" style="font-size: .5rem"><?php _e( 'powered by', 'ir21' ) ?></p>
+                            <img src="<?php echo get_field( 'field_5f9aefd116e2e', 991 ) ?>" class="w-20 h-auto">
                         </a>
                     </div>
-                <?php endif; ?>
+				<?php endif; ?>
 
                 <button class="outline-none focus:outline-none rounded-full mx-4 text-white w-8"
                         :class="{'cursor-not-allowed' : loading || active >= pages - 1 }"

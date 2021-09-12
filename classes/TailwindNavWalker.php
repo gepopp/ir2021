@@ -1,7 +1,7 @@
 <?php
 
 
-namespace immobilien_redaktion_2020;
+namespace irclasses;
 
 
 class TailwindNavWalker extends \Walker_Nav_Menu

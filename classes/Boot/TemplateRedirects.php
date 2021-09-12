@@ -53,7 +53,7 @@ class TemplateRedirects {
 	public function block_post_actions(){
 
 		global $FormSession;
-		$FormSession = FormSession::session();
+		$FormSession = \irclasses\FormSession::session();
 
 		global $wp_query;
 

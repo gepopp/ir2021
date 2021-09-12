@@ -139,23 +139,6 @@ $link = base64_encode( $link );
                     </div>
                 </div>
             </template>
-            <!--                <div class="bottom-0 left-0 w-full text-center bg-gradient-to-b from-transparent --><?php //echo get_post_format() == 'video' ? 'via-gray-800 to-gray-800' : 'via-primary-5 to-primary-5' ?><!-- shadow-lg py-10 pointer-events-none"-->
-            <!--                     :class="{'absolute': !showAll}"-->
-            <!--                     x-show="comments.length > 2"-->
-            <!--                >-->
-            <!--                    <div class="flex flex-col justify-center items-center cursor-pointer" @click="showAll = true" x-show="!showAll" x-cloak>-->
-            <!--                        <p class="inline-block text-primary-100 font-medium pointer-events-auto">alle anzeigen</p>-->
-            <!--                        <svg class="w-4 h-4 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
-            <!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path>-->
-            <!--                        </svg>-->
-            <!--                    </div>-->
-            <!--                    <div class="flex flex-col justify-center items-center cursor-pointer pointer-events-auto" @click="showAll = false" x-show="showAll" x-cloak>-->
-            <!--                        <svg class="w-4 h-4 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
-            <!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path>-->
-            <!--                        </svg>-->
-            <!--                        <p class="cursor-pointer inline-block text-primary-100 font-medium">weniger anzeigen</p>-->
-            <!--                    </div>-->
-            <!--                </div>-->
         </div>
     </div>
 </div>

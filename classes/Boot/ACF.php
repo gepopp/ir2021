@@ -4,11 +4,14 @@
 namespace irclasses\Boot;
 
 
+use Carbon\CarbonInterval;
+
 class ACF {
 
 	public function __construct() {
 
 		add_action('acf/init', [$this, 'ir_add_options_pages']);
+		add_filter('acf/update_value/key=field_5a3ce915590ae', [$this, 'update_duration'], 10, 4);
 
 
 	}
@@ -49,6 +52,12 @@ class ACF {
 
 	}
 
+	public function update_duration($value, $post_id, $field, $original){
+
+		$data = (new Vimeo())->get_video_data($post_id);
+		return CarbonInterval::seconds($data['duration'])->cascade()->format('%H:%I:%S');
+
+	}
 
 
 

@@ -7,9 +7,6 @@ namespace irclasses\Boot;
 class Enqueue {
 
 
-
-
-
 	public function __construct() {
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'ir_enqueue_scripts_and_styles' ] );

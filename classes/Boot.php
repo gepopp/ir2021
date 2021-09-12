@@ -52,7 +52,6 @@ class Boot {
 			'caption',
 		]);
 		add_theme_support('post-formats', ['video', 'gallery']);
-
 	}
 
 }

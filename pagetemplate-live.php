@@ -45,7 +45,7 @@ if ( $query->have_posts() ):
 		if ( is_user_logged_in() ) {
 
 
-			$wrapper          = new \ZoomAPIWrapper( get_field( 'field_60126f14b73d4', 'option' ), get_field( 'field_60126f20b73d5', 'option' ) );
+			$wrapper          = new \irclasses\ZoomAPIWrapper( get_field( 'field_60126f14b73d4', 'option' ), get_field( 'field_60126f20b73d5', 'option' ) );
 			$zoom_registrants = $wrapper->doRequest( 'GET', '/webinars/' . get_field( 'field_60127a6c90f6b' ) . '/registrants' );
 
 			$registrants = get_field( 'field_601451bb66bc3' );
@@ -128,16 +128,16 @@ if ( $query->have_posts() ):
 
 			<?php if ( $speakers ): ?>
 				<?php if ( count( $speakers ) == 1 ): ?>
-					<?php speakerHorizontal( array_shift( $speakers ) ); ?>
+					<?php get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
 				<?php endif; ?>
 
 				<?php if ( count( $speakers ) == 2 ): ?>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
                         <div>
-							<?php speakerHorizontal( array_shift( $speakers ) ); ?>
+	                        <?php get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
                         </div>
                         <div>
-							<?php speakerHorizontal( array_shift( $speakers ) ); ?>
+	                        <?php get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
                         </div>
                     </div>
 				<?php endif; ?>
@@ -146,7 +146,7 @@ if ( $query->have_posts() ):
                     <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-<?php echo min( 4, count( $speakers ) ) ?> gap-10">
 						<?php
 						while ( $speaker = array_shift( $speakers ) ) {
-							speakerVertical( $speaker );
+							get_template_part('snippet', 'verticalspeaker', ['speaker' => $speaker]);
 						}
 						?>
                     </div>

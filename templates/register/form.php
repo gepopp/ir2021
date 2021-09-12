@@ -1,9 +1,4 @@
-<?php
-
-use Overtrue\Socialite\SocialiteManager;
-
-global $FormSession;
-?>
+<?php global $FormSession; ?>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
     var register_data = <?php echo json_encode( $FormSession->getFormData() ) ?>;
@@ -15,8 +10,7 @@ global $FormSession;
 </script>
 <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4">
 
-    <form
-            method="post" action="<?php echo admin_url( 'admin-post.php' ) ?>"
+    <form   method="post" action="<?php echo admin_url( 'admin-post.php' ) ?>"
             id="register-form"
             x-data="registerForm( register_data )"
             x-init="init()"
@@ -117,4 +111,15 @@ global $FormSession;
             </span>
             </label>
         </div>
+        <button type="submit"
+                class="block bg-primary-100 text-white text-center py-3 font-semibold w-full g-recaptcha"
+                data-sitekey="6Ldhsu4aAAAAAGj0UZRfizcHjtqKqPrPrxF_hsE0"
+                data-callback='onSubmit'
+                data-action='submit'>registrieren</button>
+    </form>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("register-form").submit();
+        }
+    </script>
 </div>

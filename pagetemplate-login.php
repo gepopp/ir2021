@@ -4,7 +4,8 @@
  */
 
 if (isset($_GET['token'])) {
-    \immobilien_redaktion_2020\activate_user();;
+    $user = new \irclasses\Boot\User();
+    $user->activate_user();
 }
 
 get_header();

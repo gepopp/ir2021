@@ -1,6 +1,6 @@
 <?php
 
-namespace immobilien_redaktion_2020;
+namespace irclasses;
 
 use Predis\Client;
 

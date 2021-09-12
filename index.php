@@ -52,7 +52,7 @@ $query = new \WP_Query( [
 
 	<?php get_template_part( 'banner', 'fourbanner' ) ?>
 
-<!--	--><?php //get_template_part( 'page', 'aktuelles' ) ?>
+	<?php get_template_part( 'part  ', 'aktuelles' ) ?>
 
 	<?php get_template_part( 'banner', 'thirds2' ) ?>
 

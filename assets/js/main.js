@@ -1,4 +1,6 @@
 import '../css/app.scss';
+
+
 // Import JS Modules
 import menu_init from './modules/menu'
 
@@ -29,3 +31,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
         };
     })
 });
+

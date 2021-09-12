@@ -13,7 +13,9 @@ namespace immobilien_redaktion_2020;
 global $FormSession;
 
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php use irclasses\TailwindNavWalker;
+
+language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,21 +55,6 @@ global $FormSession;
 
         gtag('config', 'UA-137371315-1');
     </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX5BK23RTW"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'G-DX5BK23RTW');
-    </script>
-<!--    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/114395846.js"></script>-->
-<!--    <script defer src="https://unpkg.com/alpinejs@3.3.2/dist/cdn.min.js"></script>-->
 </head>
 
 <?php
