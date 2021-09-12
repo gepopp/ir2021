@@ -69,7 +69,7 @@ $query = new \WP_Query( [
 ?>
 
 
-    <div class="container mx-auto mt-20 relative px-5 lg:px-0">
+    <div class="container mx-auto mt-20 relative px-5 lg:px-0 line-clamp-3">
         <div class="grid grid-cols-2 gap-10">
 			<?php if ( $query->have_posts() ): ?>
 				<?php while ( $query->have_posts() ): ?>
