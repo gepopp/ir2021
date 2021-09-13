@@ -16,7 +16,7 @@ class Enqueue {
 
 	public function ir_enqueue_scripts_and_styles() {
 
-//		$this->ir_dequeue_scripts();
+		$this->ir_dequeue_scripts();
 
 		$min_ext = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
 
@@ -56,9 +56,9 @@ class Enqueue {
 
 
 	public function ir_dequeue_scripts() {
-		wp_dequeue_style( 'wp-block-library' );
-		wp_dequeue_style( 'wp-block-library-theme' );
-		wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
+//		wp_dequeue_style( 'wp-block-library' );
+//		wp_dequeue_style( 'wp-block-library-theme' );
+//		wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
 		wp_dequeue_script( 'jquery' );
 	}
 }
