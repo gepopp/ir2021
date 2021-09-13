@@ -40,7 +40,6 @@ window.prerolled = function (main_id, preroll, skip) {
                         this.prerollPlayer.on('playing', () => this.isPlaying = true);
                         this.prerollPlayer.on('loaded', () => {
                             this.isLoaded = true;
-                            this.prerollPlayer.play();
                         });
                     }else{
                         this.isPreroll = false;
