@@ -42,7 +42,6 @@ window.prerolled = function (main_id, preroll, skip) {
                             this.isLoaded = true;
                             this.prerollPlayer.play();
                         });
-
                     }else{
                         this.isPreroll = false;
                         this.isPlaying = true;
