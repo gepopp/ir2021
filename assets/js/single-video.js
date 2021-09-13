@@ -36,9 +36,12 @@ window.prerolled = function (main_id, preroll, skip) {
                             controls: true,
                             autoplay: true,
                         });
-                        this.prerollPlayer.on('play', () => this.countPreroll());
+                        this.prerollPlayer.on('play', () => {
+                            this.isLoaded = true;
+                            this.countPreroll();
+                        });
                         this.prerollPlayer.on('playing', () => this.isPlaying = true);
-                        this.prerollPlayer.on('loaded', () => {
+                        this.prerollPlayer.on('loaded', (e) => {
                             this.isLoaded = true;
                         });
                     }else{
