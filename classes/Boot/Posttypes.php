@@ -316,7 +316,7 @@ class Posttypes {
 			'label'               => __( 'Immobilien Projekt', 'text_domain' ),
 			'description'         => __( 'Immobilien Projekt', 'irtheme' ),
 			'labels'              => $labels,
-			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt' ],
+			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt', 'author' ],
 			'taxonomies'          => [ 'immobilien_projekt' ],
 			'hierarchical'        => false,
 			'public'              => true,
