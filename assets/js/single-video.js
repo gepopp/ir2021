@@ -33,8 +33,8 @@ window.prerolled = function (main_id, preroll, skip) {
                             id: this.preroll.preroll_id,
                             width: "1280",
                             responsive: true,
-                            controls: false,
-                            autoplay: true
+                            controls: true,
+                            autoplay: true,
                         });
                         this.prerollPlayer.on('play', () => this.countPreroll());
                         this.prerollPlayer.on('playing', () => this.isPlaying = true);
