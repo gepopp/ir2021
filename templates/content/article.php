@@ -32,8 +32,8 @@ $cat = get_category( $cat );
 						<?php echo get_the_excerpt(); ?>
                     </strong>
                 </h3>
+				<?php if ( get_post_type() == 'aktuelle_presse'  ): ?>
 
-				<?php if ( is_singular( 'aktuelle_presse' ) ): ?>
                     <div class="block lg:hidden grid xs:grid-cols-1 md:grid-cols-2 mb-10">
                         <div class="flex flex-col justify-between" style="background-color: <?php the_field('field_613b5990f3543', 'option'); ?>">
                             <div>
@@ -52,10 +52,8 @@ $cat = get_category( $cat );
                             </a>
                         </div>
                     </div>
-				<?php endif; ?>
+				<?php else: ?>
 
-
-				<?php if ( is_singular( 'post' ) ): ?>
 					<?php if ( get_field( 'field_60da235237ec4', $cat ) ): ?>
                         <div class="block lg:hidden grid xs:grid-cols-1 md:grid-cols-2 mb-10">
                             <div class="flex flex-col justify-between" style="background-color: <?php the_field( 'field_5c63ff4b7a5fb', $cat ); ?>">

@@ -16,7 +16,7 @@ class Enqueue {
 
 	public function ir_enqueue_scripts_and_styles() {
 
-		$this->ir_dequeue_scripts();
+//		$this->ir_dequeue_scripts();
 
 		$min_ext = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
 

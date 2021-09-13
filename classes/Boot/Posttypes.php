@@ -8,7 +8,7 @@ class Posttypes {
 
 	public function __construct() {
 
-		add_action('init', [$this, 'register_post_types']);
+		add_action( 'init', [ $this, 'register_post_types' ] );
 
 	}
 
@@ -66,7 +66,6 @@ class Posttypes {
 		register_post_type( 'ir_ad', $args );
 
 
-
 		$labels = [
 			'name'                       => 'Positionen',
 			'singular_name'              => 'Position',
@@ -97,6 +96,7 @@ class Posttypes {
 			'show_admin_column' => true,
 			'show_in_nav_menus' => true,
 			'show_tagcloud'     => true,
+			'show_in_rest'      => true,
 		];
 		register_taxonomy( 'position', [ 'ir_ad' ], $args );
 
@@ -142,7 +142,7 @@ class Posttypes {
 				'custom-fields',
 				'page-attributes',
 				'post-formats',
-				'excerpt'
+				'excerpt',
 			],
 			'taxonomies'          => [ 'category', 'post_tag' ],
 			'hierarchical'        => false,
@@ -192,8 +192,10 @@ class Posttypes {
 			'show_admin_column' => true,
 			'show_in_nav_menus' => true,
 			'show_tagcloud'     => true,
+			'show_in_rest'      => true,
 		];
 		register_taxonomy( 'aktuelles_category', [ 'aktuelle_presse' ], $args );
+
 
 		$labels = [
 			'name'                  => _x( 'Aktuelles', 'Post Type General Name', 'text_domain' ),
@@ -315,7 +317,7 @@ class Posttypes {
 			'description'         => __( 'Immobilien Projekt', 'irtheme' ),
 			'labels'              => $labels,
 			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt' ],
-			'taxonomies'          => [ 'immobilien_projekt'],
+			'taxonomies'          => [ 'immobilien_projekt' ],
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
@@ -332,7 +334,6 @@ class Posttypes {
 			'menu_icon'           => 'dashicons-admin-post',
 		];
 		register_post_type( 'immobilien_projekt', $args );
-
 
 
 		$labels = [
