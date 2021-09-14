@@ -780,6 +780,16 @@ video {
   margin-right: 1.25rem;
 }
 
+.my-48 {
+  margin-top: 12rem;
+  margin-bottom: 12rem;
+}
+
+.my-40 {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+
 .mt-20 {
   margin-top: 5rem;
 }
@@ -966,6 +976,10 @@ video {
 
 .-mt-6 {
   margin-top: -1.5rem;
+}
+
+.mb-40 {
+  margin-bottom: 10rem;
 }
 
 .block {
