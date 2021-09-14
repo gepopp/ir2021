@@ -15,7 +15,9 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": ""
+            "default_value": "",
+            "enable_opacity": false,
+            "return_format": "string"
         },
         {
             "key": "field_5f9aefd116e2e",
@@ -148,6 +150,13 @@
                 "operator": "==",
                 "value": "category"
             }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "immolive_category"
+            }
         ]
     ],
     "menu_order": 0,
@@ -158,5 +167,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1624910110
+    "modified": 1631623275
 }

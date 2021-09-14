@@ -101,6 +101,52 @@ class Posttypes {
 		register_taxonomy( 'position', [ 'ir_ad' ], $args );
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+		$labels = [
+			'name'                       => 'ImmoLieve Kategorie',
+			'singular_name'              => 'ImmoLieve Kategorie',
+			'menu_name'                  => 'ImmoLieve Kategorie',
+			'all_items'                  => 'Alle ImmoLieve Kategorie',
+			'parent_item'                => 'Übergeordnet',
+			'parent_item_colon'          => 'Übergeordnet',
+			'new_item_name'              => 'Bezeichnung',
+			'add_new_item'               => 'Neune ImmoLieve Kategorie',
+			'edit_item'                  => 'bearbeiten',
+			'update_item'                => 'speichern',
+			'view_item'                  => 'ansehen',
+			'separate_items_with_commas' => 'Separate items with commas',
+			'add_or_remove_items'        => 'Add or remove items',
+			'choose_from_most_used'      => 'Choose from the most used',
+			'popular_items'              => 'Popular Items',
+			'search_items'               => 'Search Items',
+			'not_found'                  => 'Not Found',
+			'no_terms'                   => 'No items',
+			'items_list'                 => 'Items list',
+			'items_list_navigation'      => 'Items list navigation',
+		];
+		$args   = [
+			'labels'            => $labels,
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_tagcloud'     => true,
+			'show_in_rest'      => true,
+		];
+		register_taxonomy( 'immolive_category', [ 'immolive' ], $args );
+
 		$labels = [
 			'name'                  => _x( 'ImmoLive', 'Post Type General Name', 'text_domain' ),
 			'singular_name'         => _x( 'ImmoLive', 'Post Type Singular Name', 'text_domain' ),
@@ -144,7 +190,7 @@ class Posttypes {
 				'post-formats',
 				'excerpt',
 			],
-			'taxonomies'          => [ 'category', 'post_tag' ],
+			'taxonomies'          => [ 'immolive_category' ],
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
@@ -159,7 +205,18 @@ class Posttypes {
 			'capability_type'     => 'page',
 			'show_in_rest'        => true,
 		];
-		register_post_type( 'ImmoLive', $args );
+		register_post_type( 'immolive', $args );
+
+
+
+
+
+
+
+
+
+
+
 
 
 		$labels = [
