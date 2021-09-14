@@ -11,14 +11,10 @@ $categories = get_terms( 'immolive_category' );
 ?>
 
     <div class="container mx-auto p-5 mt-20">
-		<?php foreach (
-			$categories
-
-			as $category
-		): ?>
+		<?php foreach ( $categories as $category ): ?>
 
             <div class="my-40">
-                <div class="text-center mb-10">
+                <div class="text-center mb-10 mt-40">
                     <h1 class="inline text-cent font-serif text-3xl font-semibold"
                         style="background: linear-gradient(0deg, <?php the_field( 'field_5c63ff4b7a5fb', 'immolive_category_' . $category->term_id ); ?> 0%,
 					    <?php the_field( 'field_5c63ff4b7a5fb', 'immolive_category_' . $category->term_id ); ?> 50%, transparent 50%, transparent 100%);"><?php echo $category->name ?></h1>
