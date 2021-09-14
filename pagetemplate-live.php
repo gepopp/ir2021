@@ -33,15 +33,19 @@ $categories = get_terms( 'immolive_category' );
 								'terms'    => $category->slug,
 							],
 						],
-                        'meta_query' => [
-                                'relation' => 'AND',
-                                [
-	                                'key'           => 'field_5ed527e9c2279',
-	                                'compare'       => '<=',
-	                                'value'         => date('Y-m-d H:i:s'),
-	                                'type'          => 'DATETIME',
-                                ]
-                        ]
+						'meta_query'     => [
+							'relation' => 'OR',
+							[
+								'key'     => 'field_5ed527e9c2279',
+								'compare' => '<=',
+								'value'   => date( 'Y-m-d H:i:s' ),
+								'type'    => 'DATETIME',
+							],
+							[
+								'key'     => 'field_5ed527e9c2279',
+								'compare' => 'NOT_EXISTS',
+							],
+						],
 					] );
 
 
