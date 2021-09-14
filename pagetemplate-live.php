@@ -43,7 +43,7 @@ $categories = get_terms( 'immolive_category' );
 							],
 							[
 								'key'     => 'field_5ed527e9c2279',
-								'compare' => 'NOT_EXISTS',
+								'compare' => 'NOT EXISTS',
 							],
 						],
 					] );
