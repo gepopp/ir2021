@@ -33,47 +33,47 @@ if ( $query->have_posts() ):
 	while ( $query->have_posts() ):
 		$query->the_post();
 
-		if ( (int) date( 'Gi' ) > 1601 && date( 'Ymd' ) == get_field( 'field_5ed527e9c2279', get_the_ID(), false ) && $runner == 1 ) {
-			$runner ++;
-			continue;
-		}
-
-		get_template_part( 'snippet', 'event' );
-
-		$speakers = get_field( 'field_6007f8b5a20f0' );
-
-		if ( is_user_logged_in() ) {
-
-
-			$wrapper          = new \irclasses\ZoomAPIWrapper();
-			$zoom_registrants = $wrapper->doRequest( 'GET', '/webinars/' . get_field( 'field_60127a6c90f6b' ) . '/registrants' );
-
-			$registrants = get_field( 'field_601451bb66bc3' );
-
-			$emails = [];
-			if ( $registrants ) {
-				foreach ( $registrants as $registrant ) {
-					$emails[] = $registrant['user_email'];
-				}
-			}
-
-			if ( ! empty( $zoom_registrant ) ) {
-
-				foreach ( $zoom_registrants['registrants'] as $zoom_registrant ) {
-
-
-					if ( ! in_array( $zoom_registrant['email'], $emails ) ) {
-						add_row( 'field_601451bb66bc3', [
-							'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
-							'user_email'           => $zoom_registrant['email'],
-							'frage_ans_podium'     => $zoom_registrant['comments'],
-							'zoom_registrant_id'   => $zoom_registrant['id'],
-							'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
-						], get_the_ID() );
-					}
-				}
-			}
-		}
+//		if ( (int) date( 'Gi' ) > 1601 && date( 'Ymd' ) == get_field( 'field_5ed527e9c2279', get_the_ID(), false ) && $runner == 1 ) {
+//			$runner ++;
+//			continue;
+//		}
+//
+//		get_template_part( 'snippet', 'event' );
+//
+//		$speakers = get_field( 'field_6007f8b5a20f0' );
+//
+//		if ( is_user_logged_in() ) {
+//
+//
+//			$wrapper          = new \irclasses\ZoomAPIWrapper();
+//			$zoom_registrants = $wrapper->doRequest( 'GET', '/webinars/' . get_field( 'field_60127a6c90f6b' ) . '/registrants' );
+//
+//			$registrants = get_field( 'field_601451bb66bc3' );
+//
+//			$emails = [];
+//			if ( $registrants ) {
+//				foreach ( $registrants as $registrant ) {
+//					$emails[] = $registrant['user_email'];
+//				}
+//			}
+//
+//			if ( ! empty( $zoom_registrant ) ) {
+//
+//				foreach ( $zoom_registrants['registrants'] as $zoom_registrant ) {
+//
+//
+//					if ( ! in_array( $zoom_registrant['email'], $emails ) ) {
+//						add_row( 'field_601451bb66bc3', [
+//							'user_name'            => $zoom_registrant['first_name'] . ' ' . $zoom_registrant['last_name'],
+//							'user_email'           => $zoom_registrant['email'],
+//							'frage_ans_podium'     => $zoom_registrant['comments'],
+//							'zoom_registrant_id'   => $zoom_registrant['id'],
+//							'zoom_teilnehmer_link' => $zoom_registrant['join_url'],
+//						], get_the_ID() );
+//					}
+//				}
+//			}
+//		}
 		?>
         <div class="container mx-auto border-15 border-white bg-primary-100 px-5 lg:px-12 py-10">
             <div class="flex justify-end md:justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
