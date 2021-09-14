@@ -177,25 +177,6 @@
                     "mime_types": ""
                 }
             ]
-        },
-        {
-            "key": "field_60697832694e3",
-            "label": "Vimeo Live Event ID",
-            "name": "live_event_id",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         }
     ],
     "location": [
@@ -215,5 +196,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1622013508
+    "modified": 1631628534
 }

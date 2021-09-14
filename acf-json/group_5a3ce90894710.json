@@ -53,6 +53,13 @@
                 "operator": "==",
                 "value": "video"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "immolive"
+            }
         ]
     ],
     "menu_order": 0,
@@ -63,5 +70,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1631391002
+    "modified": 1631628553
 }
