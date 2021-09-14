@@ -75,84 +75,84 @@ if ( $query->have_posts() ):
 //			}
 //		}
 		?>
-        <div class="container mx-auto border-15 border-white bg-primary-100 px-5 lg:px-12 py-10">
-            <div class="flex justify-end md:justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">
-                <p class="w-full lg:w-1/3 hidden md:block"><?php _e( 'Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21' ) ?></p>
-                <div class="font-normal text-right flex-shrink-0">
-                    <p><?php
-						echo \Carbon\Carbon::parse( get_field( 'field_5ed527e9c2279' ), 'Europe/Vienna' )->format( 'd.m.Y H:i' );
-						?></p>
-                    <p><?php _e( 'Zoom Webinar', 'ir21' ) ?></p>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center">
-                <h1 class="text-3xl lg:text-5xl text-white text-center font-extrabold max-w-full overflow-hidden leading-normal break-words"><?php the_title() ?></h1>
-                <div class="text-lg text-white mb-10 lg:w-2/3 text-center"><?php the_content(); ?></div>
-            </div>
-
-            <div>
-                <div class="" x-data="counter('<?php the_field( 'field_5ed527e9c2279' ) ?>')" x-init="count()">
-					<?php get_template_part( 'immolive', 'counter-v2' ) ?>
-                    <div class="flex justify-center my-20">
-
-						<?php
-						$subscribed  = false;
-						$user        = wp_get_current_user();
-						$registrants = get_field( 'field_601451bb66bc3' );
-
-						if ( $registrants ) {
-							foreach ( $registrants as $registrant ) {
-								if ( $registrant['user_email'] == $user->user_email ) {
-									$subscribed = true;
-								}
-							}
-						}
-						if ( ! $subscribed || ! is_user_logged_in() ):
-							?>
-                            <a class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium cursor-pointer"
-                               @click="$dispatch('register-immolive', { id: <?php the_ID(); ?>, user: <?php echo is_user_logged_in() ? 'true' : 'false' ?> })">
-								<?php _e( 'Jetzt anmelden', 'ir21' ) ?>
-                            </a>
-						<?php else: ?>
-                            <p class="py-2 px-10 text-white border border-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium cursor-pointer">
-								<?php _e( 'Sie sind zu dieser Veranstaltung angemeldet.', 'ir21' ) ?>
-                            </p>
-						<?php endif; ?>
-
-
-                    </div>
-                </div>
-            </div>
-
-
-			<?php if ( $speakers ): ?>
-				<?php if ( count( $speakers ) == 1 ): ?>
-					<?php get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
-				<?php endif; ?>
-
-				<?php if ( count( $speakers ) == 2 ): ?>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
-                        <div>
-	                        <?php get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
-                        </div>
-                        <div>
-	                        <?php get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
-                        </div>
-                    </div>
-				<?php endif; ?>
-
-				<?php if ( count( $speakers ) > 2 ): ?>
-                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-<?php echo min( 4, count( $speakers ) ) ?> gap-10">
-						<?php
-						while ( $speaker = array_shift( $speakers ) ) {
-							get_template_part('snippet', 'verticalspeaker', ['speaker' => $speaker]);
-						}
-						?>
-                    </div>
-				<?php endif; ?>
-			<?php endif; ?>
-        </div>
+<!--        <div class="container mx-auto border-15 border-white bg-primary-100 px-5 lg:px-12 py-10">-->
+<!--            <div class="flex justify-end md:justify-between w-full py-5 text-xl lg:text-3xl text-white font-light leading-none">-->
+<!--                <p class="w-full lg:w-1/3 hidden md:block">--><?php //_e( 'Das größte Online-Event der österreichischen Immobilienwirtschaft', 'ir21' ) ?><!--</p>-->
+<!--                <div class="font-normal text-right flex-shrink-0">-->
+<!--                    <p>--><?php
+//						echo \Carbon\Carbon::parse( get_field( 'field_5ed527e9c2279' ), 'Europe/Vienna' )->format( 'd.m.Y H:i' );
+//						?><!--</p>-->
+<!--                    <p>--><?php //_e( 'Zoom Webinar', 'ir21' ) ?><!--</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="flex flex-col items-center">-->
+<!--                <h1 class="text-3xl lg:text-5xl text-white text-center font-extrabold max-w-full overflow-hidden leading-normal break-words">--><?php //the_title() ?><!--</h1>-->
+<!--                <div class="text-lg text-white mb-10 lg:w-2/3 text-center">--><?php //the_content(); ?><!--</div>-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <div class="" x-data="counter('--><?php //the_field( 'field_5ed527e9c2279' ) ?><!--')" x-init="count()">-->
+<!--					--><?php //get_template_part( 'immolive', 'counter-v2' ) ?>
+<!--                    <div class="flex justify-center my-20">-->
+<!---->
+<!--						--><?php
+//						$subscribed  = false;
+//						$user        = wp_get_current_user();
+//						$registrants = get_field( 'field_601451bb66bc3' );
+//
+//						if ( $registrants ) {
+//							foreach ( $registrants as $registrant ) {
+//								if ( $registrant['user_email'] == $user->user_email ) {
+//									$subscribed = true;
+//								}
+//							}
+//						}
+//						if ( ! $subscribed || ! is_user_logged_in() ):
+//							?>
+<!--                            <a class="py-2 px-10 text-primary-100 bg-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium cursor-pointer"-->
+<!--                               @click="$dispatch('register-immolive', { id: --><?php //the_ID(); ?><!--, user: --><?php //echo is_user_logged_in() ? 'true' : 'false' ?><!-- })">-->
+<!--								--><?php //_e( 'Jetzt anmelden', 'ir21' ) ?>
+<!--                            </a>-->
+<!--						--><?php //else: ?>
+<!--                            <p class="py-2 px-10 text-white border border-white shadow-xl hover:shadow-none text-xl lg:text-3xl font-medium cursor-pointer">-->
+<!--								--><?php //_e( 'Sie sind zu dieser Veranstaltung angemeldet.', 'ir21' ) ?>
+<!--                            </p>-->
+<!--						--><?php //endif; ?>
+<!---->
+<!---->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!---->
+<!--			--><?php //if ( $speakers ): ?>
+<!--				--><?php //if ( count( $speakers ) == 1 ): ?>
+<!--					--><?php //get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
+<!--				--><?php //endif; ?>
+<!---->
+<!--				--><?php //if ( count( $speakers ) == 2 ): ?>
+<!--                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">-->
+<!--                        <div>-->
+<!--	                        --><?php //get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
+<!--                        </div>-->
+<!--                        <div>-->
+<!--	                        --><?php //get_template_part('snippet', 'horizontalspeaker', ['speaker' =>  array_shift( $speakers )] ); ?>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--				--><?php //endif; ?>
+<!---->
+<!--				--><?php //if ( count( $speakers ) > 2 ): ?>
+<!--                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols---><?php //echo min( 4, count( $speakers ) ) ?><!-- gap-10">-->
+<!--						--><?php
+//						while ( $speaker = array_shift( $speakers ) ) {
+//							get_template_part('snippet', 'verticalspeaker', ['speaker' => $speaker]);
+//						}
+//						?>
+<!--                    </div>-->
+<!--				--><?php //endif; ?>
+<!--			--><?php //endif; ?>
+<!--        </div>-->
 		<?php
 		break;
 	endwhile;
