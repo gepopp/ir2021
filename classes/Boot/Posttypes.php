@@ -230,7 +230,7 @@ class Posttypes {
 			'label'               => __( 'Aktuelles', 'text_domain' ),
 			'description'         => __( 'Aktuelles', 'irtheme' ),
 			'labels'              => $labels,
-			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt' ],
+			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt', 'author' ],
 			'taxonomies'          => [ 'aktuelles_category' ],
 			'hierarchical'        => false,
 			'public'              => true,
