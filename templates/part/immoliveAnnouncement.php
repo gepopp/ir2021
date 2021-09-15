@@ -40,36 +40,32 @@ extract( $args );
 					],
 				] );
 				if ( $query->have_posts() ):?>
-                <ul lang="w-full">
 					<?php while ( $query->have_posts() ): ?>
 						<?php $query->the_post(); ?>
-
-
-                        <li class="flex flex-nowrap justify-between w-full">
-                            <div>
-                                <?php $date = new \Carbon\Carbon(get_field('field_5ed527e9c2279')); \Carbon\Carbon::setLocale('de'); echo ucfirst($date->diffForHumans()) ?>
+                        <div class="relative mb-20">
+                            <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
+								<?php
+								$starts = new \Carbon\Carbon(get_field('field_5ed527e9c2279'));
+								\Carbon\Carbon::setLocale('de'); ?>
+                                <span>
+                        <?php echo 'Live ' . $starts->diffForHumans() ?>
+                        </span>
+                                <span>
+                            <?php
+                            $terms = wp_get_post_terms(get_the_ID(), 'immolive_category');
+                            $term = array_shift($terms);
+                            echo $term->name;
+                            ?>
+                        </span>
                             </div>
-                            <div>
-                                <?php the_title(); ?>
-                            </div>
-                            <div>
-                                <a href="<?php the_permalink(); ?>">Details</a>
-                            </div>
-                        </li>
-
-
-
-
-
-
-
-
-
-
-
-
+                            <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
+								<?php the_post_thumbnail( 'article', [
+									'class' => 'w-full h-auto max-w-full',
+								] ); ?>
+								<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
+                            </a>
+                        </div>
 					<?php endwhile; ?>
-                </ul>
 				<?php else: ?>
 
                     <div class="w-full bg-white text-primary">
