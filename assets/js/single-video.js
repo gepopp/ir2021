@@ -20,7 +20,10 @@ window.prerolled = function (main_id, preroll, skip) {
                 autoplay: false
             };
 
-            this.mainPlayer = new Vimeo('mainplayer', main);
+            this.mainPlayer = new Vimeo('mainplayer', main).catch(() => {
+                this.isLoaded = false;
+            });
+
             this.mainPlayer.on('loaded', () => {
                 this.isLoaded = true
             });

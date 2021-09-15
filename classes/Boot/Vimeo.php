@@ -4,8 +4,6 @@
 namespace irclasses\Boot;
 
 
-use Carbon\CarbonInterval;
-
 class Vimeo {
 
 	const CLIENT_ID = 'f1663d720a1da170d55271713cc579a3e15d5d2f';
@@ -16,12 +14,14 @@ class Vimeo {
 	public function __construct() {
 
 		add_action( 'post_updated', [ $this, 'get_vimeo_thumbnail' ], 10, 3 );
+		add_action( 'save_post_immolive', [ $this, 'get_vimeo_thumbnail' ], 10, 3 );
 
 	}
 
-	public function get_video_data($post_id) {
+	public function get_video_data( $post_id ) {
 		$lib      = new \Vimeo\Vimeo( self::CLIENT_ID, self::CLIENT_SECRET, self::ACCESS_TOKEN );
 		$response = $lib->request( '/videos/' . get_field( 'field_5fe2884da38a5', $post_id ), [], 'GET' );
+
 		return $response['body'];
 	}
 
@@ -31,10 +31,16 @@ class Vimeo {
 		$post_id  = $post_after->ID;
 		$vimeo_id = get_field( 'field_5fe2884da38a5', $post_id );
 
-		if ( get_post_format( $post_id ) !== 'video' || empty( $vimeo_id ) ) {
+		if ( empty( $vimeo_id ) || has_post_thumbnail( $post_id ) ) {
 			return;
 		}
-		$body = $this->get_video_data($post_id);
+
+		if ( get_post_format( $post_id ) !== 'video' && get_post_type() !== 'immolive' ) {
+			return;
+		}
+
+
+		$body = $this->get_video_data( $post_id );
 
 
 		$file               = $body['pictures']['sizes'][5]['link'];

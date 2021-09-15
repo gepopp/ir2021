@@ -7,7 +7,6 @@ the_post();
 get_template_part( 'banner', 'mega' );
 
 $categories = get_terms( 'immolive_category' );
-//echo var_dump( $categories );
 ?>
 
     <div class="container mx-auto p-5 mt-20">
@@ -22,7 +21,8 @@ $categories = get_terms( 'immolive_category' );
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
 
 					<?php
-					$query = new WP_Query( [
+					$date_now = date( 'Y-m-d H:i:s' );
+					$query    = new WP_Query( [
 						'post_type'      => 'immolive',
 						'posts_per_page' => 8,
 						'tax_query'      => [
@@ -34,20 +34,14 @@ $categories = get_terms( 'immolive_category' );
 							],
 						],
 						'meta_query'     => [
-							'relation' => 'OR',
 							[
-								'key'     => 'field_5ed527e9c2279',
+								'key'     => 'termin',
 								'compare' => '<=',
-								'value'   => date( 'Y-m-d H:i:s' ),
+								'value'   => $date_now,
 								'type'    => 'DATETIME',
-							],
-							[
-								'key'     => 'field_5ed527e9c2279',
-								'compare' => 'NOT EXISTS',
 							],
 						],
 					] );
-
 
 					while ( $query->have_posts() ): ?>
 						<?php $query->the_post(); ?>

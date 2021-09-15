@@ -141,6 +141,27 @@
             "maxlength": "",
             "rows": "",
             "new_lines": ""
+        },
+        {
+            "key": "field_614199d8b8225",
+            "label": "Sortierung",
+            "name": "sortierung",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
         }
     ],
     "location": [
@@ -167,5 +188,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1631623275
+    "modified": 1631689189
 }
