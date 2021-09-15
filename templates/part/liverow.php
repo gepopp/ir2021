@@ -27,7 +27,7 @@ if ( $query->have_posts() ):
 				<?php $query->the_post(); ?>
 
                 <div class="relative">
-                    <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between">
+                    <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between text-primary-100 font-semibold">
                         <?php
                         $starts = new \Carbon\Carbon(get_field('field_5ed527e9c2279'));
                         \Carbon\Carbon::setLocale('de'); ?>
