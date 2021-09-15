@@ -7,6 +7,19 @@ the_post();
 get_template_part( 'banner', 'mega' );
 
 $categories = get_terms( 'immolive_category' );
+foreach ( $categories as &$category ) {
+    $category->order = get_field('field_614199d8b8225', 'immolive_category_' . $category->term_id);
+}
+
+usort($categories, function ($a, $b){
+	if ($a->order == $b->order) {
+		return 0;
+	}
+	return ($a->order < $b->order) ? -1 : 1;
+});
+
+
+
 ?>
 
     <div class="container mx-auto p-5 mt-20">
