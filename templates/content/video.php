@@ -24,7 +24,6 @@ $post_id = get_the_ID();
          @resize.window="getmeasurements()"
          ref="watched"
     >
-
         <div class="grid grid-cols-5 gap-4 px-5 lg:px-0" style="min-height: 800px">
             <div class="col-span-5 lg:col-span-3 content text-white" id="article-content">
                 <p class="mb-5 text-white"><?php echo get_the_excerpt(); ?></p>
@@ -42,11 +41,9 @@ $post_id = get_the_ID();
             maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         });
         window.addEventListener('scroll', function (event) {
-
             contentContainer = document.getElementById('article-content');
             max = contentContainer.offsetTop + contentContainer.offsetHeight - 400;
             scroll = this.scrollY;
-
         });
 
      ">
