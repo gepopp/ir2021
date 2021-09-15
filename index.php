@@ -31,6 +31,9 @@ $query = new \WP_Query( [
 get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
 
 
+get_template_part( 'part', 'liverow' );
+
+
 get_template_part( 'banner', 'fourbanner' );
 
 

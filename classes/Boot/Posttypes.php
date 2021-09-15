@@ -114,14 +114,14 @@ class Posttypes {
 
 
 		$labels = [
-			'name'                       => 'ImmoLieve Kategorie',
-			'singular_name'              => 'ImmoLieve Kategorie',
-			'menu_name'                  => 'ImmoLieve Kategorie',
-			'all_items'                  => 'Alle ImmoLieve Kategorie',
+			'name'                       => 'ImmoLive Kategorie',
+			'singular_name'              => 'ImmoLive Kategorie',
+			'menu_name'                  => 'ImmoLive Kategorie',
+			'all_items'                  => 'Alle ImmoLive Kategorie',
 			'parent_item'                => 'Übergeordnet',
 			'parent_item_colon'          => 'Übergeordnet',
 			'new_item_name'              => 'Bezeichnung',
-			'add_new_item'               => 'Neune ImmoLieve Kategorie',
+			'add_new_item'               => 'Neune ImmoLive Kategorie',
 			'edit_item'                  => 'bearbeiten',
 			'update_item'                => 'speichern',
 			'view_item'                  => 'ansehen',

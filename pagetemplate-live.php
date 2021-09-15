@@ -8,20 +8,21 @@ get_template_part( 'banner', 'mega' );
 
 $categories = get_terms( 'immolive_category' );
 foreach ( $categories as &$category ) {
-    $category->order = get_field('field_614199d8b8225', 'immolive_category_' . $category->term_id);
+	$category->order = get_field( 'field_614199d8b8225', 'immolive_category_' . $category->term_id );
 }
 
-usort($categories, function ($a, $b){
-	if ($a->order == $b->order) {
+usort( $categories, function ( $a, $b ) {
+	if ( $a->order == $b->order ) {
 		return 0;
 	}
-	return ($a->order < $b->order) ? -1 : 1;
-});
+
+	return ( $a->order < $b->order ) ? - 1 : 1;
+} );
 
 
 
+get_template_part('part', 'immoliveAnnouncement', ['categories' => $categories]);
 ?>
-
     <div class="container mx-auto p-5 mt-20">
 		<?php foreach ( $categories as $category ): ?>
 
@@ -55,23 +56,24 @@ usort($categories, function ($a, $b){
 							],
 						],
 					] );
+					if ( $query->have_posts() ):
+						while ( $query->have_posts() ): ?>
+							<?php $query->the_post(); ?>
 
-					while ( $query->have_posts() ): ?>
-						<?php $query->the_post(); ?>
-
-                        <div class="relative">
-                            <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
-								<?php the_post_thumbnail( 'article', [
-									'class' => 'w-full h-auto max-w-full',
-								] ); ?>
-								<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
-                            </a>
-                            <div class="absolute top-0 left-0 w-full p-5 flex justify-between text-white text-sm font-semibold w-full">
-                                <span><?php the_time( 'd.m.Y' ); ?></span>
-                                <span class="hidden lg:flex"><?php the_category( ', ' ); ?></span>
+                            <div class="relative">
+                                <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
+									<?php the_post_thumbnail( 'article', [
+										'class' => 'w-full h-auto max-w-full',
+									] ); ?>
+									<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
+                                </a>
+                                <div class="absolute top-0 left-0 w-full p-5 flex justify-between text-white text-sm font-semibold w-full">
+                                    <span><?php the_time( 'd.m.Y' ); ?></span>
+                                    <span class="hidden lg:flex"><?php the_category( ', ' ); ?></span>
+                                </div>
                             </div>
-                        </div>
-					<?php endwhile; ?>
+						<?php endwhile; ?>
+					<?php endif; ?>
                 </div>
             </div>
 		<?php endforeach; ?>

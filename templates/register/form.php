@@ -10,6 +10,10 @@
 </script>
 <div class="bg-white shadow-md px-8 pt-6 pb-8 mb-4">
 
+    <?php if($FormSession->has('register_sent_success')): ?>
+	    <?php $FormSession->flashSuccess( 'register_sent_success' ); ?>
+    <?php else: ?>
+
     <form   method="post" action="<?php echo admin_url( 'admin-post.php' ) ?>"
             id="register-form"
             x-data="registerForm( register_data )"
@@ -22,7 +26,6 @@
         <input type="hidden" name="redirect" value="<?php echo $_GET['redirect'] ?? '' ?>">
 
 		<?php $FormSession->flashErrorBag( 'register_error' ); ?>
-		<?php $FormSession->flashSuccess( 'register_sent_success' ); ?>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
 
@@ -122,4 +125,5 @@
             document.getElementById("register-form").submit();
         }
     </script>
+    <?php endif; ?>
 </div>
