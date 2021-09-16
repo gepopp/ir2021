@@ -42,6 +42,7 @@ $duration .= 'S';
 
 
 
+
 </script>
 
 
@@ -54,17 +55,17 @@ $duration .= 'S';
                 maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
              }).observe(document.getElementById('videoContainer'));">
         <div class="relative col-span-4 lg:col-span-3" x-ref="videoContainer">
-			<?php if ( get_field( 'field_5f96fa1673bac' ) ): ?>
-                <div class="video-container" style="position: relative;width: 100%;padding-bottom: 56.25%;">
-                    <iframe src="https://www.youtube.com/embed/<?php echo get_field( 'field_5f96fa1673bac' ) ?>?autoplay=1&mute=1"
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
-                </div>
-			<?php elseif ( get_field( 'field_5fe2884da38a5' ) ): ?>
-                <div id="videoContainer">
-					<?php get_template_part( 'video', 'player' ); ?>
-                </div>
-			<?php endif; ?>
+            <div id="videoContainer">
+				<?php get_template_part( 'video', 'player' ); ?>
+            </div>
+        </div>
+        <div class="col-span-4 lg:col-span-1 overflow-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+             :style="`max-height: ${maxHeight};`">
+		    <?php
+		    if ( comments_open() || get_comments_number() ) :
+			    comments_template();
+		    endif;
+		    ?>
         </div>
     </div>
 </div>
