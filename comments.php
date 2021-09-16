@@ -20,7 +20,7 @@ if ( post_password_required() ) {
 }
 
 $gray = 'gray-800';
-if ( get_post_format() == 'video' ) {
+if ( get_post_format() == 'video' || is_singular('immolive')) {
 	$gray = 'white';
 }
 $link = get_the_permalink();
