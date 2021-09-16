@@ -56,8 +56,11 @@ function break_title($title){
 				<?php the_field('field_613b878f77bae', 'option'); ?>
             </div>
         </div>
-
     </div>
+
+
+    <?php get_template_part('snippet', 'searchbar') ?>
+
 
     <div class="container mx-auto mt-20 px-5 md:px-5">
 		<?php if ( have_posts() ): ?>

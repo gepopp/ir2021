@@ -1,13 +1,13 @@
-    <?php
+<?php
 
 
-if(is_singular('aktuelle_presse')){
-    $cat = wp_get_post_terms(get_the_ID(), 'aktuelles_category');
-}else{
+if ( is_singular( 'aktuelle_presse' ) ) {
+	$cat = wp_get_post_terms( get_the_ID(), 'aktuelles_category' );
+} else {
 	$cat = wp_get_post_categories( get_the_ID() );
 }
-    $cat = array_shift( $cat );
-    $cat = get_category( $cat );
+$cat = array_shift( $cat );
+$cat = get_category( $cat );
 
 
 if ( $cat ):
@@ -21,6 +21,20 @@ if ( $cat ):
             }
         </script>
 
+		<?php
+		$color = '#5C97D0';
+		$name  = '';
+
+		if ( is_singular( 'zur_person' ) ) {
+			$color = get_field( 'field_613b878f77b81', 'option' );
+			$name  = 'Zur Person';
+		} else {
+			$color = get_field( 'field_5c63ff4b7a5fb', $cat );
+			$name = $cat->name;
+		}
+		?>
+
+
 		<?php if ( get_field( 'field_60da2369057c9', $cat ) ): ?>
             <!--box mit html banner-->
             <div class="relative h-64 hidden lg:block" id="powered"
@@ -28,9 +42,9 @@ if ( $cat ):
                  @scroll.window="scrolled = document.getElementById('powered').offsetTop - window.pageYOffset"
             >
                 <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
-                    <div class="h-full" style="background-color: <?php the_field( 'field_5c63ff4b7a5fb', $cat ); ?>">
+                    <div class="h-full" style="background-color: <?php echo $color ?>">
                         <div id="scrollspy" class="flex flex-col justify-between">
-                            <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?? '' ?></p>
+                            <p class="p-5 font-serif text-2xl text-white"><?php echo $name ?></p>
                             <div class="bg-white">
 								<?php the_field( 'field_60da2369057c9', $cat ); ?>
                             </div>
@@ -49,13 +63,8 @@ if ( $cat ):
             >
                 <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
                     <div id="scrollspy" class="flex flex-col justify-between"
-                         style="background-color: <?php
-
-                         is_singular('aktuelle_presse') ?
-                             the_field('field_613b5990f3543', 'option'):
-                             the_field( 'field_5c63ff4b7a5fb', $cat );
-                         ?>">
-                        <p class="px-5 pt-5 font-serif text-2xl text-white"><?php echo $cat->name ?? '' ?></p>
+                         style="background-color: <?php echo $color ?>">
+                        <p class="px-5 pt-5 font-serif text-2xl text-white"><?php echo $name ?></p>
                         <p class="px-5 pb-5 text-white text-sm -mt-3">powered by</p>
                         <div class="bg-white border-b border-primary-100">
                             <a href="<?php echo get_field( 'field_5f9aeff4efa16', $cat ) ?>" class="text-center">
@@ -73,16 +82,12 @@ if ( $cat ):
         >
             <!--                nur box oder mit sponsor logo-->
             <div class="absolute w-full h-full" :style="`top: ${ scrolled < 0 ? (scrolled * -1) + 100 : 0 }px;`">
-                <div class="h-full" style="background-color: <?php
-                is_singular('aktuelle_presse') ?
-	                the_field('field_613b5990f3543', 'option'):
-	                the_field( 'field_5c63ff4b7a5fb', $cat );
-                ?>">
+                <div class="h-full" style="background-color: <?php echo $color ?>">
                     <div id="scrollspy" class="flex flex-col justify-between h-full">
-                        <p class="p-5 font-serif text-2xl text-white"><?php echo $cat->name ?? '' ?></p>
+                        <p class="p-5 font-serif text-2xl text-white"><?php echo $name ?></p>
                         <p class="p-5 text-white">
                             <a href="<?php echo get_category_link( $cat ) ?>">
-                                <span class="text-white underline"><?php echo $cat->count ?? '' ?><?php _e( 'Artikel', 'ir21' ) ?></span>
+                                <span class="text-white underline"><?php echo $cat->count ?? '' ?>&nbsp;<?php _e( 'Artikel', 'ir21' ) ?></span>
                             </a>
                         </p>
                     </div>

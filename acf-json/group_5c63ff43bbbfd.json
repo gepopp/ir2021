@@ -178,6 +178,13 @@
                 "operator": "==",
                 "value": "immolive_category"
             }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "aktuelles_category"
+            }
         ]
     ],
     "menu_order": 0,
@@ -188,5 +195,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1631689189
+    "modified": 1631747196
 }

@@ -10,7 +10,6 @@ window.axios = require('axios');
 window.moment = require("moment");
 window.duration = require("moment-duration-format");
 
-
 require('./diskutieren');
 require('./live_events');
 require('./login');

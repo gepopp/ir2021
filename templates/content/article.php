@@ -52,6 +52,29 @@ $cat = get_category( $cat );
                             </a>
                         </div>
                     </div>
+
+	            <?php elseif ( get_post_type() == 'zur_person'  ): ?>
+
+                    <div class="block lg:hidden grid xs:grid-cols-1 md:grid-cols-2 mb-10">
+                        <div class="flex flex-col justify-between" style="background-color: <?php the_field('field_613b878f77b81', 'option'); ?>">
+                            <div>
+                                <p class="px-5 pt-5 font-serif text-2xl text-white">Menschen</p>
+                                <p class="px-5 pb-5 text-white text-sm -mt-3">powered by</p>
+                            </div>
+                            <div class="p-5 text-white hidden md:block">
+                                <a href="<?php echo get_field('field_613b5a844db76', 'option') ?>">
+                                    <span class="text-white underline"><?php echo wp_count_posts('zur_person')->publish ?> Artikel</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="bg-white">
+                            <a href="<?php the_field('field_613b5a844db76', 'option') ?>" class="text-center">
+                                <img src="<?php the_field( 'field_613b59adf3545', 'option') ?>" class="w-full h-auto p-5">
+                            </a>
+                        </div>
+                    </div>
+
+
 				<?php else: ?>
 
 					<?php if ( get_field( 'field_60da235237ec4', $cat ) ): ?>
