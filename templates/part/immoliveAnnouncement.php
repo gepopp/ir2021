@@ -55,7 +55,7 @@ extract( $args );
                     <div class="">
 		                <?php while ( $query->have_posts() ): ?>
 		                <?php $query->the_post(); ?>
-                        <div class="relative mb-20">
+                        <div class="relative mb-20 last:mb-0">
                             <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
 				                <?php
 				                $starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279' ) );
