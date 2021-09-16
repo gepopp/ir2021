@@ -20,7 +20,7 @@ extract( $args );
 		<?php
         $runner = 1;
         foreach ( $categories as $category ): ?>
-            <div>
+            <div class="flex flex-col">
                 <div class="mb-10 mt-20">
                     <h1 class="inline font-serif text-xl font-semibold"
                         style="background: linear-gradient(0deg, <?php the_field( 'field_5c63ff4b7a5fb', 'immolive_category_' . $category->term_id ); ?> 0%,
@@ -51,7 +51,7 @@ extract( $args );
 					],
 				] );
 				if ( $query->have_posts() ):?>
-                <div class="h-full <?php echo count($categories) != $runner ? 'lg:border-r border-primary-100 lg:pr-5' : ''  ?>">
+                <div class="<?php echo count($categories) != $runner ? 'lg:border-r border-primary-100 lg:pr-5' : ''  ?> flex-grow">
                     <div class="">
 		                <?php while ( $query->have_posts() ): ?>
 		                <?php $query->the_post(); ?>
@@ -84,7 +84,7 @@ extract( $args );
                     </div>
                 </div>
 				<?php else: ?>
-                    <div class="<?php if(count($categories) != $runner): ?>border-r border-primary-100 pr-5 <?php endif; ?> pr-5 h-full">
+                    <div class="<?php if(count($categories) != $runner): ?>border-r border-primary-100 pr-5 <?php endif; ?> pr-5">
                         <div class="w-full bg-white text-primary h-full">
                             <div class="w-full h-full top-0 left-0 flex justify-center items-center">
                                 <div class="max-w-3/4 mx-10 text-center">
