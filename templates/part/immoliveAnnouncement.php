@@ -7,8 +7,19 @@ extract( $args );
 
 
 <div class="container mx-auto p-5">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-		<?php foreach ( $categories as $category ): ?>
+
+    <div class="my-5 w-full text-center">
+        <h1 class="inline font-serif text-3xl font-semibold text-center"
+            style="background: linear-gradient(0deg, #5C97D0 0%, #5C97D0 50%, transparent 50%, transparent 100%);">
+            Kommende Livestreams
+        </h1>
+    </div>
+
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+		<?php
+        $runner = 1;
+        foreach ( $categories as $category ): ?>
             <div>
                 <div class="mb-10 mt-20">
                     <h1 class="inline font-serif text-xl font-semibold"
@@ -40,56 +51,58 @@ extract( $args );
 					],
 				] );
 				if ( $query->have_posts() ):?>
-					<?php while ( $query->have_posts() ): ?>
-						<?php $query->the_post(); ?>
+                <div class="h-full <?php if(count($categories) != $runner): ?>border-r border-primary-100 pr-5 <?php endif; ?>">
+                    <div class="">
+		                <?php while ( $query->have_posts() ): ?>
+		                <?php $query->the_post(); ?>
                         <div class="relative mb-20">
                             <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
-								<?php
-								$starts = new \Carbon\Carbon(get_field('field_5ed527e9c2279'));
-								$starts->setTimezone('UTC');
-								\Carbon\Carbon::setLocale('de');
-								?>
+				                <?php
+				                $starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279' ) );
+				                $starts->setTimezone( 'UTC' );
+				                \Carbon\Carbon::setLocale( 'de' );
+				                ?>
                                 <span>
                         <?php echo 'Live ' . $starts->diffForHumans() ?>
                         </span>
                                 <span>
                             <?php
-                            $terms = wp_get_post_terms(get_the_ID(), 'immolive_category');
-                            $term = array_shift($terms);
+                            $terms = wp_get_post_terms( get_the_ID(), 'immolive_category' );
+                            $term  = array_shift( $terms );
                             echo $term->name;
                             ?>
                         </span>
                             </div>
                             <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
-								<?php the_post_thumbnail( 'article', [
-									'class' => 'w-full h-auto max-w-full',
-								] ); ?>
-								<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
+				                <?php the_post_thumbnail( 'article', [
+					                'class' => 'w-full h-auto max-w-full',
+				                ] ); ?>
+				                <?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
                             </a>
                         </div>
-					<?php endwhile; ?>
+						<?php endwhile; ?>
+                    </div>
+                </div>
 				<?php else: ?>
-
-                    <div class="w-full bg-white text-primary">
-                        <div class="w-full h-full top-0 left-0 flex justify-center items-center">
-                            <div class="max-w-3/4 mx-10 text-center">
-                                <h3 class="text-primary-100 my-10 font-serif text-xl font-semibold">Derzeit sind keine Livestreams geplant.</h3>
-                                <?php if(!is_user_logged_in()): ?>
-                                <p class="text-primary-100">Registrieren Sie sich zu jetzt, wir informieren Sie sobald ein neuer Livestream gelpant ist.</p>
-                                <div class="text-left">
-									<?php get_template_part( 'register', 'form' ) ?>
+                    <div class="<?php if(count($categories) != $runner): ?>border-r border-primary-100 pr-5 <?php endif; ?> pr-5 h-full">
+                        <div class="w-full bg-white text-primary h-full">
+                            <div class="w-full h-full top-0 left-0 flex justify-center items-center">
+                                <div class="max-w-3/4 mx-10 text-center">
+                                    <h3 class="text-primary-100 my-10 font-serif text-xl font-semibold">Derzeit sind keine Livestreams geplant.</h3>
+									<?php if ( ! is_user_logged_in() ): ?>
+                                        <p class="text-primary-100">Registrieren Sie sich zu jetzt, wir informieren Sie sobald ein neuer Livestream gelpant ist.</p>
+                                        <div class="text-left">
+											<?php get_template_part( 'register', 'form' ) ?>
+                                        </div>
+									<?php else: ?>
+                                        <p class="text-primary-100 mb-10">Sobald ein neuer Livestream gelpant ist, senden wir Ihnen einen Newsletter.</p>
+									<?php endif; ?>
                                 </div>
-                                <?php else: ?>
-                                    <p class="text-primary-100 mb-10">Sobald ein neuer Livestream gelpant ist, senden wir Ihnen einen Newsletter.</p>
-                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
-
-
 				<?php endif; ?>
             </div>
-
-		<?php endforeach; ?>
+		<?php $runner++; endforeach; ?>
     </div>
 </div>
