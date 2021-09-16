@@ -15,18 +15,18 @@ $cat = array_shift( $cat );
 >
 	<?php get_template_part( 'article', 'liveheader' ) ?>
 
-    <div class="container mx-auto mt-10">
+    <div class="container mx-auto mt-10 text-white">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
             <div class="content col-span-5 lg:col-span-3" id="article-content">
-                <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900 mb-5">
-					<?php the_title() ?>
+                <h1 class="text-2xl lg:text-5xl font-serif leading-none mb-5 text-white">
+					<?php echo get_the_title() ?>
                 </h1>
                 <div class="hidden sm:block">
-					<?php get_template_part( 'video', 'meta', [ 'mode' => 'light' ] ) ?>
+					<?php get_template_part( 'video', 'meta', [ 'mode' => 'dark' ] ) ?>
                 </div>
                 <div>
                     <div class="max-w-1/3 h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field( 'field_5c63ff4b7a5fb', $cat ); ?>">
-						<?php echo $cat->name ?>
+						<?php echo $cat->name ?? '' ?>
                     </div>
 					<?php the_content(); ?>
                 </div>
