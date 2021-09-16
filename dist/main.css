@@ -3056,6 +3056,10 @@ html {
     margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
+  .lg\:border-r {
+    border-right-width: 1px;
+  }
+
   .lg\:p-0 {
     padding: 0px;
   }

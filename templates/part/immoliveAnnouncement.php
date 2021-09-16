@@ -51,7 +51,7 @@ extract( $args );
 					],
 				] );
 				if ( $query->have_posts() ):?>
-                <div class="h-full <?php if(count($categories) != $runner): ?>border-r border-primary-100 pr-5 <?php endif; ?>">
+                <div class="h-full <?php echo count($categories) != $runner ? 'lg:border-r border-primary-100 lg:pr-5' : ''  ?>">
                     <div class="">
 		                <?php while ( $query->have_posts() ): ?>
 		                <?php $query->the_post(); ?>
