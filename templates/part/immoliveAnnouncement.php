@@ -46,7 +46,9 @@ extract( $args );
                             <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
 								<?php
 								$starts = new \Carbon\Carbon(get_field('field_5ed527e9c2279'));
-								\Carbon\Carbon::setLocale('de'); ?>
+								$starts->setTimezone('UTC');
+								\Carbon\Carbon::setLocale('de');
+								?>
                                 <span>
                         <?php echo 'Live ' . $starts->diffForHumans() ?>
                         </span>

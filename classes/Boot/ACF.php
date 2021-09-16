@@ -5,6 +5,7 @@ namespace irclasses\Boot;
 
 
 use Carbon\CarbonInterval;
+use Carbon\Carbon;
 
 class ACF {
 
@@ -12,8 +13,31 @@ class ACF {
 
 		add_action('acf/init', [$this, 'ir_add_options_pages']);
 		add_filter('acf/update_value/key=field_5a3ce915590ae', [$this, 'update_duration'], 10, 4);
+		add_filter('acf/update_value/key=field_5ed527e9c2279', [$this, 'save_immolive_termin'], 10, 4);
+		add_filter('acf/load_value/key=field_5ed527e9c2279', [$this, 'load_immolive_termin'], 10, 4);
 
 
+	}
+
+	public function load_immolive_termin($value, $post_id, $field){
+
+		if(!is_admin()) return $value;
+
+		$datetime = Carbon::createFromFormat('Y-m-d H:i:s', $value, 'UTC');
+
+		$datetime->setTimezone('Europe/Vienna');
+
+		return $datetime->format('Y-m-d H:i:s');
+	}
+
+
+	public function save_immolive_termin($value, $post_id, $field, $original){
+
+		$datetime = Carbon::createFromFormat('Y-m-d H:i:s', $value, 'Europe/Vienna');
+
+		$datetime->setTimezone('UTC');
+
+		return $datetime->format('Y-m-d H:i:s');
 	}
 
 
