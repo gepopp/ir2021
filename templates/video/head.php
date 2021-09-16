@@ -49,7 +49,7 @@ $duration .= 'S';
 
 <div class="container mx-auto mt-20 relative px-5 lg:px-0">
 
-	<?php if ( is_singular( 'immolive' ) ): ?>
+	<?php if ( get_post_type( ) == 'immolive' ): ?>
         <div class="grid grid-cols-4 gap-5">
             <div class="relative col-span-4 lg:col-span-3" x-ref="videoContainer" style="padding-top: 56.25%">
                 <div class="absolute top-0 left-0 w-full h-full">
