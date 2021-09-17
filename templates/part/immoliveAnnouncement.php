@@ -24,8 +24,8 @@ extract( $args );
 
                 <div class="my-5 w-full text-center">
                     <h3 class="inline font-serif text-xl font-semibold text-center"
-                        style="background: linear-gradient(0deg, <?php the_field('field_5c63ff4b7a5fb', $category) ?> 0%, <?php the_field('field_5c63ff4b7a5fb', $category) ?> 50%, transparent 50%, transparent 100%);">
-                        <?php echo $category->name ?>
+                        style="background: linear-gradient(0deg, <?php the_field( 'field_5c63ff4b7a5fb', $category ) ?> 0%, <?php the_field( 'field_5c63ff4b7a5fb', $category ) ?> 50%, transparent 50%, transparent 100%);">
+						<?php echo $category->name ?>
                     </h3>
                 </div>
 
@@ -68,6 +68,12 @@ extract( $args );
 							?>
                             <div class="card mb-20 last:mb-0">
                                 <div class="relative">
+                                    <div class="absolute top-0 left-0 text-white p-3 w-full">
+                                        <div class="w-full flex justify-between">
+                                            <span><?php echo $category->name ?></span>
+                                            <span><?php echo get_field( 'field_5ed527e9c2279' ) ?></span>
+                                        </div>
+                                    </div>
                                     <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
 										<?php the_post_thumbnail( 'article', [
 											'class' => 'w-full h-auto max-w-full',
@@ -75,9 +81,14 @@ extract( $args );
 										<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
                                     </a>
                                 </div>
-                                <div class="w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
-                                    <span><?php echo 'Live ' . $starts->diffForHumans() ?></span>
-                                    <span><?php echo $term->name; ?></span>
+                                <div class="w-full p-3 text-white text-primary-100 font-semibold bg-white border border-primary-100">
+                                    <div class="flex justify-between">
+                                        <span><?php echo 'Live ' . $starts->diffForHumans() ?></span>
+                                        <span><?php echo $term->name; ?></span>
+                                    </div>
+                                    <div class="text-gray-900 font-thin pt-3">
+                                        <?php the_excerpt(); ?>
+                                    </div>
                                 </div>
                             </div>
 						<?php endwhile; ?>
