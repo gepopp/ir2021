@@ -68,12 +68,6 @@ extract( $args );
 							?>
                             <div class="card mb-20 last:mb-0">
                                 <div class="relative">
-                                    <div class="absolute top-0 left-0 text-white p-3 w-full">
-                                        <div class="w-full flex justify-between">
-                                            <span><?php echo $category->name ?></span>
-                                            <span><?php echo get_field( 'field_5ed527e9c2279' ) ?></span>
-                                        </div>
-                                    </div>
                                     <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
 										<?php the_post_thumbnail( 'article', [
 											'class' => 'w-full h-auto max-w-full',
