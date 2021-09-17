@@ -75,13 +75,13 @@ extract( $args );
 										<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
                                     </a>
                                 </div>
-                                <div class="w-full p-3 text-white text-primary-100 font-semibold bg-white border border-primary-100">
-                                    <div class="flex justify-between border-b border-primary-100 mb-3">
+                                <div class="w-full p-3 bg-white border border-primary-100">
+                                    <div class="flex justify-between border-b font-semibold text-primary-100 border-primary-100 mb-3">
                                         <span><?php echo 'Live ' . $starts->diffForHumans() ?></span>
                                         <span><?php echo $term->name; ?></span>
                                     </div>
                                     <div class="text-gray-900 pt-5">
-                                        <p class="font-normal text-gray-900 line-clamp-3">
+                                        <p class="text-gray-900 line-clamp-3">
 	                                        <?php echo get_the_excerpt(); ?>
                                         </p>
                                     </div>
