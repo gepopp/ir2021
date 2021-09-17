@@ -74,7 +74,7 @@ extract( $args );
 						<?php endwhile; ?>
                     </div>
 				<?php else: ?>
-                    <div class="h-full <?php if ( count( $categories ) != $runner ): ?>lg:border-r border-primary-100 lg:pr-5 <?php endif; ?>">
+                    <div class="h-full <?php if ( count( $categories ) != $runner ): ?>lg:border-r border-primary-100  <?php endif; ?> lg:pr-5">
                         <div class="w-full bg-white text-primary h-full">
                             <div class="w-full h-full top-0 left-0 flex justify-center items-center">
                                 <div class="max-w-3/4 mx-10 text-center">
