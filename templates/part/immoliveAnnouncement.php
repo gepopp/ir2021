@@ -20,7 +20,7 @@ extract( $args );
 		<?php
 		$runner = 1;
 		foreach ( $categories as $category ): ?>
-            <div class="flex flex-col">
+            <div class="flex flex-col relative">
                 <div class="mb-10 mt-20">
                     <h1 class="inline font-serif text-xl font-semibold"
                         style="background: linear-gradient(0deg, <?php the_field( 'field_5c63ff4b7a5fb', 'immolive_category_' . $category->term_id ); ?> 0%,
