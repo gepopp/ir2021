@@ -13,7 +13,18 @@ $cat = array_shift( $cat );
      @resize.window="getmeasurements()"
      ref="watched"
 >
-	<?php get_template_part( 'article', 'liveheader' ) ?>
+    <?php
+    $termin = get_field('field_5ed527e9c2279')
+    $carbon = new \Carbon\Carbon($termin);
+
+    if(get_post_format() == 'video'){
+	    get_template_part( 'video', 'head' );
+    }else{
+        get_template_part('arctivle', 'liveheader');
+    }
+    ?>
+
+
 
     <div class="container mx-auto mt-10 text-white">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">

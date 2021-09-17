@@ -18,8 +18,8 @@ extract( $args );
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 		<?php
-        $runner = 1;
-        foreach ( $categories as $category ): ?>
+		$runner = 1;
+		foreach ( $categories as $category ): ?>
             <div class="flex flex-col">
                 <div class="mb-10 mt-20">
                     <h1 class="inline font-serif text-xl font-semibold"
@@ -51,40 +51,45 @@ extract( $args );
 					],
 				] );
 				if ( $query->have_posts() ):?>
-                <div class="<?php echo count($categories) != $runner ? 'lg:border-r border-primary-100 lg:pr-5' : ''  ?> flex-grow">
-                    <div class="">
-		                <?php while ( $query->have_posts() ): ?>
-		                <?php $query->the_post(); ?>
-                        <div class="relative mb-20 last:mb-0">
-                            <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
-				                <?php
-				                $starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279' ) );
-				                $starts->setTimezone( 'UTC' );
-				                \Carbon\Carbon::setLocale( 'de' );
-				                ?>
-                                <span>
-                        <?php echo 'Live ' . $starts->diffForHumans() ?>
-                        </span>
-                                <span>
-                            <?php
-                            $terms = wp_get_post_terms( get_the_ID(), 'immolive_category' );
-                            $term  = array_shift( $terms );
-                            echo $term->name;
-                            ?>
-                        </span>
+                    <div class="<?php echo count( $categories ) != $runner ? 'lg:border-r border-primary-100 lg:pr-5' : '' ?> flex-grow">
+                        <div>
+                            <div class="relative">
+								<?php while ( $query->have_posts() ): ?>
+								<?php
+								$query->the_post();
+								$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279' ) );
+								$starts->setTimezone( 'UTC' );
+								\Carbon\Carbon::setLocale( 'de' );
+
+								$terms = wp_get_post_terms( get_the_ID(), 'immolive_category' );
+								$term  = array_shift( $terms );
+
+								$ics = get_field('field_6143982f5f5f2');
+
+								?>
+                                <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
+									<?php the_post_thumbnail( 'article', [
+										'class' => 'w-full h-auto max-w-full',
+									] ); ?>
+									<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
+                                </a>
                             </div>
-                            <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
-				                <?php the_post_thumbnail( 'article', [
-					                'class' => 'w-full h-auto max-w-full',
-				                ] ); ?>
-				                <?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
-                            </a>
+                            <div>
+                                <div class="w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
+                                    <span><?php echo 'Live ' . $starts->diffForHumans() ?></span>
+                                    <span><?php echo $term->name; ?></span>
+                                </div>
+                            </div>
+                            <div class="border border-primary-100 p-5 bg-white">
+                                <a href="<?php echo $ics ?>" download>
+                                    Termindatei
+                                </a>
+                            </div>
                         </div>
 						<?php endwhile; ?>
                     </div>
-                </div>
 				<?php else: ?>
-                    <div class="h-full <?php if(count($categories) != $runner): ?>border-r border-primary-100 pr-5 <?php endif; ?> pr-5">
+                    <div class="h-full <?php if ( count( $categories ) != $runner ): ?>lg:border-r border-primary-100 lg:pr-5 <?php endif; ?>">
                         <div class="w-full bg-white text-primary h-full">
                             <div class="w-full h-full top-0 left-0 flex justify-center items-center">
                                 <div class="max-w-3/4 mx-10 text-center">
@@ -103,6 +108,6 @@ extract( $args );
                     </div>
 				<?php endif; ?>
             </div>
-		<?php $runner++; endforeach; ?>
+			<?php $runner ++; endforeach; ?>
     </div>
 </div>

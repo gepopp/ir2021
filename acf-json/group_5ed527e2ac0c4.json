@@ -160,6 +160,25 @@
                     "mime_types": ""
                 }
             ]
+        },
+        {
+            "key": "field_6143982f5f5f2",
+            "label": "ICS Datei",
+            "name": "ics_datei",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -179,5 +198,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1631689162
+    "modified": 1631824075
 }
