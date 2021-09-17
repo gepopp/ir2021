@@ -80,11 +80,11 @@ extract( $args );
                                     <span><?php echo $term->name; ?></span>
                                 </div>
                             </div>
-                            <div class="border border-primary-100 p-5 bg-white">
-                                <a href="<?php echo $ics ?>" download>
-                                    Termindatei
-                                </a>
-                            </div>
+<!--                            <div class="border border-primary-100 p-5 bg-white">-->
+<!--                                <a href="--><?php //echo $ics ?><!--" download>-->
+<!--                                    Termindatei-->
+<!--                                </a>-->
+<!--                            </div>-->
                         </div>
 						<?php endwhile; ?>
                     </div>
