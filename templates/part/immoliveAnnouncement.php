@@ -82,12 +82,14 @@ extract( $args );
                                     </a>
                                 </div>
                                 <div class="w-full p-3 text-white text-primary-100 font-semibold bg-white border border-primary-100">
-                                    <div class="flex justify-between">
+                                    <div class="flex justify-between border-b border-primary-100 mb-3">
                                         <span><?php echo 'Live ' . $starts->diffForHumans() ?></span>
                                         <span><?php echo $term->name; ?></span>
                                     </div>
-                                    <div class="text-gray-900 font-thin pt-3">
-                                        <?php the_excerpt(); ?>
+                                    <div class="text-gray-900 pt-5">
+                                        <p class="font-thin text-gray-900">
+	                                        <?php echo get_the_excerpt(); ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
