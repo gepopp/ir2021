@@ -14,7 +14,7 @@ $cat = array_shift( $cat );
      ref="watched"
 >
     <?php
-    $termin = get_field('field_5ed527e9c2279')
+    $termin = get_field('field_5ed527e9c2279');
     $carbon = new \Carbon\Carbon($termin);
 
     if(get_post_format() == 'video'){
