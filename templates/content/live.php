@@ -13,17 +13,16 @@ $cat = array_shift( $cat );
      @resize.window="getmeasurements()"
      ref="watched"
 >
-    <?php
-    $termin = get_field('field_5ed527e9c2279');
-    $carbon = new \Carbon\Carbon($termin);
+	<?php
+	$termin = get_field( 'field_5ed527e9c2279' );
+	$carbon = new \Carbon\Carbon( $termin );
 
-    if(get_post_format() == 'video'){
-	    get_template_part( 'video', 'head' );
-    }else{
-        get_template_part('article', 'liveheader');
-    }
-    ?>
-
+	if ( get_post_format() == 'video' ) {
+		get_template_part( 'video', 'head' );
+	} else {
+		get_template_part( 'article', 'liveheader' );
+	}
+	?>
 
 
     <div class="container mx-auto mt-10 text-white">
@@ -36,10 +35,7 @@ $cat = array_shift( $cat );
 					<?php get_template_part( 'video', 'meta', [ 'mode' => 'dark' ] ) ?>
                 </div>
                 <div>
-                    <div class="max-w-1/3 h-48 w-48 float-left mb-5 mr-5 flex items-end justify-end p-3 text-white font-serif text-xl" style="background-color: <?php the_field( 'field_5c63ff4b7a5fb', $cat ); ?>">
-						<?php echo $cat->name ?? '' ?>
-                    </div>
-                    <?php the_excerpt(); ?>
+					<?php the_excerpt(); ?>
 					<?php the_content(); ?>
                 </div>
             </div>
