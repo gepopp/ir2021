@@ -20,7 +20,7 @@ $cat = array_shift( $cat );
     if(get_post_format() == 'video'){
 	    get_template_part( 'video', 'head' );
     }else{
-        get_template_part('arctivle', 'liveheader');
+        get_template_part('article', 'liveheader');
     }
     ?>
 
