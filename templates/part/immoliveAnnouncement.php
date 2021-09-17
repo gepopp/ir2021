@@ -16,7 +16,7 @@ extract( $args );
     </div>
 
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 border-y border-primary-100">
 		<?php
 		$runner = 1;
 		foreach ( $categories as $category ): ?>
