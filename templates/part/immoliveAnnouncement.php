@@ -81,7 +81,7 @@ extract( $args );
                                         <span><?php echo $term->name; ?></span>
                                     </div>
                                     <div class="text-gray-900 pt-5">
-                                        <p class="font-thin text-gray-900 line-clamp-3">
+                                        <p class="font-normal text-gray-900 line-clamp-3">
 	                                        <?php echo get_the_excerpt(); ?>
                                         </p>
                                     </div>
