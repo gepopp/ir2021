@@ -21,6 +21,15 @@ extract( $args );
 		$runner = 1;
 		foreach ( $categories as $category ): ?>
             <div class="flex flex-col">
+
+                <div class="my-5 w-full text-center">
+                    <h3 class="inline font-serif text-xl font-semibold text-center"
+                        style="background: linear-gradient(0deg, <?php the_field('field_5c63ff4b7a5fb', $category) ?> 0%, <?php the_field('field_5c63ff4b7a5fb', $category) ?> 50%, transparent 50%, transparent 100%);">
+                        <?php echo $category->name ?>
+                    </h3>
+                </div>
+
+
 				<?php
 				$date_now = date( 'Y-m-d H:i:s' );
 				$query    = new WP_Query( [
