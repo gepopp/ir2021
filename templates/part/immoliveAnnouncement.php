@@ -53,7 +53,7 @@ extract( $args );
 					],
 				] );
 				if ( $query->have_posts() ): ?>
-                    <div class="<?php echo count( $categories ) != $runner ? 'lg:border-r border-primary-100 lg:pr-5' : '' ?> flex-grow">
+                    <div class="<?php echo count( $categories ) != $runner ? 'lg:border-r border-primary-100' : '' ?> px-5 flex-grow">
 						<?php while ( $query->have_posts() ):
 							$query->the_post();
 							$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279' ) );
