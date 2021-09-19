@@ -13,7 +13,8 @@ $query    = new WP_Query( [
 		],
 	],
     'meta_key' => 'termin',
-    'orderby' => 'meta_value'
+    'orderby' => 'meta_value',
+    'order'    => 'DESC'
 ] );
 
 if ( $query->have_posts() ):
