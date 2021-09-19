@@ -27,8 +27,9 @@ class ACF {
 		}
 
 		$termin = get_field( 'field_5ed527e9c2279', $post_id, false );
-		wp_die($termin);
-		$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279', $post_id, false ) );
+		$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279', $post_id, false ), 'Europe/Vienna' );
+		$starts->setTimezone( 'UTC' );
+
 		$start = $starts->format('Ymd\THis\Z');
 		$end = $starts->addHour()->format('Ymd\THis');
 
@@ -40,6 +41,7 @@ class ACF {
 			'dtend'       => $end,
 			'summary'     => get_the_title( $post_id ),
 			'url'         => get_the_permalink( $post_id ),
+			'vtimezone'   => 'Europe/Vienna'
 		] );
 
 		$template_dir = immobilien_redaktion_2020_DIR . '/tmp/';

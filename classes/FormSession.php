@@ -164,7 +164,6 @@ class FormSession {
 
 	private function save() {
 		$this->client->setex( $this->code, 60 * 60 * 24, serialize( $this->content ) );
-
 		return $this;
 	}
 
@@ -193,6 +192,7 @@ class FormSession {
 			'profile_image_saved'   => __( 'Ihr neues Profilbild wurde gespeichert' ),
 			'profile_image_size'    => __( 'Hier sind maximal 2 MB erlaubt.' ),
 			'profile_image_mime'    => __( 'Hier sind nur jpg und png Dateien erlaubt.' ),
+            'default'               => __('Ein Fehler trat auf, bitte versuchen Sie es später erneut.')
 		];
 
 	}

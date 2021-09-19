@@ -80,12 +80,52 @@ extract( $args );
                                         <span><?php echo 'Live ' . $starts->diffForHumans() ?></span>
                                         <span><?php echo $term->name; ?></span>
                                     </div>
-                                    <div class="text-gray-900 pt-5">
+                                    <div class="text-gray-900 py-5">
                                         <p class="text-gray-900 line-clamp-3">
-	                                        <?php echo get_the_excerpt(); ?>
+											<?php echo get_the_excerpt(); ?>
                                         </p>
                                     </div>
+                                    <div class="pt-5 border-t border-primary-100">
+                                        <h3 class="font-semibold text-primary-100">Termin speichern</h3>
+
+	                                    <?php
+                                        global $FormSession;
+                                        $FormSession->flashErrorBag('newsletter');
+                                        $FormSession->flashSuccess('newsletter');
+                                        ?>
+
+
+                                        <form action="<?php echo admin_url( 'admin-post.php' ) ?>" method="post">
+											<?php wp_nonce_field( 'newsletter', 'newsletter' ) ?>
+                                            <input type="hidden" name="action" value="get_immolive_ics">
+                                            <input type="hidden" name="post_id" value="<?php echo get_the_ID() ?>">
+                                            <div class="flex flex-col">
+                                                <label>E-Mail Adresse<span class="text-red-500">*</span></label>
+                                                <input
+                                                        type="email"
+                                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        name="email"
+                                                        required
+                                                >
+
+                                            </div>
+                                            <div class="flex flex-col mb-3">
+                                                <div>
+                                                    <input type="checkbox" name="agb" value="1" required id="agb">
+                                                    <label for="agb">Ich bin mit den
+                                                        <a href="<?php echo home_url('agb') ?>" class="text-primary-100 underline">AGB</a> der Immobilien Redaktion einverstanden<span class="text-red-500">*</span></label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" name="nlcheck" value="1" id="nlcheck">
+                                                    <label for="nlcheck">Newsletter abonieren</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="bg-primary-100 text-white flex-none p-3 w-full text-center">ical senden</button>
+                                            <span class="text-red-500 text-xs">Mit * gekenntzeichnte Felder sind Pflichtfelder</span>
+                                        </form>
+                                    </div>
                                 </div>
+
                             </div>
 						<?php endwhile; ?>
                     </div>

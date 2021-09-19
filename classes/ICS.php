@@ -78,7 +78,8 @@ class ICS {
 		'dtstart',
 		'location',
 		'summary',
-		'url'
+		'url',
+		'vtimezone'
 	);
 
 	public function __construct($props) {
