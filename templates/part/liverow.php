@@ -13,7 +13,7 @@ $query    = new WP_Query( [
 		],
 	],
     'meta_key' => 'termin',
-    'order_by' => 'meta_value'
+    'orderby' => 'meta_value'
 ] );
 
 if ( $query->have_posts() ):
