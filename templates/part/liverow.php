@@ -14,7 +14,7 @@ $query    = new WP_Query( [
 	],
     'meta_key' => 'termin',
     'orderby' => 'meta_value',
-    'order'    => 'DESC'
+    'order'    => 'ASC'
 ] );
 
 if ( $query->have_posts() ):
