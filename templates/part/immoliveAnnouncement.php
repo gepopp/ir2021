@@ -87,12 +87,12 @@ extract( $args );
                                     </div>
                                     <div class="pt-5 border-t border-primary-100">
                                         <h3 class="font-semibold text-primary-100">Termin speichern</h3>
-
-	                                    <?php
-                                        global $FormSession;
-                                        $FormSession->flashErrorBag('newsletter');
-                                        $FormSession->flashSuccess('newsletter');
-                                        ?>
+                                        <p class="text-sm my-3">Geben Sie Ihre E-Mail Adressse ein und wir senden Ihnen eine iCal Datei.</p>
+										<?php
+										global $FormSession;
+										$FormSession->flashErrorBag( 'newsletter' );
+										$FormSession->flashSuccess( 'newsletter' );
+										?>
 
 
                                         <form action="<?php echo admin_url( 'admin-post.php' ) ?>" method="post">
@@ -112,12 +112,13 @@ extract( $args );
                                             <div class="flex flex-col mb-3">
                                                 <div>
                                                     <input type="checkbox" name="agb" value="1" required id="agb">
-                                                    <label for="agb">Ich bin mit den
-                                                        <a href="<?php echo home_url('agb') ?>" class="text-primary-100 underline">AGB</a> der Immobilien Redaktion einverstanden<span class="text-red-500">*</span></label>
+                                                    <label for="agb" class="text-sm">Ich bin mit den
+                                                        <a href="<?php echo home_url( 'agb' ) ?>" class="text-primary-100 underline">AGB</a> der Immobilien Redaktion einverstanden
+                                                        <span class="text-red-500">*</span></label>
                                                 </div>
                                                 <div>
                                                     <input type="checkbox" name="nlcheck" value="1" id="nlcheck">
-                                                    <label for="nlcheck">Newsletter abonieren</label>
+                                                    <label for="nlcheck" class="text-sm">Newsletter abonieren</label>
                                                 </div>
                                             </div>
                                             <button type="submit" class="bg-primary-100 text-white flex-none p-3 w-full text-center">ical senden</button>
