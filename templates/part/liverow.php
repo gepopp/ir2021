@@ -12,6 +12,8 @@ $query    = new WP_Query( [
 			'type'    => 'DATETIME',
 		],
 	],
+    'meta_key' => 'termin',
+    'order_by' => 'meta_value'
 ] );
 
 if ( $query->have_posts() ):
