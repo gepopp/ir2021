@@ -12,11 +12,6 @@ trait ImmoliveEmails {
 	public function send_subscription_email( $name, $email, $immolive_id ) {
 
 		$ical_url = get_field( 'field_6143982f5f5f2', $immolive_id );
-
-
-		wp_die(var_dump($ical_url));
-
-
 		$ical     = file_get_contents( $ical_url );
 
 		$result = wp_remote_post( sprintf( 'https://api.createsend.com/api/v3.2/transactional/smartEmail/%s/send', 'f681cc3f-299d-447c-8444-4b7fbec46082' ), [
