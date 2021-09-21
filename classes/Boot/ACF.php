@@ -27,6 +27,8 @@ class ACF {
 			return $value;
 		}
 
+		wp_die('hier', 400);
+
 		$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279', $post_id, false ), 'Europe/Vienna' );
 		$starts->setTimezone( 'UTC' );
 
