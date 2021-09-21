@@ -21,6 +21,10 @@ get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
 
 get_template_part( 'banner', 'mega' );
 
+get_template_part( 'part', 'liverow', ['when' => 'past'] );
+
+get_template_part( 'banner', 'fourbanner' );
+
 $query = new \WP_Query( [
 	'post_type'           => 'post',
 	'post_status'         => 'publish',
@@ -33,15 +37,9 @@ get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
 
 get_template_part( 'part', 'liverow' );
 
-
-get_template_part( 'banner', 'fourbanner' );
-
-
-get_template_part( 'part', 'aktuellesrow' );
-
-
 get_template_part( 'banner', 'thirds2' );
 
+get_template_part( 'part', 'aktuellesrow' );
 
 get_template_part( 'part', 'projekterow' );
 
