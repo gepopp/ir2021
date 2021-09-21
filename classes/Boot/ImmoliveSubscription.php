@@ -15,7 +15,7 @@ class ImmoliveSubscription {
 		add_action( 'wp_ajax_immolive_is_subscribed', [ $this, 'is_subscribed' ] );
 		add_action('publish_immolive', [$this, 'create_immolive_list']);
 		add_action('save_post_immolive', [$this, 'create_reminder_campaign'], 20,2);
-		add_action('save_post_immolive', [$this, 'create_ics_datei'], 20,2);
+		add_action('acf/save_post', [$this, 'create_ics_datei'], 20 );
 	}
 
 
@@ -84,7 +84,7 @@ class ImmoliveSubscription {
 
 	}
 
-	public function create_ics_datei( $post_id, $post ) {
+	public function create_ics_datei( $post_id ) {
 
 
 		$exists = get_field('field_6143982f5f5f2', $post_id);
@@ -134,7 +134,7 @@ class ImmoliveSubscription {
 		$metadata = wp_generate_attachment_metadata( $upload_id, $new_file_path );
 		wp_update_attachment_metadata( $upload_id,  $metadata );
 
-		update_field('field_6143982f5f5f2', $upload_id, $post_id);
+		$saved = update_field('field_6143982f5f5f2', $upload_id, $post_id);
 
 	}
 
