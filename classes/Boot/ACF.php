@@ -14,67 +14,13 @@ class ACF {
 		add_action( 'acf/init', [ $this, 'ir_add_options_pages' ] );
 		add_filter( 'acf/update_value/key=field_5a3ce915590ae', [ $this, 'update_duration' ], 10, 4 );
 		add_filter( 'acf/update_value/key=field_5ed527e9c2279', [ $this, 'save_immolive_termin' ], 10, 4 );
-		add_filter( 'acf/update_value/key=field_6143982f5f5f2', [ $this, 'create_ics_datei' ], 10, 4 );
 		add_filter( 'acf/load_value/key=field_5ed527e9c2279', [ $this, 'load_immolive_termin' ], 10, 4 );
 
 
 	}
 
 
-	public function create_ics_datei( $value, $post_id, $field, $original ) {
 
-		if ( ! empty( $value ) ) {
-			return $value;
-		}
-
-		wp_die('hier', 400);
-
-		$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279', $post_id, false ), 'Europe/Vienna' );
-		$starts->setTimezone( 'UTC' );
-
-		$start = $starts->format( 'Ymd\THis\Z' );
-		$end   = $starts->addHour()->format( 'Ymd\THis' );
-
-
-		$ics = new \irclasses\ICS( [
-			'location'    => 'online',
-			'description' => get_the_excerpt( $post_id ),
-			'dtstart'     => $start,
-			'dtend'       => $end,
-			'summary'     => get_the_title( $post_id ),
-			'url'         => get_the_permalink( $post_id ),
-			'vtimezone'   => 'Europe/Vienna',
-		] );
-
-		$template_dir = immobilien_redaktion_2020_DIR . '/tmp/';
-		$filename     = $template_dir . $post_id . '.ics';
-
-		$file = fopen( $filename, 'w' );
-		fwrite( $file, $ics->to_string() );
-		fclose( $file );
-
-		require( ABSPATH . 'wp-load.php' );
-		$wordpress_upload_dir = wp_upload_dir();
-		$new_file_path        = $wordpress_upload_dir['path'] . '/' . $post_id . '.ics';
-
-		rename( $filename, $new_file_path );
-
-		$upload_id = wp_insert_attachment( [
-			'guid'           => $new_file_path,
-			'post_mime_type' => 'text/calendar',
-			'post_title'     => preg_replace( '/\.[^.]+$/', '', $post_id . '.ics' ),
-			'post_content'   => '',
-			'post_status'    => 'inherit',
-		], $new_file_path );
-
-		require_once( ABSPATH . 'wp-admin/includes/image.php' );
-
-		$metadata = wp_generate_attachment_metadata( $upload_id, $new_file_path );
-		wp_update_attachment_metadata( $upload_id,  $metadata );
-
-		return $upload_id;
-
-	}
 
 	public function load_immolive_termin( $value, $post_id, $field ) {
 
