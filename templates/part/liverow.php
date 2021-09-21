@@ -20,7 +20,7 @@ $query    = new WP_Query( [
 	],
 	'meta_key'       => 'termin',
 	'orderby'        => 'meta_value',
-	'order'          => $when == 'future' ? 'DESC' : 'ASC',
+	'order'          => $when != 'future' ? 'DESC' : 'ASC',
 ] );
 
 if ( $query->have_posts() ):
