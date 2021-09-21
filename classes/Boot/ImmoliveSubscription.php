@@ -120,21 +120,21 @@ class ImmoliveSubscription {
 		$new_file_path        = $wordpress_upload_dir['path'] . '/' . $post_id . '.ics';
 
 		rename( $filename, $new_file_path );
-//
-//		$upload_id = wp_insert_attachment( [
-//			'guid'           => $new_file_path,
-//			'post_mime_type' => 'text/calendar',
-//			'post_title'     => preg_replace( '/\.[^.]+$/', '', $post_id . '.ics' ),
-//			'post_content'   => '',
-//			'post_status'    => 'inherit',
-//		], $new_file_path );
-//
-//		require_once( ABSPATH . 'wp-admin/includes/image.php' );
-//
-//		$metadata = wp_generate_attachment_metadata( $upload_id, $new_file_path );
-//		wp_update_attachment_metadata( $upload_id,  $metadata );
-//
-//		update_field('field_6143982f5f5f2', $upload_id, $post_id);
+
+		$upload_id = wp_insert_attachment( [
+			'guid'           => $new_file_path,
+			'post_mime_type' => 'text/calendar',
+			'post_title'     => preg_replace( '/\.[^.]+$/', '', $post_id . '.ics' ),
+			'post_content'   => '',
+			'post_status'    => 'inherit',
+		], $new_file_path );
+
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+		$metadata = wp_generate_attachment_metadata( $upload_id, $new_file_path );
+		wp_update_attachment_metadata( $upload_id,  $metadata );
+
+		update_field('field_6143982f5f5f2', $upload_id, $post_id);
 
 	}
 
