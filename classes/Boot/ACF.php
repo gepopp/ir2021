@@ -16,7 +16,6 @@ class ACF {
 		add_filter( 'acf/update_value/key=field_5ed527e9c2279', [ $this, 'save_immolive_termin' ], 10, 4 );
 		add_filter( 'acf/load_value/key=field_5ed527e9c2279', [ $this, 'load_immolive_termin' ], 10, 4 );
 
-
 	}
 
 
