@@ -1,7 +1,7 @@
 <div class="pt-5">
     <h3 class="font-semibold text-primary-100 font-serif text-xl text-center">Zu diesem Livestream anmelden</h3>
     <p class="text-sm my-3">
-        Um bei unseren Podiumsdiskussionen uns Interviews Live dabei sein zu könen ist eine Anmeldung erforderlich.
+        Um bei unseren Podiumsdiskussionen uns Interviews live dabei sein zu können ist eine Anmeldung erforderlich.
         Erstellen Sie jetzt Ihren Account auf der Immobilien Redaktion und melden Sie sich an.
     </p>
 
