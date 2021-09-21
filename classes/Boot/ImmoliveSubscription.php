@@ -14,7 +14,11 @@ class ImmoliveSubscription {
 		add_action( 'wp_ajax_immolive_subscription', [ $this, 'subscribe' ] );
 		add_action( 'wp_ajax_immolive_is_subscribed', [ $this, 'is_subscribed' ] );
 		add_action('publish_immolive', [$this, 'create_immolive_list']);
+		add_action('save_post_immolive', [$this, 'create_reminder_campaign'], 20,2);
 	}
+
+
+
 
 	public function is_subscribed(){
 
@@ -32,6 +36,9 @@ class ImmoliveSubscription {
 		wp_die(false);
 
 	}
+
+
+
 
 
 

@@ -30,9 +30,7 @@ class CampaignMonitor {
 		];
 
 		$result = wp_remote_post( $url, [
-			'headers' => [
-				'authorization' => 'Basic ' . base64_encode( $this->api_key ),
-			],
+			'headers' => self::get_authorization_header(),
 			'body'    => json_encode( [
 				'To'                  => $user->data->user_email,
 				"Data"
@@ -49,9 +47,7 @@ class CampaignMonitor {
 	public function updateUser( $user ) {
 
 		$result = wp_remote_post( 'https://api.createsend.com/api/v3.2/subscribers/2bf433e2872f0f1fb917ca1c98ff301e.json?email=' . $user->data->user_email, [
-			'headers' => [
-				'authorization' => 'Basic ' . base64_encode( 'fab3e169a5a467b38347a38dbfaaad6d' ),
-			],
+			'headers' => self::get_authorization_header(),
 			'body'    => json_encode( [
 				"EmailAddress"                           => $user->data->user_email,
 				"Name"                                   => $user->data->display_name,
@@ -80,6 +76,12 @@ class CampaignMonitor {
 			wp_mail( 'gerhard@poppgerhard.at', 'CM Fehler', var_dump( wp_remote_retrieve_body( $result ) ) );
 			return false;
 		}
+	}
+
+	public static function get_authorization_header(){
+		return [
+			'authorization' => 'Basic ' . base64_encode( 'fab3e169a5a467b38347a38dbfaaad6d' )
+		];
 	}
 
 }

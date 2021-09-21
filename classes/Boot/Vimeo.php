@@ -14,7 +14,6 @@ class Vimeo {
 	public function __construct() {
 
 		add_action( 'post_updated', [ $this, 'get_vimeo_thumbnail' ], 10, 3 );
-		add_action( 'save_post_immolive', [ $this, 'get_vimeo_thumbnail' ], 10, 3 );
 
 	}
 
@@ -35,10 +34,9 @@ class Vimeo {
 			return;
 		}
 
-		if ( get_post_format( $post_id ) !== 'video' && get_post_type() !== 'immolive' ) {
+		if ( get_post_format( $post_id ) !== 'video' ) {
 			return;
 		}
-
 
 		$body = $this->get_video_data( $post_id );
 

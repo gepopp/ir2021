@@ -23,10 +23,9 @@ class ACF {
 	public function create_ics_datei( $value, $post_id, $field, $original ) {
 
 		if ( ! empty( $value ) ) {
-			return;
+			return $value;
 		}
 
-		$termin = get_field( 'field_5ed527e9c2279', $post_id, false );
 		$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279', $post_id, false ), 'Europe/Vienna' );
 		$starts->setTimezone( 'UTC' );
 

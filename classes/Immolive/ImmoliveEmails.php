@@ -15,9 +15,7 @@ trait ImmoliveEmails {
 		$ical     = file_get_contents( $ical_url );
 
 		$result = wp_remote_post( sprintf( 'https://api.createsend.com/api/v3.2/transactional/smartEmail/%s/send', 'f681cc3f-299d-447c-8444-4b7fbec46082' ), [
-			'headers' => [
-				'authorization' => 'Basic ' . base64_encode( 'fab3e169a5a467b38347a38dbfaaad6d' ),
-			],
+			'headers' => CampaignMonitor::get_authorization_header(),
 			'body'    => json_encode( [
 				'To'                  => $email,
 				"Data"                => [
@@ -52,9 +50,7 @@ trait ImmoliveEmails {
 		}
 
 		$result = wp_remote_post( sprintf( 'https://api.createsend.com/api/v3.2/lists/%s.json', '5dc7a00de27aa7df766faac083551a60' ), [
-			'headers' => [
-				'authorization' => 'Basic ' . base64_encode( 'fab3e169a5a467b38347a38dbfaaad6d' ),
-			],
+			'headers' => CampaignMonitor::get_authorization_header(),
 			'body'    => json_encode( [
 				"Title"              => get_the_title( $immolive_id ) . ' ' . get_field( 'field_5ed527e9c2279', $immolive_id ),
 				"UnsubscribeSetting" => "OnlyThisList",
@@ -68,7 +64,6 @@ trait ImmoliveEmails {
 			$body = wp_remote_retrieve_body( $result );
 			update_post_meta( $immolive_id, 'cm_list', trim( $body, '"' ) );
 			$this->add_subscriber_to_list($immolive_id, get_user_by('email', 'gerhard@poppgerhard.at'));
-			$this->create_reminder_campaign( $immolive_id );
 		}
 	}
 
@@ -80,9 +75,7 @@ trait ImmoliveEmails {
 		$list_id = trim( get_post_meta( $immolive_id, 'cm_list', true ), '"' );
 
 		wp_remote_post( sprintf( 'https://api.createsend.com/api/v3.2/subscribers/%s.json', $list_id ), [
-			'headers' => [
-				'authorization' => 'Basic ' . base64_encode( 'fab3e169a5a467b38347a38dbfaaad6d' ),
-			],
+			'headers' => CampaignMonitor::get_authorization_header(),
 			'body'    => json_encode( [
 				"EmailAddress"                           => $user->user_email,
 				"Name"                                   => $user->display_name,
@@ -97,12 +90,15 @@ trait ImmoliveEmails {
 
 
 
-	public function create_reminder_campaign( $immolive_id ) {
+	public function create_reminder_campaign( $immolive_id, $immolive ) {
+
+		if(get_post_status($immolive_id ) != 'publish' || !has_post_thumbnail($immolive_id)) return;
+
+		$list_id = trim( get_post_meta( $immolive_id, 'cm_list', true ), '"' );
+		if(empty($list_id)) return;
 
 		$campaign = wp_remote_post( 'https://api.createsend.com/api/v3.2/campaigns/5dc7a00de27aa7df766faac083551a60/fromtemplate.json', [
-			'headers' => [
-				'authorization' => 'Basic ' . base64_encode( 'fab3e169a5a467b38347a38dbfaaad6d' ),
-			],
+			'headers' => CampaignMonitor::get_authorization_header(),
 			'body'    => json_encode( [
 				"Name"            => "Immolive Reminder: " . get_the_title( $immolive_id ),
 				"Subject"         => get_the_title( $immolive_id ),
@@ -125,12 +121,12 @@ trait ImmoliveEmails {
 							"Content" => "<p>" . get_the_title( $immolive_id ) . "</p>",
 						],
 						[
-							"Content" => "<p>" . get_the_excerpt( $immolive_id ) . '<br><br>' . get_the_content( $immolive_id ) . "</p>",
+							"Content" => "<p><strong>" . get_the_excerpt( $immolive_id ) . '</strong><br><br>' . get_the_content( $immolive_id ) . "</p>",
 						],
 					],
 					"Images"     => [
 						[
-							"Content" => get_the_post_thumbnail_url($immolive_id, 'featured'),
+							"Content" => get_the_post_thumbnail_url($immolive_id, 'full'),
 							"Alt"     => get_the_title($immolive_id),
 							"Href"    => get_the_permalink($immolive_id),
 						],
@@ -142,25 +138,19 @@ trait ImmoliveEmails {
 		$cm = new CampaignMonitor();
 
 		if($cm->isSuccess($campaign)){
-			$campaign = trim(wp_remote_retrieve_body( $campaign ), '"');
 
+			$campaign = trim(wp_remote_retrieve_body( $campaign ), '"');
 			$termin   = get_field('field_5ed527e9c2279', $immolive_id);
 			$sent_at = new Carbon($termin);
 			$sent_at->subHours(1);
 
 			$sent = wp_remote_post('https://api.createsend.com/api/v3.2/campaigns/'.$campaign.'/send.json',[
-				'headers' => [
-					'authorization' => 'Basic ' . base64_encode( 'fab3e169a5a467b38347a38dbfaaad6d' ),
-				],
+				'headers' => CampaignMonitor::get_authorization_header(),
 				'body' => json_encode([
 					"ConfirmationEmail" => "w.senk@immobilien-redaktion.at, gerhard@poppgerhard.at",
 					"SendDate" => $sent_at->format('Y-m-d H:i')
 				])
 			]);
-
-
 		}
-
 	}
-
 }
