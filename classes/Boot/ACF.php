@@ -18,9 +18,6 @@ class ACF {
 
 	}
 
-
-
-
 	public function load_immolive_termin( $value, $post_id, $field ) {
 
 		if ( ! is_admin() ) {

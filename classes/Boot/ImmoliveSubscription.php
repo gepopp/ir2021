@@ -86,6 +86,7 @@ class ImmoliveSubscription {
 
 	public function create_ics_datei( $post_id ) {
 
+		if(get_post_type($post_id) !== 'immolive') return;
 
 		$exists = get_field('field_6143982f5f5f2', $post_id);
 		if(!empty($exists)) return;

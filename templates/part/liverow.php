@@ -12,9 +12,9 @@ $query    = new WP_Query( [
 			'type'    => 'DATETIME',
 		],
 	],
-    'meta_key' => 'termin',
-    'orderby' => 'meta_value',
-    'order'    => 'ASC'
+	'meta_key'       => 'termin',
+	'orderby'        => 'meta_value',
+	'order'          => 'ASC',
 ] );
 
 if ( $query->have_posts() ):
@@ -31,24 +31,35 @@ if ( $query->have_posts() ):
 
                 <div class="relative">
                     <div class="absolute top-0 left-0 w-full p-3 text-white flex justify-between text-primary-100 font-semibold bg-white">
-                        <?php
-                        $starts = new \Carbon\Carbon(get_field('field_5ed527e9c2279'));
-                        \Carbon\Carbon::setLocale('de'); ?>
+						<?php
+						$starts = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279' ) );
+						\Carbon\Carbon::setLocale( 'de' ); ?>
                         <span>
                         <?php echo 'Live ' . $starts->diffForHumans() ?>
                         </span>
                         <span>
                             <?php
-                             $terms = wp_get_post_terms(get_the_ID(), 'immolive_category');
-                             $term = array_shift($terms);
-                             echo $term->name;
+                            $terms = wp_get_post_terms( get_the_ID(), 'immolive_category' );
+                            $term  = array_shift( $terms );
+                            echo $term->name;
                             ?>
                         </span>
                     </div>
                     <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
-						<?php the_post_thumbnail( 'article', [
-							'class' => 'w-full h-auto max-w-full',
-						] ); ?>
+
+						<?php
+
+						if ( has_post_thumbnail() ) {
+							the_post_thumbnail( 'article', [
+								'class' => 'w-full h-auto max-w-full',
+							] );
+						} else {
+							$attachment_id = get_field( 'field_614a3cf01f64c', 'immolive_category_' . $term->term_id );
+							echo wp_get_attachment_image( $attachment_id, 'featured' );
+						}
+						?>
+
+
 						<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
                     </a>
                 </div>

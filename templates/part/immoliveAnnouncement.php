@@ -50,9 +50,17 @@ extract( $args );
             <div class="card mb-20 last:mb-0">
                 <div class="relative">
                     <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
-						<?php the_post_thumbnail( 'article', [
-							'class' => 'w-full h-auto max-w-full',
-						] ); ?>
+						<?php
+						if ( has_post_thumbnail() ) {
+							the_post_thumbnail( 'article', [
+								'class' => 'w-full h-auto max-w-full',
+							] );
+						} else {
+							$attachment_id = get_field( 'field_614a3cf01f64c', 'immolive_category_' . $term->term_id );
+							echo wp_get_attachment_image( $attachment_id, 'featured', false, ['class' => 'w-full h-auto'] );
+						}
+
+						?>
 						<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
                     </a>
                 </div>
@@ -67,7 +75,7 @@ extract( $args );
                         </p>
                     </div>
                     <div class="border-t border-primary-100">
-	                    <?php get_template_part( 'immolive', 'subscribeform', ['id' => get_the_ID()] ) ?>
+						<?php get_template_part( 'immolive', 'subscribeform', [ 'id' => get_the_ID() ] ) ?>
                     </div>
                 </div>
             </div>
