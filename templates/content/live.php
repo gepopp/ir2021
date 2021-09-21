@@ -27,6 +27,9 @@ $cat = array_shift( $cat );
 
     <div class="container mx-auto mt-10 text-white">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+            <div class="col-span-5 lg:col-span-2 lg:order-last">
+	            <?php get_template_part( 'immolive', 'subscribeform', ['id' => get_the_ID()] ) ?>
+            </div>
             <div class="content col-span-5 lg:col-span-3" id="article-content">
                 <h1 class="text-2xl lg:text-5xl font-serif leading-none mb-5 text-white">
 					<?php echo get_the_title() ?>

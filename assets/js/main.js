@@ -17,6 +17,7 @@ require('./profile');
 require('./sehen');
 require('./single');
 require('./single-video');
+require('./immolive-subscription');
 
 
 // Load Menu Script

@@ -71,14 +71,13 @@ class CampaignMonitor {
 	}
 
 
-	function isSuccess( $result ) {
+	function isSuccess( $result ) : bool {
 
 		$status = wp_remote_retrieve_response_code( $result );
 		if ( $status < 300 && $status > 199 ) {
 			return true;
 		} else {
 			wp_mail( 'gerhard@poppgerhard.at', 'CM Fehler', var_dump( wp_remote_retrieve_body( $result ) ) );
-
 			return false;
 		}
 	}
