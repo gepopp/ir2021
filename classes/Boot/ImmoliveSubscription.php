@@ -114,12 +114,12 @@ class ImmoliveSubscription {
 		$file = fopen( $filename, 'w' );
 		fwrite( $file, $ics->to_string() );
 		fclose( $file );
-//
-//		require( ABSPATH . 'wp-load.php' );
-//		$wordpress_upload_dir = wp_upload_dir();
-//		$new_file_path        = $wordpress_upload_dir['path'] . '/' . $post_id . '.ics';
-//
-//		rename( $filename, $new_file_path );
+
+		require( ABSPATH . 'wp-load.php' );
+		$wordpress_upload_dir = wp_upload_dir();
+		$new_file_path        = $wordpress_upload_dir['path'] . '/' . $post_id . '.ics';
+
+		rename( $filename, $new_file_path );
 //
 //		$upload_id = wp_insert_attachment( [
 //			'guid'           => $new_file_path,
