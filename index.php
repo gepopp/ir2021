@@ -12,7 +12,7 @@ get_header();
 
 
 $query = new \WP_Query( [
-	'post_type'           => ['post', 'immolive'],
+	'post_type'           => ['post'],
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => true,
 	'posts_per_page'      => 3,
@@ -22,7 +22,7 @@ get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
 get_template_part( 'banner', 'mega' );
 
 $query = new \WP_Query( [
-	'post_type'           => ['post', 'immolive'],
+	'post_type'           => ['post'],
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => true,
 	'posts_per_page'      => 3,
