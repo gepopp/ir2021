@@ -49,6 +49,10 @@ trait ImmoliveEmails {
 			return;
 		}
 
+		$termin = get_field('field_5ed527e9c2279', $immolive_id);
+		$termin = new Carbon($termin);
+		if($termin->isPast()) return;
+
 		$result = wp_remote_post( sprintf( 'https://api.createsend.com/api/v3.2/lists/%s.json', '5dc7a00de27aa7df766faac083551a60' ), [
 			'headers' => CampaignMonitor::get_authorization_header(),
 			'body'    => json_encode( [
@@ -93,6 +97,10 @@ trait ImmoliveEmails {
 	public function create_reminder_campaign( $immolive_id, $immolive ) {
 
 		if(get_post_status($immolive_id ) != 'publish' || !has_post_thumbnail($immolive_id)) return;
+
+		$termin = get_field('field_5ed527e9c2279', $immolive_id);
+		$termin = new Carbon($termin);
+		if($termin->isPast()) return;
 
 		$list_id = trim( get_post_meta( $immolive_id, 'cm_list', true ), '"' );
 		if(empty($list_id)) return;

@@ -37,6 +37,33 @@
             "min_size": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_614ad5e239622",
+            "label": "Studiogäste",
+            "name": "studiogaste",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "zur_person"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": "",
+            "return_format": "id"
         }
     ],
     "location": [
@@ -56,5 +83,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1632251121
+    "modified": 1632294402
 }

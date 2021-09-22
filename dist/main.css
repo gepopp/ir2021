@@ -2160,6 +2160,10 @@ video {
   text-decoration: line-through;
 }
 
+.no-underline {
+  text-decoration: none;
+}
+
 .placeholder-gray-500::-webkit-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(160, 174, 192, var(--tw-placeholder-opacity));
