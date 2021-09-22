@@ -34,7 +34,12 @@ if ( $query->have_posts() ):
 		<?php endif; ?>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 			<?php while ( $query->have_posts() ): ?>
-				<?php $query->the_post(); ?>
+				<?php
+
+                $query->the_post();
+				$terms = wp_get_post_terms( get_the_ID(), 'immolive_category' );
+				$term  = array_shift( $terms );
+				?>
 
                 <div class="relative">
 					<?php if ( $when == 'future' ): ?>
@@ -47,29 +52,12 @@ if ( $query->have_posts() ):
                         <?php echo 'Live ' . $starts->diffForHumans() ?>
                         </span>
                             <span>
-                            <?php
-                            $terms = wp_get_post_terms( get_the_ID(), 'immolive_category' );
-                            $term  = array_shift( $terms );
-                            echo $term->name;
-                            ?>
+                            <?php echo $term->name; ?>
                         </span>
                         </div>
 					<?php endif; ?>
                     <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
-
-						<?php
-
-						if ( has_post_thumbnail() ) {
-							the_post_thumbnail( 'article', [
-								'class' => 'w-full h-auto max-w-full',
-							] );
-						} else {
-							$attachment_id = get_field( 'field_614a3cf01f64c', 'immolive_category_' . $term->term_id );
-							echo wp_get_attachment_image( $attachment_id, 'featured', false, [ 'class' => 'w-full h-auto' ] );
-						}
-						?>
-
-
+						<?php get_template_part('snippet', 'liveimage', ['term' => $term]) ?>
 						<?php get_template_part( 'snippet', 'heading', [ 'size' => 'small' ] ) ?>
                     </a>
                 </div>
