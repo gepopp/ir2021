@@ -75,6 +75,9 @@ get_template_part('part', 'immoliveAnnouncement', ['categories' => $categories])
 						<?php endwhile; ?>
 					<?php endif; ?>
                 </div>
+                <div class="container mx-auto text-center my-20">
+                    <a href="<?php echo get_term_link($category) ?>" class="button-primary">Alle ansehen</a>
+                </div>
             </div>
 		<?php endforeach; ?>
     </div>

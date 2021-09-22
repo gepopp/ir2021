@@ -205,3 +205,7 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.button-primary{
+  @apply inline-block py-3 px-5 bg-primary-100 text-center text-white font-semibold;
+}
