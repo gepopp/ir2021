@@ -66,15 +66,30 @@ class ImmoliveSubscription {
 			}
 		}
 
+		$question = sanitize_text_field( $_POST['question'] );
+
 		$added = add_row( 'field_601451bb66bc3', [
 			'user_name'        => $user->display_name,
 			'user_email'       => $user->user_email,
-			'frage_ans_podium' => sanitize_text_field( $_POST['question'] ),
+			'frage_ans_podium' => $question,
 		], $immolive_id );
 
 
 
+
 		if ( $added ) {
+
+			if(!empty($question)){
+				wp_insert_comment([
+					'comment_author' => $user->display_name,
+					'comment_author_email' => $user->user_email,
+					'comment_content' => $question,
+					'comment_post_ID' => $immolive_id,
+					'user_id'   => $user->ID
+				]);
+			}
+
+
 			$this->send_subscription_email( $user->display_name, $user->user_email, $immolive_id );
 			wp_die( 'Anemldung erfolgreich!' );
 
