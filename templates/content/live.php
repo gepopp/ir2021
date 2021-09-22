@@ -45,7 +45,7 @@ $cat = array_shift( $cat );
 					?>
                     <div class="border-t boder-white mt-10 pt-10">
                         <h3 class="text-white text-3xl font-serif text-center mb-10">Die Expert*innen im Livestream</h3>
-                        <div class="flex space-x-5 flex-wrap w-full text-center">
+                        <div class="flex space-x-5 flex-wrap w-full justify-center">
 
 							<?php foreach ( $teilnehmer as $item ): ?>
                                 <div class="w-48">
