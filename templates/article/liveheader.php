@@ -44,7 +44,7 @@
 					?>
 
 					<?php if ( $lock ): ?>
-                        <div class="absolute top-0 left-0 w-full h-full bg-white bg-opacity-90 flex justify-center items-center">
+                        <div class="absolute top-0 left-0 w-full min-h-full h-auto bg-white bg-opacity-90 flex justify-center items-center px-5 lg:px-5">
                             <div class="max-w-2xl">
 								<?php get_template_part( 'immolive', 'subscribeform', [ 'id' => get_the_ID() ] ) ?>
                             </div>
