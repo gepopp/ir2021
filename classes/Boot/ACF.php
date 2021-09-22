@@ -20,15 +20,15 @@ class ACF {
 
 	public function load_immolive_termin( $value, $post_id, $field ) {
 
-		if ( ! is_admin() ) {
-			return $value;
-		}
-
-		$datetime = Carbon::createFromFormat( 'Y-m-d H:i:s', $value, 'UTC' );
-
-		$datetime->setTimezone( 'Europe/Vienna' );
-
-		return $datetime->format( 'Y-m-d H:i:s' );
+//		if ( ! is_admin() ) {
+//			return $value;
+//		}
+//
+//		$datetime = Carbon::createFromFormat( 'Y-m-d H:i:s', $value, 'UTC' );
+//
+//		$datetime->setTimezone( 'Europe/Vienna' );
+//
+//		return $datetime->format( 'Y-m-d H:i:s' );
 	}
 
 
