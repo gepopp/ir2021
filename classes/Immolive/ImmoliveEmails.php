@@ -14,6 +14,23 @@ trait ImmoliveEmails {
 		$ical_url = get_field( 'field_6143982f5f5f2', $immolive_id );
 		$ical     = file_get_contents( $ical_url );
 
+		$teilnehmer = get_field('field_614ad5e239622', $immolive_id);
+
+		ob_start();
+		?>
+	<ul>
+		<?php foreach ( $teilnehmer as $item ): ?>
+			<li>
+				<?php echo get_field( 'field_613b8ca49b06b', $item ) . ' ' . get_field( 'field_613c53f33d6b8', $item ) ?>,&nbsp;
+				<?php echo get_field( 'field_613c54063d6b9', $item ) ?>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+
+		<?php
+		$list = ob_get_clean();
+
+
 		$result = wp_remote_post( sprintf( 'https://api.createsend.com/api/v3.2/transactional/smartEmail/%s/send', 'f681cc3f-299d-447c-8444-4b7fbec46082' ), [
 			'headers' => CampaignMonitor::get_authorization_header(),
 			'body'    => json_encode( [
@@ -22,6 +39,7 @@ trait ImmoliveEmails {
 					'title' => get_the_title( $immolive_id ),
 					'link'  => home_url( 'live' ),
 					'name'  => $name,
+					'list'  => $list
 				],
 				"AddRecipientsToList" => true,
 				"ConsentToTrack"      => "Yes",
