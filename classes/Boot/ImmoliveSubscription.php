@@ -91,7 +91,7 @@ class ImmoliveSubscription {
 
 
 			$this->send_subscription_email( $user->display_name, $user->user_email, $immolive_id );
-			wp_die( 'Anemldung erfolgreich!' );
+			wp_die( 'Anmeldung erfolgreich!' );
 
 		} else {
 			wp_die( 'Datenfehler', 400 );
