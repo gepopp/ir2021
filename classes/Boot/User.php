@@ -60,6 +60,7 @@ class User {
 
 	public function frontend_register() {
 
+
 		global $FormSession;
 
 		$gender    = sanitize_text_field( $_POST['register_gender'] );
@@ -70,16 +71,21 @@ class User {
 
 		$response = wp_remote_post( sprintf( 'https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s',
 			'6Ldhsu4aAAAAAEJUCrECbziRYSf_iw_XkuSpWPma',
-			sanitize_text_field( $_POST['g-recaptcha-response'] )
+			sanitize_text_field( $_POST['grecaptcha'] )
 		) );
 
-		if( !json_decode(wp_remote_retrieve_body( $response ) ) ) {
+
+		$captcha_response = json_decode(wp_remote_retrieve_body($response));
+
+		if( !isset($captcha_response->success) || !$captcha_response->success ) {
 			$FormSession->addToErrorBag( 'register_error', 'nonce' )->redirect();
+			exit;
 		}
 
 
 		if ( ! wp_verify_nonce( $_POST['frontend_register'], 'frontend_register' ) ) {
 			$FormSession->addToErrorBag( 'register_error', 'nonce' )->redirect();
+			exit;
 		}
 
 		$captcha_key = '6Ldhsu4aAAAAAEJUCrECbziRYSf_iw_XkuSpWPma';

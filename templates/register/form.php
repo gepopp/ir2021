@@ -1,5 +1,6 @@
 <?php global $FormSession; ?>
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldhsu4aAAAAAGj0UZRfizcHjtqKqPrPrxF_hsE0"></script>
+
 <script>
     var register_data = <?php echo json_encode( $FormSession->getFormData() ) ?>;
 </script>
@@ -14,17 +15,16 @@
 	    <?php $FormSession->flashSuccess( 'register_sent_success' ); ?>
     <?php else: ?>
 
-    <form   method="post" action="<?php echo admin_url( 'admin-post.php' ) ?>"
+    <form method="post" action="<?php echo admin_url( 'admin-post.php' ) ?>"
             id="register-form"
             x-data="registerForm( register_data )"
-            x-init="init()"
-            @submit.prevent="validate()"
+            @submit.prevent="validate"
             x-ref="form">
         <h3 class="text-xl font-medium mb-4 text-gray-700"><?php _e( 'Registrieren', 'ir21' ) ?></h3>
 		<?php wp_nonce_field( 'frontend_register', 'frontend_register' ) ?>
         <input type="hidden" name="action" value="frontend_register">
         <input type="hidden" name="redirect" value="<?php echo $_GET['redirect'] ?? '' ?>">
-
+        <input type="hidden" name="grecaptcha" x-model="data.token">
 		<?php $FormSession->flashErrorBag( 'register_error' ); ?>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
@@ -116,14 +116,7 @@
         </div>
         <button type="submit"
                 class="block bg-primary-100 text-white text-center py-3 font-semibold w-full g-recaptcha"
-                data-sitekey="6Ldhsu4aAAAAAGj0UZRfizcHjtqKqPrPrxF_hsE0"
-                data-callback='onSubmit'
-                data-action='submit'>registrieren</button>
+                >registrieren</button>
     </form>
-    <script>
-        function onSubmit(token) {
-            document.getElementById("register-form").submit();
-        }
-    </script>
     <?php endif; ?>
 </div>
