@@ -78,21 +78,21 @@ window.registerForm = (formdata) => {
 
             e.preventDefault();
 
-            // this.resetErrors();
-            //
-            // if (this.data.gender == '') {
-            //     this.regsiter_errors.gender = messages.select;
-            // }
-            //
-            // if (this.data.lastname == '') {
-            //     this.regsiter_errors.lastname = messages.enter_last_name;
-            // }
-            //
-            // this.ValidateEmail();
-            //
-            // if (this.data.password.length < 8) {
-            //     this.regsiter_errors.password = messages.password_min;
-            // }
+            this.resetErrors();
+
+            if (this.data.gender == '') {
+                this.regsiter_errors.gender = messages.select;
+            }
+
+            if (this.data.lastname == '') {
+                this.regsiter_errors.lastname = messages.enter_last_name;
+            }
+
+            this.ValidateEmail();
+
+            if (this.data.password.length < 8) {
+                this.regsiter_errors.password = messages.password_min;
+            }
 
             var self = this;
 
