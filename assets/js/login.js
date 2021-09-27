@@ -94,6 +94,11 @@ window.registerForm = (formdata) => {
                 this.regsiter_errors.password = messages.password_min;
             }
 
+
+        },
+        valid() {
+            for (var o in this.regsiter_errors)
+                if ( this.regsiter_errors[o] !== false ) return false;
             var self = this;
 
             grecaptcha.ready(function() {
@@ -106,12 +111,6 @@ window.registerForm = (formdata) => {
 
                 });
             });
-
-        },
-        valid() {
-            for (var o in this.regsiter_errors)
-                if ( this.regsiter_errors[o] !== false ) return false;
-            this.$refs.form.submit();
         },
         resetErrors() {
             this.regsiter_errors = {
