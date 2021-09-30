@@ -1,9 +1,15 @@
 <div class="container mx-auto mt-48">
     <div class="hidden lg:block"></div>
-    <div class="col-span-5 lg:col-span-3 -mx-5">
-		<?php get_template_part( 'banner', 'mega' ) ?>
-    </div>
+
+	<?php if ( get_the_ID() != 40811 ): ?>
+        <div class="col-span-5 lg:col-span-3 -mx-5">
+			<?php get_template_part( 'banner', 'mega' ) ?>
+        </div>
+	<?php endif; ?>
+
 </div>
+
+
 <div class="container mx-auto">
     <div class="hidden lg:block"></div>
     <div class="col-span-5 lg:col-span-3  py-5">
