@@ -116,7 +116,7 @@ if ( $prerolls ) {
                 <div x-show="chapters.length > 0 && tab == 'chapters'" x-key="chapter.index">
                     <ol class="ml-2">
                         <template x-for="chapter in chapters">
-                            <li class="cursor-pointer mb-2" @click="jump(chapter.startTime)">
+                            <li class="cursor-pointer mb-2" @click="jump(chapter.startTime - 1)">
                                 <span x-text="chapter.title" :class="chapter.index == current_chapter ? 'font-semibold underline' :''" class="line-clamp-1"></span>
                             </li>
                         </template>
