@@ -1,3 +1,14 @@
+<?php
+$prerolls = get_field( 'field_6097ef63e4e76', 'option' );
+if ( $prerolls ) {
+	shuffle( $prerolls );
+	$preroll = array_shift( $prerolls );
+} else {
+	$preroll = [
+		'preroll_id' => false,
+	];
+}
+?>
 <div class="container mx-auto mt-48">
     <div class="hidden lg:block"></div>
 
@@ -8,8 +19,17 @@
 	<?php endif; ?>
 
 </div>
+<script>
 
+    var preroll = <?php echo json_encode( $preroll ) ?>;
 
+    function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 && rect.left >= 0
+        );
+    }
+</script>
 <div class="container mx-auto">
     <div class="hidden lg:block"></div>
     <div class="col-span-5 lg:col-span-3  py-5">
@@ -18,16 +38,34 @@
              new ResizeObserver(() => {
                 maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
              }).observe(document.getElementById('videoContainer')); ">
-            <div class="relative col-span-4 lg:col-span-3" id="videoContainer">
+            <div class="relative col-span-4 lg:col-span-3" id="videoContainer"
+                 x-data="liveplayer(preroll, <?php echo get_field( 'field_5fe2884da38a5' ) ?>)"
+                 x-init="   loadSrc()
+                            document.addEventListener('scroll', function () {
+                                out = !isInViewport(document.querySelector('#outer'));
+                            }, {
+                                passive: true
+                            });">
                 <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://vimeo.com/event/<?php echo get_field( 'field_5fe2884da38a5' ) ?>/embed"
-                            frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            allowfullscreen
-                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                    ></iframe>
-
-
+                    <div id="outer"></div>
+                    <div :class="out == true ? 'fixed bottom-0 right-0 w-96 h-60 z-50 shadow-2xl m-10' : ''">
+                        <iframe :src="src"
+                                frameborder="0"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen
+                                autoplay=1
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                id="player"
+                                @load="setupPlayer()"
+                        ></iframe>
+                        <div class="absolute top-0 left-0 mt-10 bg-gray-800 text-white p-5 cursor-pointer flex space-x-5" @click="window.open( preroll.link, '_blank' )" x-show="is_preroll">
+                            <span>Zum Werbetreibenden</span>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-0 right-0 p-3 m-5 bg-gray-900 text-white cursor-pointer" x-show="timer == 0 && is_preroll" @click="loadSrc(true)">Werbung überspringen</div>
+                    </div>
 					<?php
 
 					$lock = true;

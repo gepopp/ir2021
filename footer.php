@@ -51,6 +51,12 @@ mt-auto
         </div>
     </div>
 </footer>
+
+<!--MODALS-->
+<?php get_template_part('part', 'livemodal') ?>
+
+
+
 <?php wp_footer(); ?>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </body>

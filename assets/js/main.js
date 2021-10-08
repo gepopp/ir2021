@@ -18,6 +18,7 @@ require('./sehen');
 require('./single');
 require('./single-video');
 require('./immolive-subscription');
+require('./livePlayer');
 
 
 // Load Menu Script
