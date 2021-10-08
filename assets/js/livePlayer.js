@@ -1,54 +1,86 @@
 window.liveplayer = (preroll, stream) => {
     return {
-        out : false,
-        preroll : preroll,
+        out: false,
+        preroll: preroll,
         is_preroll: false,
-        stream : stream,
-        src : false,
+        stream: stream,
+        src: false,
         timer: 5,
-        player : false,
-        loadSrc(gotoClip = false){
+        loaded: false,
+        player: false,
+        maxHeight: '',
+        chapters:[],
+        current_chapter: 0,
+        tab: 'chapters',
+        init(){
+            maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
+            new ResizeObserver(() => {
+                maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
+            }).observe(document.getElementById('videoContainer'));
 
-            if(!gotoClip && preroll.preroll_id){
+
+            this.loadSrc();
+
+            document.addEventListener('scroll', function () {
+                out = !isInViewport(document.querySelector('#outer'));
+            }, {
+                passive: true
+            });
+        },
+        loadSrc(gotoClip = false) {
+
+            if (!gotoClip && preroll.preroll_id) {
                 this.loadPreroll();
-
-            }else{
+            } else {
                 this.loadClip();
             }
 
         },
-        loadPreroll(){
+        loadPreroll() {
             this.is_preroll = true;
             this.src = 'https://player.vimeo.com/video/' + preroll.preroll_id;
         },
-        loadClip(){
+        loadClip() {
             this.is_preroll = false;
-            this.src = 'https://vimeo.com/event/' + this.stream + '/embed';
+            this.loaded = false;
+
+            this.player.unload().then(()=> {
+                this.player.loadVideo(this.stream).then(() => {
+                    this.player.getChapters()
+                        .then((c) => {
+                            this.chapters = c;
+                            this.player.on('chapterchange', (c)=>{
+                               this.current_chapter = c.index;
+                            });
+                        }).catch((e) => console.log('error'));
+                }).catch(() => {
+                     this.src = 'https://vimeo.com/event/' + this.stream + '/embed';
+                });
+            });
+
+
         },
-        startTimer(){
-            var timer = window.setInterval(() => {
-                if (this.timer > 0) {
-                    this.timer--;
-                } else {
-                    clearInterval(timer);
-                }
-            }, 1000);
-        },
-        setupPlayer(){
+        setupPlayer() {
+
             var iframe = document.querySelector('iframe');
-            var player = new Vimeo.Player(iframe);
+            this.player = new Vimeo.Player(iframe);
 
-            player.on('timeupdate', (e) => {
-                console.log(e);
-                this.timer = Math.max(0, (5 - e.seconds));
+            this.player.on('timeupdate', (e) => {
+                this.timer = Math.max(0, (1 - e.seconds));
             });
 
-            player.on('ended', (e) => {
-               if(this.is_preroll){
-                   this.loadClip();
-               }
+            this.player.on('ended', (e) => {
+                if (this.is_preroll) {
+                    this.loadClip();
+                }
             });
-
         },
+        formatStart(second){
+            return new Date(second * 1000).toISOString().substr(14, 5);
+        },
+        jump(index){
+            this.player.setCurrentTime(index);
+            this.player.play();
+        }
     }
 }
