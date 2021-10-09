@@ -67,7 +67,6 @@ if ( $prerolls ) {
 					<?php
 
 					$lock = true;
-
 					$termin = new \Carbon\Carbon( get_field( 'field_5ed527e9c2279' ) );
 
 					if ( $termin->addHour()->isPast() ) {

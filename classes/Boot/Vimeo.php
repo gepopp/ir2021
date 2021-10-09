@@ -14,7 +14,7 @@ class Vimeo {
 	public function __construct() {
 
 		add_action( 'post_updated', [ $this, 'get_vimeo_thumbnail' ], 10, 3 );
-
+		add_action( 'wp_ajax_refresh_vimeo_image', [ $this, 'reload_vimeo_image' ]);
 	}
 
 	public function get_video_data( $post_id ) {
@@ -22,6 +22,15 @@ class Vimeo {
 		$response = $lib->request( '/videos/' . get_field( 'field_5fe2884da38a5', $post_id ), [], 'GET' );
 
 		return $response['body'];
+	}
+
+
+	public function reload_vimeo_image(){
+
+		$post_id = $_POST['post'];
+		$vimeo_id = get_field( 'field_5fe2884da38a5', $post_id );
+		$this->download_vimeo_image($post_id, $vimeo_id);
+
 	}
 
 
@@ -38,6 +47,11 @@ class Vimeo {
 			return;
 		}
 
+		$this->download_vimeo_image($post_id, $vimeo_id);
+
+	}
+
+	public function download_vimeo_image($post_id, $vimeo_id){
 		$body = $this->get_video_data( $post_id );
 
 

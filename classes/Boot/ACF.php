@@ -15,8 +15,24 @@ class ACF {
 		add_filter( 'acf/update_value/key=field_5a3ce915590ae', [ $this, 'update_duration' ], 10, 4 );
 		add_filter( 'acf/update_value/key=field_5ed527e9c2279', [ $this, 'save_immolive_termin' ], 10, 4 );
 		add_filter( 'acf/load_value/key=field_5ed527e9c2279', [ $this, 'load_immolive_termin' ], 10, 4 );
+		add_filter('acf/load_field/key=field_616199812fbf4', [$this, 'set_immolive_actions_content']);
 
 	}
+
+	public function set_immolive_actions_content($field){
+
+        global $post;
+
+		ob_start();
+		?>
+		<button id="vimeo_thumbnail" data-post="<?php echo $post->ID ?>" class="button-primary">Bild von Vimeo aktualisieren</button>
+		<?php
+
+		$field['instructions'] .= ob_get_clean();
+
+		return $field;
+	}
+
 
 	public function load_immolive_termin( $value, $post_id, $field ) {
 

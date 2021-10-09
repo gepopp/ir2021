@@ -64,6 +64,23 @@
             "min": "",
             "max": "",
             "return_format": "id"
+        },
+        {
+            "key": "field_616199812fbf4",
+            "label": "Aktionen",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
         }
     ],
     "location": [
@@ -83,5 +100,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1632294402
+    "modified": 1633786266
 }
