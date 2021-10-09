@@ -33,7 +33,12 @@ if ( $prerolls ) {
 <div class="container mx-auto">
     <div class="hidden lg:block"></div>
     <div class="col-span-5 lg:col-span-3  py-5">
-        <div class="grid grid-cols-4 gap-5" x-data="liveplayer(preroll, <?php echo get_field( 'field_5fe2884da38a5' ) ?>)" x-init="init()">
+        <div class="grid grid-cols-4 gap-5"
+             x-data="liveplayer(preroll,
+             <?php echo !empty(get_field( 'field_616166cc0f4ff' ))? get_field( 'field_616166cc0f4ff' ) : 'false'  ?>,
+             <?php echo !empty(get_field( 'field_5fe2884da38a5' ))? get_field( 'field_5fe2884da38a5' ) : 'false' ?>)"
+             x-init="init()"
+        >
             <div class="relative col-span-4 lg:col-span-3" id="videoContainer">
                 <div style="padding:56.25% 0 0 0;position:relative;">
                     <div id="outer"></div>
@@ -46,7 +51,6 @@ if ( $prerolls ) {
                                 id="player"
                                 @load="setupPlayer()"
                         ></iframe>
-
                         <div class="absolute top-0 left-0 mt-10 bg-gray-800 text-white p-5 cursor-pointer flex space-x-5" @click="window.open( preroll.link, '_blank' )" x-show="is_preroll">
                             <span>Zum Werbetreibenden</span>
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
