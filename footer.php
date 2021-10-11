@@ -54,7 +54,14 @@ mt-auto
 
 <!--MODALS-->
 <?php get_template_part('part', 'livemodal') ?>
-<?php get_template_part('modal', 'livepreview') ?>
+
+
+<?php
+if(is_home() || is_front_page() || is_archive()){
+	get_template_part('modal', 'livepreview');
+}
+
+?>
 
 
 
