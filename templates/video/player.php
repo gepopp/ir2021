@@ -13,29 +13,38 @@ if (  $prerolls ) {
     var preroll = <?php echo json_encode( $preroll ); ?>;
 </script>
 <div class="container mx-auto">
-    <div x-data="prerolled('<?php echo get_field( 'field_5fe2884da38a5' ) ?>', preroll, 5)" x-init="init()" class="relative">
-
-        <img src="<?php the_post_thumbnail_url('featured'); ?>" x-show="!isLoaded" class="w-full h-auto">
-
-        <a :href="preroll.link" target="_blank" class="absolute w-full h-full z-40" @click="playMain(false)" x-show="isPreroll"></a>
-        <div id="prerollplayer" class="w-full h-auto" x-show="isPreroll"></div>
-        <div id="mainplayer" class="w-full h-auto" x-show="!isPreroll"></div>
-        <div @click="playMain()" x-show="countdown <= 0 && isPreroll" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white cursor-pointer z-50">
-			<?php _e( 'Werbung überspringen', 'ir21' ) ?>
-        </div>
-        <div x-show="countdown > 0  && isPreroll" class="absolute bottom-0 right-0 px-3 py-2 mb-5 bg-gray-900 text-white z-50 cursor-pointer"><?php _e( 'Werbung überspringen in', 'ir21' ) ?>
-            <span x-text="countdown"></span> <?php _e( 'Sekunden', 'ir21' ) ?>
-        </div>
-
-        <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-50 cursor-pointer" x-show="!isPlaying">
-            <div @click="play()">
-                <div class="w-12 h-12 animate-ping bg-white rounded-full">
-                    <svg class="w-12 h-12 text-primary-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                    </svg>
+    <div
+         x-data="liveplayer(preroll,
+             <?php echo !empty(get_field( 'field_616166cc0f4ff' ))? get_field( 'field_616166cc0f4ff' ) : 'false'  ?>,
+             <?php echo !empty(get_field( 'field_5fe2884da38a5' ))? get_field( 'field_5fe2884da38a5' ) : 'false' ?>)"
+         x-init="init()"
+    >
+        <div class="relative col-span-4 lg:col-span-3" id="videoContainer">
+            <div style="padding:56.25% 0 0 0;position:relative;">
+                <div id="outer"></div>
+                <div :class="out == true ? 'fixed bottom-0 right-0 w-96 h-60 z-50 shadow-2xl m-10' : ''">
+                    <iframe :src="src"
+                            frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                            id="player"
+                            @load="setupPlayer()"
+                    ></iframe>
+                    <div class="absolute top-0 left-0 mt-10 bg-gray-800 text-white p-5 cursor-pointer flex space-x-5" @click="window.open( preroll.link, '_blank' )" x-show="is_preroll">
+                        <span>Zum Werbetreibenden</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute bottom-0 right-0 p-3 m-5 bg-gray-900 text-white cursor-pointer"
+                         x-show="timer == 0 && is_preroll"
+                         @click="loadSrc(true)"
+                    >
+                        Werbung überspringen
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

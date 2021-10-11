@@ -17,11 +17,7 @@ $cat = array_shift( $cat );
 	$termin = get_field( 'field_5ed527e9c2279' );
 	$carbon = new \Carbon\Carbon( $termin );
 
-	if ( get_post_format() == 'video' ) {
-		get_template_part( 'video', 'head' );
-	} else {
-		get_template_part( 'article', 'liveheader' );
-	}
+	get_template_part( 'article', 'liveheader' );
 	?>
 
 
@@ -70,7 +66,6 @@ $cat = array_shift( $cat );
 							<?php endforeach; ?>
                         </div>
                     </div>
-
 				<?php endif; ?>
 
 
