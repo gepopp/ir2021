@@ -45,9 +45,9 @@ $query = new WP_Query($banner_args);
                 <?php while ($query->have_posts()): ?>
                     <?php $query->the_post(); ?>
 
-                    <div class="col-span-2 lg:col-span-1 flex justify-center">
+                    <div class="col-span-4 md:col-span-2 lg:col-span-1 flex justify-center">
                         <a href="<?php the_field('field_5c6325e38e0aa') ?>">
-                            <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full') ?>" style="max-width: 300px; height: auto">
+                            <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full') ?>" style="width: 300px; max-width:100%; height: auto">
                         </a>
                     </div>
                 <?php endwhile; ?>

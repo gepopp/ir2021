@@ -88,4 +88,37 @@ if ( $query->have_posts() ):
         </div>
 	<?php
 	endwhile;
-endif;
+else: ?>
+    <div class="fixed bottom-0 right-0 w-96 h-60 z-50 shadow-2xl m-10 bg-primary-100 shadow-xl" x-cloak
+         x-data="frontpageAnnouncement()"
+         x-show="show"
+         x-init="init()"
+    >
+        <div class="relative">
+            <div class="flex flex-col items-center justify-center w-full h-full text-white p-5">
+                <h1 class="font-serif text-white text-xl mb-5">
+					<?php echo empty( get_field( 'field_6169a2015c7f6', 'option' ) ) ? 'Kein IMMOLIVE verpassen!' : get_field( 'field_6169a2015c7f6', 'option' ) ?></h1>
+                <p class="text-sm leading-tight mb-5">
+					<?php
+					echo empty( get_field( 'field_6169a20d5c7f7', 'option' ) )
+						? 'Registrierte Nutzer der unabhängigen Immobilien Redaktion haben uneingeschränkten Zugriff auf unsere Livesendungen und Diskussionen und können Fragen an unsere Expert*innen stellen.'
+						: get_field( 'field_6169a20d5c7f7', 'option' )
+					?>
+                </p>
+                <a href="
+                <?php echo empty(get_field('field_6169a2225c7f9', 'option'))
+                    ?  get_field( 'field_601bc00528968', 'option' )
+                    : get_field('field_6169a2225c7f9', 'option') ?>"
+                   class="button-primary border border-white" @click="close">
+	                <?php echo empty( get_field( 'field_6169a2185c7f8', 'option' ) ) ? 'Jetzt registrieren' : get_field( 'field_6169a2185c7f8', 'option' ) ?>
+                </a>
+            </div>
+            <div class="absolute top-0 right-0 m-5 cursor-pointer" @click="close()">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+<?php endif;

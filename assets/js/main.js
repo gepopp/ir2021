@@ -33,3 +33,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
     })
 });
 
+window.frontpageAnnouncement = function (){
+    return {
+        show : false,
+        init(){
+            window.onload = () => {
+                setTimeout(() => {
+                    var intime = cookie.get('announcement_closed');
+                    if(intime == undefined){
+                        this.show = true;
+                    }
+                }, 3300)
+            }
+        },
+        close(){
+            this.show = false;
+            cookie.set('announcement_closed', true, { expires: 30 });
+        }
+    }
+}
