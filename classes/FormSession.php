@@ -192,7 +192,10 @@ class FormSession {
 			'profile_image_saved'   => __( 'Ihr neues Profilbild wurde gespeichert' ),
 			'profile_image_size'    => __( 'Hier sind maximal 2 MB erlaubt.' ),
 			'profile_image_mime'    => __( 'Hier sind nur jpg und png Dateien erlaubt.' ),
-            'default'               => __('Ein Fehler trat auf, bitte versuchen Sie es später erneut.')
+            'default'               => __('Ein Fehler trat auf, bitte versuchen Sie es später erneut.'),
+            'zur_person_update'     => __('Vielen Dank, Ihr Vorschlag wurde erfolgreich eingereicht und wird nach Prüfung veröffentlicht.'),
+            'uploaderror'           => _('Uploadfehler! Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.'),
+
 		];
 
 	}
@@ -209,4 +212,8 @@ class FormSession {
 	public function has($index){
 	    return array_key_exists('register_sent_success', $this->content);
 	}
+
+    public function hasSuccess(){
+        return array_key_exists('success', $this->content);
+    }
 }

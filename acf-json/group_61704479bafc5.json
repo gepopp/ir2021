@@ -1,0 +1,62 @@
+{
+    "key": "group_61704479bafc5",
+    "title": "Zur Person Teaser",
+    "fields": [
+        {
+            "key": "field_617044825dbf3",
+            "label": "Teaser Titel",
+            "name": "teaser_titel",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ist dieser Eintrag nicht mehr Aktuell?",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6170448e5dbf4",
+            "label": "Teaser Text",
+            "name": "teaser_text",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Wir bemühen uns die Daten der führenden Köpfe der österreichischen Immobilien-Branche in unserem Verzeichnis immer aktuell zu halten.\r\n\r\nManchmal rutscht aber auch hier ein Karriereschritt einer Person durch unsere Netze, wenn Sie aktuelle Informationen zu dieser Person haben, füllen Sie untenstehendes Formular aus und wir veröffentlichen Ihren Vorschlag nach Prüfung.",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-general-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1634747797
+}

@@ -57,7 +57,7 @@ class TemplateRedirects {
 
 		global $wp_query;
 
-		$allowed = ['update_profile', 'subscribe_immolive', 'resend_activation', 'frontent_logout', 'update_profile_image', 'get_immolive_ics'];
+		$allowed = ['update_profile', 'subscribe_immolive', 'resend_activation', 'frontent_logout', 'update_profile_image', 'get_immolive_ics', 'save_zur_person_update'];
 		$action = $_REQUEST['action'] ?? '';
 
 		if(is_admin() && !wp_doing_ajax() && !in_array($action, $allowed)){
