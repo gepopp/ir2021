@@ -2,65 +2,75 @@
 /**
  * The template for displaying search results pages.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
+ * @link    https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
  * @package Freeshifter
  */
 
 get_header(); ?>
 
-<main class="py-8 lg:py-24" style="min-height: 100vh;">
-	<section class="container mx-auto relative z-10">
-		<?php
-		if ( have_posts() ) :
+    <div class="container mx-auto mt-20">
+        <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center">
+            <a href="/lesen-2" class="underline">
+				<?php _e( 'lesen', 'ir21' ) ?>
+            </a>
+        </h1>
+    </div>
 
-			printf( '<h1 class="text-center mb-8">Search Results for: %s</h1>',
-				esc_html( get_search_query() )
-			);
 
-			echo '<div class="lg:flex justify-start flex-wrap lg:-mx-4">';
-				while ( have_posts() ) {
-					the_post(); ?>
-					<div class="lg:w-1/3 lg:px-4 mb-8">
-						<article <?php post_class( 'h-full' ); ?> itemscope itemtype="https://schema.org/CreativeWork">
-							<a class="card-link h-full bg-light-2" rel="bookmark" href="<?= esc_url( get_the_permalink() ); ?>">
-								<header>
-									<?php
-									if( has_post_thumbnail() ) {
+<?php get_template_part( 'banner', 'mega' ) ?>
+
+<?php if ( isset( $_GET['post_type'] ) ): ?>
+	<?php if ( $_GET['post_type'] == 'zur_person' ): ?>
+		<?php get_template_part( 'snippet', 'header_zur_person' ) ?>
+
+        <div class="container mx-auto mt-20 flex justify-between">
+			<h3 class="text-xl text-primary-100 font-serif font-semibold">Suchergebnisse für: &bdquo;<?php echo ucfirst($_GET['s']) ?>&rdquo;</h3>
+            <a href="<?php echo get_post_type_archive_link('zur_person') ?>" class="text-xl text-primary-100 font-serif font-semibold underline">Alle Zur Person</a>
+        </div>
+
+	<?php endif; ?>
+<?php endif; ?>
+    <main class="py-8 lg:py-24" style="min-height: 100vh;">
+        <section class="container mx-auto relative z-10">
+            <div class="container mx-auto mt-20 px-5 md:px-5">
+				<?php if ( have_posts() ): ?>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+						<?php while ( have_posts() ): ?>
+							<?php the_post(); ?>
+                            <div class="col-span-1 relative">
+                                <a href="<?php the_permalink(); ?>" class="relative block h-full">
+                                    <div class="w-48 mx-auto">
+										<?php
 										the_post_thumbnail( 'thumbnail', [
-											'class' => 'shadow-lg rounded-full float-right ml-2 mb-2 w-1/4'
-										]);
-									}
-									?>
-									<div class="text-left relative z-10">
-										<h2 class="card-title text-h4 font-bold m-0" itemprop="headline"><?= get_the_title(); ?></h2>
-										<p class="text-sm italic mt-2">
-											<time class="<?= is_singular('page') ? 'hidden' : ''; ?>" itemprop="datePublished" datetime="<?= get_the_date( 'c' ); ?>">Published on <?= get_the_date( 'F j, Y'); ?></time>
-										</p>
-									</div>
-								</header>
-								<?php
-								printf( '<div class="article text-sm text-left">%s</div>',
-									get_the_excerpt()
-								); ?>
-							</a>
-						</article>
-					</div>
-					<?php
-				}
-			echo '</div>';
+											'class'   => 'w-full h-auto rounded-full p-5 border-2 border-primary-100',
+											'onerror' => "this.style.display='none'",
+										] );
 
-			the_posts_navigation();
+										if ( ! has_post_thumbnail() ):?>
+                                            <div class="w-48 h-48 rounded-full p-5 border-2 border-primary-100"></div>
+										<?php endif; ?>
+                                    </div>
+                                    <div class="flex flex-col text-center mt-10">
+										<?php $name = ! empty( get_field( 'field_613b8ca49b06b' ) ) ? get_field( 'field_613c53f33d6b8' ) . '<br>' . get_field( 'field_613b8ca49b06b' ) : break_title( get_the_title() ) ?>
+										<?php $position = ! empty( get_field( 'field_613c54063d6b9' ) ) ? get_field( 'field_613c54063d6b9' ) . ' - ' . get_field( 'field_613b8caa9b06c' ) : '&nbsp;' ?>
+                                        <h3 class="text-primary-100 text-3xl mb-0 font-serif font-semibold"><?php echo $name ?></h3>
+                                        <p class="text-primary-100 text-sm italic mb-5"><?php echo $position ?></p>
+                                        <p class="three-lines flex-1 text-gray-900"><?php echo get_the_excerpt(); ?></p>
+                                    </div>
+                                </a>
 
-		else :
+                            </div>
+						<?php endwhile; ?>
+                    </div>
+				<?php endif; ?>
+            </div>
 
-			printf( 'Sorry, no results for %s',
-				esc_html( get_search_query() )
-			);
-
-		endif; ?>
-	</section>
-</main>
+            <div class="mt-48 line-clamp-3">
+				<?php \irclasses\Pagination::paginate(); ?>
+            </div>
+        </section>
+    </main>
 
 <?php
 get_footer();
