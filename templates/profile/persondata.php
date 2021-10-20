@@ -40,7 +40,7 @@
         </div>
         <div class="mb-5 pb-3 border-b border-primary-100 grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-                <h3 class="mb-3">Untenehmen</h3>
+                <h3 class="mb-3">Unterehmen</h3>
                 <input type="text" name="company" class="w-full p-3" value="<?php echo $formdata['company'] ?? '' ?>"/>
             </div>
             <div>
