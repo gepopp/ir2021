@@ -15,7 +15,7 @@ get_header();
 
                 <div>
                     <h1 class="text-2xl font-serif mb-5"><?php the_title(); ?></h1>
-                    <p class="px-5 mb-10"><?php the_content(); ?></p>
+                    <div class="content px-5 mb-10"><?php the_content(); ?></div>
                 </div>
 				<?php if ( array_key_exists( 'success', $FormSession->content ) ): ?>
 					<?php $FormSession->flashSuccess( 'success' ); ?>
