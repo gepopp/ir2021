@@ -65,6 +65,9 @@ class ZurPersonUpdate {
 		$this->companylink = sanitize_text_field( $_POST['companylink'] );
 
 		if ( $this->notify_admin() ) {
+			if(file_exists($this->logo_dir)){
+				unset($this->logo_dir);
+			}
 			$FormSession->set( 'success', 'Vielen Dank, Ihr Vorschlag wurde übermittelt und wird nach Prüfung veröffentlicht.' )->redirect();
 			exit;
 		} else {
