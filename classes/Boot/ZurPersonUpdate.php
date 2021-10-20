@@ -164,7 +164,7 @@ class ZurPersonUpdate {
 		$content .= 'Link: ' . $this->companylink;
 
 
-		return wp_mail( 'gerhard@poppgerhard.at', 'Neue Vorschlag zur Person', $content,
+		return wp_mail( 'w.senk@immobilien-redaktion.at', 'Neue Vorschlag zur Person', $content,
 			[
 				'Bcc: gerhard@poppgerhard.at',
 				'Content-Type: text/html; charset=UTF-8'
