@@ -14,7 +14,7 @@ get_header();
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
                 <div>
-                    <h1 class="text-2xl font-serif mb-5"><?php the_title(); ?></h1>
+                    <h1 class="text-5xl font-serif mb-5 text-center"><?php the_title(); ?></h1>
                     <div class="content px-5 mb-10"><?php the_content(); ?></div>
                 </div>
 				<?php if ( array_key_exists( 'success', $FormSession->content ) ): ?>
