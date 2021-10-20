@@ -1,7 +1,9 @@
 <?php
 get_header();
 
-global $formSession;
+global $FormSession;
+
+
 
 $user = wp_get_current_user();
 $post = get_the_ID();
@@ -125,14 +127,16 @@ $cat = get_category( $cat );
 
 						<?php endif; ?>
                     </div>
+                    <script>
+                        var show = <?php echo empty($FormSession->content['errorBag']) ? 'false' : 'true' ?>;
+                    </script>
                     <div class="my-10">
-                        <div x-data="{ showForm : false }">
+                        <div x-data="{ showForm : show }">
                             <div class="bg-primary-100 bg-opacity-5 p-10 flex flex-col justify-center items-center min-h-64 text-primary-100">
                                 <h3 class="text-xl font-serif text-primary"><?php the_field( 'field_617044825dbf3', 'option' ) ?></h3>
                                 <div class="text-primary mt-5 text-center"><?php the_field( 'field_6170448e5dbf4', 'option' ); ?></div>
-								<?php global $FormSession;
-								if ( array_key_exists( 'success', $FormSession->content ) ): ?>
-									<?php $FormSession->flashSuccess( 'success' ) ?>
+								<?php if ( array_key_exists( 'success', $FormSession->content ) ): ?>
+									<?php $FormSession->flashSuccess( 'success' ); ?>
 								<?php else: ?>
                                     <button class="bg-white text-primary-100 text-center p-3 px-10"
                                             @click="showForm = !showForm"
