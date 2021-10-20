@@ -28,6 +28,9 @@ function break_title( $title ) {
 
     <div class="container mx-auto mt-20">
 		<?php get_search_form(['post_type' => 'zur_person']) ?>
+
+
+
     </div>
 
 

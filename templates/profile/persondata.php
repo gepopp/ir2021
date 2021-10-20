@@ -23,8 +23,7 @@
         <input type="hidden" name="zur_person_id" value="<?php echo get_the_ID() ?>">
 
         <div class="mb-5 pb-3 border-b border-primary-100">
-
-            <h3 class="mb-3">Neues Bild</h3>
+            <h3 class="mb-3">Bild</h3>
             <input type="file" accept="image/*" name="image"/>
             <p class="text-red-900 text-xs"><?php echo $uploaderror ?></p>
         </div>
@@ -54,6 +53,9 @@
             <textarea name="description" class="w-full p-3" rows="10">
                 <?php echo $formdata['description'] ?? '' ?>
             </textarea>
+            <label class="block w-full">Lebenslauf hochladen</label>
+                <input type="file" accept="application/pdf" name="lebenslauf"/>
+                <p class="text-red-900 text-xs">Hier sind nur PDF mit maximal 2 MB erlaubt.</p>
         </div>
 
         <div class="mb-5 pb-3 border-b border-primary-100">

@@ -4,7 +4,6 @@ get_header();
 global $FormSession;
 
 
-
 $user = wp_get_current_user();
 $post = get_the_ID();
 
@@ -31,7 +30,7 @@ $cat = get_category( $cat );
                 </div>
                 <div class="content col-span-5 lg:col-span-3" id="article-content">
 
-                    <div class="mb-5">
+                    <div class="mb-10">
                         <h1 class="text-2xl lg:text-5xl font-serif leading-none text-gray-900">
 							<?php the_field( 'field_613c53f33d6b8' ); ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ); ?>
                         </h1>
@@ -89,47 +88,54 @@ $cat = get_category( $cat );
                             </div>
                         </div>
 					<?php endif; ?>
-                    <h3 class="font-semibold mb-3 underline">Über <?php the_field( 'field_613c53f33d6b8' ); ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ); ?></h3>
-					<?php the_content(); ?>
 
-                    <h3 class="font-semibold mb-3 underline">Karriere von <?php the_field( 'field_613c53f33d6b8' ); ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ); ?></h3>
+                    <div class="mb-10">
+                        <h3 class="font-semibold mb-3 underline">Über <?php the_field( 'field_613c53f33d6b8' ); ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ); ?></h3>
+						<?php if ( has_excerpt() ) {
+							the_excerpt();
+						} ?>
+						<?php the_content(); ?>
+                    </div>
 
-                    <div class="p-3 bg-primary-100 bg-opacity-25 w-full">
 
-						<?php $stationen = get_field( 'field_61704289c8bb8' ); ?>
-						<?php if ( empty( $stationen ) ): ?>
-                            <div class="h-48 flex flex-col items-center justify-center">
-                                <p>Noch keine Karrierestationen vorhanden.</p>
-                                <p class="text-sm">Nutzen Sie den Button weiter unten wenn Sie uns Vorschläge zum Eintrag von <?php the_field( 'field_613c53f33d6b8' ); ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ); ?> senden wollen.</p>
-                            </div>
-						<?php else: ?>
+                    <div class="mb-10">
+                        <h3 class="font-semibold mb-3 underline">Karriere von <?php the_field( 'field_613c53f33d6b8' ); ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ); ?></h3>
+                        <div class="p-3 bg-primary-100 bg-opacity-25 w-full">
+							<?php $stationen = get_field( 'field_61704289c8bb8' ); ?>
+							<?php if ( empty( $stationen ) ): ?>
+                                <div class="h-48 flex flex-col items-center justify-center">
+                                    <p>Noch keine Karrierestationen vorhanden.</p>
+                                    <p class="text-sm">Nutzen Sie den Button weiter unten wenn Sie uns Vorschläge zum Eintrag von <?php the_field( 'field_613c53f33d6b8' ); ?>&nbsp;<?php the_field( 'field_613b8ca49b06b' ); ?> senden wollen.</p>
+                                </div>
+							<?php else: ?>
 
-                            <table class="w-full">
-                                <thead>
-                                <tr class="border border-primary-100">
-                                    <th class="text-left p-3">Von:</th>
-                                    <th class="text-left p-3">Bis:</th>
-                                    <th class="text-left p-3">Karriereschritt:</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-								<?php foreach ( $stationen as $station ): ?>
+                                <table class="w-full">
+                                    <thead>
                                     <tr class="border border-primary-100">
-                                        <td class="p-3"><?php echo $station['karrierestation_von:'] ?></td>
-                                        <td class="p-3"><?php echo $station['karrierestation_bis:'] ?></td>
-                                        <td class="p-3"><?php echo $station['karrierestation_position'] ?><br>
-                                            <span class="text-xs"><?php echo $station['karrierestation_unternehmen'] ?></span>
-                                        </td>
+                                        <th class="text-left p-3">Von:</th>
+                                        <th class="text-left p-3">Bis:</th>
+                                        <th class="text-left p-3">Karriereschritt:</th>
                                     </tr>
-								<?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+									<?php foreach ( $stationen as $station ): ?>
+                                        <tr class="border border-primary-100">
+                                            <td class="p-3"><?php echo $station['karrierestation_von:'] ?></td>
+                                            <td class="p-3"><?php echo $station['karrierestation_bis:'] ?></td>
+                                            <td class="p-3"><?php echo $station['karrierestation_position'] ?><br>
+                                                <span class="text-xs"><?php echo $station['karrierestation_unternehmen'] ?></span>
+                                            </td>
+                                        </tr>
+									<?php endforeach; ?>
+                                    </tbody>
+                                </table>
 
-						<?php endif; ?>
+							<?php endif; ?>
+                        </div>
                     </div>
                     <script>
-                        var show = <?php echo empty($FormSession->content['errorBag']) ? 'false' : 'true' ?>;
-                    </script>
+                        var show = <?php echo empty( $FormSession->content['errorBag'] ) ? 'false' : 'true' ?>;
+                    </script>e
                     <div class="my-10">
                         <div x-data="{ showForm : show }">
                             <div class="bg-primary-100 bg-opacity-5 p-10 flex flex-col justify-center items-center min-h-64 text-primary-100">

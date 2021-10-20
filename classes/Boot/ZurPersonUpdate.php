@@ -20,6 +20,7 @@ class ZurPersonUpdate {
 	protected $lastname;
 	protected $company;
 	protected $position;
+	protected $cv;
 
 	protected $link;
 
@@ -50,8 +51,17 @@ class ZurPersonUpdate {
 
 		if (  $_FILES['image']['size'] ) {
 
-			$this->logo_dir = $this->handle_logo_upload( $_FILES['image'] );
+			$this->logo_dir = $this->handle_logo_upload( $_FILES['image'], [ 'image/jpeg', 'image/png', 'image/jpg' ] );
 			if ( ! $this->logo_dir ) {
+				$FormSession->addToErrorBag( 'uploaderror', 'uploaderror' )->redirect();
+				exit;
+			}
+		}
+
+		if (  $_FILES['lebenslauf']['size'] ) {
+
+			$this->cv = $this->handle_logo_upload( $_FILES['lebenslauf'], [ 'application/pdf' ] );
+			if ( ! $this->cv ) {
 				$FormSession->addToErrorBag( 'uploaderror', 'uploaderror' )->redirect();
 				exit;
 			}
@@ -65,8 +75,10 @@ class ZurPersonUpdate {
 		$this->companylink = sanitize_text_field( $_POST['companylink'] );
 
 		if ( $this->notify_admin() ) {
-			if(file_exists($this->logo_dir)){
-				unset($this->logo_dir);
+			foreach ( glob(self::LOGO_DIR . '/*') as $item ) {
+				if(!is_dir($item) && file_exists($item)) {
+					unlink($item);
+				}
 			}
 			$FormSession->set( 'success', 'Vielen Dank, Ihr Vorschlag wurde übermittelt und wird nach Prüfung veröffentlicht.' )->redirect();
 			exit;
@@ -102,7 +114,7 @@ class ZurPersonUpdate {
 //	}
 
 
-	public function handle_logo_upload( $file ) {
+	public function handle_logo_upload( $file, $type ) {
 
 
 		global $FormSession;
@@ -113,7 +125,7 @@ class ZurPersonUpdate {
 			exit;
 		}
 
-		if ( ! in_array( $file['type'], [ 'image/jpeg', 'image/png', 'image/jpg' ] ) ) {
+		if ( ! in_array( $file['type'], $type ) ) {
 			$FormSession->addToErrorBag( 'uploaderror', 'profile_image_mime' )->redirect();
 			exit;
 		}
@@ -128,11 +140,7 @@ class ZurPersonUpdate {
 			mkdir( self::LOGO_DIR );
 		}
 
-		if ( ! is_dir( self::LOGO_DIR . '/' . $this->person_id ) ) {
-			mkdir( self::LOGO_DIR . '/' . $this->person_id );
-		}
-
-		$filename = self::LOGO_DIR . '/' . $this->person_id . '/' . $file['name'];
+		$filename = self::LOGO_DIR . '/' . $file['name'];
 
 		if ( move_uploaded_file( $file['tmp_name'], $filename ) ) {
 			return $filename;
@@ -164,13 +172,14 @@ class ZurPersonUpdate {
 		$content .= 'Link: ' . $this->companylink;
 
 
-		return wp_mail( 'w.senk@immobilien-redaktion.at', 'Neue Vorschlag zur Person', $content,
+		return wp_mail( 'gerhard@poppgerhard.at', 'Neue Vorschlag zur Person', $content,
 			[
 				'Bcc: gerhard@poppgerhard.at',
 				'Content-Type: text/html; charset=UTF-8'
 			],
 			[
 				$this->logo_dir,
+				$this->cv
 			] );
 	}
 
