@@ -31,6 +31,9 @@ extract( $args );
 					'type'    => 'DATETIME',
 				],
 			],
+			'order'          => 'ASC',
+			'meta_key'       => 'termin',
+			'orderby'        => 'meta_value',
 		] );
 		if ( $query->have_posts() ): ?>
 		<?php while ( $query->have_posts() ):
