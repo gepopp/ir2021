@@ -21,7 +21,7 @@ $query = new WP_Query( [
 			'compare' => '>=',
 		],
 	],
-	'order'          => 'ASC',
+	'order'          => 'DESC',
 	'meta_key'       => 'il_datum',
 	'orderby'        => 'meta_value_num',
 ] );

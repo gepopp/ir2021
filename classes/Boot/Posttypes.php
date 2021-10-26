@@ -425,7 +425,7 @@ class Posttypes {
 			'label'               => __( 'Zur Person', 'text_domain' ),
 			'description'         => __( 'Zur Person', 'irtheme' ),
 			'labels'              => $labels,
-			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt' ],
+			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields' ],
 			'taxonomies'          => [],
 			'hierarchical'        => false,
 			'public'              => true,
