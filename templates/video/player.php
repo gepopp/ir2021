@@ -31,13 +31,13 @@ if (  $prerolls ) {
                             id="player"
                             @load="setupPlayer()"
                     ></iframe>
-                    <div class="absolute top-0 left-0 mt-10 bg-gray-800 text-white p-5 cursor-pointer flex space-x-5" @click="window.open( preroll.link, '_blank' )" x-show="is_preroll">
-                        <span>Zum Werbetreibenden</span>
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div class="absolute top-0 left-0 mt-3 bg-gray-800 text-white p-3 cursor-pointer flex lg:space-x-5" @click="window.open( preroll.link, '_blank' )" x-show="is_preroll">
+                        <span class="hidden lg:block">Zum Werbetreibenden</span>
+                        <svg class="w-4 lg:w-6 w-4 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                         </svg>
                     </div>
-                    <div class="absolute bottom-0 right-0 p-3 m-5 bg-gray-900 text-white cursor-pointer"
+                    <div class="absolute bottom-0 right-0 p-3 lg:m-5 bg-gray-900 text-white cursor-pointer"
                          x-show="timer == 0 && is_preroll"
                          @click="loadSrc(true)"
                     >
