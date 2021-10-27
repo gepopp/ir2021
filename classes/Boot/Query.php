@@ -17,7 +17,7 @@ class Query {
 		global $wp_the_query;
 
 		if ( $query->is_post_type_archive('zur_person') ) {
-			$query->set( 'posts_per_page', 12 );
+			$query->set( 'posts_per_page', 11 );
 			$query->set('meta_key', 'zur_person_name' );
 			$query->set('orderby', 'meta_value');
 			$query->set('order', 'ASC');

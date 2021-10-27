@@ -10,6 +10,7 @@ function break_title( $title ) {
 	return $broken;
 }
 
+$runner = 1;
 
 ?>
     <div class="container mx-auto mt-20">
@@ -23,12 +24,11 @@ function break_title( $title ) {
 <?php get_template_part( 'banner', 'mega' ) ?>
 
 
-<?php get_template_part('snippet', 'header_zur_person') ?>
+<?php get_template_part( 'snippet', 'header_zur_person' ) ?>
 
 
     <div class="container mx-auto mt-20">
-		<?php get_search_form(['post_type' => 'zur_person']) ?>
-
+		<?php get_search_form( [ 'post_type' => 'zur_person' ] ) ?>
 
 
     </div>
@@ -38,31 +38,58 @@ function break_title( $title ) {
 		<?php if ( have_posts() ): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 				<?php while ( have_posts() ): ?>
-					<?php the_post(); ?>
-                    <div class="col-span-1 relative">
-                        <a href="<?php the_permalink(); ?>" class="relative block h-full">
-                            <div class="w-48 mx-auto">
-								<?php
-								the_post_thumbnail( 'thumbnail', [
-									'class'   => 'w-full h-auto rounded-full p-5 border-2 border-primary-100',
-									'onerror' => "this.style.display='none'",
-								] );
 
-								if ( ! has_post_thumbnail() ):?>
-                                    <div class="w-48 h-48 rounded-full p-5 border-2 border-primary-100"></div>
-								<?php endif; ?>
-                            </div>
-                            <div class="flex flex-col text-center mt-10">
-								<?php $name = ! empty( get_field( 'field_613b8ca49b06b' ) ) ? get_field( 'field_613c53f33d6b8' ) . '<br>' . get_field( 'field_613b8ca49b06b' ) : break_title( get_the_title() ) ?>
-								<?php $position = ! empty( get_field( 'field_613c54063d6b9' ) ) ? get_field( 'field_613c54063d6b9' ) . ' - ' . get_field( 'field_613b8caa9b06c' ) : '&nbsp;' ?>
-                                <h3 class="text-primary-100 text-3xl mb-0 font-serif font-semibold"><?php echo $name ?></h3>
-                                <p class="text-primary-100 text-sm italic mb-5"><?php echo $position ?></p>
-                                <p class="three-lines flex-1 text-gray-900"><?php echo get_the_excerpt(); ?></p>
-                            </div>
-                        </a>
 
-                    </div>
-				<?php endwhile; ?>
+					<?php if ( $runner == 3 ): ?>
+
+
+                        <div class="col-span-1 relative">
+                            <a href="<?php echo home_url( '/alle-karrieren-der-immobilien-branche/' ); ?>" class="relative block h-full">
+                                <div class="w-48 mx-auto">
+                                    <div class="w-full h-auto rounded-full p-5 border-2 border-primary-100">
+                                        <div class="bg-primary-100 rounded-full ">
+                                            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/avatar.png" class="rounded-full">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col text-center mt-10">
+                                    <h3 class="text-3xl mb-0 font-serif font-semibold" style="color: #f8091a">Und<br>Sie?</h3>
+                                    <p class="text-primary-100 text-sm italic mb-5">Sie haben uns noch gefehlt!</p>
+                                    <p class="three-lines flex-1 text-gray-900">Unter "Zur Person" präsentieren wir Persönlichkeiten der Immobilienbranche. Dabei sein ist einfach, klicken Sie hier!</p>
+                                </div>
+                            </a>
+                        </div>
+
+
+					<?php else: ?>
+						<?php the_post(); ?>
+                        <div class="col-span-1 relative">
+                            <a href="<?php the_permalink(); ?>" class="relative block h-full">
+                                <div class="w-48 mx-auto">
+									<?php
+									the_post_thumbnail( 'thumbnail', [
+										'class'   => 'w-full h-auto rounded-full p-5 border-2 border-primary-100',
+										'onerror' => "this.style.display='none'",
+									] );
+
+									if ( ! has_post_thumbnail() ):?>
+                                        <div class="w-48 h-48 rounded-full p-5 border-2 border-primary-100"></div>
+									<?php endif; ?>
+                                </div>
+                                <div class="flex flex-col text-center mt-10">
+									<?php $name = ! empty( get_field( 'field_613b8ca49b06b' ) ) ? get_field( 'field_613c53f33d6b8' ) . '<br>' . get_field( 'field_613b8ca49b06b' ) : break_title( get_the_title() ) ?>
+									<?php $position = ! empty( get_field( 'field_613c54063d6b9' ) ) ? get_field( 'field_613c54063d6b9' ) . ' - ' . get_field( 'field_613b8caa9b06c' ) : '&nbsp;' ?>
+                                    <h3 class="text-primary-100 text-3xl mb-0 font-serif font-semibold"><?php echo $name ?></h3>
+                                    <p class="text-primary-100 text-sm italic mb-5"><?php echo $position ?></p>
+                                    <p class="three-lines flex-1 text-gray-900"><?php echo get_the_excerpt(); ?></p>
+                                </div>
+                            </a>
+                        </div>
+					<?php endif; ?>
+					<?php
+					$runner ++;
+				endwhile;
+				?>
             </div>
 		<?php endif; ?>
     </div>
