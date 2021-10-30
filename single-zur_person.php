@@ -135,7 +135,7 @@ $cat = get_category( $cat );
                     </div>
                     <script>
                         var show = <?php echo empty( $FormSession->content['errorBag'] ) ? 'false' : 'true' ?>;
-                    </script>e
+                    </script>
                     <div class="my-10">
                         <div x-data="{ showForm : show }">
                             <div class="bg-primary-100 bg-opacity-5 p-10 flex flex-col justify-center items-center min-h-64 text-primary-100">
