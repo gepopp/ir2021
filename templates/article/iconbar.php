@@ -201,7 +201,7 @@
                 </svg>
             </div>
             <p class="text-sm">
-                <?php echo sprintf(__(' Wir senden Ihnen in 3 Tagen ein Erinnerungsmail. Sie können den Zeitpunkt dieses Mails in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a> ändern..', get_field('field_601bc4580a4fc'))) ?>
+                <?php echo sprintf(__(' Wir senden Ihnen in 3 Tagen ein Erinnerungsmail. Sie können den Zeitpunkt dieses Mails in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a> ändern..'), get_field('field_601bc4580a4fc', 'option')) ?>
             </p>
         </div>
 
