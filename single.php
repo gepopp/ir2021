@@ -2,6 +2,8 @@
 get_header();
 the_post();
 
+echo 'hier';
+
 $cats = wp_get_post_categories(get_the_ID());
 
 if(!empty(array_filter($cats, function ($cat){
@@ -18,5 +20,7 @@ if(!empty(array_filter($cats, function ($cat){
 } elseif (get_post_format() == 'video') {
     get_template_part('content', 'video');
 }
+
+
 
 get_footer();
