@@ -109,13 +109,6 @@ if ( $prerolls ) {
                         </div>
                     </div>
                 </div>
-                <div x-show.transition="chapters.length == 0 || tab == 'comments'">
-					<?php
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-					?>
-                </div>
                 <div x-show="chapters.length > 0 && tab == 'chapters'" x-key="chapter.index">
                     <ol class="ml-2">
                         <template x-for="chapter in chapters">
