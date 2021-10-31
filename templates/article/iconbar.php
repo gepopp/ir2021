@@ -182,8 +182,7 @@
                 </svg>
             </div>
             <p class="text-sm">
-                <?php echo sprintf(__('Ihre Lesezeichen finden Sie in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a>.', get_field('field_601bc4580a4fc', 'option') ?? '')) ?>
-
+                <?php echo sprintf(__('Ihre Lesezeichen finden Sie in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a>.'), get_field('field_601bc4580a4fc', 'option') ?? '') ?>
             </p>
         </div>
 
