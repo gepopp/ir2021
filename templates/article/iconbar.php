@@ -181,10 +181,10 @@
                     <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
                 </svg>
             </div>
-            <p class="text-sm">
-                <?php echo sprintf(__('Ihre Lesezeichen finden Sie in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a>.', get_field('field_601bc4580a4fc', 'option') ?? '')) ?>
-
-            </p>
+<!--            <p class="text-sm">-->
+<!--                --><?php //echo sprintf(__('Ihre Lesezeichen finden Sie in Ihrem <a href="%s" target="_blank" class="text-primary-100 underline">Userprofil</a>.', get_field('field_601bc4580a4fc', 'option') ?? '')) ?>
+<!---->
+<!--            </p>-->
         </div>
 
         <div x-show.transition.fade.300ms="reminderSet" @click.away="reminderSet = false" class="absolute top-0 left-0 bg-gray-900 -mt-100 lg:mt-16 mb-20 lg:-ml-48 ml-10 p-5 text-white w-64 shadow-lg rounded bg-opacity-75 z-50">
