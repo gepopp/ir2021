@@ -2,7 +2,6 @@
 get_header();
 the_post();
 
-echo 'hier';
 
 $cats = wp_get_post_categories(get_the_ID());
 
