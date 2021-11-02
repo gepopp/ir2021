@@ -2,7 +2,7 @@
 $teilnehmer = get_field( 'field_614ad5e239622' );
 if ( ! empty( $teilnehmer ) ):
 	?>
-	<div class="border-t boder-white">
+	<div class="">
 		<h3 class="text-white text-3xl font-serif text-center mb-10">Die Expert*innen im Livestream</h3>
 		<div class="flex space-x-5 flex-wrap w-full justify-center">
 

@@ -59,5 +59,8 @@ $cat = array_shift( $cat );
 		            ?>
                 </div>
             </div>
+            <div class="content col-span-4 lg:col-span-1">
+                <?php get_template_part('video', 'speaker') ?>
+            </div>
         </div>
     </div>
