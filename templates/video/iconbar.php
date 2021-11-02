@@ -218,7 +218,7 @@ extract(array_merge($default, $args));
 
         <div x-show.transition.fade.300ms="loginRequired" @click.away="loginRequired = false" class="absolute top-0 left-0 bg-gray-900 -mt-100 lg:mt-16 mb-20 lg:-ml-48 ml-10 p-5 text-white w-64 shadow-lg rounded bg-opacity-75 z-50">
             <div class="flex justify-start">
-                <svg class="w-6 h-6 text-white cursor-pointer" @click="loginRequired = false" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-4 h-4 text-white cursor-pointer" @click="loginRequired = false" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                 </svg>
             </div>
@@ -243,7 +243,7 @@ extract(array_merge($default, $args));
 
         <div class="flex justify-center items-center p-2 hover:shadow-none cursor-pointer"
              @click="setBookmark(<?php echo get_the_ID() ?>)">
-            <svg class="w-6 h-6 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?>" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-4 h-4 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?>" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
             </svg>
         </div>
@@ -251,14 +251,14 @@ extract(array_merge($default, $args));
         <div class="flex justify-center items-center p-2 hover:shadow-none"
              @click="remindReading(<?php echo get_the_ID() ?>)"
         >
-            <svg class="w-6 h-6 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?> cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-4 h-4 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?> cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
             </svg>
         </div>
 
         <div class="flex justify-center items-center p-2 hover:shadow-none">
             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank" class="w-full h-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" class="w-6 h-6 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?>">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" class="w-4 h-4 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?>">
                     <path class="st0" d="M43.67,8.51C47.16,5.7,51.5,4.62,55.89,4.5c4.96-0.12,11.2-1.12,15.64,1.47c0.12,0.07,0.22,0.2,0.27,0.32
 			c0.3,0.02,0.57,0.3,0.52,0.62c-0.4,2.34-0.85,4.69-1.02,7.06c-0.15,1.7-0.07,3.49-0.67,5.11c-0.15,0.35-0.4,0.57-0.67,0.67
 			c-0.07,0.15-0.2,0.27-0.35,0.32c-3.92,1.07-9.2-2.37-11.92,2.27c-1.92,3.32-0.7,7.96-0.6,11.52c2.44-0.52,4.91-0.15,7.41-0.25
@@ -292,7 +292,7 @@ extract(array_merge($default, $args));
 
         <div class="flex justify-center items-center p-2 hover:shadow-none">
             <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php the_permalink(); ?>" target="_blank" class="w-full h-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" class="w-6 h-6 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?>">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" class="w-4 h-4 <?php echo $mode == 'dark' ? 'text-white' : 'text-gray-800' ?>">
                     <path class="st0" d="M95.02,60.96c0.05,1.85,0.15,3.68,0.23,5.54c-0.15,0.03-0.3,0.1-0.45,0.15c-0.6,8.22-0.33,16.54-0.23,24.82
 				c0,0.63-0.88,0.7-1.1,0.23c-0.03-0.05-0.05-0.15-0.05-0.23c0.08-6.72-0.05-13.36-0.2-20.08c-0.03-1.58-0.4-5.01,0.43-7.07
 				c-0.03-4.41-0.18-8.87-1.05-12.91C88.6,33.08,68.3,32.2,56.11,42.58c-0.05,0.3-0.13,0.58-0.25,0.85c-0.15,0.3-0.68,0.3-0.83,0
