@@ -5,13 +5,12 @@ if ( ! empty( $teilnehmer ) ):
 	<div class="">
 		<h3 class="text-white text-3xl font-serif text-center mb-10">Die Expert*innen im Livestream</h3>
 		<div class="flex space-x-5 flex-wrap w-full justify-center">
-
 			<?php foreach ( $teilnehmer as $item ): ?>
-				<div class="w-48">
+				<div class="border-b border-white pb-3 mb-3 w-48">
 					<a href="<?php echo get_the_permalink( $item ) ?>" class="no-underline" style="text-decoration: none !important;">
 						<?php
 						echo get_the_post_thumbnail( $item, 'thumbnail', [
-							'class'   => 'w-full h-auto rounded-full p-5 border-2 border-white',
+							'class'   => 'w-48 h-auto rounded-full p-5 border-2 border-white',
 							'onerror' => "this.style.display='none'",
 						] );
 
@@ -29,4 +28,5 @@ if ( ! empty( $teilnehmer ) ):
 			<?php endforeach; ?>
 		</div>
 	</div>
+
 <?php endif; ?>
