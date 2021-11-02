@@ -33,6 +33,9 @@ $first = new WP_Query( [
 			'type'    => 'DATETIME',
 		],
 	],
+	'meta_key'       => 'termin',
+	'orderby'        => 'meta_value',
+	'order'          => 'DESC',
 ] );
 ?>
 
