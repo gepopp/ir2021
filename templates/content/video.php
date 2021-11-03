@@ -2,54 +2,48 @@
 $user = wp_get_current_user();
 $post_id = get_the_ID();
 ?>
-
-<div class="text-white">
-    <?php get_template_part('article', 'author') ?>
-</div>
-
 <?php get_template_part('video', 'head') ?>
 
-
-<div class="container mx-auto mt-32 ">
-    <div class="grid grid-cols-5 gap-4 px-5 lg:px-0">
-        <div class="col-span-5 lg:col-span-3 mb-5">
-            <h1 class="text-3xl lg:text-5xl font-serif leading-none text-white"><?php the_title() ?></h1>
-            <?php get_template_part('video', 'meta') ?>
-        </div>
-    </div>
-
-    <div x-data="readingLog(<?php echo $user->ID ?? false ?>, <?php echo $post_id ?>)"
-         x-init="getmeasurements();"
-         @scroll.window.debounce.1s="amountscrolled()"
-         @resize.window="getmeasurements()"
-         ref="watched"
-    >
-        <div class="grid grid-cols-5 gap-4 px-5 lg:px-0" style="min-height: 800px">
-            <div class="col-span-5 lg:col-span-3 content text-white" id="article-content">
-                <p class="mb-5 text-white"><?php echo get_the_excerpt(); ?></p>
-                <?php the_content(); ?>
+<div class="container mx-auto text-white" x-data="{ showMore: false }">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+        <div class="content col-span-4 lg:col-span-3" id="article-content">
+            <h1 class="text-xl lg:text-3xl font-serif leading-none text-white">
+				<?php echo get_the_title() ?>
+            </h1>
+            <div class="hidden sm:block">
+				<?php get_template_part( 'video', 'meta', [ 'mode' => 'dark' ] ) ?>
             </div>
-            <?php get_template_part('video', 'sidebar') ?>
+            <div :class="showMore ? '' : 'line-clamp-3'">
+				<?php the_content(); ?>
+            </div>
+            <div class="flex justify-end w-full" @click="showMore = true" x-show.transition="!showMore">
+                <p class="uppercase cursor-pointer flex space-x-3">
+                    <span>mehr</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </p>
+            </div>
+            <div class="flex justify-end w-full" @click="showMore = false" x-show.transition="showMore">
+                <p class="uppercase cursor-pointer flex space-x-3">
+                    <span>weniger</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                    </svg>
+                </p>
+            </div>
+            <hr class="py-3">
+            <div class="">
+				<?php
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
+				?>
+            </div>
         </div>
-        <div class="lg:hidden sticky bottom-0"
-             x-data="{ scroll: 0, max : 0 }"
-             x-init="
-        contentContainer = document.getElementById('article-content');
-        max = contentContainer.offsetTop + contentContainer.offsetHeight - 200;
-        maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        window.addEventListener('resize', () => {
-            maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        });
-        window.addEventListener('scroll', function (event) {
-            contentContainer = document.getElementById('article-content');
-            max = contentContainer.offsetTop + contentContainer.offsetHeight - 400;
-            scroll = this.scrollY;
-        });
-
-     ">
-            <div x-show.transition.fade.500ms="scroll > 200 && scroll < max">
-            <?php get_template_part('article', 'iconbar') ?>
-        </div>
+        <div class="content col-span-4 lg:col-span-1">
+			<?php get_template_part( 'video', 'chapters' ) ?>
+			<?php get_template_part( 'video', 'speaker' ) ?>
         </div>
     </div>
 </div>

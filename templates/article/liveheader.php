@@ -92,7 +92,7 @@ if ( $termin->addHour()->isPast() ) {
 
                     <div class="grid grid-cols-2 gap-5">
                         <div class="col-span-2 md:col-span-1 lg:hidden text-white">
-		                    <?php get_template_part( 'video', 'chapters' ) ?>
+							<?php get_template_part( 'video', 'chapters' ) ?>
                         </div>
                         <div class="col-span-2 md:col-span-1 lg:col-span-2">
                             <a rel="sponsored" href="https://www.awin1.com/cread.php?s=2547837&v=16945&q=368884&r=682479">
@@ -100,11 +100,6 @@ if ( $termin->addHour()->isPast() ) {
                             </a>
                         </div>
                     </div>
-                    <!-- START ADVERTISER: Neunweine AT from awin.com -->
-
-
-                    <!-- END ADVERTISER: Neunweine AT from awin.com -->
-
                 </div>
             </div>
         </div>

@@ -1,71 +1,80 @@
 <?php
-$lib      = new \Vimeo\Vimeo( 'f1663d720a1da170d55271713cc579a3e15d5d2f',
-	'd30MDbbXFXRhZK2xlnyx5VMk602G7J8Z0VHFP8MvNnDDuAVfcgPj2t5zwE5jpbyXweFrQKa9Ey02edIx/E3lJNVqsFxx+9PRShAkUA+pwyCeoh9rMoVT2dWv2X7WurgV', 'b57bb7953cc356e8e1c3ec8d4e17d2e9' );
-$response = $lib->request( '/videos/' . get_field( 'field_5fe2884da38a5' ), [], 'GET' );
-$body     = $response['body'];
-
-$time     = explode( ':', get_field( 'field_5a3ce915590ae' ) );
-$duration = 'PT';
-if ( count( $time ) == 3 ) {
-	$duration .= array_shift( $time );
-	$duration .= 'H';
-
+$prerolls = get_field( 'field_6097ef63e4e76', 'option' );
+if ( $prerolls ) {
+	shuffle( $prerolls );
+	$preroll = array_shift( $prerolls );
+} else {
+	$preroll = [
+		'preroll_id' => false,
+	];
 }
-$duration .= array_shift( $time );
-$duration .= 'M';
-$duration .= array_shift( $time );
-$duration .= 'S';
 ?>
-<script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": "<?php the_title() ?>",
-        "description": "<?php echo get_the_excerpt() ?>",
-        "thumbnailUrl": [
-            "<?php echo $body['pictures']['sizes'][2]['link'] ?>",
-            "<?php echo $body['pictures']['sizes'][0]['link'] ?>",
-            "<?php echo $body['pictures']['sizes'][1]['link'] ?>"
-        ],
-        "uploadDate": "<?php the_time( 'c' ) ?>",
-        "duration": "<?php echo $duration ?>",
-        "contentUrl": "<?php the_permalink(); ?>",
-        "interactionStatistic": {
-            "@type": "InteractionCounter",
-            "interactionType": { "@type": "http://schema.org/WatchAction" },
-            "userInteractionCount": <?php echo get_field( 'field_5f9ff32f68d04' ) ?>
-        },
-        "regionsAllowed": "DE"
+<script>
+    var preroll = <?php echo json_encode( $preroll ) ?>;
+
+    function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 && rect.left >= 0
+        );
     }
-
-
-
-
-
-
 </script>
+<div class="container mx-auto">
+    <div class="hidden lg:block"></div>
+    <div class="col-span-5 lg:col-span-3  py-5">
 
+        <div class="grid grid-cols-4 gap-5">
 
-<?php get_template_part( 'banner', 'mega' ) ?>
+            <div class="relative col-span-4 lg:col-span-3"
+                 id="videoContainer"
+                 x-data="liveplayer(preroll,
+             <?php echo ! empty( get_field( 'field_616166cc0f4ff' ) ) ? get_field( 'field_616166cc0f4ff' ) : 'false' ?>,
+             <?php echo ! empty( get_field( 'field_5fe2884da38a5' ) ) ? get_field( 'field_5fe2884da38a5' ) : 'false' ?>)"
+                 x-init="init()"
+                 @goto.window="jump($event.detail.chapter)"
+            >
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <div id="outer"></div>
+                    <div :class="out == true ? 'fixed bottom-0 right-0 w-96 h-60 z-50 shadow-2xl m-10' : ''">
+                        <iframe :src="src"
+                                frameborder="0"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                id="player"
+                                @load="setupPlayer()"
+                        ></iframe>
+                        <div class="absolute top-0 left-0 mt-3 bg-gray-800 text-white p-3 cursor-pointer flex lg:space-x-5" @click="window.open( preroll.link, '_blank' )" x-show="is_preroll">
+                            <span class="hidden lg:block">Zum Werbetreibenden</span>
+                            <svg class="w-4 lg:w-6 w-4 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute bottom-0 right-0 p-3 lg:m-5 bg-gray-900 text-white cursor-pointer"
+                             x-show="timer == 0 && is_preroll"
+                             @click="loadSrc(true)"
+                        >
+                            Werbung überspringen
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-4 lg:col-span-1 border border-primary-100 p-3 xs:col-start-1">
+                <div class="flex items-center justify-center h-full">
 
-<div class="container mx-auto mt-20 relative px-5 lg:px-0">
-    <div class="grid grid-cols-4 gap-5" x-data="{ maxHeight: '' }" x-init="
-             maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
-             new ResizeObserver(() => {
-                maxHeight = document.getElementById('videoContainer').offsetHeight + 'px';
-             }).observe(document.getElementById('videoContainer'));">
-        <div class="relative col-span-4 lg:col-span-3" x-ref="videoContainer">
-            <div id="videoContainer">
-				<?php get_template_part( 'video', 'player' ); ?>
+                    <div class="grid grid-cols-2 gap-5">
+                        <div class="col-span-2 md:col-span-1 lg:hidden text-white">
+							<?php get_template_part( 'video', 'chapters' ) ?>
+                        </div>
+                        <div class="col-span-2 md:col-span-1 lg:col-span-2">
+                            <a rel="sponsored" href="https://www.awin1.com/cread.php?s=2547837&v=16945&q=368884&r=682479">
+                                <img src="https://www.awin1.com/cshow.php?s=2547837&v=16945&q=368884&r=682479" border="0">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-span-4 lg:col-span-1 overflow-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
-             :style="`max-height: ${maxHeight};`">
-		    <?php
-		    if ( comments_open() || get_comments_number() ) :
-			    comments_template();
-		    endif;
-		    ?>
-        </div>
     </div>
+    <div class="hidden lg:block"></div>
 </div>

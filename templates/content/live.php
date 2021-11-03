@@ -1,9 +1,6 @@
 <?php
 $user = wp_get_current_user();
 $post = get_the_ID();
-
-$cat = get_the_category();
-$cat = array_shift( $cat );
 ?>
 
 <div class="px-5 lg:px-5"
