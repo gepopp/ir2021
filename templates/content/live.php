@@ -16,9 +16,9 @@ $cat = array_shift( $cat );
 	<?php
 	$termin = get_field( 'field_5ed527e9c2279' );
 	$carbon = new \Carbon\Carbon( $termin );
-
-	get_template_part( 'article', 'liveheader' );
 	?>
+
+	<?php get_template_part( 'article', 'liveheader' ); ?>
 
 
     <div class="container mx-auto text-white" x-data="{ showMore: false }">
@@ -31,7 +31,6 @@ $cat = array_shift( $cat );
 					<?php get_template_part( 'video', 'meta', [ 'mode' => 'dark' ] ) ?>
                 </div>
                 <div :class="showMore ? '' : 'line-clamp-3'">
-					<?php the_excerpt(); ?>
 					<?php the_content(); ?>
                 </div>
                 <div class="flex justify-end w-full" @click="showMore = true" x-show.transition="!showMore">
@@ -52,15 +51,16 @@ $cat = array_shift( $cat );
                 </div>
                 <hr class="py-3">
                 <div class="">
-		            <?php
-		            if ( comments_open() || get_comments_number() ) :
-			            comments_template();
-		            endif;
-		            ?>
+					<?php
+					if ( comments_open() || get_comments_number() ) :
+						comments_template();
+					endif;
+					?>
                 </div>
             </div>
             <div class="content col-span-4 lg:col-span-1">
-                <?php get_template_part('video', 'speaker') ?>
+				<?php get_template_part( 'video', 'chapters' ) ?>
+				<?php get_template_part( 'video', 'speaker' ) ?>
             </div>
         </div>
     </div>

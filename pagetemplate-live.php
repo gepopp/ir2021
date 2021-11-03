@@ -67,7 +67,7 @@ get_template_part( 'part', 'immoliveAnnouncement', [ 'categories' => $categories
 
             <div class="">
                 <div class="text-center mb-10 mt-20">
-                    <h1 class="inline text-cent font-serif text-3xl font-semibold"
+                    <h1 class="inline text-cent font-serif text-3xl font-semibold text-white"
                         style="background: linear-gradient(0deg, <?php the_field( 'field_5c63ff4b7a5fb', 'immolive_category_' . $category->term_id ); ?> 0%,
 					    <?php the_field( 'field_5c63ff4b7a5fb', 'immolive_category_' . $category->term_id ); ?> 50%, transparent 50%, transparent 100%);"><?php echo $category->name ?></h1>
                 </div>

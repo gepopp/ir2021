@@ -52,10 +52,28 @@ window.liveplayer = (preroll, stream, video) => {
                         this.player.getChapters()
                             .then((c) => {
                                 this.chapters = c;
-                                this.player.on('chapterchange', (c) => {
-                                    this.current_chapter = c.index;
+
+                                let event = new CustomEvent("cloaded", {
+                                    detail: {
+                                        chapters: c
+                                    }
                                 });
-                            }).catch((e) => console.log('error'));
+                                window.dispatchEvent(event);
+
+
+                                this.player.on('chapterchange', (c) => {
+
+                                    let event = new CustomEvent("cchange", {
+                                        detail: {
+                                            chapter: c.index
+                                        }
+                                    });
+                                    window.dispatchEvent(event);
+
+                                });
+
+                            })
+                            .catch((e) => console.log('chapter error'));
                     }).catch(() => {
                         this.src = 'https://vimeo.com/event/' + this.stream_id + '/embed';
                     });
@@ -83,7 +101,7 @@ window.liveplayer = (preroll, stream, video) => {
             return new Date(second * 1000).toISOString().substr(14, 5);
         },
         jump(index) {
-            this.player.setCurrentTime(index);
+            this.player.setCurrentTime(this.chapters[index - 1].startTime);
             this.player.play();
         }
     }

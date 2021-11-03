@@ -9,7 +9,7 @@ extract( $args );
 <div class="container mx-auto p-5">
 
     <div class="my-5 w-full text-center">
-        <h1 class="inline font-serif text-3xl font-semibold text-center"
+        <h1 class="inline font-serif text-3xl font-semibold text-center text-white"
             style="background: linear-gradient(0deg, #5C97D0 0%, #5C97D0 50%, transparent 50%, transparent 100%);">
             Kommende Livestreams
         </h1>
