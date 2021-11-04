@@ -5,7 +5,7 @@
             <ol class="ml-2">
                 <template x-for="chapter in chapters">
                     <li class="cursor-pointer mb-2" @click="$dispatch('goto', { chapter: chapter.index })">
-                        <span x-text="chapter.title"  class="line-clamp-1" :class="currentChapter == chapter.index ? 'font-bold' : ''"></span>
+                        <span x-text="chapter.title" :class="currentChapter == chapter.index ? 'font-bold' : ''"></span>
                     </li>
                 </template>
             </ol>
