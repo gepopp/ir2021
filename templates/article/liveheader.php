@@ -90,14 +90,12 @@ if ( $termin->addHour()->isPast() ) {
             <div class="col-span-4 lg:col-span-1 border border-primary-100 p-3 xs:col-start-1">
                 <div class="flex items-center justify-center h-full">
 
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-2 gap-5 h-full">
                         <div class="col-span-2 md:col-span-1 lg:hidden text-white">
 							<?php get_template_part( 'video', 'chapters' ) ?>
                         </div>
                         <div class="col-span-2 md:col-span-1 lg:col-span-2">
-                            <a rel="sponsored" href="https://www.awin1.com/cread.php?s=2547837&v=16945&q=368884&r=682479">
-                                <img src="https://www.awin1.com/cshow.php?s=2547837&v=16945&q=368884&r=682479" border="0">
-                            </a>
+                           <iframe src="<?php echo get_stylesheet_directory_uri() ?>/banner_ehl/600x1200.php" class="w-full h-full"></iframe>
                         </div>
                     </div>
                 </div>
