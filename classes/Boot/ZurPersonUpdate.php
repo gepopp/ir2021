@@ -35,12 +35,12 @@ class ZurPersonUpdate {
 
 	function sent_update_email() {
 
+		//|| ! wp_verify_nonce( $_POST['zur_person_update_nonce'], 'zur_person_update' )
+//|| get_the_permalink( sanitize_text_field( $_POST['zur_person_id'] ) ) != home_url( sanitize_text_field( $_POST['_wp_http_referer'] ) )
 
 		global $FormSession;
 
-		if ( ! is_user_logged_in()
-		     || ! wp_verify_nonce( $_POST['zur_person_update_nonce'], 'zur_person_update' )
-		     || get_the_permalink( sanitize_text_field( $_POST['zur_person_id'] ) ) != home_url( sanitize_text_field( $_POST['_wp_http_referer'] ) ) ) {
+		if ( ! is_user_logged_in() ) {
 
 			$FormSession->addToErrorBag( 'global_error', 'nonce' )->redirect();
 			exit;
@@ -49,7 +49,7 @@ class ZurPersonUpdate {
 		$this->person_id = sanitize_text_field( $_POST['zur_person_id'] );
 
 
-		if (  $_FILES['image']['size'] ) {
+		if ( $_FILES['image']['size'] ) {
 
 			$this->logo_dir = $this->handle_logo_upload( $_FILES['image'], [ 'image/jpeg', 'image/png', 'image/jpg' ] );
 			if ( ! $this->logo_dir ) {
@@ -58,7 +58,7 @@ class ZurPersonUpdate {
 			}
 		}
 
-		if (  $_FILES['lebenslauf']['size'] ) {
+		if ( $_FILES['lebenslauf']['size'] ) {
 
 			$this->cv = $this->handle_logo_upload( $_FILES['lebenslauf'], [ 'application/pdf' ] );
 			if ( ! $this->cv ) {
@@ -75,9 +75,9 @@ class ZurPersonUpdate {
 		$this->companylink = sanitize_text_field( $_POST['companylink'] );
 
 		if ( $this->notify_admin() ) {
-			foreach ( glob(self::LOGO_DIR . '/*') as $item ) {
-				if(!is_dir($item) && file_exists($item)) {
-					unlink($item);
+			foreach ( glob( self::LOGO_DIR . '/*' ) as $item ) {
+				if ( ! is_dir( $item ) && file_exists( $item ) ) {
+					unlink( $item );
 				}
 			}
 			$FormSession->set( 'success', 'Vielen Dank, Ihr Vorschlag wurde übermittelt und wird nach Prüfung veröffentlicht.' )->redirect();
@@ -175,11 +175,11 @@ class ZurPersonUpdate {
 		return wp_mail( 'gerhard@poppgerhard.at', 'Neue Vorschlag zur Person', $content,
 			[
 				'Bcc: gerhard@poppgerhard.at',
-				'Content-Type: text/html; charset=UTF-8'
+				'Content-Type: text/html; charset=UTF-8',
 			],
 			[
 				$this->logo_dir,
-				$this->cv
+				$this->cv,
 			] );
 	}
 
