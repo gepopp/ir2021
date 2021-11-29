@@ -127,6 +127,12 @@ class ImmoliveSubscription {
 		$template_dir = immobilien_redaktion_2020_DIR . '/tmp/';
 		$filename     = $template_dir . $post_id . '.ics';
 
+		foreach ( glob($template_dir . '*') as $item ) {
+			if(file_exists($item)){
+				unlink($item);
+			}
+		}
+
 		$file = fopen( $filename, 'w' );
 		fwrite( $file, $ics->to_string() );
 		fclose( $file );

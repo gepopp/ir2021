@@ -96,6 +96,9 @@ window.liveplayer = (preroll, stream, video) => {
                     this.loadClip();
                 }
             });
+
+            console.log(this.player);
+
         },
         formatStart(second) {
             return new Date(second * 1000).toISOString().substr(14, 5);
