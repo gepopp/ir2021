@@ -65,14 +65,15 @@
                                     </div>
                                     <div>
 										<?php
-//										$terms = wp_get_post_terms( get_the_ID(), 'aktuelles_category' );
-//
-//
-//										$term  = array_shift( $terms );
-//										?>
-<!--                                        <a href="--><?php //echo get_term_link( $term ) ?><!--">-->
-<!--											--><?php //echo $term->name ?>
-<!--                                        </a>-->
+										$terms = wp_get_post_terms( get_the_ID(), 'aktuelles_category' );
+                                        if(is_array($terms)):
+
+										$term  = array_shift( $terms );
+										?>
+                                        <a href="<?php echo get_term_link( $term ) ?>">
+											<?php echo $term->name ?>
+                                        </a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
