@@ -4,6 +4,7 @@ module.exports = {
 		content: [
 			'./**/*.php',
 			'./dist/**/*.js',
+			'./**/*.vue'
 		],
 		safelist: [
 			'line-clamp-3',
