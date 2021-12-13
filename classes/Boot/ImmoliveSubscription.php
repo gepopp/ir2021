@@ -27,6 +27,7 @@ class ImmoliveSubscription {
 			wp_die( 'Spamschutz', 400 );
 		}
 
+
 		$subscribers = get_field('field_601451bb66bc3', $_POST['id']);
 		$user = wp_get_current_user();
 		foreach ( $subscribers as $subscriber ) {
