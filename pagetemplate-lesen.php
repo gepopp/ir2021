@@ -4,8 +4,6 @@
  */
 get_header();
 ?>
-
-
     <div class="container mx-auto mt-20 relative">
         <h1 class="font-sans text-5xl uppercase font-semibold text-gray-800 text-center"><?php _e( 'lesen', 'ir21' ) ?></h1>
     </div>
