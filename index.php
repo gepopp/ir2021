@@ -9,8 +9,9 @@
 namespace immobilien_redaktion_2020;
 
 get_header();
-
-
+?>
+<div id="quick-survey">
+<?php
 $query = new \WP_Query( [
 	'post_type'           => 'post',
 	'post_status'         => 'publish',
@@ -44,6 +45,7 @@ get_template_part( 'part', 'aktuellesrow' );
 get_template_part( 'part', 'projekterow' );
 
 ?>
+</div>
 </div>
 
 <?php
