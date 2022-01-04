@@ -63,14 +63,14 @@
             ],
             "min": "",
             "max": "",
-            "return_format": "id"
+            "return_format": "object"
         },
         {
             "key": "field_616199812fbf4",
             "label": "Aktionen",
             "name": "",
             "type": "message",
-            "instructions": "",
+            "instructions": "\t\t<button id=\"vimeo_thumbnail\" data-post=\"33427\" class=\"button-primary\">Bild von Vimeo aktualisieren<\/button>\r\n\t\t",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -100,5 +100,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1633786266
+    "show_in_rest": 0,
+    "modified": 1641226335
 }
