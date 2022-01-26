@@ -20,8 +20,7 @@ $loader->addPsr4('irclasses\\', __DIR__ . '/classes');
 new Boot();
 
 
-function maximum_api_filter($query_params) {
+add_filter('rest_page_collection_params', function ($query_params){
 	$query_params['per_page']["maximum"]=1000;
 	return $query_params;
-}
-add_filter('rest_page_collection_params', 'maximum_api_filter');
+});
