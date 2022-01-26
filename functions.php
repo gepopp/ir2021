@@ -19,8 +19,11 @@ $loader->addPsr4('irclasses\\', __DIR__ . '/classes');
 
 new Boot();
 
-
-add_filter('rest_zur_person_query', function ($query_params){
-	$query_params['per_page']=-1;
-	return $query_params;
-});
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'immolive/v2', '/zur_person/(?P<id>\d+)', array(
+		'methods' => 'GET',
+		'callback' => function(){
+			return get_posts(['post_type' => 'zur_person', 'posts_per_page' => -1]);
+		},
+	) );
+} );
