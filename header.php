@@ -79,7 +79,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
 
 <header class="header bg-primary-100 w-full h-10 relative md:px-5" x-data="{ showMobile : false }">
     <div class="container mx-auto flex justify-between ">
-        <div class="pt-2 hidden lg:block relative" x-data="{ open: false }">
+        <div class="pt-2 hidden lg:block relative" x-data="{ open: false }" x-cloak>
 
             <?php
             wp_nav_menu([
