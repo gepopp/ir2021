@@ -19,3 +19,8 @@ $loader->addPsr4('irclasses\\', __DIR__ . '/classes');
 
 new Boot();
 
+
+add_filter('rest_zur_person_query', function ($query_params){
+	$query_params['per_page']["maximum"]=1000;
+	return $query_params;
+});
