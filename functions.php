@@ -24,3 +24,20 @@ add_filter('rest_zur_person_collection_params', function ($query_params){
 	$query_params['per_page']["maximum"]=1000;
 	return $query_params;
 });
+
+
+add_action( 'rest_api_init', function () {
+	register_rest_field( 'zur_person', 'my_meta', array(
+		'get_callback'      => function($post) {
+			// get_post_meta( post_id, meta_key[optional], single[optional] )
+			$post_meta = get_post_meta( $post['id'] );
+			$meta = [];
+			foreach( $post_meta as $meta_key => $meta_value ) {
+				$meta[$meta_key] = $meta_value[0];
+			}
+			return $meta;
+		},
+		// 'update_callback'=> null,
+		// 'schema'         => null
+	) );
+});
