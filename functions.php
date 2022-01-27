@@ -20,7 +20,7 @@ $loader->addPsr4('irclasses\\', __DIR__ . '/classes');
 new Boot();
 
 add_action( 'rest_api_init', function () {
-	register_rest_route( 'immolive/v2', '/zur_person/(?P<id>\d+)', array(
+	register_rest_route( 'immolive/v2', '/zur_person/', array(
 		'methods' => 'GET',
 		'callback' => function(){
 			return get_posts(['post_type' => 'zur_person', 'posts_per_page' => -1]);
