@@ -77,7 +77,7 @@ add_action( 'rest_api_init', function () {
 
 add_action( 'rest_api_init', function () {
 
-	register_rest_field( 'comment', 'email', [
+	register_rest_field( 'comment', 'authorEmail', [
 			'get_callback' => function ( $comment ) {
 				wp_die(var_dump($comment));
 				return get_comment_author_email( $comment );
