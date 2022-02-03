@@ -30,7 +30,7 @@ add_filter('rest_immolive_collection_params', function ($query_params){
 	return $query_params;
 });
 
-add_filter('rest_users_collection_params', function ($query_params){
+add_filter('rest_user_collection_params', function ($query_params){
 	$query_params['per_page']["maximum"]=1000;
 	return $query_params;
 });
@@ -69,7 +69,7 @@ add_action( 'rest_api_init', function () {
 });
 
 add_action( 'rest_api_init', function () {
-	register_rest_field( 'users', 'my_meta', array(
+	register_rest_field( 'user', 'my_meta', array(
 		'get_callback'      => function($post) {
 			// get_post_meta( post_id, meta_key[optional], single[optional] )
 			$post_meta = get_user_meta( $post['id'] );
