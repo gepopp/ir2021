@@ -28,7 +28,7 @@ $events = json_decode( wp_remote_retrieve_body( $events ) );
                         </p>
                         <div class="mt-8 space-y-5">
                             <p class="flex items-center text-gray-700 line-clamp-5">
-								<?php echo $events->upcoming->description ?>
+								<?php echo strip_tags( $events->upcoming->description ) ?>
                             </p>
                             <a href="<?php echo $events->upcoming->link ?>" class="w-full bg-primary-100 shadow-2xl text-white text-center py-3 hover:shadow-2xl hover:font-semibold block">Details</a>
                         </div>
