@@ -8,6 +8,7 @@
             </div>
         </div>
         <div class="py-5 mb-5 border-b border-primary-100 font-semibold uppercase">
+            <a href="https://immolive.immobilien-redaktion.com" class="uppercase animate-pulse w-full text-center text-lg text-primary-100 block">ImmoLive</a>
             <?php
             wp_nav_menu([
                 'theme_location'  => 'primary',
