@@ -1,32 +1,77 @@
 <?php
 /**
- * @var $query
+ * @var $query1
+ * @var $query2
  */
-extract($args);
+extract( $args );
 ?>
-<div class="container mx-auto mt-20 relative px-5 lg:px-0">
-	<div class="grid grid-cols-3 gap-10">
-		<?php if ( $query->have_posts() ): ?>
-			<?php while ( $query->have_posts() ): ?>
-				<?php $query->the_post(); ?>
-				<div class="col-span-3 md:col-span-1 relative">
-					<div class="col-span-2 md:col-span-1 relative">
-						<div class="relative block bg-primary-100 h-full image-holder">
-							<?php the_post_thumbnail( 'article', [ 'class'   => 'w-full h-auto max-w-full',
-							                                       'onerror' => "this.style.display='none'",
-							] ); ?>
-                            <a href="<?php the_permalink(); ?>">
-	                            <?php get_template_part( 'snippet', 'heading' ) ?>
-                            </a>
-						</div>
-					</div>
-					<div class="absolute top-0 left-0 w-full p-5 flex justify-between text-white text-sm font-semibold w-full">
-						<span><?php the_time( 'd.m.Y' ); ?> | <?php the_author() ?></span>
-						<span class="hidden lg:flex"><?php the_category( ', ' ); ?></span>
-					</div>
-				</div>
+<div class="container spaced mx-auto">
+	<?php if ( $query1->have_posts() ): ?>
+		<?php while ( $query1->have_posts() ): ?>
+			<?php $query1->the_post(); ?>
+            <section class="mb-5 pb-5 border-b border-primary-100">
+                <div class="container flex flex-col px-6 mx-auto space-y-6 xl:flex-row xl:items-center">
+                    <div class="w-full xl:w-1/2">
+                        <div class="xl:max-w-lg">
+                            <h1 class="text-3xl font-bold tracking-wide text-gray-800 lg:text-5xl mt-5">
+                                <a href="<?php the_permalink(); ?>">
+									<?php echo the_title() ?>
+                                </a>
+                            </h1>
+                            <p class="border-t border-b border-primary-100 my-3 py-3 text-lg font-semibold text-center flex justify-between">
+								<?php
+								$cats = wp_get_post_categories( get_the_ID() );
+								$cat  = array_shift( $cats );
+								$cat  = get_category( $cat );
+								?>
+                                <a href="<?php echo get_category_link( $cat->term_id ) ?>"><?php echo $cat->name ?></a>
+								<?php echo get_the_time( 'd.m.Y' ) ?>
+                            </p>
+                            <div class="mt-8 space-y-5">
+                                <p class="flex items-center text-gray-700 line-clamp-5">
+									<?php the_excerpt(); ?>
+                                </p>
+                                <a href="<?php the_permalink(); ?>" class="w-full bg-primary-100 shadow-2xl text-white text-center py-3 hover:shadow-2xl hover:font-semibold block">Jetzt lesen</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center w-full xl:w-1/2 order-first xl:order-last">
+                        <a href="<?php the_permalink(); ?>" class="">
+							<?php the_post_thumbnail( 'custom-thumbnail' ); ?>
+                        </a>
+                    </div>
+                </div>
+            </section>
+		<?php endwhile; ?>
+	<?php endif; ?>
+
+	<?php get_template_part( 'banner', 'mega' ); ?>
+
+	<?php if ( $query2->have_posts() ): ?>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 my-5">
+			<?php while ( $query2->have_posts() ): ?>
+				<?php $query2->the_post(); ?>
+                <div class="bg-white shadow-lg">
+                    <a href="<?php the_permalink(); ?>">
+						<?php the_post_thumbnail( 'article' ); ?>
+                    </a>
+                    <div class="p-3">
+                        <h2 class="text-xl font-bold tracking-wide text-gray-800 lg:text-2xl mt-5 line-clamp-2 h-16"><?php the_title() ?></h2>
+                        <p class="border-t border-b border-primary-100 my-3 py-3 text-lg font-semibold text-center flex justify-between">
+							<?php
+							$cats = wp_get_post_categories( get_the_ID() );
+							$cat  = array_shift( $cats );
+							$cat  = get_category( $cat );
+							?>
+                            <a href="<?php echo get_category_link( $cat->term_id ) ?>"><?php echo $cat->name ?></a>
+							<?php echo get_the_time( 'd.m.Y' ) ?>
+                        </p>
+                        <p class="line-clamp-3 mb-4"><?php echo get_the_excerpt(); ?></p>
+                        <a href="<?php the_permalink(); ?>" class="w-full bg-primary-100 shadow-2xl text-white text-center py-3 hover:shadow-2xl hover:font-semibold block">Jetzt lesen</a>
+                    </div>
+                </div>
 			<?php endwhile; ?>
-		<?php endif; ?>
-	</div>
-	<?php wp_reset_postdata(); ?>
+        </div>
+	<?php endif; ?>
 </div>
+<?php wp_reset_postdata(); ?>

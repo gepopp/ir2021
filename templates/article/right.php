@@ -72,7 +72,7 @@ if ( $cat ):
                             </a>
                         </div>
                     </div>
-					<?php get_template_part( 'article', 'iconbar' ) ?>
+<!--					--><?php //get_template_part( 'article', 'iconbar' ) ?>
                 </div>
             </div>
 		<?php else: ?>
@@ -100,7 +100,7 @@ if ( $cat ):
                         </div>
 					<?php endif; ?>
                 </div>
-				<?php get_template_part( 'article', 'iconbar' ) ?>
+<!--				--><?php //get_template_part( 'article', 'iconbar' ) ?>
             </div>
 			<?php endif; ?>
         </div>

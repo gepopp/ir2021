@@ -10,43 +10,38 @@ namespace immobilien_redaktion_2020;
 
 get_header();
 ?>
-<div id="quick-survey">
-<?php
-$query = new \WP_Query( [
-	'post_type'           => 'post',
-	'post_status'         => 'publish',
-	'ignore_sticky_posts' => true,
-	'posts_per_page'      => 3,
-] );
-get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
-
-get_template_part( 'banner', 'mega' );
-
-get_template_part( 'part', 'liverow', ['when' => 'past'] );
-
-get_template_part( 'banner', 'fourbanner' );
-
-$query = new \WP_Query( [
-	'post_type'           => 'post',
-	'post_status'         => 'publish',
-	'ignore_sticky_posts' => true,
-	'posts_per_page'      => 3,
-	'offset'              => 3,
-] );
-get_template_part( 'part', 'threearticle', [ 'query' => $query ] );
+    <div id="quick-survey">
+		<?php
+		$query1 = new \WP_Query( [
+			'post_type'           => 'post',
+			'post_status'         => 'publish',
+			'ignore_sticky_posts' => true,
+			'posts_per_page'      => 1,
+		] );
+		$query2 = new \WP_Query( [
+			'post_type'           => 'post',
+			'post_status'         => 'publish',
+			'ignore_sticky_posts' => true,
+			'posts_per_page'      => 3,
+			'offset'              => 1,
+		] );
 
 
-get_template_part( 'part', 'liverow' );
+		get_template_part( 'part', 'threearticle', [ 'query1' => $query1, 'query2' => $query2 ] );
 
-get_template_part( 'banner', 'thirds2' );
+		get_template_part( 'banner', 'fourbanner' );
 
-get_template_part( 'part', 'aktuellesrow' );
+		get_template_part( 'part', 'liverow', [ 'when' => 'past' ] );
 
-get_template_part( 'part', 'projekterow' );
+		get_template_part( 'part', 'aktuellesrow' );
 
-?>
-</div>
-</div>
+		get_template_part( 'banner', 'thirds2' );
 
-<?php
+		get_template_part( 'part', 'projekterow' );
+
+		?>
+    </div>
+    </div>
+
+	<?php
 get_footer();

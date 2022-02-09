@@ -101,13 +101,13 @@ $cat = get_category( $cat );
 
 				<?php the_content(); ?>
 
-                <div class="mt-10">
-					<?php
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-					?>
-                </div>
+<!--                <div class="mt-10">-->
+<!--					--><?php
+//					if ( comments_open() || get_comments_number() ) :
+//						comments_template();
+//					endif;
+//					?>
+<!--                </div>-->
 
 
             </div>

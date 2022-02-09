@@ -106,81 +106,9 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
 
         <div class="pt-2 hidden lg:block">
             <ul class="flex">
-                <li class="uppercase text-white mr-3 w-6 h-6">
-                    <a href="https://www.facebook.com/ImmoRedaktion">
-                       <?php get_template_part('icons', 'facebook',  ['color' => 'white']) ?>
-                    </a>
-                </li>
-                <li class="uppercase text-white mr-3 w-6 h-6">
-                    <a href="https://twitter.com/ImmoRedaktion">
-                      <?php get_template_part('icons','twitter',  ['color' => 'white']) ?>
-                    </a>
-                </li>
-                <li class="uppercase text-white mr-3 h-6 w-6">
-                    <a href="https://www.linkedin.com/company/die-unabhaengige-immobilien-redaktion/">
-                       <?php get_template_part('icons','linkedin',  ['color' => 'white']) ?>
-                    </a>
-                </li>
-                <li class="relative inline-flex rounded-md shadow-sm">
-                    <div class="relative" x-data="{show: false}"
-                         @mouseover="show = true"
-                    >
-                        <?php
-
-                        global $wp;
-                        if (!is_user_logged_in()):
-
-                            ?>
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                            </svg>
-                            <div class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-warning  opacity-50"></span>
-                            </div>
-                            <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
-                                <ul>
-                                    <li class="text-lg font-semibold">
-                                        <a href="<?php the_field('field_601bbffe28967', 'option'); ?>"><?php _e('Login', 'ir21') ?></a>
-                                    </li>
-                                    <li class="text-lg font-semibold">
-                                        <a href="<?php the_field('field_601bc00528968', 'option') ?>"><?php _e('Registrieren', 'ir21') ?></a>
-                                    </li>
-                                    <?php if (current_user_can('edit_posts')): ?>
-                                        <li class="text-lg font-semibold">
-                                            <a href="<?php echo admin_url() ?>"><?php _e('backend', 'ir21') ?></a>
-                                        </li>
-                                    <?php endif; ?>
-                                </ul>
-                            </div>
-                        <?php else: ?>
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                            </svg>
-
-                            <div class="flex absolute h-2 w-2 top-0 right-0 -mt-1 -mr-1">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success  opacity-50"></span>
-                            </div>
-                            <div class="absolute top-0 left-0 bg-white mt-8 -ml-20 p-5 z-50" x-show="show" @mouseleave="show = false">
-                                <ul>
-                                    <li class="text-lg font-semibold">
-                                        <a href="<?php the_field('field_601bc4580a4fc', 'option'); ?>"><?php _e('Profil', 'ir21') ?></a>
-                                    </li>
-                                    <li class="text-lg font-semibold">
-                                        <form method="post" action="<?php echo admin_url('admin-post.php') ?>">
-                                            <input type="hidden" name="action" value="frontent_logout">
-                                            <button class="font-semibold" type="submit"><?php _e('logout', 'ir21') ?></button>
-                                        </form>
-                                    </li>
-                                    <?php if (current_user_can('edit_posts')): ?>
-                                        <li class="text-lg font-semibold">
-                                            <a href="<?php echo admin_url() ?>"><?php _e('backend', 'ir21') ?></a>
-                                        </li>
-                                    <?php endif; ?>
-                                </ul>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </li>
+               <li>
+                   <a href="https://immolive.immobilien-redaktion.com" class="uppercase animate-pulse text-white font-semibold">IMMOLIVE</a>
+               </li>
             </ul>
         </div>
     </div>

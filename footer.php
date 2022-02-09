@@ -57,11 +57,11 @@ mt-auto
 
 
 <?php
-if(is_home() || is_front_page() || is_archive()){
-	get_template_part('modal', 'livepreview');
-}
-
-?>
+//if(is_home() || is_front_page() || is_archive()){
+//	get_template_part('modal', 'livepreview');
+//}
+//
+//?>
 
 <?php wp_footer(); ?>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
