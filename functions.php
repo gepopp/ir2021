@@ -116,7 +116,7 @@ add_action( 'rest_api_init', function () {
 			foreach ($users as $key => $user){
 
 				$with_meta[] = [
-					$user->email,
+					$user,
 					get_user_meta($user->data->ID, 'description', true)
 				];
 
