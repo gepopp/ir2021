@@ -109,11 +109,17 @@ add_action( 'rest_api_init', function () {
 		'methods' => 'GET',
 		'callback' => function(){
 			$with_meta = [];
-
 			$users = get_users();
-			foreach ($users as $key => $user){
-				$with_meta[] = array_merge($user, get_user_meta($user['ID']));
-			}
+
+			wp_die(var_dump($users[0]));
+
+//			foreach ($users as $user){
+//				$with_meta[] = [
+//					'name' =>
+//				];
+//			}
+
+
 			return $users;
 		},
 	) );
