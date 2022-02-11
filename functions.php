@@ -110,13 +110,19 @@ add_action( 'rest_api_init', function () {
 		'callback' => function(){
 			$with_meta = [];
 
-			$users = get_users();
+			$users = get_users(['role' => 'subscriber']);
+
+
 			foreach ($users as $key => $user){
 
-				$users[$key]->meta = get_user_meta($user->data->ID);
+				$with_meta[] = [
+					$user->data->email,
+					get_user_meta($user->data->ID, 'description', true)
+				];
+
 
 			}
-			return $users;
+			return $with_meta;
 		},
 	) );
 } );
