@@ -104,3 +104,12 @@ add_action( 'rest_api_init', function () {
 } );
 
 
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'immolive/v2', '/users/', array(
+		'methods' => 'GET',
+		'callback' => function(){
+			$users = get_users();
+			return $users;
+		},
+	) );
+} );
