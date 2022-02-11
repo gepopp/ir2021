@@ -37,6 +37,14 @@ add_filter( 'rest_immolive_collection_params', function ( $query_params ) {
 } );
 
 
+add_filter( 'rest_user_collection_params', function ( $query_params ) {
+
+	$query_params['per_page']["maximum"] = 1000;
+
+	return $query_params;
+} );
+
+
 add_action( 'rest_api_init', function () {
 
 	register_rest_field( 'zur_person', 'my_meta', [
@@ -56,24 +64,6 @@ add_action( 'rest_api_init', function () {
 	] );
 } );
 
-add_action( 'rest_api_init', function () {
-
-	register_rest_field( 'immolive', 'my_meta', [
-		'get_callback' => function ( $post ) {
-
-			// get_post_meta( post_id, meta_key[optional], single[optional] )
-			$post_meta = get_post_meta( $post['id'] );
-			$meta      = [];
-			foreach ( $post_meta as $meta_key => $meta_value ) {
-				$meta[ $meta_key ] = $meta_value[0];
-			}
-
-			return $meta;
-		},
-		// 'update_callback'=> null,
-		// 'schema'         => null
-	] );
-} );
 
 add_action( 'rest_api_init', function () {
 
@@ -94,6 +84,22 @@ add_action( 'rest_api_init', function () {
 			'schema'          => null,
 		)
 	);
+
+	register_rest_field( 'immolive', 'my_meta', [
+		'get_callback' => function ( $post ) {
+
+			// get_post_meta( post_id, meta_key[optional], single[optional] )
+			$post_meta = get_post_meta( $post['id'] );
+			$meta      = [];
+			foreach ( $post_meta as $meta_key => $meta_value ) {
+				$meta[ $meta_key ] = $meta_value[0];
+			}
+
+			return $meta;
+		},
+		// 'update_callback'=> null,
+		// 'schema'         => null
+	] );
 
 } );
 
