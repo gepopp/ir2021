@@ -108,9 +108,11 @@ add_action( 'rest_api_init', function () {
 	register_rest_route( 'immolive/v2', '/users/', array(
 		'methods' => 'GET',
 		'callback' => function(){
+			$with_meta = [];
+
 			$users = get_users();
 			foreach ($users as $key => $user){
-				$users[$key]['meta'] = get_user_meta($user['ID']);
+				$with_meta[] = array_merge($user, get_user_meta($user['ID']));
 			}
 			return $users;
 		},
