@@ -83,5 +83,18 @@ add_action( 'rest_api_init', function () {
 			},
 		]
 	);
+
+
+	register_rest_field( 'user', 'user_email',
+		array(
+			'get_callback'    => function ( $user ) {
+				return $user['email'];
+			},
+			'update_callback' => null,
+			'schema'          => null,
+		)
+	);
+
 } );
+
 
