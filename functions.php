@@ -109,6 +109,9 @@ add_action( 'rest_api_init', function () {
 		'methods' => 'GET',
 		'callback' => function(){
 			$users = get_users();
+			foreach ($users as $key => $user){
+				$users[$key]->meta = get_user_meta($user);
+			}
 			return $users;
 		},
 	) );
