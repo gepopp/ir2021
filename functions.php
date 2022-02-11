@@ -110,7 +110,7 @@ add_action( 'rest_api_init', function () {
 		'callback' => function(){
 			$users = get_users();
 			foreach ($users as $key => $user){
-				$users[$key]->meta = get_user_meta($user);
+				$users[$key]['meta'] = get_user_meta($user);
 			}
 			return $users;
 		},
