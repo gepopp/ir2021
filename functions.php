@@ -89,9 +89,7 @@ add_action( 'rest_api_init', function () {
 		array(
 			'get_callback'    => function ( $user ) {
 
-				wp_die(var_dump($user));
-
-				return $user['email'];
+				return get_userdata($user['id'])->user_email;
 			},
 			'update_callback' => null,
 			'schema'          => null,
