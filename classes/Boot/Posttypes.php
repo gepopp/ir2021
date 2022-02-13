@@ -101,10 +101,6 @@ class Posttypes {
 		register_taxonomy( 'position', [ 'ir_ad' ], $args );
 
 
-
-
-
-
 		$labels = [
 			'name'                       => 'Aktuelles Kategorie',
 			'singular_name'              => 'Aktuelles Kategorie',
@@ -173,7 +169,15 @@ class Posttypes {
 			'label'               => __( 'Aktuelles', 'text_domain' ),
 			'description'         => __( 'Aktuelles', 'irtheme' ),
 			'labels'              => $labels,
-			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt', 'author' ],
+			'supports'            => [
+				'title',
+				'editor',
+				'thumbnail',
+				'comments',
+				'custom-fields',
+				'excerpt',
+				'author'
+			],
 			'taxonomies'          => [ 'aktuelles_category' ],
 			'hierarchical'        => false,
 			'public'              => true,
@@ -259,7 +263,15 @@ class Posttypes {
 			'label'               => __( 'Immobilien Projekt', 'text_domain' ),
 			'description'         => __( 'Immobilien Projekt', 'irtheme' ),
 			'labels'              => $labels,
-			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields', 'excerpt', 'author' ],
+			'supports'            => [
+				'title',
+				'editor',
+				'thumbnail',
+				'comments',
+				'custom-fields',
+				'excerpt',
+				'author'
+			],
 			'taxonomies'          => [ 'immobilien_projekt' ],
 			'hierarchical'        => false,
 			'public'              => true,
@@ -278,58 +290,5 @@ class Posttypes {
 		];
 		register_post_type( 'immobilien_projekt', $args );
 
-
-		$labels = [
-			'name'                  => _x( 'Zur Person', 'Post Type General Name', 'text_domain' ),
-			'singular_name'         => _x( 'Zur Person', 'Post Type Singular Name', 'text_domain' ),
-			'menu_name'             => __( 'Zur Person', 'text_domain' ),
-			'name_admin_bar'        => __( 'Zur Person', 'text_domain' ),
-			'archives'              => __( 'Zur Person', 'text_domain' ),
-			'attributes'            => __( 'Zur Person Attribute', 'text_domain' ),
-			'parent_item_colon'     => __( 'Parent Item:', 'text_domain' ),
-			'all_items'             => __( 'Alle Zur Person', 'text_domain' ),
-			'add_new_item'          => __( 'Neuer Zur Person', 'text_domain' ),
-			'add_new'               => __( 'Hinzufügen', 'text_domain' ),
-			'new_item'              => __( 'Neuer Zur Person', 'text_domain' ),
-			'edit_item'             => __( 'Zur Person', 'text_domain' ),
-			'update_item'           => __( 'Zur Person', 'text_domain' ),
-			'view_item'             => __( 'Zur Person', 'text_domain' ),
-			'view_items'            => __( 'Alle Zur Person', 'text_domain' ),
-			'not_found'             => __( 'Nichts gefunden', 'text_domain' ),
-			'not_found_in_trash'    => __( 'Nichts gefunden', 'text_domain' ),
-			'featured_image'        => __( 'Beitragsbild', 'text_domain' ),
-			'set_featured_image'    => __( 'Beitragsbild setzten', 'text_domain' ),
-			'remove_featured_image' => __( 'Beitragsbild entfernen', 'text_domain' ),
-			'use_featured_image'    => __( 'Als Beitragsbild verwenden', 'text_domain' ),
-			'insert_into_item'      => __( 'Einfügen', 'text_domain' ),
-			'uploaded_to_this_item' => __( 'Zum Zur Person hochgeladen', 'text_domain' ),
-			'items_list'            => __( 'Zur Person Liste', 'text_domain' ),
-			'items_list_navigation' => __( 'Zur Person Listen Navigation', 'text_domain' ),
-			'filter_items_list'     => __( 'Filtern', 'text_domain' ),
-		];
-		$args   = [
-			'label'               => __( 'Zur Person', 'text_domain' ),
-			'description'         => __( 'Zur Person', 'irtheme' ),
-			'labels'              => $labels,
-			'supports'            => [ 'title', 'editor', 'thumbnail', 'comments', 'custom-fields' ],
-			'taxonomies'          => [],
-			'hierarchical'        => false,
-			'public'              => true,
-			'show_ui'             => true,
-			'show_in_menu'        => true,
-			'menu_position'       => 4,
-			'show_in_admin_bar'   => true,
-			'show_in_nav_menus'   => true,
-			'can_export'          => true,
-			'has_archive'         => true,
-			'exclude_from_search' => false,
-			'publicly_queryable'  => true,
-			'capability_type'     => 'post',
-			'show_in_rest'        => true,
-			'menu_icon'           => 'dashicons-admin-post',
-		];
-		register_post_type( 'zur_person', $args );
 	}
-
-
 }
