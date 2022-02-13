@@ -107,7 +107,7 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
         <div class="pt-2 hidden lg:block">
             <ul class="flex">
                 <li>
-                    <a href="https://immolive.immobilien-redaktion.com/people" class="uppercase animate-pulse text-white font-semibold">Menschen</a>
+                    <a href="https://immolive.immobilien-redaktion.com/people" class="uppercase text-white font-semibold pr-5">Menschen</a>
                 </li>
                <li>
                    <a href="https://immolive.immobilien-redaktion.com" class="uppercase animate-pulse text-white font-semibold">IMMOLIVE</a>
