@@ -91,7 +91,6 @@ if (is_page_template('pagetemplate-passwort-vergessen.php')
                 'walker'         => new TailwindNavWalker(),
             ]);
             ?>
-            <a href="https://immolive.immobilien-redaktion.com/people" class="uppercase text-white font-semibold pr-5">Menschen</a>
         </div>
 
         <a href="<?php echo home_url() ?>" class="z-50">
