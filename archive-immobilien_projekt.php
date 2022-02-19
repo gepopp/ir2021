@@ -55,6 +55,7 @@
             <div class="grid grid-cols-2 gap-10">
 				<?php while ( have_posts() ): ?>
 					<?php the_post(); ?>
+					<?php get_template_part( 'article', 'jsonld' ) ?>
                     <div class="col-span-2 md:col-span-1 relative">
                         <a href="<?php the_permalink(); ?>" class="relative block bg-primary-100 h-full" style="padding-top: 56%">
 							<?php the_post_thumbnail( 'article', [
