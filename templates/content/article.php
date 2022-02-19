@@ -16,6 +16,7 @@ $cat = get_category( $cat );
      ref="watched"
 >
 	<?php get_template_part( 'article', 'header' ) ?>
+	<?php get_template_part( 'article', 'jsonld' ) ?>
 
     <div class="container mx-auto">
         <div class="grid grid-cols-5 gap-4">

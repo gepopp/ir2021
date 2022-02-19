@@ -20,6 +20,9 @@ if ( $query->have_posts() ):
 			<?php while ( $query->have_posts() ): ?>
 				<?php $query->the_post(); ?>
 
+				<?php get_template_part( 'article', 'jsonld' ) ?>
+
+
                 <div class="relative">
                     <a href="<?php the_permalink(); ?>" class="block bg-primary-100 h-full image-holder">
 						<?php the_post_thumbnail( 'article', [

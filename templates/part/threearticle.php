@@ -9,6 +9,11 @@ extract( $args );
 	<?php if ( $query1->have_posts() ): ?>
 		<?php while ( $query1->have_posts() ): ?>
 			<?php $query1->the_post(); ?>
+
+
+			<?php get_template_part( 'article', 'jsonld' ) ?>
+
+
             <section class="mb-5 pb-5 border-b border-primary-100">
                 <div class="container flex flex-col px-6 mx-auto space-y-6 xl:flex-row xl:items-center">
                     <div class="w-full xl:w-1/2">
@@ -37,7 +42,7 @@ extract( $args );
                     </div>
                     <div class="flex flex-col items-center justify-center w-full xl:w-1/2 order-first xl:order-last">
                         <a href="<?php the_permalink(); ?>" class="">
-							<?php the_post_thumbnail( 'custom-thumbnail', ['class' => 'w-full'] ); ?>
+							<?php the_post_thumbnail( 'custom-thumbnail', [ 'class' => 'w-full' ] ); ?>
                         </a>
                     </div>
                 </div>
@@ -53,7 +58,7 @@ extract( $args );
 				<?php $query2->the_post(); ?>
                 <div class="bg-white shadow-lg">
                     <a href="<?php the_permalink(); ?>">
-						<?php the_post_thumbnail( 'article', ['class' => 'w-full'] ); ?>
+						<?php the_post_thumbnail( 'article', [ 'class' => 'w-full' ] ); ?>
                     </a>
                     <div class="p-3">
                         <h2 class="text-xl font-bold tracking-wide text-gray-800 lg:text-2xl mt-5 line-clamp-2 h-16"><?php the_title() ?></h2>
