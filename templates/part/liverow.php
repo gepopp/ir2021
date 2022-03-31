@@ -22,6 +22,7 @@ $events = json_decode( wp_remote_retrieve_body( $events ) );
                             <a href="<?php echo $events->upcoming->link ?>">
 								<?php echo $events->upcoming->title ?>
                             </a>
+
                         </h1>
                         <p class="border-t border-b border-primary-100 my-3 py-3 text-lg font-semibold text-center animate-pulse">
                             Live am <?php echo \Carbon\Carbon::parse( $events->upcoming->start )->addHours(2)->format( 'd.m.Y \u\m H:i', 'Europe/Berlin' ) ?> Uhr
