@@ -24,7 +24,7 @@ $events = json_decode( wp_remote_retrieve_body( $events ) );
                             </a>
                         </h1>
                         <p class="border-t border-b border-primary-100 my-3 py-3 text-lg font-semibold text-center animate-pulse">
-                            Live am <?php echo \Carbon\Carbon::parse( $events->upcoming->start )->format( 'd.m.Y \u\m H:i' ) ?> Uhr
+                            Live am <?php echo \Carbon\Carbon::parse( $events->upcoming->start )->addHours(2)->format( 'd.m.Y \u\m H:i', 'Europe/Berlin' ) ?> Uhr
                         </p>
                         <div class="mt-8 space-y-5">
                             <p class="flex items-center text-gray-700 line-clamp-5">
