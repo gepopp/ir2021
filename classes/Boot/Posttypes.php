@@ -179,7 +179,7 @@ class Posttypes {
 				'author',
 				'tags'
 			],
-			'taxonomies'          => [ 'aktuelles_category', 'tags' ],
+			'taxonomies'          => [ 'aktuelles_category', 'post_tag' ],
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
