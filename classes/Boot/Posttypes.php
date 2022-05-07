@@ -176,9 +176,10 @@ class Posttypes {
 				'comments',
 				'custom-fields',
 				'excerpt',
-				'author'
+				'author',
+				'tags'
 			],
-			'taxonomies'          => [ 'aktuelles_category' ],
+			'taxonomies'          => [ 'aktuelles_category', 'tags' ],
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
