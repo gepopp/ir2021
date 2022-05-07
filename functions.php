@@ -127,6 +127,16 @@ add_action( 'rest_api_init', function () {
 	) );
 } );
 
+
+add_filter( 'rest_aktuelle_presse_collection_params', function ( $query_params ) {
+
+	$query_params['per_page']["maximum"] = 1000;
+
+	return $query_params;
+} );
+
+
+
 //
 //add_action( 'init', 'my_book_cpt' );
 //function my_book_cpt() {
