@@ -127,13 +127,13 @@ add_action( 'rest_api_init', function () {
 	) );
 } );
 
-
-add_action( 'init', 'my_book_cpt' );
-function my_book_cpt() {
-	$args = array(
-		'public'       => true,
-		'show_in_rest' => true,
-		'label'        => 'Aktuelles'
-	);
-	register_post_type( 'aktuelle_presse', $args );
-}
+//
+//add_action( 'init', 'my_book_cpt' );
+//function my_book_cpt() {
+//	$args = array(
+//		'public'       => true,
+//		'show_in_rest' => true,
+//		'label'        => 'Aktuelles'
+//	);
+//	register_post_type( 'aktuelle_presse', $args );
+//}
